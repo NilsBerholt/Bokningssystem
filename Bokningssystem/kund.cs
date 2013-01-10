@@ -12,6 +12,7 @@ namespace Bokningssystem
         private string email, fnamn, enamn, losenord, tfn;
         static bool isAdmin;
         private string[] tmpMsgs;
+        private SqlCeDatabase db = null;
 
         /// <summary>
         /// Konstruktören för klassen kund.
@@ -22,7 +23,7 @@ namespace Bokningssystem
         /// <param name="losen">Lösenordet, som en säkerhetsåtgärd</param>
         public kund(string email, string losen)
         {
-            SqlCeDatabase db = new SqlCeDatabase();
+            this.db = new SqlCeDatabase();
 
             List<string> errorMsg = new List<string>();
             string query = "Select email, fnamn, enamn, losen ,isAdmin, tfn from Kunder where email='?x?'";
@@ -111,11 +112,10 @@ namespace Bokningssystem
 
             string updateQuery = "UPDATE Kunder set fnamn='?x?', enamn='?x?' where email='?x?'";
             string[] args = { fornamn, efternamn, GetEmail() };
-            SqlCeDatabase db = new SqlCeDatabase();
-            string[] queryResultat = db.query(updateQuery, args);
+            string[] queryResultat = this.db.query(updateQuery, args);
             if (queryResultat[0] == "1")
             {
-                string[] operationResult = db.operation();
+                string[] operationResult = this.db.operation();
                 if (operationResult[0] != "1")
                 {
                     errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
@@ -141,6 +141,38 @@ namespace Bokningssystem
         {
             return this.tfn;
         }
+
+        /// <summary>
+        /// Funktion som sätter kundens telefonnummer
+        /// Kombinera med getTmpMsgs()
+        /// </summary>
+        /// <param name="tfnnummer">Telefonnumret som string</param>
+        /// <returns>0 är genomförd utan problem, allt annat är fel. 1 är fel med uppdateringen till databasen och 2 är fel med frågan</returns>
+        public int SetTfn(string tfnnummer)
+        {
+            string querySetTfn = "UPDATE Kunder set tfn='?x?' where email='?x?'";
+            string[] args = { tfnnummer, this.GetEmail() };
+
+            string[] queryResult = this.db.query(querySetTfn, args);
+            if (queryResult[0] == "1")
+            {
+                string[] operationResult = this.db.operation();
+                if (operationResult[0] == "1")
+                {
+                    this.tfn = tfnnummer;
+                    return 0;
+                }
+                else
+                {
+                    this.tmpMsgs = operationResult;
+                    return 1;
+                }
+            }
+            else
+            {
+                this.tmpMsgs = queryResult;
+                return 2;
+            }
+        }
     }
 }
-
