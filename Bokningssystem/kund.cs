@@ -9,7 +9,7 @@ namespace Bokningssystem
     {
         public bool DEBUG = Properties.Settings.Default.Debug;
 
-        private string email, fnamn, enamn, losenord, tfn;
+        private string email, fnamn, enamn, losenord, tfn, adress;
         static bool isAdmin;
         private string[] tmpMsgs;
         private SqlCeDatabase db = null;
@@ -26,36 +26,46 @@ namespace Bokningssystem
             this.db = new SqlCeDatabase();
 
             List<string> errorMsg = new List<string>();
-            string query = "Select email, fnamn, enamn, losen ,isAdmin, tfn from Kunder where email='?x?'";
+            string query = "Select email, fnamn, enamn, losen ,isAdmin, tfn, adress from Kunder where email='?x?'";
             string[] args = { email };
             if (db.query(query, args)[0] != "1")
                 errorMsg.Add(db.query(query, args)[1]);
             else
             {
                 string[] resultat = db.fetchAll();
-                string[] properties = { this.email, this.fnamn, this.enamn, this.losenord, this.tfn };
+                string[] properties = { this.email, this.fnamn, this.enamn, this.losenord, this.tfn, this.adress };
 
                 if (resultat[0] != string.Empty)
                     this.email = resultat[0];
                 else
                     errorMsg.Add("Fältet för email-adressen är tomt");
+
                 if (resultat[1] != string.Empty)
                     this.fnamn = resultat[1];
                 else
                     errorMsg.Add("Fältet för förnamnet är tomt");
+                
                 if (resultat[2] != string.Empty)
                     this.enamn = resultat[2];
                 else
                     errorMsg.Add("Fältet för efternamnet är tomt");
+                
                 if (resultat[3] != string.Empty)
                     this.losenord = resultat[3];
                 else
                     errorMsg.Add("Fältet för lösenordet är tomt");
+                
                 isAdmin = !resultat[4].Equals("0");
+                
                 if (resultat[5] != string.Empty)
                     this.tfn = resultat[5];
                 else
                     errorMsg.Add("Fältet för telefonnummret är tomt");
+
+                if (resultat[6] != string.Empty)
+                    this.adress = resultat[6];
+                else
+                    errorMsg.Add("Fältet för adressen är tomt");
             }
             this.tmpMsgs = errorMsg.ToArray();
         }
@@ -77,6 +87,33 @@ namespace Bokningssystem
         public string GetEmail()
         {
             return this.email;
+        }
+        
+        /// <summary>
+        /// Funktin som hämtar lösenordet till kunden
+        /// </summary>
+        /// <returns>Lösenordet till personen / kunden</returns>
+        public string GetLosen()
+        {
+            return this.losenord;
+        }
+
+        /// <summary>
+        /// Funktion som hämtar adressen till kunden
+        /// </summary>
+        /// <returns>Adressen till personen / kunden</returns>
+        public string GetAdress()
+        {
+            return this.adress;
+        }
+
+        /// <summary>
+        /// Funktion som hämtar telefonnummret till kunden
+        /// </summary>
+        /// <returns>Telefonnummret till personen / kunden</returns>
+        public string GetTfn()
+        {
+            return this.tfn;
         }
 
         /// <summary>
@@ -134,15 +171,6 @@ namespace Bokningssystem
         }
 
         /// <summary>
-        /// Funktion som hämtar telefonnummret till kunden
-        /// </summary>
-        /// <returns>Telefonnummret till personen / kunden</returns>
-        public string GetTfn()
-        {
-            return this.tfn;
-        }
-
-        /// <summary>
         /// Funktion som sätter kundens telefonnummer
         /// Kombinera med getTmpMsgs()
         /// </summary>
@@ -174,5 +202,7 @@ namespace Bokningssystem
                 return 2;
             }
         }
+
+
     }
 }
