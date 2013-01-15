@@ -14,12 +14,21 @@ namespace Bokningssystem
         public bool DEBUG = Properties.Settings.Default.Debug;
         private kund anvandare;
         private bool kundHarReggadBil;
+        private string uppdatera = null;
 
         public FormBoka(kund anvandare)
         {
             InitializeComponent();
             SqlCeDatabase db = new SqlCeDatabase();
             this.anvandare = anvandare;
+
+            labelNamn.Text = anvandare.GetNamn();
+            labelEmail.Text = anvandare.GetEmail();
+            labelTfn.Text = anvandare.GetTfn();
+            labelAdress.Text = anvandare.GetAdress();
+
+            maskedTextBox1.Hide();
+            buttonRedigera.Hide();
 
             string regQuery = "SELECT reg FROM fordon WHERE agare='?x?'";
             string[] args = { anvandare.GetEmail() };
@@ -44,11 +53,11 @@ namespace Bokningssystem
             }
 
             splitContainer1.Panel2Collapsed = true;
-            richTextBoxMeddelandenBoka.Text = "Tryck på Ny bokning för att göra en ny bokning.\nTryck på Mina Bokningar för att se vad du har bokat och när.";
+            richTextBoxBokningMeny.Text = "Tryck på Ny bokning för att göra en ny bokning.\nTryck på Mina Bokningar för att se vad du har bokat och när.";
             if (DEBUG)
             {
-                richTextBoxMeddelandenBoka.Text += "\nNamn: " + anvandare.GetNamn();
-                richTextBoxMeddelandenBoka.Text += "\nEmail: " + anvandare.GetEmail();
+                richTextBoxBokningMeny.Text += "\nNamn: " + anvandare.GetNamn();
+                richTextBoxBokningMeny.Text += "\nEmail: " + anvandare.GetEmail();
             }
             
         }
@@ -107,6 +116,7 @@ namespace Bokningssystem
             splitContainer1.Panel2Collapsed = false;
             if (kundHarReggadBil)
                 panelNyBil.Hide();
+            tabControl1.SelectTab(tabPageNyBok);
         }
 
         private void comboBoxReg_SelectedIndexChanged(object sender, EventArgs e)
@@ -120,6 +130,35 @@ namespace Bokningssystem
             {
                 panelNyBil.Hide();
                 kundHarReggadBil = true;
+            }
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+
+        private void buttonMinBok_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab(tabPageMinBok);
+        }
+
+        private void labelEditNamn_Click(object sender, EventArgs e)
+        {
+            maskedTextBox1.Show();
+            buttonRedigera.Show();
+            this.uppdatera = "namn";
+            
+        }
+
+        private void buttonRedigera_Click(object sender, EventArgs e)
+        {
+            switch (this.uppdatera)
+            {
+                case "namn":
+                    string namn = maskedTextBox1.Text;
+                    this.anvandare.SetNamn(namn);
+                    break;
             }
         }
     }
