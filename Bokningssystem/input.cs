@@ -554,5 +554,32 @@ namespace Bokningssystem
             }
             return false;
         }
+
+        /// <summary>
+        /// Kollar om tiden är ledig i bokningsdatabasen
+        /// </summary>
+        /// <param name="date">Datumet som bokningen gäller</param>
+        /// <param name="tid">Tid intervallet ex. HH:MM</param>
+        /// <returns>Sant om det är ledigt, falskt annars</returns>
+        public bool kollaTidLedig (DateTime date, string tid)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+
+            string tid1 = tid.Substring(0, tid.IndexOf(' '));
+            string tid2 = tid.Substring(tid.LastIndexOf(' '), 5);
+
+            string date1 = date.Year.ToString() + date.Month.ToString() + date.Day.ToString() + " " + tid1;
+            string date2 = date.Year.ToString() + date.Month.ToString() + date.Day.ToString() + " " + tid2;
+            
+            string queryTid = "SELECT * FROM Bokning WHERE datum BETWEEN '?x?' AND '?x?'";
+            string[] args = { date1, date2 };
+            if (db.query(queryTid, args)[0] == "1")
+            {
+                string[] resultat = db.fetchAll();
+                if (resultat[0] == "fel")
+                    return true;
+            }
+            return false;
+        }
     }
 }

@@ -84,11 +84,20 @@
     <Compile Include="input.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="kalender.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="kalender.Designer.cs">
+      <DependentUpon>kalender.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormBoka.resx">
       <DependentUpon>FormBoka.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormInmatning.resx">
       <DependentUpon>FormInmatning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kalender.resx">
+      <DependentUpon>kalender.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
