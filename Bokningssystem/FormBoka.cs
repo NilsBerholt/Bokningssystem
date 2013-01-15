@@ -26,8 +26,12 @@ namespace Bokningssystem
             labelEmail.Text = anvandare.GetEmail();
             labelTfn.Text = anvandare.GetTfn();
             labelAdress.Text = anvandare.GetAdress();
+            label7.Text = "";
 
-            maskedTextBox1.Hide();
+            maskedTextBoxNytt.Hide();
+            maskedTextBoxBekräfta.Hide();
+            labelNytt.Hide();
+            labelBekräfta.Hide();
             buttonRedigera.Hide();
 
             string regQuery = "SELECT reg FROM fordon WHERE agare='?x?'";
@@ -145,10 +149,57 @@ namespace Bokningssystem
 
         private void labelEditNamn_Click(object sender, EventArgs e)
         {
-            maskedTextBox1.Show();
+            maskedTextBoxNytt.Show();
+            labelNytt.Show();
             buttonRedigera.Show();
+            labelNytt.Text = "Nytt namn";
             this.uppdatera = "namn";
             
+        }
+
+        private void labelEditEmail_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxNytt.Show();
+            maskedTextBoxBekräfta.Show();
+            labelNytt.Show();
+            labelBekräfta.Show();
+            buttonBoka.Show();
+            labelBekräfta.Text = "Bekräfta din email";
+            labelNytt.Text = "Din nya email";
+            this.uppdatera = "email";
+        }
+
+        private void labelEditTfn_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxNytt.Show();
+            maskedTextBoxBekräfta.Show();
+            labelNytt.Show();
+            labelBekräfta.Show();
+            buttonBoka.Show();
+            labelBekräfta.Text = "Bekräfta dit telefonnummer";
+            labelNytt.Text = "Ditt ny telefonnummer";
+            this.uppdatera = "tfn";
+        }
+
+        private void labelEditAdress_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxNytt.Show();
+            labelNytt.Show();
+            buttonBoka.Show();
+            labelNytt.Text = "Din nya adress";
+            this.uppdatera = "adress";
+        }
+
+        private void labelEditLosen_Click(object sender, EventArgs e)
+        {
+            maskedTextBoxNytt.Show();
+            maskedTextBoxBekräfta.Show();
+            labelNytt.Show();
+            labelBekräfta.Show();
+            buttonBoka.Show();
+            labelBekräfta.Text = "Bekräfta ditt lösenord";
+            labelNytt.Text = "Ditt ny lösenord";
+            this.uppdatera = "losen";
         }
 
         private void buttonRedigera_Click(object sender, EventArgs e)
@@ -156,10 +207,57 @@ namespace Bokningssystem
             switch (this.uppdatera)
             {
                 case "namn":
-                    string namn = maskedTextBox1.Text;
+                    string namn = maskedTextBoxNytt.Text;
                     this.anvandare.SetNamn(namn);
+                    label7.Text = "Du har nu bytt namn";
+                    labelNamn.Text = anvandare.GetNamn();
+                    break;
+
+                case "email":
+
+                    break;
+
+                case "tfn":
+                    string tfn;
+                    string tfn1 = maskedTextBoxNytt.Text;
+                    string tfn2 = maskedTextBoxBekräfta.Text;
+
+                    if (tfn1 == tfn2)
+                    {
+                        tfn = tfn1;
+                        int result = anvandare.SetTfn(tfn);
+                        if (result == 0)
+                        {
+                            label7.Text = "Du har nu bytt telefonnummer";
+                        }
+                        else
+                        {
+                            label7.Text = "Det blev något fel någonstans...";
+                        }
+                    }
+                    else
+                    {
+                        label7.Text = "Dina telefonnummer stämmer inte ihop";
+                    }
+                    labelTfn.Text = anvandare.GetTfn();
+                        break;
+
+                case "adress":
+                        string adress = maskedTextBoxNytt.Text;
+                        this.anvandare.SetAdress(adress);
+                        labelAdress.Text = anvandare.GetAdress();
+                        label7.Text = "Du har nu ändrat din adress";
+                    break;
+
+                case "losen":
+
                     break;
             }
+        }
+
+        private void buttonProfil_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab(tabPageProfil);
         }
     }
 }

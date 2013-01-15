@@ -11,7 +11,7 @@ namespace Bokningssystem
     /// En klass som sköter allt som har med SQL Server Compact Edition att göra.
     /// Klassen tar hand om frågeformering, select-frågor och uppdateringsfrågor.
     /// </summary>
-    class SqlCeDatabase
+    public class SqlCeDatabase
     {
         /// <summary>
         /// Deklarerar variabler som sparas i instansen
