@@ -159,11 +159,6 @@ namespace Bokningssystem
                     if (DEBUG)
                         errorMsgs.AddRange(operationResult);
                 }
-                else
-                {
-                    this.fnamn = fornamn;
-                    this.enamn = efternamn;
-                }
             }
             else
             {
@@ -171,6 +166,8 @@ namespace Bokningssystem
                 if (DEBUG)
                     errorMsgs.AddRange(queryResultat);
             }
+            this.fnamn = fornamn;
+            this.enamn = efternamn;
         }
 
         /// <summary>
@@ -206,37 +203,6 @@ namespace Bokningssystem
             }
         }
 
-        public int SetAdress(string adress)
-        {
-            List<string> errorMsgs = new List<string>();
-            string NyAdress = adress;
 
-            string updateQuery = "UPDATE kunder set adress='?x?' where email='?x?'";
-            string[] args = { NyAdress, GetEmail() };
-            string[] queryResultat = this.db.query(updateQuery, args);
-            if (queryResultat[0] == "1")
-            {
-                string[] operationResult = this.db.operation();
-                if (operationResult[0] != "1")
-                {
-                    errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
-                    if (DEBUG)
-                        errorMsgs.AddRange(operationResult);
-                    return 10;
-                }
-                else
-                {
-                    this.adress = NyAdress;
-                    return 0;
-                }
-            }
-            else
-            {
-                errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
-                if (DEBUG)
-                    errorMsgs.AddRange(queryResultat);
-                return 100;
-            }
-        }
     }
 }

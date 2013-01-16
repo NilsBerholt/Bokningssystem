@@ -11,22 +11,22 @@ namespace Bokningssystem
 {
     public partial class kalender : UserControl
     {
-        public SqlCeDatabase db = null;
         private DateTime date;
+        private SqlCeDatabase db;
         private int month, day, year;
         public string valdTid;
 
-        public kalender(DateTime date, SqlCeDatabase database)
+        public kalender(DateTime date, SqlCeDatabase db)
         {
             InitializeComponent();
 
             this.date = date;
-            db = database;
-
             // Initiera datumen
             this.month = this.date.Month;
             this.day = this.date.Day;
             this.year = this.date.Year;
+
+            this.db = db;
         }
 
         public void Initiate()
@@ -81,6 +81,7 @@ namespace Bokningssystem
 
             if (inmatning.kollaTidLedig(date, tid))
                 färg.BackColor = Color.Green;
+                färg.Click(this.Boka
             else
                 färg.BackColor = Color.Red;
             panel.Controls.Add(färg);
