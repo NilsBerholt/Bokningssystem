@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimeDatum = new System.Windows.Forms.DateTimePicker();
             this.buttonNyBoka = new System.Windows.Forms.Button();
             this.buttonMinBok = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -53,8 +52,12 @@
             this.tabPageMinBok = new System.Windows.Forms.TabPage();
             this.panelMinBok = new System.Windows.Forms.Panel();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.labelBekräfta = new System.Windows.Forms.Label();
+            this.labelNytt = new System.Windows.Forms.Label();
+            this.maskedTextBoxBekräfta = new System.Windows.Forms.MaskedTextBox();
             this.buttonRedigera = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxNytt = new System.Windows.Forms.MaskedTextBox();
             this.labelEditLosen = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelEditAdress = new System.Windows.Forms.Label();
@@ -69,6 +72,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
+            this.buttonProfil = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,20 +86,10 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dateTimeDatum
-            // 
-            this.dateTimeDatum.CustomFormat = "yyyy-MM-dd HH:mm";
-            this.dateTimeDatum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimeDatum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeDatum.Location = new System.Drawing.Point(532, 31);
-            this.dateTimeDatum.Name = "dateTimeDatum";
-            this.dateTimeDatum.Size = new System.Drawing.Size(172, 26);
-            this.dateTimeDatum.TabIndex = 2;
-            // 
             // buttonNyBoka
             // 
             this.buttonNyBoka.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNyBoka.Location = new System.Drawing.Point(254, 210);
+            this.buttonNyBoka.Location = new System.Drawing.Point(187, 210);
             this.buttonNyBoka.Name = "buttonNyBoka";
             this.buttonNyBoka.Size = new System.Drawing.Size(105, 29);
             this.buttonNyBoka.TabIndex = 28;
@@ -288,6 +282,7 @@
             // 
             // tabPageMeny
             // 
+            this.tabPageMeny.Controls.Add(this.buttonProfil);
             this.tabPageMeny.Controls.Add(this.richTextBoxBokningMeny);
             this.tabPageMeny.Controls.Add(this.buttonMinBok);
             this.tabPageMeny.Controls.Add(this.buttonNyBoka);
@@ -343,8 +338,12 @@
             // 
             // tabPageProfil
             // 
+            this.tabPageProfil.Controls.Add(this.label7);
+            this.tabPageProfil.Controls.Add(this.labelBekräfta);
+            this.tabPageProfil.Controls.Add(this.labelNytt);
+            this.tabPageProfil.Controls.Add(this.maskedTextBoxBekräfta);
             this.tabPageProfil.Controls.Add(this.buttonRedigera);
-            this.tabPageProfil.Controls.Add(this.maskedTextBox1);
+            this.tabPageProfil.Controls.Add(this.maskedTextBoxNytt);
             this.tabPageProfil.Controls.Add(this.labelEditLosen);
             this.tabPageProfil.Controls.Add(this.tableLayoutPanel1);
             this.tabPageProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -356,9 +355,48 @@
             this.tabPageProfil.Text = "Profil";
             this.tabPageProfil.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(9, 233);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 16);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "label7";
+            // 
+            // labelBekräfta
+            // 
+            this.labelBekräfta.AutoSize = true;
+            this.labelBekräfta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBekräfta.Location = new System.Drawing.Point(143, 273);
+            this.labelBekräfta.Name = "labelBekräfta";
+            this.labelBekräfta.Size = new System.Drawing.Size(58, 16);
+            this.labelBekräfta.TabIndex = 15;
+            this.labelBekräfta.Text = "Bekräfta";
+            // 
+            // labelNytt
+            // 
+            this.labelNytt.AutoSize = true;
+            this.labelNytt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNytt.Location = new System.Drawing.Point(9, 273);
+            this.labelNytt.Name = "labelNytt";
+            this.labelNytt.Size = new System.Drawing.Size(31, 16);
+            this.labelNytt.TabIndex = 14;
+            this.labelNytt.Text = "Nytt";
+            // 
+            // maskedTextBoxBekräfta
+            // 
+            this.maskedTextBoxBekräfta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxBekräfta.Location = new System.Drawing.Point(146, 299);
+            this.maskedTextBoxBekräfta.Name = "maskedTextBoxBekräfta";
+            this.maskedTextBoxBekräfta.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxBekräfta.TabIndex = 13;
+            // 
             // buttonRedigera
             // 
-            this.buttonRedigera.Location = new System.Drawing.Point(339, 323);
+            this.buttonRedigera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRedigera.Location = new System.Drawing.Point(300, 298);
             this.buttonRedigera.Name = "buttonRedigera";
             this.buttonRedigera.Size = new System.Drawing.Size(75, 23);
             this.buttonRedigera.TabIndex = 12;
@@ -366,12 +404,13 @@
             this.buttonRedigera.UseVisualStyleBackColor = true;
             this.buttonRedigera.Click += new System.EventHandler(this.buttonRedigera_Click);
             // 
-            // maskedTextBox1
+            // maskedTextBoxNytt
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(31, 305);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(115, 20);
-            this.maskedTextBox1.TabIndex = 11;
+            this.maskedTextBoxNytt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxNytt.Location = new System.Drawing.Point(12, 299);
+            this.maskedTextBoxNytt.Name = "maskedTextBoxNytt";
+            this.maskedTextBoxNytt.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxNytt.TabIndex = 11;
             // 
             // labelEditLosen
             // 
@@ -383,6 +422,7 @@
             this.labelEditLosen.Size = new System.Drawing.Size(74, 15);
             this.labelEditLosen.TabIndex = 10;
             this.labelEditLosen.Text = "Byt lösenord";
+            this.labelEditLosen.Click += new System.EventHandler(this.labelEditLosen_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -421,9 +461,10 @@
             this.labelEditAdress.ForeColor = System.Drawing.Color.MidnightBlue;
             this.labelEditAdress.Location = new System.Drawing.Point(351, 153);
             this.labelEditAdress.Name = "labelEditAdress";
-            this.labelEditAdress.Size = new System.Drawing.Size(37, 15);
+            this.labelEditAdress.Size = new System.Drawing.Size(48, 15);
             this.labelEditAdress.TabIndex = 9;
-            this.labelEditAdress.Text = "Edit...";
+            this.labelEditAdress.Text = "Ändra...";
+            this.labelEditAdress.Click += new System.EventHandler(this.labelEditAdress_Click);
             // 
             // labelEditTfn
             // 
@@ -432,9 +473,10 @@
             this.labelEditTfn.ForeColor = System.Drawing.Color.MidnightBlue;
             this.labelEditTfn.Location = new System.Drawing.Point(351, 102);
             this.labelEditTfn.Name = "labelEditTfn";
-            this.labelEditTfn.Size = new System.Drawing.Size(37, 15);
+            this.labelEditTfn.Size = new System.Drawing.Size(48, 15);
             this.labelEditTfn.TabIndex = 8;
-            this.labelEditTfn.Text = "Edit...";
+            this.labelEditTfn.Text = "Ändra...";
+            this.labelEditTfn.Click += new System.EventHandler(this.labelEditTfn_Click);
             // 
             // labelEditEmail
             // 
@@ -443,9 +485,10 @@
             this.labelEditEmail.ForeColor = System.Drawing.Color.MidnightBlue;
             this.labelEditEmail.Location = new System.Drawing.Point(351, 51);
             this.labelEditEmail.Name = "labelEditEmail";
-            this.labelEditEmail.Size = new System.Drawing.Size(37, 15);
+            this.labelEditEmail.Size = new System.Drawing.Size(48, 15);
             this.labelEditEmail.TabIndex = 7;
-            this.labelEditEmail.Text = "Edit...";
+            this.labelEditEmail.Text = "Ändra...";
+            this.labelEditEmail.Click += new System.EventHandler(this.labelEditEmail_Click);
             // 
             // labelEditNamn
             // 
@@ -454,9 +497,9 @@
             this.labelEditNamn.ForeColor = System.Drawing.Color.MidnightBlue;
             this.labelEditNamn.Location = new System.Drawing.Point(351, 0);
             this.labelEditNamn.Name = "labelEditNamn";
-            this.labelEditNamn.Size = new System.Drawing.Size(37, 15);
+            this.labelEditNamn.Size = new System.Drawing.Size(48, 15);
             this.labelEditNamn.TabIndex = 6;
-            this.labelEditNamn.Text = "Edit...";
+            this.labelEditNamn.Text = "Ändra...";
             this.labelEditNamn.Click += new System.EventHandler(this.labelEditNamn_Click);
             // 
             // labelNamn
@@ -531,13 +574,23 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
+            // buttonProfil
+            // 
+            this.buttonProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonProfil.Location = new System.Drawing.Point(326, 210);
+            this.buttonProfil.Name = "buttonProfil";
+            this.buttonProfil.Size = new System.Drawing.Size(105, 29);
+            this.buttonProfil.TabIndex = 31;
+            this.buttonProfil.Text = "Profil";
+            this.buttonProfil.UseVisualStyleBackColor = true;
+            this.buttonProfil.Click += new System.EventHandler(this.buttonProfil_Click);
+            // 
             // FormBoka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 436);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.dateTimeDatum);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FormBoka";
             this.Text = "Bokning";
@@ -563,7 +616,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimeDatum;
         private System.Windows.Forms.Button buttonNyBoka;
         private System.Windows.Forms.Button buttonMinBok;
         private System.Windows.Forms.Label label5;
@@ -602,7 +654,12 @@
         private System.Windows.Forms.Label labelAdress;
         private System.Windows.Forms.Label labelTfn;
         private System.Windows.Forms.Label labelEditNamn;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxNytt;
         private System.Windows.Forms.Button buttonRedigera;
+        private System.Windows.Forms.Label labelBekräfta;
+        private System.Windows.Forms.Label labelNytt;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxBekräfta;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttonProfil;
     }
 }
