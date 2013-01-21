@@ -47,10 +47,10 @@
             this.textBoxMarke = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMeny = new System.Windows.Forms.TabPage();
+            this.buttonProfil = new System.Windows.Forms.Button();
             this.richTextBoxBokningMeny = new System.Windows.Forms.RichTextBox();
             this.tabPageNyBok = new System.Windows.Forms.TabPage();
             this.tabPageMinBok = new System.Windows.Forms.TabPage();
-            this.panelMinBok = new System.Windows.Forms.Panel();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.labelBekräfta = new System.Windows.Forms.Label();
@@ -72,7 +72,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.buttonProfil = new System.Windows.Forms.Button();
+            this.maskedTextBoxGammla = new System.Windows.Forms.MaskedTextBox();
+            this.labelGammla = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -81,7 +82,6 @@
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyBok.SuspendLayout();
-            this.tabPageMinBok.SuspendLayout();
             this.tabPageProfil.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -294,12 +294,23 @@
             this.tabPageMeny.Text = "Meny";
             this.tabPageMeny.UseVisualStyleBackColor = true;
             // 
+            // buttonProfil
+            // 
+            this.buttonProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonProfil.Location = new System.Drawing.Point(326, 210);
+            this.buttonProfil.Name = "buttonProfil";
+            this.buttonProfil.Size = new System.Drawing.Size(105, 29);
+            this.buttonProfil.TabIndex = 31;
+            this.buttonProfil.Text = "Profil";
+            this.buttonProfil.UseVisualStyleBackColor = true;
+            this.buttonProfil.Click += new System.EventHandler(this.buttonProfil_Click);
+            // 
             // richTextBoxBokningMeny
             // 
             this.richTextBoxBokningMeny.AcceptsTab = true;
             this.richTextBoxBokningMeny.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.richTextBoxBokningMeny.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxBokningMeny.Location = new System.Drawing.Point(29, 25);
+            this.richTextBoxBokningMeny.Location = new System.Drawing.Point(29, 29);
             this.richTextBoxBokningMeny.Name = "richTextBoxBokningMeny";
             this.richTextBoxBokningMeny.ReadOnly = true;
             this.richTextBoxBokningMeny.Size = new System.Drawing.Size(168, 135);
@@ -320,24 +331,18 @@
             // 
             // tabPageMinBok
             // 
-            this.tabPageMinBok.Controls.Add(this.panelMinBok);
             this.tabPageMinBok.Location = new System.Drawing.Point(4, 22);
             this.tabPageMinBok.Name = "tabPageMinBok";
             this.tabPageMinBok.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageMinBok.Size = new System.Drawing.Size(477, 386);
             this.tabPageMinBok.TabIndex = 2;
-            this.tabPageMinBok.Text = "Mina bokningar";
+            this.tabPageMinBok.Text = "Mina bokningar & bilar";
             this.tabPageMinBok.UseVisualStyleBackColor = true;
-            // 
-            // panelMinBok
-            // 
-            this.panelMinBok.Location = new System.Drawing.Point(3, 6);
-            this.panelMinBok.Name = "panelMinBok";
-            this.panelMinBok.Size = new System.Drawing.Size(471, 384);
-            this.panelMinBok.TabIndex = 0;
             // 
             // tabPageProfil
             // 
+            this.tabPageProfil.Controls.Add(this.labelGammla);
+            this.tabPageProfil.Controls.Add(this.maskedTextBoxGammla);
             this.tabPageProfil.Controls.Add(this.label7);
             this.tabPageProfil.Controls.Add(this.labelBekräfta);
             this.tabPageProfil.Controls.Add(this.labelNytt);
@@ -369,7 +374,7 @@
             // 
             this.labelBekräfta.AutoSize = true;
             this.labelBekräfta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBekräfta.Location = new System.Drawing.Point(143, 273);
+            this.labelBekräfta.Location = new System.Drawing.Point(145, 324);
             this.labelBekräfta.Name = "labelBekräfta";
             this.labelBekräfta.Size = new System.Drawing.Size(58, 16);
             this.labelBekräfta.TabIndex = 15;
@@ -379,7 +384,7 @@
             // 
             this.labelNytt.AutoSize = true;
             this.labelNytt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNytt.Location = new System.Drawing.Point(9, 273);
+            this.labelNytt.Location = new System.Drawing.Point(9, 324);
             this.labelNytt.Name = "labelNytt";
             this.labelNytt.Size = new System.Drawing.Size(31, 16);
             this.labelNytt.TabIndex = 14;
@@ -388,18 +393,18 @@
             // maskedTextBoxBekräfta
             // 
             this.maskedTextBoxBekräfta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxBekräfta.Location = new System.Drawing.Point(146, 299);
+            this.maskedTextBoxBekräfta.Location = new System.Drawing.Point(148, 349);
             this.maskedTextBoxBekräfta.Name = "maskedTextBoxBekräfta";
             this.maskedTextBoxBekräfta.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxBekräfta.TabIndex = 13;
+            this.maskedTextBoxBekräfta.TabIndex = 8;
             // 
             // buttonRedigera
             // 
             this.buttonRedigera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRedigera.Location = new System.Drawing.Point(300, 298);
+            this.buttonRedigera.Location = new System.Drawing.Point(297, 347);
             this.buttonRedigera.Name = "buttonRedigera";
-            this.buttonRedigera.Size = new System.Drawing.Size(75, 23);
-            this.buttonRedigera.TabIndex = 12;
+            this.buttonRedigera.Size = new System.Drawing.Size(75, 24);
+            this.buttonRedigera.TabIndex = 9;
             this.buttonRedigera.Text = "Redigera";
             this.buttonRedigera.UseVisualStyleBackColor = true;
             this.buttonRedigera.Click += new System.EventHandler(this.buttonRedigera_Click);
@@ -407,10 +412,10 @@
             // maskedTextBoxNytt
             // 
             this.maskedTextBoxNytt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxNytt.Location = new System.Drawing.Point(12, 299);
+            this.maskedTextBoxNytt.Location = new System.Drawing.Point(12, 349);
             this.maskedTextBoxNytt.Name = "maskedTextBoxNytt";
             this.maskedTextBoxNytt.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxNytt.TabIndex = 11;
+            this.maskedTextBoxNytt.TabIndex = 7;
             // 
             // labelEditLosen
             // 
@@ -420,7 +425,7 @@
             this.labelEditLosen.Location = new System.Drawing.Point(357, 213);
             this.labelEditLosen.Name = "labelEditLosen";
             this.labelEditLosen.Size = new System.Drawing.Size(74, 15);
-            this.labelEditLosen.TabIndex = 10;
+            this.labelEditLosen.TabIndex = 5;
             this.labelEditLosen.Text = "Byt lösenord";
             this.labelEditLosen.Click += new System.EventHandler(this.labelEditLosen_Click);
             // 
@@ -462,7 +467,7 @@
             this.labelEditAdress.Location = new System.Drawing.Point(351, 153);
             this.labelEditAdress.Name = "labelEditAdress";
             this.labelEditAdress.Size = new System.Drawing.Size(48, 15);
-            this.labelEditAdress.TabIndex = 9;
+            this.labelEditAdress.TabIndex = 4;
             this.labelEditAdress.Text = "Ändra...";
             this.labelEditAdress.Click += new System.EventHandler(this.labelEditAdress_Click);
             // 
@@ -474,7 +479,7 @@
             this.labelEditTfn.Location = new System.Drawing.Point(351, 102);
             this.labelEditTfn.Name = "labelEditTfn";
             this.labelEditTfn.Size = new System.Drawing.Size(48, 15);
-            this.labelEditTfn.TabIndex = 8;
+            this.labelEditTfn.TabIndex = 3;
             this.labelEditTfn.Text = "Ändra...";
             this.labelEditTfn.Click += new System.EventHandler(this.labelEditTfn_Click);
             // 
@@ -486,7 +491,7 @@
             this.labelEditEmail.Location = new System.Drawing.Point(351, 51);
             this.labelEditEmail.Name = "labelEditEmail";
             this.labelEditEmail.Size = new System.Drawing.Size(48, 15);
-            this.labelEditEmail.TabIndex = 7;
+            this.labelEditEmail.TabIndex = 2;
             this.labelEditEmail.Text = "Ändra...";
             this.labelEditEmail.Click += new System.EventHandler(this.labelEditEmail_Click);
             // 
@@ -498,7 +503,7 @@
             this.labelEditNamn.Location = new System.Drawing.Point(351, 0);
             this.labelEditNamn.Name = "labelEditNamn";
             this.labelEditNamn.Size = new System.Drawing.Size(48, 15);
-            this.labelEditNamn.TabIndex = 6;
+            this.labelEditNamn.TabIndex = 1;
             this.labelEditNamn.Text = "Ändra...";
             this.labelEditNamn.Click += new System.EventHandler(this.labelEditNamn_Click);
             // 
@@ -574,16 +579,23 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-            // buttonProfil
+            // maskedTextBoxGammla
             // 
-            this.buttonProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonProfil.Location = new System.Drawing.Point(326, 210);
-            this.buttonProfil.Name = "buttonProfil";
-            this.buttonProfil.Size = new System.Drawing.Size(105, 29);
-            this.buttonProfil.TabIndex = 31;
-            this.buttonProfil.Text = "Profil";
-            this.buttonProfil.UseVisualStyleBackColor = true;
-            this.buttonProfil.Click += new System.EventHandler(this.buttonProfil_Click);
+            this.maskedTextBoxGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxGammla.Location = new System.Drawing.Point(12, 291);
+            this.maskedTextBoxGammla.Name = "maskedTextBoxGammla";
+            this.maskedTextBoxGammla.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxGammla.TabIndex = 6;
+            // 
+            // labelGammla
+            // 
+            this.labelGammla.AutoSize = true;
+            this.labelGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGammla.Location = new System.Drawing.Point(9, 261);
+            this.labelGammla.Name = "labelGammla";
+            this.labelGammla.Size = new System.Drawing.Size(59, 16);
+            this.labelGammla.TabIndex = 18;
+            this.labelGammla.Text = "Gammla";
             // 
             // FormBoka
             // 
@@ -605,7 +617,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPageMeny.ResumeLayout(false);
             this.tabPageNyBok.ResumeLayout(false);
-            this.tabPageMinBok.ResumeLayout(false);
             this.tabPageProfil.ResumeLayout(false);
             this.tabPageProfil.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -638,7 +649,6 @@
         private System.Windows.Forms.TabPage tabPageNyBok;
         private System.Windows.Forms.TabPage tabPageMinBok;
         private System.Windows.Forms.RichTextBox richTextBoxBokningMeny;
-        private System.Windows.Forms.Panel panelMinBok;
         private System.Windows.Forms.TabPage tabPageProfil;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label3;
@@ -661,5 +671,7 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBoxBekräfta;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buttonProfil;
+        private System.Windows.Forms.Label labelGammla;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxGammla;
     }
 }

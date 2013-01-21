@@ -51,25 +51,25 @@
             this.label6 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.richTextBoxMeddelanden1 = new System.Windows.Forms.RichTextBox();
-            this.textBoxNamn = new System.Windows.Forms.TextBox();
-            this.richTextBoxMeddelanden = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.richTextBoxMeddelanden = new System.Windows.Forms.RichTextBox();
+            this.textBoxNamn = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // buttonVisa
-            //
-            this.buttonVisa.Location = new System.Drawing.Point(100, 112);
+            // 
             this.buttonVisa.Enabled = false;
-            this.buttonVisa.Visible = false;
+            this.buttonVisa.Location = new System.Drawing.Point(100, 112);
             this.buttonVisa.Name = "buttonVisa";
             this.buttonVisa.Size = new System.Drawing.Size(100, 100);
             this.buttonVisa.TabIndex = 42;
             this.buttonVisa.Text = "Visa Kontakter";
             this.buttonVisa.UseVisualStyleBackColor = true;
+            this.buttonVisa.Visible = false;
             this.buttonVisa.Click += new System.EventHandler(this.buttonVisa_Click);
             // 
             // label1
@@ -259,7 +259,7 @@
             // buttonRegistrera
             // 
             this.buttonRegistrera.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonRegistrera.Location = new System.Drawing.Point(204, 31);
+            this.buttonRegistrera.Location = new System.Drawing.Point(205, 31);
             this.buttonRegistrera.Name = "buttonRegistrera";
             this.buttonRegistrera.Size = new System.Drawing.Size(75, 23);
             this.buttonRegistrera.TabIndex = 23;
@@ -270,6 +270,8 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
             this.label6.Location = new System.Drawing.Point(3, 138);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 13);
@@ -335,14 +337,17 @@
             this.richTextBoxMeddelanden1.TabStop = false;
             this.richTextBoxMeddelanden1.Text = "";
             // 
-            // textBoxNamn
+            // label2
             // 
-            this.textBoxNamn.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBoxNamn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNamn.Location = new System.Drawing.Point(12, 29);
-            this.textBoxNamn.Name = "textBoxNamn";
-            this.textBoxNamn.Size = new System.Drawing.Size(172, 26);
-            this.textBoxNamn.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label2.Location = new System.Drawing.Point(201, 141);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(198, 13);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Jag ångrade mig, jag har redan ett konto";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // richTextBoxMeddelanden
             // 
@@ -357,15 +362,14 @@
             this.richTextBoxMeddelanden.TabStop = false;
             this.richTextBoxMeddelanden.Text = "";
             // 
-            // label2
+            // textBoxNamn
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(201, 141);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(198, 13);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Jag ångrade mig, jag har redan ett konto";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.textBoxNamn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBoxNamn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNamn.Location = new System.Drawing.Point(12, 29);
+            this.textBoxNamn.Name = "textBoxNamn";
+            this.textBoxNamn.Size = new System.Drawing.Size(172, 26);
+            this.textBoxNamn.TabIndex = 3;
             // 
             // FormInmatning
             // 
