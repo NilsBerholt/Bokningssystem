@@ -24,9 +24,12 @@ namespace Bokningssystem
             maskedTextBoxBekräfta.Text = "";
             maskedTextBoxGammla.Hide();
             maskedTextBoxGammla.Text = "";
+            maskedTextBoxBekLosen.Hide();
+            maskedTextBoxBekLosen.Text = "";
             labelNytt.Hide();
             labelBekräfta.Hide();
             labelGammla.Hide();
+            labelBekLosen.Hide();
             buttonRedigera.Hide();
         }
 
@@ -181,13 +184,16 @@ namespace Bokningssystem
             maskedTextBoxNytt.Show();
             maskedTextBoxBekräfta.Show();
             maskedTextBoxGammla.Show();
+            maskedTextBoxBekLosen.Show();
             labelNytt.Show();
             labelBekräfta.Show();
             labelGammla.Show();
+            labelBekLosen.Show();
             buttonRedigera.Show();
             labelGammla.Text = "Din nuvarande email";
             labelBekräfta.Text = "Bekräfta din email";
             labelNytt.Text = "Din nya email";
+            labelBekLosen.Text = "Dtt lösenord för att ändra emailen";
             this.uppdatera = "email";
         }
 
@@ -201,13 +207,16 @@ namespace Bokningssystem
             maskedTextBoxNytt.Show();
             maskedTextBoxBekräfta.Show();
             maskedTextBoxGammla.Show();
+            maskedTextBoxBekLosen.Show();
             labelGammla.Show();
             labelNytt.Show();
             labelBekräfta.Show();
+            labelBekLosen.Show();
             buttonRedigera.Show();
             labelGammla.Text = "Ditt nuvarande nummer";
-            labelBekräfta.Text = "Bekräfta dit telefonnummer";
+            labelBekräfta.Text = "Bekräfta ditt telefonnummer";
             labelNytt.Text = "Ditt ny telefonnummer";
+            labelBekLosen.Text = "Ditt lösenord för att ändra emailen";
             this.uppdatera = "tfn";
         }
 
@@ -247,6 +256,8 @@ namespace Bokningssystem
 
         private void buttonRedigera_Click(object sender, EventArgs e)
         {
+            string losen = maskedTextBoxBekLosen.Text;
+
             switch (this.uppdatera)
             {
                 case "namn":
@@ -258,69 +269,79 @@ namespace Bokningssystem
                     break;
 
                 case "email":
-                    string email = anvandare.GetEmail();;
-                    string email1 = maskedTextBoxNytt.Text;
-                    string email2 = maskedTextBoxBekräfta.Text;
-                    string email3 = maskedTextBoxGammla.Text;
+                    string email = maskedTextBoxNytt.Text;
+                    string email1 = maskedTextBoxBekräfta.Text;
+                    string email2 = maskedTextBoxGammla.Text;
 
-                    if (email == email3)
+                    if (losen == anvandare.GetLosen())
                     {
-                        if (email1 == email2)
+                        if (email2 == anvandare.GetEmail())
                         {
-                            int result = anvandare.SetEmail(email1);
-                            if (result == 0)
+                            if (email == email1)
                             {
-                                label7.Text = "Du har nu bytt email-adress";
+                                int result = anvandare.SetEmail(email1);
+                                if (result == 0)
+                                {
+                                    label7.Text = "Du har nu bytt email-adress";
+                                }
+                                else
+                                {
+                                    label7.Text = "Det blev något fel någonstans...";
+                                }
                             }
                             else
                             {
-                                label7.Text = "Det blev något fel någonstans...";
+                                label7.Text = "Dina email-adresser stämmer inte ihop";
                             }
+                            labelEmail.Text = anvandare.GetEmail();
                         }
                         else
                         {
-                            label7.Text = "Dina email-adresser stämmer inte ihop";
+                            label7.Text = "Din nuvarande email stämemr inte överäns med det du har skrivit nu";
                         }
-                        labelEmail.Text = anvandare.GetEmail();
                     }
                     else
                     {
-                        label7.Text = "Din nuvarande email stämemr inte överäns med det du har skrivit nu";
+                        label7.Text = "Du skrev in fel lösenord för att kunna ändra din email.";
                     }
                     DoljAndringar();
                     break;
 
                 case "tfn":
-                    string tfn;
-                    string tfn1 = maskedTextBoxNytt.Text;
-                    string tfn2 = maskedTextBoxBekräfta.Text;
-                    string tfn3 = maskedTextBoxGammla.Text;
-                    string tfn4 = anvandare.GetTfn();
+                    string tfn = maskedTextBoxNytt.Text;
+                    string tfn1 = maskedTextBoxBekräfta.Text;
+                    string tfn2 = maskedTextBoxGammla.Text;
 
-                    if (tfn3 == tfn4)
+                    if (losen == anvandare.GetLosen())
                     {
-                        if (tfn1 == tfn2)
+                        if (tfn2 == anvandare.GetTfn())
                         {
-                            tfn = tfn1;
-                            int result = anvandare.SetTfn(tfn);
-                            if (result == 0)
+                            if (tfn == tfn1)
                             {
-                                label7.Text = "Du har nu bytt telefonnummer";
+                                int result = anvandare.SetTfn(tfn);
+                                if (result == 0)
+                                {
+                                    label7.Text = "Du har nu bytt telefonnummer";
+                                }
+                                else
+                                {
+                                    label7.Text = "Det blev något fel någonstans...";
+                                }
                             }
                             else
                             {
-                                label7.Text = "Det blev något fel någonstans...";
+                                label7.Text = "Dina telefonnummer stämmer inte ihop";
                             }
+                            labelTfn.Text = anvandare.GetTfn();
                         }
                         else
                         {
-                            label7.Text = "Dina telefonnummer stämmer inte ihop";
+                            label7.Text = "Ditt nuvarande nummer stämemr inte överäns med det du har skrivit nu";
                         }
-                        labelTfn.Text = anvandare.GetTfn();
                     }
                     else
                     {
-                        label7.Text = "Ditt nuvarande nummer stämemr inte överäns med det du har skrivit nu";
+                        label7.Text = "Du skrev in fel lösenord för att kunna ändra ditt telefonnummer.";
                     }
                     DoljAndringar();
                         break;
@@ -334,12 +355,11 @@ namespace Bokningssystem
                     break;
 
                 case "losen":
-                    string losen = anvandare.GetLosen();
                     string losen1 = maskedTextBoxGammla.Text;
                     string losen2 = maskedTextBoxNytt.Text;
                     string losen3 = maskedTextBoxBekräfta.Text;
 
-                    if (losen == losen1)
+                    if (losen1 == anvandare.GetLosen())
                     {
                         if (losen2 == losen3)
                         {
