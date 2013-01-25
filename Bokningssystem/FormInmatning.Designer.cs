@@ -64,7 +64,11 @@
             // buttonVisa
             // 
             this.buttonVisa.Enabled = false;
+<<<<<<< HEAD
             this.buttonVisa.Location = new System.Drawing.Point(299, 18);
+=======
+            this.buttonVisa.Location = new System.Drawing.Point(100, 112);
+>>>>>>> f339e0551dade416b74345993c43da0e0a1de4f5
             this.buttonVisa.Name = "buttonVisa";
             this.buttonVisa.Size = new System.Drawing.Size(100, 100);
             this.buttonVisa.TabIndex = 42;
@@ -283,6 +287,8 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
             this.label6.Location = new System.Drawing.Point(3, 138);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 13);
@@ -352,6 +358,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
+<<<<<<< HEAD
+=======
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+>>>>>>> f339e0551dade416b74345993c43da0e0a1de4f5
             this.label2.Location = new System.Drawing.Point(201, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(198, 13);
