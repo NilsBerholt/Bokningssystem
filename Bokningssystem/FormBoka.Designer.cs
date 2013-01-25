@@ -52,6 +52,8 @@
             this.tabPageNyBok = new System.Windows.Forms.TabPage();
             this.tabPageMinBok = new System.Windows.Forms.TabPage();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
+            this.labelGammla = new System.Windows.Forms.Label();
+            this.maskedTextBoxGammla = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.labelBekräfta = new System.Windows.Forms.Label();
             this.labelNytt = new System.Windows.Forms.Label();
@@ -72,8 +74,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.maskedTextBoxGammla = new System.Windows.Forms.MaskedTextBox();
-            this.labelGammla = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -120,7 +121,7 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(27, 29);
+            this.monthCalendar1.Location = new System.Drawing.Point(73, 16);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 31;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
@@ -360,6 +361,25 @@
             this.tabPageProfil.Text = "Profil";
             this.tabPageProfil.UseVisualStyleBackColor = true;
             // 
+            // labelGammla
+            // 
+            this.labelGammla.AutoSize = true;
+            this.labelGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGammla.Location = new System.Drawing.Point(9, 261);
+            this.labelGammla.Name = "labelGammla";
+            this.labelGammla.Size = new System.Drawing.Size(59, 16);
+            this.labelGammla.TabIndex = 18;
+            this.labelGammla.Text = "Gammla";
+            this.labelGammla.Click += new System.EventHandler(this.labelGammla_Click);
+            // 
+            // maskedTextBoxGammla
+            // 
+            this.maskedTextBoxGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxGammla.Location = new System.Drawing.Point(12, 291);
+            this.maskedTextBoxGammla.Name = "maskedTextBoxGammla";
+            this.maskedTextBoxGammla.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxGammla.TabIndex = 6;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -579,29 +599,19 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-            // maskedTextBoxGammla
+            // panel1
             // 
-            this.maskedTextBoxGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxGammla.Location = new System.Drawing.Point(12, 291);
-            this.maskedTextBoxGammla.Name = "maskedTextBoxGammla";
-            this.maskedTextBoxGammla.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxGammla.TabIndex = 6;
-            // 
-            // labelGammla
-            // 
-            this.labelGammla.AutoSize = true;
-            this.labelGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGammla.Location = new System.Drawing.Point(9, 261);
-            this.labelGammla.Name = "labelGammla";
-            this.labelGammla.Size = new System.Drawing.Size(59, 16);
-            this.labelGammla.TabIndex = 18;
-            this.labelGammla.Text = "Gammla";
+            this.panel1.Location = new System.Drawing.Point(503, 34);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(232, 386);
+            this.panel1.TabIndex = 30;
             // 
             // FormBoka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 436);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FormBoka";
@@ -673,5 +683,6 @@
         private System.Windows.Forms.Button buttonProfil;
         private System.Windows.Forms.Label labelGammla;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxGammla;
+        private System.Windows.Forms.Panel panel1;
     }
 }
