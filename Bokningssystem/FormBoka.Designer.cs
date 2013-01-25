@@ -74,13 +74,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-<<<<<<< HEAD
             this.panel1 = new System.Windows.Forms.Panel();
-=======
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
->>>>>>> 11d004019f5f20b92a6541f545303378b2f8014b
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -382,10 +379,6 @@
             this.labelGammla.Size = new System.Drawing.Size(59, 16);
             this.labelGammla.TabIndex = 18;
             this.labelGammla.Text = "Gammla";
-<<<<<<< HEAD
-            this.labelGammla.Click += new System.EventHandler(this.labelGammla_Click);
-=======
->>>>>>> 11d004019f5f20b92a6541f545303378b2f8014b
             // 
             // maskedTextBoxGammla
             // 
@@ -614,14 +607,12 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-<<<<<<< HEAD
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(503, 34);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(232, 386);
             this.panel1.TabIndex = 30;
-=======
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -656,7 +647,6 @@
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 1;
             this.label9.Text = "label9";
->>>>>>> 11d004019f5f20b92a6541f545303378b2f8014b
             // 
             // FormBoka
             // 
@@ -742,12 +732,9 @@
         private System.Windows.Forms.Button buttonProfil;
         private System.Windows.Forms.Label labelGammla;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxGammla;
-<<<<<<< HEAD
         private System.Windows.Forms.Panel panel1;
-=======
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
->>>>>>> 11d004019f5f20b92a6541f545303378b2f8014b
     }
 }
