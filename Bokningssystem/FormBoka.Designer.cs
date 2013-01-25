@@ -51,6 +51,9 @@
             this.richTextBoxBokningMeny = new System.Windows.Forms.RichTextBox();
             this.tabPageNyBok = new System.Windows.Forms.TabPage();
             this.tabPageMinBok = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
             this.labelGammla = new System.Windows.Forms.Label();
             this.maskedTextBoxGammla = new System.Windows.Forms.MaskedTextBox();
@@ -74,9 +77,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
+            this.labelBekLosen = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,12 +88,12 @@
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyBok.SuspendLayout();
             this.tabPageMinBok.SuspendLayout();
-            this.tabPageProfil.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.tabPageProfil.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonNyBoka
@@ -348,8 +350,45 @@
             this.tabPageMinBok.Text = "Mina bokningar & bilar";
             this.tabPageMinBok.UseVisualStyleBackColor = true;
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.label8);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.label9);
+            this.splitContainer2.Size = new System.Drawing.Size(471, 380);
+            this.splitContainer2.SplitterDistance = 222;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(66, 40);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "label8";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(98, 40);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "label9";
+            // 
             // tabPageProfil
             // 
+            this.tabPageProfil.Controls.Add(this.labelBekLosen);
+            this.tabPageProfil.Controls.Add(this.maskedTextBoxBekLosen);
             this.tabPageProfil.Controls.Add(this.labelGammla);
             this.tabPageProfil.Controls.Add(this.maskedTextBoxGammla);
             this.tabPageProfil.Controls.Add(this.label7);
@@ -606,40 +645,23 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-            // splitContainer2
+            // maskedTextBoxBekLosen
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
+            this.maskedTextBoxBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxBekLosen.Location = new System.Drawing.Point(148, 291);
+            this.maskedTextBoxBekLosen.Name = "maskedTextBoxBekLosen";
+            this.maskedTextBoxBekLosen.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxBekLosen.TabIndex = 19;
             // 
-            // splitContainer2.Panel1
+            // labelBekLosen
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.label8);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.label9);
-            this.splitContainer2.Size = new System.Drawing.Size(471, 380);
-            this.splitContainer2.SplitterDistance = 222;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(66, 40);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "label8";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(98, 40);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "label9";
+            this.labelBekLosen.AutoSize = true;
+            this.labelBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBekLosen.Location = new System.Drawing.Point(145, 261);
+            this.labelBekLosen.Name = "labelBekLosen";
+            this.labelBekLosen.Size = new System.Drawing.Size(45, 16);
+            this.labelBekLosen.TabIndex = 20;
+            this.labelBekLosen.Text = "Losen";
             // 
             // FormBoka
             // 
@@ -662,16 +684,16 @@
             this.tabPageMeny.ResumeLayout(false);
             this.tabPageNyBok.ResumeLayout(false);
             this.tabPageMinBok.ResumeLayout(false);
-            this.tabPageProfil.ResumeLayout(false);
-            this.tabPageProfil.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.tabPageProfil.ResumeLayout(false);
+            this.tabPageProfil.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -727,5 +749,7 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelBekLosen;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxBekLosen;
     }
 }
