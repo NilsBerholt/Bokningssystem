@@ -237,9 +237,20 @@ namespace Bokningssystem
         private void buttonDebug_Click(object sender, EventArgs e)
         {
             if (DEBUG)
+            {
                 Properties.Settings.Default.Debug = false;
+                buttonVisa.Hide();
+            }
+
             else
+            {
                 Properties.Settings.Default.Debug = true;
+                buttonVisa.Show();
+                buttonVisa.Enabled = true;
+            }
+
+            DEBUG = Properties.Settings.Default.Debug;
+            MessageBox.Show("Debug är " + Properties.Settings.Default.Debug.ToString());
         }
     }
 }

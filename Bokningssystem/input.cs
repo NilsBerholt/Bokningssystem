@@ -22,7 +22,7 @@ namespace Bokningssystem
                 return this.tmpMsgs;
             else
             {
-                string[] meddelande = { "Det finns inget att skicka" };
+                string[] meddelande = { };
                 return meddelande;
             }
         }
