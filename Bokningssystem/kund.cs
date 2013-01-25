@@ -238,5 +238,71 @@ namespace Bokningssystem
                 return 100;
             }
         }
+
+        public int SetLosen(string Losenord)
+        {
+            List<string> errorMsgs = new List<string>();
+            string NyttLosen = Losenord;
+
+            string updateQuery = "UPDATE kunder set losen='?x?' where email='?x?'";
+            string[] args = { NyttLosen, GetEmail() };
+            string[] queryResultat = this.db.query(updateQuery, args);
+            if (queryResultat[0] == "1")
+            {
+                string[] operationResult = this.db.operation();
+                if (operationResult[0] != "1")
+                {
+                    errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
+                    if (DEBUG)
+                        errorMsgs.AddRange(operationResult);
+                    return 10;
+                }
+                else
+                {
+                    this.losenord = NyttLosen;
+                    return 0;
+                }
+            }
+            else
+            {
+                errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
+                if (DEBUG)
+                    errorMsgs.AddRange(queryResultat);
+                return 100;
+            }
+        }
+
+        public int SetEmail(string Email)
+        {
+            List<string> errorMsgs = new List<string>();
+            string NyEmail = Email;
+
+            string updateQuery = "UPDATE kunder set email='?x?' where email='?x?'";
+            string[] args = { NyEmail, GetEmail() };
+            string[] queryResultat = this.db.query(updateQuery, args);
+            if (queryResultat[0] == "1")
+            {
+                string[] operationResult = this.db.operation();
+                if (operationResult[0] != "1")
+                {
+                    errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
+                    if (DEBUG)
+                        errorMsgs.AddRange(operationResult);
+                    return 10;
+                }
+                else
+                {
+                    this.email = NyEmail;
+                    return 0;
+                }
+            }
+            else
+            {
+                errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
+                if (DEBUG)
+                    errorMsgs.AddRange(queryResultat);
+                return 100;
+            }
+        }
     }
 }

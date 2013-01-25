@@ -16,6 +16,20 @@ namespace Bokningssystem
         private bool kundHarReggadBil;
         private string uppdatera = null;
 
+        public void Hide()
+        {
+            maskedTextBoxNytt.Hide();
+            maskedTextBoxNytt.Text = "";
+            maskedTextBoxBekräfta.Hide();
+            maskedTextBoxBekräfta.Text = "";
+            maskedTextBoxGammla.Hide();
+            maskedTextBoxGammla.Text = "";
+            labelNytt.Hide();
+            labelBekräfta.Hide();
+            labelGammla.Hide();
+            buttonRedigera.Hide();
+        }
+
         public FormBoka(kund anvandare)
         {
             InitializeComponent();
@@ -27,12 +41,7 @@ namespace Bokningssystem
             labelTfn.Text = anvandare.GetTfn();
             labelAdress.Text = anvandare.GetAdress();
             label7.Text = "";
-
-            maskedTextBoxNytt.Hide();
-            maskedTextBoxBekräfta.Hide();
-            labelNytt.Hide();
-            labelBekräfta.Hide();
-            buttonRedigera.Hide();
+            Hide();
 
             string regQuery = "SELECT reg FROM fordon WHERE agare='?x?'";
             string[] args = { anvandare.GetEmail() };
@@ -149,6 +158,11 @@ namespace Bokningssystem
 
         private void labelEditNamn_Click(object sender, EventArgs e)
         {
+            Hide();
+            maskedTextBoxGammla.UseSystemPasswordChar = false;
+            maskedTextBoxBekräfta.UseSystemPasswordChar = false;
+            maskedTextBoxNytt.UseSystemPasswordChar = false;
+            label7.Text = "";
             maskedTextBoxNytt.Show();
             labelNytt.Show();
             buttonRedigera.Show();
@@ -159,11 +173,19 @@ namespace Bokningssystem
 
         private void labelEditEmail_Click(object sender, EventArgs e)
         {
+            Hide();
+            maskedTextBoxGammla.UseSystemPasswordChar = false;
+            maskedTextBoxBekräfta.UseSystemPasswordChar = false;
+            maskedTextBoxNytt.UseSystemPasswordChar = false;
+            label7.Text = "";
             maskedTextBoxNytt.Show();
             maskedTextBoxBekräfta.Show();
+            maskedTextBoxGammla.Show();
             labelNytt.Show();
             labelBekräfta.Show();
-            buttonBoka.Show();
+            labelGammla.Show();
+            buttonRedigera.Show();
+            labelGammla.Text = "Din nuvarande email";
             labelBekräfta.Text = "Bekräfta din email";
             labelNytt.Text = "Din nya email";
             this.uppdatera = "email";
@@ -171,11 +193,19 @@ namespace Bokningssystem
 
         private void labelEditTfn_Click(object sender, EventArgs e)
         {
+            Hide();
+            maskedTextBoxGammla.UseSystemPasswordChar = false;
+            maskedTextBoxBekräfta.UseSystemPasswordChar = false;
+            maskedTextBoxNytt.UseSystemPasswordChar = false;
+            label7.Text = "";
             maskedTextBoxNytt.Show();
             maskedTextBoxBekräfta.Show();
+            maskedTextBoxGammla.Show();
+            labelGammla.Show();
             labelNytt.Show();
             labelBekräfta.Show();
-            buttonBoka.Show();
+            buttonRedigera.Show();
+            labelGammla.Text = "Ditt nuvarande nummer";
             labelBekräfta.Text = "Bekräfta dit telefonnummer";
             labelNytt.Text = "Ditt ny telefonnummer";
             this.uppdatera = "tfn";
@@ -183,20 +213,33 @@ namespace Bokningssystem
 
         private void labelEditAdress_Click(object sender, EventArgs e)
         {
+            Hide();
+            maskedTextBoxGammla.UseSystemPasswordChar = false;
+            maskedTextBoxBekräfta.UseSystemPasswordChar = false;
+            maskedTextBoxNytt.UseSystemPasswordChar = false;
+            label7.Text = "";
             maskedTextBoxNytt.Show();
             labelNytt.Show();
-            buttonBoka.Show();
+            buttonRedigera.Show();
             labelNytt.Text = "Din nya adress";
             this.uppdatera = "adress";
         }
 
         private void labelEditLosen_Click(object sender, EventArgs e)
         {
+            Hide();
+            label7.Text = "";
+            maskedTextBoxGammla.UseSystemPasswordChar = true;
+            maskedTextBoxBekräfta.UseSystemPasswordChar = true;
+            maskedTextBoxNytt.UseSystemPasswordChar = true;
             maskedTextBoxNytt.Show();
             maskedTextBoxBekräfta.Show();
+            maskedTextBoxGammla.Show();
+            labelGammla.Show();
             labelNytt.Show();
             labelBekräfta.Show();
-            buttonBoka.Show();
+            buttonRedigera.Show();
+            labelGammla.Text = "Ditt nu varande lösenord";
             labelBekräfta.Text = "Bekräfta ditt lösenord";
             labelNytt.Text = "Ditt ny lösenord";
             this.uppdatera = "losen";
@@ -211,35 +254,75 @@ namespace Bokningssystem
                     this.anvandare.SetNamn(namn);
                     label7.Text = "Du har nu bytt namn";
                     labelNamn.Text = anvandare.GetNamn();
+                    Hide();
                     break;
 
                 case "email":
+                    string email = anvandare.GetEmail();;
+                    string email1 = maskedTextBoxNytt.Text;
+                    string email2 = maskedTextBoxBekräfta.Text;
+                    string email3 = maskedTextBoxGammla.Text;
 
+                    if (email == email3)
+                    {
+                        if (email1 == email2)
+                        {
+                            int result = anvandare.SetEmail(email1);
+                            if (result == 0)
+                            {
+                                label7.Text = "Du har nu bytt email-adress";
+                            }
+                            else
+                            {
+                                label7.Text = "Det blev något fel någonstans...";
+                            }
+                        }
+                        else
+                        {
+                            label7.Text = "Dina email-adresser stämmer inte ihop";
+                        }
+                        labelEmail.Text = anvandare.GetEmail();
+                    }
+                    else
+                    {
+                        label7.Text = "Din nuvarande email stämemr inte överäns med det du har skrivit nu";
+                    }
+                    Hide();
                     break;
 
                 case "tfn":
                     string tfn;
                     string tfn1 = maskedTextBoxNytt.Text;
                     string tfn2 = maskedTextBoxBekräfta.Text;
+                    string tfn3 = maskedTextBoxGammla.Text;
+                    string tfn4 = anvandare.GetTfn();
 
-                    if (tfn1 == tfn2)
+                    if (tfn3 == tfn4)
                     {
-                        tfn = tfn1;
-                        int result = anvandare.SetTfn(tfn);
-                        if (result == 0)
+                        if (tfn1 == tfn2)
                         {
-                            label7.Text = "Du har nu bytt telefonnummer";
+                            tfn = tfn1;
+                            int result = anvandare.SetTfn(tfn);
+                            if (result == 0)
+                            {
+                                label7.Text = "Du har nu bytt telefonnummer";
+                            }
+                            else
+                            {
+                                label7.Text = "Det blev något fel någonstans...";
+                            }
                         }
                         else
                         {
-                            label7.Text = "Det blev något fel någonstans...";
+                            label7.Text = "Dina telefonnummer stämmer inte ihop";
                         }
+                        labelTfn.Text = anvandare.GetTfn();
                     }
                     else
                     {
-                        label7.Text = "Dina telefonnummer stämmer inte ihop";
+                        label7.Text = "Ditt nuvarande nummer stämemr inte överäns med det du har skrivit nu";
                     }
-                    labelTfn.Text = anvandare.GetTfn();
+                    Hide();
                         break;
 
                 case "adress":
@@ -247,10 +330,39 @@ namespace Bokningssystem
                         this.anvandare.SetAdress(adress);
                         labelAdress.Text = anvandare.GetAdress();
                         label7.Text = "Du har nu ändrat din adress";
+                        Hide();
                     break;
 
                 case "losen":
+                    string losen = anvandare.GetLosen();
+                    string losen1 = maskedTextBoxGammla.Text;
+                    string losen2 = maskedTextBoxNytt.Text;
+                    string losen3 = maskedTextBoxBekräfta.Text;
 
+                    if (losen == losen1)
+                    {
+                        if (losen2 == losen3)
+                        {
+                            int result = anvandare.SetLosen(losen2);
+                            if (result == 0)
+                            {
+                                label7.Text = "Du har nu bytt lösenord";
+                            }
+                            else
+                            {
+                                label7.Text = "Det blev något fel någonstans...";
+                            }
+                        }
+                        else
+                        {
+                            label7.Text = "Det bekräftande lösenordet stämmer inte ihop med det ny du skrev";
+                        }
+                    }
+                    else
+                    {
+                        label7.Text = "Ditt lösenord stämmer inte ihop med det du skrev nu";
+                    }
+                    Hide();
                     break;
             }
         }
