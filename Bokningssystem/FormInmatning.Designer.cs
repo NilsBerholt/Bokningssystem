@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.buttonDebug = new System.Windows.Forms.Button();
             this.buttonVisa = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonLogga = new System.Windows.Forms.Button();
@@ -63,7 +64,11 @@
             // buttonVisa
             // 
             this.buttonVisa.Enabled = false;
+<<<<<<< HEAD
+            this.buttonVisa.Location = new System.Drawing.Point(299, 18);
+=======
             this.buttonVisa.Location = new System.Drawing.Point(100, 112);
+>>>>>>> f339e0551dade416b74345993c43da0e0a1de4f5
             this.buttonVisa.Name = "buttonVisa";
             this.buttonVisa.Size = new System.Drawing.Size(100, 100);
             this.buttonVisa.TabIndex = 42;
@@ -71,6 +76,18 @@
             this.buttonVisa.UseVisualStyleBackColor = true;
             this.buttonVisa.Visible = false;
             this.buttonVisa.Click += new System.EventHandler(this.buttonVisa_Click);
+            //
+            // buttonDebug
+            //
+            this.buttonDebug.Visible = true;
+            this.buttonDebug.Location = new System.Drawing.Point(299, 50);
+            this.buttonDebug.Name = "buttonDebug";
+            this.buttonDebug.Size = new System.Drawing.Size(50, 50);
+            this.buttonDebug.TabIndex = 43;
+            this.buttonDebug.Text = "Sluta debugga";
+            this.buttonDebug.UseVisualStyleBackColor = true;
+            this.buttonDebug.Enabled = true;
+            this.buttonDebug.Click += new System.EventHandler(this.buttonDebug_Click);
             // 
             // label1
             // 
@@ -301,6 +318,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.buttonDebug);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.richTextBoxMeddelanden);
             this.splitContainer1.Panel2.Controls.Add(this.textBoxNamn);
@@ -340,8 +358,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
+<<<<<<< HEAD
+=======
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+>>>>>>> f339e0551dade416b74345993c43da0e0a1de4f5
             this.label2.Location = new System.Drawing.Point(201, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(198, 13);
@@ -419,7 +440,7 @@
         private System.Windows.Forms.RichTextBox richTextBoxMeddelanden;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonVisa;
-
+        private System.Windows.Forms.Button buttonDebug;
     }
 }
 

@@ -10,7 +10,7 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=|DataDirectory|\Database1.sdf</Value>
     </Setting>
-    <Setting Name="Debug" Type="System.Boolean" Scope="Application">
+    <Setting Name="Debug" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
