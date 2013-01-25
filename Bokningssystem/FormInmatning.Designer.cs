@@ -61,10 +61,17 @@
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // buttonDebug
+            // 
+            this.buttonDebug.Location = new System.Drawing.Point(0, 0);
+            this.buttonDebug.Name = "buttonDebug";
+            this.buttonDebug.Size = new System.Drawing.Size(75, 23);
+            this.buttonDebug.TabIndex = 0;
+            this.buttonDebug.Click += new System.EventHandler(this.buttonDebug_Click);
+            // 
             // buttonVisa
             // 
             this.buttonVisa.Enabled = false;
-            this.buttonVisa.Location = new System.Drawing.Point(299, 18);
             this.buttonVisa.Location = new System.Drawing.Point(100, 112);
             this.buttonVisa.Name = "buttonVisa";
             this.buttonVisa.Size = new System.Drawing.Size(100, 100);
@@ -261,7 +268,7 @@
             // buttonRegistrera
             // 
             this.buttonRegistrera.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonRegistrera.Location = new System.Drawing.Point(205, 31);
+            this.buttonRegistrera.Location = new System.Drawing.Point(206, 31);
             this.buttonRegistrera.Name = "buttonRegistrera";
             this.buttonRegistrera.Size = new System.Drawing.Size(75, 23);
             this.buttonRegistrera.TabIndex = 23;
