@@ -52,6 +52,8 @@
             this.tabPageNyBok = new System.Windows.Forms.TabPage();
             this.tabPageMinBok = new System.Windows.Forms.TabPage();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
+            this.labelGammla = new System.Windows.Forms.Label();
+            this.maskedTextBoxGammla = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.labelBekräfta = new System.Windows.Forms.Label();
             this.labelNytt = new System.Windows.Forms.Label();
@@ -72,8 +74,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.maskedTextBoxGammla = new System.Windows.Forms.MaskedTextBox();
-            this.labelGammla = new System.Windows.Forms.Label();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,8 +85,13 @@
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyBok.SuspendLayout();
+            this.tabPageMinBok.SuspendLayout();
             this.tabPageProfil.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonNyBoka
@@ -331,6 +339,7 @@
             // 
             // tabPageMinBok
             // 
+            this.tabPageMinBok.Controls.Add(this.splitContainer2);
             this.tabPageMinBok.Location = new System.Drawing.Point(4, 22);
             this.tabPageMinBok.Name = "tabPageMinBok";
             this.tabPageMinBok.Padding = new System.Windows.Forms.Padding(3);
@@ -359,6 +368,24 @@
             this.tabPageProfil.TabIndex = 3;
             this.tabPageProfil.Text = "Profil";
             this.tabPageProfil.UseVisualStyleBackColor = true;
+            // 
+            // labelGammla
+            // 
+            this.labelGammla.AutoSize = true;
+            this.labelGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGammla.Location = new System.Drawing.Point(9, 261);
+            this.labelGammla.Name = "labelGammla";
+            this.labelGammla.Size = new System.Drawing.Size(59, 16);
+            this.labelGammla.TabIndex = 18;
+            this.labelGammla.Text = "Gammla";
+            // 
+            // maskedTextBoxGammla
+            // 
+            this.maskedTextBoxGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxGammla.Location = new System.Drawing.Point(12, 291);
+            this.maskedTextBoxGammla.Name = "maskedTextBoxGammla";
+            this.maskedTextBoxGammla.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxGammla.TabIndex = 6;
             // 
             // label7
             // 
@@ -579,23 +606,40 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-            // maskedTextBoxGammla
+            // splitContainer2
             // 
-            this.maskedTextBoxGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxGammla.Location = new System.Drawing.Point(12, 291);
-            this.maskedTextBoxGammla.Name = "maskedTextBoxGammla";
-            this.maskedTextBoxGammla.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxGammla.TabIndex = 6;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // labelGammla
+            // splitContainer2.Panel1
             // 
-            this.labelGammla.AutoSize = true;
-            this.labelGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGammla.Location = new System.Drawing.Point(9, 261);
-            this.labelGammla.Name = "labelGammla";
-            this.labelGammla.Size = new System.Drawing.Size(59, 16);
-            this.labelGammla.TabIndex = 18;
-            this.labelGammla.Text = "Gammla";
+            this.splitContainer2.Panel1.Controls.Add(this.label8);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.label9);
+            this.splitContainer2.Size = new System.Drawing.Size(471, 380);
+            this.splitContainer2.SplitterDistance = 222;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(66, 40);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "label8";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(98, 40);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "label9";
             // 
             // FormBoka
             // 
@@ -617,10 +661,17 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPageMeny.ResumeLayout(false);
             this.tabPageNyBok.ResumeLayout(false);
+            this.tabPageMinBok.ResumeLayout(false);
             this.tabPageProfil.ResumeLayout(false);
             this.tabPageProfil.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -673,5 +724,8 @@
         private System.Windows.Forms.Button buttonProfil;
         private System.Windows.Forms.Label labelGammla;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxGammla;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
