@@ -473,7 +473,7 @@ namespace Bokningssystem
                     return true;
                 else
                 {
-                    errorMsgs.Add("Det blev något fel när din bokning skulle processeras. Kontakta systemansvarig");
+                    errorMsgs.Add("Det blev något fel när din bokning skulle processeras. Kontakta ansvarig för programmet");
                     if (DEBUG)
                         errorMsgs.AddRange(opResultat);
                 }

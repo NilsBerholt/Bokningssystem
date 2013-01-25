@@ -18,6 +18,10 @@ namespace Bokningssystem
         {
             InitializeComponent();
             //buttonRegistrera.Hide();
+            if (DEBUG)
+                buttonDebug.Visible = true;
+            else
+                buttonDebug.Visible = false;
             richTextBoxMeddelanden1.BorderStyle = BorderStyle.None;
             richTextBoxMeddelanden.BorderStyle = BorderStyle.None;
             richTextBoxMeddelanden1.Text = "Logga in med din email-adress\nför att kunna lägga till en bokning\neller för att se när du har bokat.";
@@ -49,6 +53,7 @@ namespace Bokningssystem
 
         private void buttonLogga_Click(object sender, EventArgs e)
         {
+            string[] felMeddelanden;
             List<string> errorMsg = new List<string>();
             if (textBoxEmailLogin.Text == "" | textBoxLosenLogin.Text == "")
                 errorMsg.Add("Du måste skriva in både email och lösenord för att logga in.");
@@ -59,9 +64,9 @@ namespace Bokningssystem
                 TextBox[] inmatningar = { textBoxEmailLogin };
 
                 string[] kolladInmatning = inmatning.kollaInmatning(inmatningar);
-                string[] felMeddelanden = inmatning.GetTmpMsgs();
+                felMeddelanden = inmatning.GetTmpMsgs();
 
-                if (felMeddelanden.Length > 1)
+                if (felMeddelanden.Length > 0)
                 {
                     if (DEBUG)
                     {
@@ -74,9 +79,9 @@ namespace Bokningssystem
                     }
                     else
                     {
-                        if (felMeddelanden[0].Contains("giltig adress"))
+                        if (felMeddelanden.Contains("giltig adress"))
                         {
-                            richTextBoxMeddelanden1.Text = felMeddelanden[0];
+                            richTextBoxMeddelanden1.Text = "Du har inte skrivit in en giltig email-adress";
                         }
                         errorMsg.Add("Det blev ett fel med din inloggning.\nKontakta systemansvarig.");
                     }
@@ -117,9 +122,9 @@ namespace Bokningssystem
                     {
                         if (DEBUG)
                         {
-                            string[] felMeddelande = db.query(queryLogin, kolladInmatning);
+                            errorMsg.AddRange(db.query(queryLogin, kolladInmatning));
                             string fullFel = string.Empty;
-                            foreach (string meddelande in felMeddelande)
+                            foreach (string meddelande in errorMsg)
                                 fullFel += meddelande;
                             MessageBox.Show(fullFel);
                         }
@@ -227,6 +232,14 @@ namespace Bokningssystem
             {
                 richTextBoxMeddelanden.Text = kollaQuery[1];
             }
+        }
+
+        private void buttonDebug_Click(object sender, EventArgs e)
+        {
+            if (DEBUG)
+                Properties.Settings.Default.Debug = false;
+            else
+                Properties.Settings.Default.Debug = true;
         }
     }
 }
