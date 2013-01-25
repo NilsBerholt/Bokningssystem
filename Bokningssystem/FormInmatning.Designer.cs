@@ -72,7 +72,7 @@
             // buttonVisa
             // 
             this.buttonVisa.Enabled = false;
-            this.buttonVisa.Location = new System.Drawing.Point(100, 112);
+            this.buttonVisa.Location = new System.Drawing.Point(330, 6);
             this.buttonVisa.Name = "buttonVisa";
             this.buttonVisa.Size = new System.Drawing.Size(100, 100);
             this.buttonVisa.TabIndex = 42;
@@ -268,7 +268,7 @@
             // buttonRegistrera
             // 
             this.buttonRegistrera.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonRegistrera.Location = new System.Drawing.Point(206, 31);
+            this.buttonRegistrera.Location = new System.Drawing.Point(207, 31);
             this.buttonRegistrera.Name = "buttonRegistrera";
             this.buttonRegistrera.Size = new System.Drawing.Size(75, 23);
             this.buttonRegistrera.TabIndex = 23;
