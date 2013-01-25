@@ -174,7 +174,7 @@ namespace Bokningssystem
         }
 
         /// <summary>
-        /// Funktion som sätter kundens telefonnummer
+        /// Funktion som ändrar kundens telefonnummer
         /// Kombinera med getTmpMsgs()
         /// </summary>
         /// <param name="tfnnummer">Telefonnumret som string</param>
@@ -206,6 +206,11 @@ namespace Bokningssystem
             }
         }
 
+        /// <summary>
+        /// Funktion som anger en ny adress till kunden
+        /// </summary>
+        /// <param name="adress">Adressen som string</param>
+        /// <returns>0 är genomförd utan problem, allt annar är fel. 10 är fel med uppdateringen till databasen och 100 är fel med frågan</returns>
         public int SetAdress(string adress)
         {
             List<string> errorMsgs = new List<string>();
@@ -239,6 +244,11 @@ namespace Bokningssystem
             }
         }
 
+        /// <summary>
+        /// Funktion som anger ett nytt lösenord till kunden 
+        /// </summary>
+        /// <param name="Losenord">Lösenordet som string</param>
+        /// <returns>0 är genomförd utan problem, allt annar är fel. 10 är fel med uppdateringen till databasen och 100 är fel med frågan</returns>
         public int SetLosen(string Losenord)
         {
             List<string> errorMsgs = new List<string>();
@@ -272,6 +282,11 @@ namespace Bokningssystem
             }
         }
 
+        /// <summary>
+        /// Funktion som anger en ny email till kunden
+        /// </summary>
+        /// <param name="Email">Emailen som string</param>
+        /// <returns>0 är genomförd utan problem, allt annar är fel. 10 är fel med uppdateringen till databasen och 100 är fel med frågan</returns>
         public int SetEmail(string Email)
         {
             List<string> errorMsgs = new List<string>();

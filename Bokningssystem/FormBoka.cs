@@ -22,13 +22,13 @@ namespace Bokningssystem
             maskedTextBoxNytt.Text = "";
             maskedTextBoxBekräfta.Hide();
             maskedTextBoxBekräfta.Text = "";
-            maskedTextBoxGammla.Hide();
-            maskedTextBoxGammla.Text = "";
+            maskedTextBoxGamla.Hide();
+            maskedTextBoxGamla.Text = "";
             maskedTextBoxBekLosen.Hide();
             maskedTextBoxBekLosen.Text = "";
             labelNytt.Hide();
+            labelGamla.Hide();
             labelBekräfta.Hide();
-            labelGammla.Hide();
             labelBekLosen.Hide();
             buttonRedigera.Hide();
         }
@@ -162,7 +162,7 @@ namespace Bokningssystem
         private void labelEditNamn_Click(object sender, EventArgs e)
         {
             DoljAndringar();
-            maskedTextBoxGammla.UseSystemPasswordChar = false;
+            maskedTextBoxGamla.UseSystemPasswordChar = false;
             maskedTextBoxBekräfta.UseSystemPasswordChar = false;
             maskedTextBoxNytt.UseSystemPasswordChar = false;
             label7.Text = "";
@@ -177,20 +177,20 @@ namespace Bokningssystem
         private void labelEditEmail_Click(object sender, EventArgs e)
         {
             DoljAndringar();
-            maskedTextBoxGammla.UseSystemPasswordChar = false;
+            maskedTextBoxGamla.UseSystemPasswordChar = false;
             maskedTextBoxBekräfta.UseSystemPasswordChar = false;
             maskedTextBoxNytt.UseSystemPasswordChar = false;
             label7.Text = "";
             maskedTextBoxNytt.Show();
             maskedTextBoxBekräfta.Show();
-            maskedTextBoxGammla.Show();
+            maskedTextBoxGamla.Show();
             maskedTextBoxBekLosen.Show();
             labelNytt.Show();
             labelBekräfta.Show();
-            labelGammla.Show();
+            labelGamla.Show();
             labelBekLosen.Show();
             buttonRedigera.Show();
-            labelGammla.Text = "Din nuvarande email";
+            labelGamla.Text = "Din nuvarande email";
             labelBekräfta.Text = "Bekräfta din email";
             labelNytt.Text = "Din nya email";
             labelBekLosen.Text = "Dtt lösenord för att ändra emailen";
@@ -200,20 +200,20 @@ namespace Bokningssystem
         private void labelEditTfn_Click(object sender, EventArgs e)
         {
             DoljAndringar();
-            maskedTextBoxGammla.UseSystemPasswordChar = false;
+            maskedTextBoxGamla.UseSystemPasswordChar = false;
             maskedTextBoxBekräfta.UseSystemPasswordChar = false;
             maskedTextBoxNytt.UseSystemPasswordChar = false;
             label7.Text = "";
             maskedTextBoxNytt.Show();
             maskedTextBoxBekräfta.Show();
-            maskedTextBoxGammla.Show();
+            maskedTextBoxGamla.Show();
             maskedTextBoxBekLosen.Show();
-            labelGammla.Show();
+            labelGamla.Show();
             labelNytt.Show();
             labelBekräfta.Show();
             labelBekLosen.Show();
             buttonRedigera.Show();
-            labelGammla.Text = "Ditt nuvarande nummer";
+            labelGamla.Text = "Ditt nuvarande nummer";
             labelBekräfta.Text = "Bekräfta ditt telefonnummer";
             labelNytt.Text = "Ditt ny telefonnummer";
             labelBekLosen.Text = "Ditt lösenord för att ändra emailen";
@@ -223,7 +223,7 @@ namespace Bokningssystem
         private void labelEditAdress_Click(object sender, EventArgs e)
         {
             DoljAndringar();
-            maskedTextBoxGammla.UseSystemPasswordChar = false;
+            maskedTextBoxGamla.UseSystemPasswordChar = false;
             maskedTextBoxBekräfta.UseSystemPasswordChar = false;
             maskedTextBoxNytt.UseSystemPasswordChar = false;
             label7.Text = "";
@@ -238,17 +238,17 @@ namespace Bokningssystem
         {
             DoljAndringar();
             label7.Text = "";
-            maskedTextBoxGammla.UseSystemPasswordChar = true;
+            maskedTextBoxGamla.UseSystemPasswordChar = true;
             maskedTextBoxBekräfta.UseSystemPasswordChar = true;
             maskedTextBoxNytt.UseSystemPasswordChar = true;
             maskedTextBoxNytt.Show();
             maskedTextBoxBekräfta.Show();
-            maskedTextBoxGammla.Show();
-            labelGammla.Show();
+            maskedTextBoxGamla.Show();
+            labelGamla.Show();
             labelNytt.Show();
             labelBekräfta.Show();
             buttonRedigera.Show();
-            labelGammla.Text = "Ditt nu varande lösenord";
+            labelGamla.Text = "Ditt nu varande lösenord";
             labelBekräfta.Text = "Bekräfta ditt lösenord";
             labelNytt.Text = "Ditt ny lösenord";
             this.uppdatera = "losen";
@@ -271,7 +271,7 @@ namespace Bokningssystem
                 case "email":
                     string email = maskedTextBoxNytt.Text;
                     string email1 = maskedTextBoxBekräfta.Text;
-                    string email2 = maskedTextBoxGammla.Text;
+                    string email2 = maskedTextBoxGamla.Text;
 
                     if (losen == anvandare.GetLosen())
                     {
@@ -310,7 +310,7 @@ namespace Bokningssystem
                 case "tfn":
                     string tfn = maskedTextBoxNytt.Text;
                     string tfn1 = maskedTextBoxBekräfta.Text;
-                    string tfn2 = maskedTextBoxGammla.Text;
+                    string tfn2 = maskedTextBoxGamla.Text;
 
                     if (losen == anvandare.GetLosen())
                     {
@@ -355,7 +355,7 @@ namespace Bokningssystem
                     break;
 
                 case "losen":
-                    string losen1 = maskedTextBoxGammla.Text;
+                    string losen1 = maskedTextBoxGamla.Text;
                     string losen2 = maskedTextBoxNytt.Text;
                     string losen3 = maskedTextBoxBekräfta.Text;
 
