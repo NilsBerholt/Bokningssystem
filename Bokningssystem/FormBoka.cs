@@ -16,7 +16,7 @@ namespace Bokningssystem
         private bool kundHarReggadBil;
         private string uppdatera = null;
 
-        public void Hide()
+        public void DoljAndringar()
         {
             maskedTextBoxNytt.Hide();
             maskedTextBoxNytt.Text = "";
@@ -41,7 +41,7 @@ namespace Bokningssystem
             labelTfn.Text = anvandare.GetTfn();
             labelAdress.Text = anvandare.GetAdress();
             label7.Text = "";
-            Hide();
+            DoljAndringar();
 
             string regQuery = "SELECT reg FROM fordon WHERE agare='?x?'";
             string[] args = { anvandare.GetEmail() };
@@ -158,7 +158,7 @@ namespace Bokningssystem
 
         private void labelEditNamn_Click(object sender, EventArgs e)
         {
-            Hide();
+            DoljAndringar();
             maskedTextBoxGammla.UseSystemPasswordChar = false;
             maskedTextBoxBekräfta.UseSystemPasswordChar = false;
             maskedTextBoxNytt.UseSystemPasswordChar = false;
@@ -173,7 +173,7 @@ namespace Bokningssystem
 
         private void labelEditEmail_Click(object sender, EventArgs e)
         {
-            Hide();
+            DoljAndringar();
             maskedTextBoxGammla.UseSystemPasswordChar = false;
             maskedTextBoxBekräfta.UseSystemPasswordChar = false;
             maskedTextBoxNytt.UseSystemPasswordChar = false;
@@ -193,7 +193,7 @@ namespace Bokningssystem
 
         private void labelEditTfn_Click(object sender, EventArgs e)
         {
-            Hide();
+            DoljAndringar();
             maskedTextBoxGammla.UseSystemPasswordChar = false;
             maskedTextBoxBekräfta.UseSystemPasswordChar = false;
             maskedTextBoxNytt.UseSystemPasswordChar = false;
@@ -213,7 +213,7 @@ namespace Bokningssystem
 
         private void labelEditAdress_Click(object sender, EventArgs e)
         {
-            Hide();
+            DoljAndringar();
             maskedTextBoxGammla.UseSystemPasswordChar = false;
             maskedTextBoxBekräfta.UseSystemPasswordChar = false;
             maskedTextBoxNytt.UseSystemPasswordChar = false;
@@ -227,7 +227,7 @@ namespace Bokningssystem
 
         private void labelEditLosen_Click(object sender, EventArgs e)
         {
-            Hide();
+            DoljAndringar();
             label7.Text = "";
             maskedTextBoxGammla.UseSystemPasswordChar = true;
             maskedTextBoxBekräfta.UseSystemPasswordChar = true;
@@ -254,7 +254,7 @@ namespace Bokningssystem
                     this.anvandare.SetNamn(namn);
                     label7.Text = "Du har nu bytt namn";
                     labelNamn.Text = anvandare.GetNamn();
-                    Hide();
+                    DoljAndringar();
                     break;
 
                 case "email":
@@ -287,7 +287,7 @@ namespace Bokningssystem
                     {
                         label7.Text = "Din nuvarande email stämemr inte överäns med det du har skrivit nu";
                     }
-                    Hide();
+                    DoljAndringar();
                     break;
 
                 case "tfn":
@@ -322,7 +322,7 @@ namespace Bokningssystem
                     {
                         label7.Text = "Ditt nuvarande nummer stämemr inte överäns med det du har skrivit nu";
                     }
-                    Hide();
+                    DoljAndringar();
                         break;
 
                 case "adress":
@@ -330,7 +330,7 @@ namespace Bokningssystem
                         this.anvandare.SetAdress(adress);
                         labelAdress.Text = anvandare.GetAdress();
                         label7.Text = "Du har nu ändrat din adress";
-                        Hide();
+                        DoljAndringar();
                     break;
 
                 case "losen":
@@ -362,7 +362,7 @@ namespace Bokningssystem
                     {
                         label7.Text = "Ditt lösenord stämmer inte ihop med det du skrev nu";
                     }
-                    Hide();
+                    DoljAndringar();
                     break;
             }
         }
