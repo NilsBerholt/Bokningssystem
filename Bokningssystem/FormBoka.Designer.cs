@@ -35,7 +35,6 @@
             this.buttonBoka = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxReg = new System.Windows.Forms.ComboBox();
-            this.labelError = new System.Windows.Forms.Label();
             this.richTextBoxMeddelandenBoka = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelNyBil = new System.Windows.Forms.Panel();
@@ -45,6 +44,12 @@
             this.labelArsmodell = new System.Windows.Forms.Label();
             this.textBoxArsModell = new System.Windows.Forms.TextBox();
             this.textBoxMarke = new System.Windows.Forms.TextBox();
+            this.panelTider = new System.Windows.Forms.Panel();
+            this.timeButton_16 = new System.Windows.Forms.RadioButton();
+            this.timeButton_14 = new System.Windows.Forms.RadioButton();
+            this.timeButton_10 = new System.Windows.Forms.RadioButton();
+            this.timeButton_08 = new System.Windows.Forms.RadioButton();
+            this.buttonValjTid = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMeny = new System.Windows.Forms.TabPage();
             this.buttonProfil = new System.Windows.Forms.Button();
@@ -55,6 +60,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
+            this.labelBekLosen = new System.Windows.Forms.Label();
+            this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
             this.labelGammla = new System.Windows.Forms.Label();
             this.maskedTextBoxGammla = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -77,13 +84,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
-            this.labelBekLosen = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panelNyBil.SuspendLayout();
+            this.panelTider.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyBok.SuspendLayout();
@@ -122,7 +128,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 196);
+            this.label5.Location = new System.Drawing.Point(7, 226);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 20);
             this.label5.TabIndex = 10;
@@ -130,14 +136,14 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(27, 29);
+            this.monthCalendar1.Location = new System.Drawing.Point(44, 30);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 31;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // buttonBoka
             // 
-            this.buttonBoka.Location = new System.Drawing.Point(172, 341);
+            this.buttonBoka.Location = new System.Drawing.Point(188, 362);
             this.buttonBoka.Name = "buttonBoka";
             this.buttonBoka.Size = new System.Drawing.Size(75, 23);
             this.buttonBoka.TabIndex = 30;
@@ -149,7 +155,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(3, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 20);
             this.label2.TabIndex = 2;
@@ -159,31 +165,21 @@
             // 
             this.comboBoxReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxReg.FormattingEnabled = true;
-            this.comboBoxReg.Location = new System.Drawing.Point(92, 196);
+            this.comboBoxReg.Location = new System.Drawing.Point(70, 224);
             this.comboBoxReg.Name = "comboBoxReg";
             this.comboBoxReg.Size = new System.Drawing.Size(145, 28);
             this.comboBoxReg.TabIndex = 2;
             this.comboBoxReg.SelectedIndexChanged += new System.EventHandler(this.comboBoxReg_SelectedIndexChanged);
-            // 
-            // labelError
-            // 
-            this.labelError.AutoSize = true;
-            this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelError.Location = new System.Drawing.Point(13, 193);
-            this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(31, 17);
-            this.labelError.TabIndex = 27;
-            this.labelError.Text = "asd";
             // 
             // richTextBoxMeddelandenBoka
             // 
             this.richTextBoxMeddelandenBoka.AcceptsTab = true;
             this.richTextBoxMeddelandenBoka.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.richTextBoxMeddelandenBoka.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxMeddelandenBoka.Location = new System.Drawing.Point(3, 16);
+            this.richTextBoxMeddelandenBoka.Location = new System.Drawing.Point(30, 208);
             this.richTextBoxMeddelandenBoka.Name = "richTextBoxMeddelandenBoka";
             this.richTextBoxMeddelandenBoka.ReadOnly = true;
-            this.richTextBoxMeddelandenBoka.Size = new System.Drawing.Size(168, 135);
+            this.richTextBoxMeddelandenBoka.Size = new System.Drawing.Size(238, 164);
             this.richTextBoxMeddelandenBoka.TabIndex = 28;
             this.richTextBoxMeddelandenBoka.TabStop = false;
             this.richTextBoxMeddelandenBoka.Text = "";
@@ -195,19 +191,19 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.richTextBoxMeddelandenBoka);
-            this.splitContainer1.Panel1.Controls.Add(this.labelError);
+            this.splitContainer1.Panel1.Controls.Add(this.monthCalendar1);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonBoka);
+            this.splitContainer1.Panel1.Controls.Add(this.panelNyBil);
+            this.splitContainer1.Panel1.Controls.Add(this.comboBoxReg);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panelNyBil);
-            this.splitContainer1.Panel2.Controls.Add(this.comboBoxReg);
-            this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.buttonBoka);
-            this.splitContainer1.Panel2.Controls.Add(this.monthCalendar1);
-            this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Size = new System.Drawing.Size(468, 366);
-            this.splitContainer1.SplitterDistance = 179;
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBoxMeddelandenBoka);
+            this.splitContainer1.Panel2.Controls.Add(this.panelTider);
+            this.splitContainer1.Size = new System.Drawing.Size(584, 394);
+            this.splitContainer1.SplitterDistance = 265;
             this.splitContainer1.TabIndex = 33;
             // 
             // panelNyBil
@@ -218,7 +214,7 @@
             this.panelNyBil.Controls.Add(this.labelArsmodell);
             this.panelNyBil.Controls.Add(this.textBoxArsModell);
             this.panelNyBil.Controls.Add(this.textBoxMarke);
-            this.panelNyBil.Location = new System.Drawing.Point(7, 230);
+            this.panelNyBil.Location = new System.Drawing.Point(6, 258);
             this.panelNyBil.Name = "panelNyBil";
             this.panelNyBil.Size = new System.Drawing.Size(240, 105);
             this.panelNyBil.TabIndex = 32;
@@ -246,7 +242,7 @@
             // textBoxModell
             // 
             this.textBoxModell.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxModell.Location = new System.Drawing.Point(85, 6);
+            this.textBoxModell.Location = new System.Drawing.Point(77, 3);
             this.textBoxModell.Name = "textBoxModell";
             this.textBoxModell.Size = new System.Drawing.Size(145, 26);
             this.textBoxModell.TabIndex = 15;
@@ -264,7 +260,7 @@
             // textBoxArsModell
             // 
             this.textBoxArsModell.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxArsModell.Location = new System.Drawing.Point(85, 75);
+            this.textBoxArsModell.Location = new System.Drawing.Point(77, 72);
             this.textBoxArsModell.Name = "textBoxArsModell";
             this.textBoxArsModell.Size = new System.Drawing.Size(145, 26);
             this.textBoxArsModell.TabIndex = 18;
@@ -272,10 +268,84 @@
             // textBoxMarke
             // 
             this.textBoxMarke.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMarke.Location = new System.Drawing.Point(85, 38);
+            this.textBoxMarke.Location = new System.Drawing.Point(77, 35);
             this.textBoxMarke.Name = "textBoxMarke";
             this.textBoxMarke.Size = new System.Drawing.Size(145, 26);
             this.textBoxMarke.TabIndex = 17;
+            // 
+            // panelTider
+            // 
+            this.panelTider.Controls.Add(this.timeButton_16);
+            this.panelTider.Controls.Add(this.timeButton_14);
+            this.panelTider.Controls.Add(this.timeButton_10);
+            this.panelTider.Controls.Add(this.timeButton_08);
+            this.panelTider.Controls.Add(this.buttonValjTid);
+            this.panelTider.Location = new System.Drawing.Point(17, 5);
+            this.panelTider.Name = "panelTider";
+            this.panelTider.Size = new System.Drawing.Size(275, 187);
+            this.panelTider.TabIndex = 30;
+            // 
+            // timeButton_16
+            // 
+            this.timeButton_16.AutoSize = true;
+            this.timeButton_16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeButton_16.Location = new System.Drawing.Point(23, 113);
+            this.timeButton_16.Name = "timeButton_16";
+            this.timeButton_16.Size = new System.Drawing.Size(97, 19);
+            this.timeButton_16.TabIndex = 3;
+            this.timeButton_16.TabStop = true;
+            this.timeButton_16.Text = "16:00 - 18:00";
+            this.timeButton_16.UseVisualStyleBackColor = true;
+            // 
+            // timeButton_14
+            // 
+            this.timeButton_14.AutoSize = true;
+            this.timeButton_14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeButton_14.Location = new System.Drawing.Point(23, 79);
+            this.timeButton_14.Name = "timeButton_14";
+            this.timeButton_14.Size = new System.Drawing.Size(97, 19);
+            this.timeButton_14.TabIndex = 2;
+            this.timeButton_14.TabStop = true;
+            this.timeButton_14.Text = "14:00 - 16:00";
+            this.timeButton_14.UseVisualStyleBackColor = true;
+            // 
+            // timeButton_10
+            // 
+            this.timeButton_10.AutoSize = true;
+            this.timeButton_10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeButton_10.Location = new System.Drawing.Point(23, 43);
+            this.timeButton_10.Name = "timeButton_10";
+            this.timeButton_10.Size = new System.Drawing.Size(97, 19);
+            this.timeButton_10.TabIndex = 1;
+            this.timeButton_10.TabStop = true;
+            this.timeButton_10.Text = "10:00 - 12:00";
+            this.timeButton_10.UseVisualStyleBackColor = true;
+            // 
+            // timeButton_08
+            // 
+            this.timeButton_08.AutoSize = true;
+            this.timeButton_08.BackColor = System.Drawing.Color.Transparent;
+            this.timeButton_08.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timeButton_08.Location = new System.Drawing.Point(23, 11);
+            this.timeButton_08.Name = "timeButton_08";
+            this.timeButton_08.Size = new System.Drawing.Size(97, 19);
+            this.timeButton_08.TabIndex = 0;
+            this.timeButton_08.TabStop = true;
+            this.timeButton_08.Text = "08:00 - 10:00";
+            this.timeButton_08.UseVisualStyleBackColor = false;
+            // 
+            // buttonValjTid
+            // 
+            this.buttonValjTid.AutoSize = true;
+            this.buttonValjTid.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonValjTid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonValjTid.Location = new System.Drawing.Point(165, 137);
+            this.buttonValjTid.Name = "buttonValjTid";
+            this.buttonValjTid.Size = new System.Drawing.Size(75, 25);
+            this.buttonValjTid.TabIndex = 2;
+            this.buttonValjTid.Text = "Välj tid";
+            this.buttonValjTid.UseVisualStyleBackColor = false;
+            this.buttonValjTid.Click += new System.EventHandler(this.buttonValjTid_Click);
             // 
             // tabControl1
             // 
@@ -287,11 +357,12 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(485, 412);
+            this.tabControl1.Size = new System.Drawing.Size(619, 444);
             this.tabControl1.TabIndex = 29;
             // 
             // tabPageMeny
             // 
+            this.tabPageMeny.BackColor = System.Drawing.SystemColors.Control;
             this.tabPageMeny.Controls.Add(this.buttonProfil);
             this.tabPageMeny.Controls.Add(this.richTextBoxBokningMeny);
             this.tabPageMeny.Controls.Add(this.buttonMinBok);
@@ -299,10 +370,9 @@
             this.tabPageMeny.Location = new System.Drawing.Point(4, 22);
             this.tabPageMeny.Name = "tabPageMeny";
             this.tabPageMeny.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMeny.Size = new System.Drawing.Size(477, 386);
+            this.tabPageMeny.Size = new System.Drawing.Size(611, 418);
             this.tabPageMeny.TabIndex = 0;
             this.tabPageMeny.Text = "Meny";
-            this.tabPageMeny.UseVisualStyleBackColor = true;
             // 
             // buttonProfil
             // 
@@ -330,14 +400,14 @@
             // 
             // tabPageNyBok
             // 
+            this.tabPageNyBok.BackColor = System.Drawing.SystemColors.Control;
             this.tabPageNyBok.Controls.Add(this.splitContainer1);
             this.tabPageNyBok.Location = new System.Drawing.Point(4, 22);
             this.tabPageNyBok.Name = "tabPageNyBok";
             this.tabPageNyBok.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageNyBok.Size = new System.Drawing.Size(477, 386);
+            this.tabPageNyBok.Size = new System.Drawing.Size(611, 418);
             this.tabPageNyBok.TabIndex = 1;
             this.tabPageNyBok.Text = "Ny bokning";
-            this.tabPageNyBok.UseVisualStyleBackColor = true;
             // 
             // tabPageMinBok
             // 
@@ -345,7 +415,7 @@
             this.tabPageMinBok.Location = new System.Drawing.Point(4, 22);
             this.tabPageMinBok.Name = "tabPageMinBok";
             this.tabPageMinBok.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMinBok.Size = new System.Drawing.Size(477, 386);
+            this.tabPageMinBok.Size = new System.Drawing.Size(611, 418);
             this.tabPageMinBok.TabIndex = 2;
             this.tabPageMinBok.Text = "Mina bokningar & bilar";
             this.tabPageMinBok.UseVisualStyleBackColor = true;
@@ -363,8 +433,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.label9);
-            this.splitContainer2.Size = new System.Drawing.Size(471, 380);
-            this.splitContainer2.SplitterDistance = 222;
+            this.splitContainer2.Size = new System.Drawing.Size(605, 412);
+            this.splitContainer2.SplitterDistance = 285;
             this.splitContainer2.TabIndex = 0;
             // 
             // label8
@@ -403,10 +473,28 @@
             this.tabPageProfil.Location = new System.Drawing.Point(4, 22);
             this.tabPageProfil.Name = "tabPageProfil";
             this.tabPageProfil.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageProfil.Size = new System.Drawing.Size(477, 386);
+            this.tabPageProfil.Size = new System.Drawing.Size(611, 418);
             this.tabPageProfil.TabIndex = 3;
             this.tabPageProfil.Text = "Profil";
             this.tabPageProfil.UseVisualStyleBackColor = true;
+            // 
+            // labelBekLosen
+            // 
+            this.labelBekLosen.AutoSize = true;
+            this.labelBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBekLosen.Location = new System.Drawing.Point(145, 261);
+            this.labelBekLosen.Name = "labelBekLosen";
+            this.labelBekLosen.Size = new System.Drawing.Size(45, 16);
+            this.labelBekLosen.TabIndex = 20;
+            this.labelBekLosen.Text = "Losen";
+            // 
+            // maskedTextBoxBekLosen
+            // 
+            this.maskedTextBoxBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxBekLosen.Location = new System.Drawing.Point(148, 291);
+            this.maskedTextBoxBekLosen.Name = "maskedTextBoxBekLosen";
+            this.maskedTextBoxBekLosen.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxBekLosen.TabIndex = 19;
             // 
             // labelGammla
             // 
@@ -645,41 +733,25 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-            // maskedTextBoxBekLosen
-            // 
-            this.maskedTextBoxBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxBekLosen.Location = new System.Drawing.Point(148, 291);
-            this.maskedTextBoxBekLosen.Name = "maskedTextBoxBekLosen";
-            this.maskedTextBoxBekLosen.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxBekLosen.TabIndex = 19;
-            // 
-            // labelBekLosen
-            // 
-            this.labelBekLosen.AutoSize = true;
-            this.labelBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBekLosen.Location = new System.Drawing.Point(145, 261);
-            this.labelBekLosen.Name = "labelBekLosen";
-            this.labelBekLosen.Size = new System.Drawing.Size(45, 16);
-            this.labelBekLosen.TabIndex = 20;
-            this.labelBekLosen.Text = "Losen";
-            // 
             // FormBoka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 436);
+            this.ClientSize = new System.Drawing.Size(747, 468);
             this.Controls.Add(this.tabControl1);
+            this.Enabled = false;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FormBoka";
             this.Text = "Bokning";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panelNyBil.ResumeLayout(false);
             this.panelNyBil.PerformLayout();
+            this.panelTider.ResumeLayout(false);
+            this.panelTider.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPageMeny.ResumeLayout(false);
             this.tabPageNyBok.ResumeLayout(false);
@@ -707,7 +779,6 @@
         private System.Windows.Forms.Button buttonBoka;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxReg;
-        private System.Windows.Forms.Label labelError;
         private System.Windows.Forms.RichTextBox richTextBoxMeddelandenBoka;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panelNyBil;
@@ -751,5 +822,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelBekLosen;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxBekLosen;
+        private System.Windows.Forms.Panel panelTider;
+        private System.Windows.Forms.Button buttonValjTid;
+        private System.Windows.Forms.RadioButton timeButton_16;
+        private System.Windows.Forms.RadioButton timeButton_14;
+        private System.Windows.Forms.RadioButton timeButton_10;
+        private System.Windows.Forms.RadioButton timeButton_08;
     }
 }

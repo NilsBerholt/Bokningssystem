@@ -12,7 +12,7 @@ namespace Bokningssystem
     public partial class kalender : UserControl
     {
         public SqlCeDatabase db = null;
-        private DateTime date;
+        private string date;
         private int month, day, year;
         public string valdTid;
 
@@ -20,13 +20,8 @@ namespace Bokningssystem
         {
             InitializeComponent();
 
-            this.date = date;
+            this.date = date.Date.ToString();
             db = database;
-
-            // Initiera datumen
-            this.month = this.date.Month;
-            this.day = this.date.Day;
-            this.year = this.date.Year;
         }
 
         public void Initiate()
@@ -52,40 +47,6 @@ namespace Bokningssystem
                 panel.Controls.Add(färgLabel);
 
             }
-        }
-    }
-
-    public partial class tidElement : UserControl
-    {
-        public bool ledig;
-        private string date;
-
-        public tidElement(DateTime date, string tid)
-        {
-            input inmatning = new input();
-
-            this.date = date.Year.ToString() + date.Month.ToString() + date.Day.ToString();
-            this.date += ":" + tid;
-
-            FlowLayoutPanel panel = new FlowLayoutPanel();
-            panel.AutoSize = true;
-
-            Label text = new Label();
-            text.Text = tid;
-            text.AutoSize = true;
-            panel.Controls.Add(text);
-
-            Label färg = new Label();
-            färg.Text = "";
-            färg.Size = text.Size;
-
-            if (inmatning.kollaTidLedig(date, tid))
-                färg.BackColor = Color.Green;
-            else
-                färg.BackColor = Color.Red;
-            panel.Controls.Add(färg);
-
-
         }
     }
 }

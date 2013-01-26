@@ -101,6 +101,7 @@ namespace Bokningssystem
                             {
                                 kund anvandare = new kund(sokResultat[0], sokResultat[1]);
                                 FormBoka minBokning = new FormBoka(anvandare);
+                                minBokning.Enabled = true;
                                 if (DEBUG)
                                 {
                                     this.Hide();

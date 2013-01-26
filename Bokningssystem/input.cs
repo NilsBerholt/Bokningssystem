@@ -450,7 +450,7 @@ namespace Bokningssystem
         /// <param name="regnr">Fordonets registreringsnummer</param>
         /// <param name="datum">Datumet som bokningen gäller</param>
         /// <returns>Returnerar true om allt gick som det skulle eller falskt annars.</returns>
-        public bool boka(kund anvandare, string regnr, DateTime datum)
+        public bool boka(kund anvandare, string regnr, string datum)
         {
             List<string> errorMsgs = new List<string>();
             SqlCeDatabase db = new SqlCeDatabase();
@@ -464,7 +464,7 @@ namespace Bokningssystem
             string query = "INSERT INTO Bokning " +
                "(datum, fnamn, enamn, bil, email, tfn) " +
                "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
-            string[] args = new string[6] { datum.ToString(), fnamn, enamn, regnr, agare, tfn };
+            string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
 
             if (db.query(query, args)[0] == "1")
             {
@@ -504,7 +504,7 @@ namespace Bokningssystem
         /// <param name="modell">Modellen på fordonet</param>
         /// <param name="arsmodell">Årsmodellen på fordonet</param>
         /// <returns>Returnerar true om allt gick som det ska eller falskt annars</returns>
-        public bool boka(kund anvandare, string regnr, DateTime datum, string marke, string modell, string arsmodell)
+        public bool boka(kund anvandare, string regnr, string datum, string marke, string modell, string arsmodell)
         {
             List<string> errorMsgs = new List<string>();
             SqlCeDatabase db = new SqlCeDatabase();
@@ -520,7 +520,7 @@ namespace Bokningssystem
                 string query = "INSERT INTO Bokning " +
                    "(datum, fnamn, enamn, bil, email, tfn) " +
                    "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
-                string[] args = new string[6] { datum.ToString(), fnamn, enamn, regnr, agare, tfn };
+                string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
 
                 if (db.query(query, args)[0] == "1")
                 {
@@ -561,15 +561,15 @@ namespace Bokningssystem
         /// <param name="date">Datumet som bokningen gäller</param>
         /// <param name="tid">Tid intervallet ex. HH:MM</param>
         /// <returns>Sant om det är ledigt, falskt annars</returns>
-        public bool kollaTidLedig (DateTime date, string tid)
+        public bool kollaTidLedig (string date, string tid)
         {
             SqlCeDatabase db = new SqlCeDatabase();
 
             string tid1 = tid.Substring(0, tid.IndexOf(' '));
-            string tid2 = tid.Substring(tid.LastIndexOf(' '), 5);
+            string tid2 = tid.Substring(tid.LastIndexOf(' ')+1, 5);
 
-            string date1 = date.Year.ToString() + date.Month.ToString() + date.Day.ToString() + " " + tid1;
-            string date2 = date.Year.ToString() + date.Month.ToString() + date.Day.ToString() + " " + tid2;
+            string date1 = date + " " + tid1;
+            string date2 = date + " " + tid2;
             
             string queryTid = "SELECT * FROM Bokning WHERE datum BETWEEN '?x?' AND '?x?'";
             string[] args = { date1, date2 };
