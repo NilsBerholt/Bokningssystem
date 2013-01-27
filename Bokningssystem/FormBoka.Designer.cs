@@ -62,14 +62,22 @@
             this.tabPageProfil = new System.Windows.Forms.TabPage();
             this.labelBekLosen = new System.Windows.Forms.Label();
             this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
-            this.labelGammla = new System.Windows.Forms.Label();
-            this.maskedTextBoxGammla = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.labelBekräfta = new System.Windows.Forms.Label();
             this.labelNytt = new System.Windows.Forms.Label();
             this.maskedTextBoxBekräfta = new System.Windows.Forms.MaskedTextBox();
             this.buttonRedigera = new System.Windows.Forms.Button();
+            this.panelRed = new System.Windows.Forms.Panel();
+            this.labelBekLosen = new System.Windows.Forms.Label();
+            this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxNytt = new System.Windows.Forms.MaskedTextBox();
+            this.labelGamla = new System.Windows.Forms.Label();
+            this.buttonRedigera = new System.Windows.Forms.Button();
+            this.maskedTextBoxGamla = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxBekräfta = new System.Windows.Forms.MaskedTextBox();
+            this.labelNytt = new System.Windows.Forms.Label();
+            this.labelBekräfta = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.labelEditLosen = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelEditAdress = new System.Windows.Forms.Label();
@@ -99,6 +107,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.tabPageProfil.SuspendLayout();
+            this.panelRed.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -440,33 +449,27 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(66, 40);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(50, 12);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.Size = new System.Drawing.Size(95, 24);
             this.label8.TabIndex = 0;
-            this.label8.Text = "label8";
+            this.label8.Text = "Bokningar";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(98, 40);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(72, 12);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.Size = new System.Drawing.Size(91, 24);
             this.label9.TabIndex = 1;
-            this.label9.Text = "label9";
+            this.label9.Text = "Mina bilar";
             // 
             // tabPageProfil
             // 
-            this.tabPageProfil.Controls.Add(this.labelBekLosen);
-            this.tabPageProfil.Controls.Add(this.maskedTextBoxBekLosen);
-            this.tabPageProfil.Controls.Add(this.labelGammla);
-            this.tabPageProfil.Controls.Add(this.maskedTextBoxGammla);
+            this.tabPageProfil.Controls.Add(this.panelRed);
             this.tabPageProfil.Controls.Add(this.label7);
-            this.tabPageProfil.Controls.Add(this.labelBekräfta);
-            this.tabPageProfil.Controls.Add(this.labelNytt);
-            this.tabPageProfil.Controls.Add(this.maskedTextBoxBekräfta);
-            this.tabPageProfil.Controls.Add(this.buttonRedigera);
-            this.tabPageProfil.Controls.Add(this.maskedTextBoxNytt);
             this.tabPageProfil.Controls.Add(this.labelEditLosen);
             this.tabPageProfil.Controls.Add(this.tableLayoutPanel1);
             this.tabPageProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -495,67 +498,62 @@
             this.maskedTextBoxBekLosen.Name = "maskedTextBoxBekLosen";
             this.maskedTextBoxBekLosen.Size = new System.Drawing.Size(115, 21);
             this.maskedTextBoxBekLosen.TabIndex = 19;
+            // panelRed
             // 
-            // labelGammla
+            this.panelRed.Controls.Add(this.labelBekLosen);
+            this.panelRed.Controls.Add(this.maskedTextBoxBekLosen);
+            this.panelRed.Controls.Add(this.maskedTextBoxNytt);
+            this.panelRed.Controls.Add(this.labelGamla);
+            this.panelRed.Controls.Add(this.buttonRedigera);
+            this.panelRed.Controls.Add(this.maskedTextBoxGamla);
+            this.panelRed.Controls.Add(this.maskedTextBoxBekräfta);
+            this.panelRed.Controls.Add(this.labelNytt);
+            this.panelRed.Controls.Add(this.labelBekräfta);
+            this.panelRed.Location = new System.Drawing.Point(12, 256);
+            this.panelRed.Name = "panelRed";
+            this.panelRed.Size = new System.Drawing.Size(419, 124);
+            this.panelRed.TabIndex = 30;
             // 
-            this.labelGammla.AutoSize = true;
-            this.labelGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGammla.Location = new System.Drawing.Point(9, 261);
-            this.labelGammla.Name = "labelGammla";
-            this.labelGammla.Size = new System.Drawing.Size(59, 16);
-            this.labelGammla.TabIndex = 18;
-            this.labelGammla.Text = "Gammla";
+            // labelBekLosen
             // 
-            // maskedTextBoxGammla
+            this.labelBekLosen.AutoSize = true;
+            this.labelBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBekLosen.Location = new System.Drawing.Point(174, 0);
+            this.labelBekLosen.Name = "labelBekLosen";
+            this.labelBekLosen.Size = new System.Drawing.Size(45, 16);
+            this.labelBekLosen.TabIndex = 20;
+            this.labelBekLosen.Text = "Losen";
             // 
-            this.maskedTextBoxGammla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxGammla.Location = new System.Drawing.Point(12, 291);
-            this.maskedTextBoxGammla.Name = "maskedTextBoxGammla";
-            this.maskedTextBoxGammla.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxGammla.TabIndex = 6;
+            // maskedTextBoxBekLosen
             // 
-            // label7
+            this.maskedTextBoxBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxBekLosen.Location = new System.Drawing.Point(177, 30);
+            this.maskedTextBoxBekLosen.Name = "maskedTextBoxBekLosen";
+            this.maskedTextBoxBekLosen.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxBekLosen.TabIndex = 19;
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(9, 233);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 16);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "label7";
+            // maskedTextBoxNytt
             // 
-            // labelBekräfta
+            this.maskedTextBoxNytt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxNytt.Location = new System.Drawing.Point(19, 88);
+            this.maskedTextBoxNytt.Name = "maskedTextBoxNytt";
+            this.maskedTextBoxNytt.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxNytt.TabIndex = 7;
             // 
-            this.labelBekräfta.AutoSize = true;
-            this.labelBekräfta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBekräfta.Location = new System.Drawing.Point(145, 324);
-            this.labelBekräfta.Name = "labelBekräfta";
-            this.labelBekräfta.Size = new System.Drawing.Size(58, 16);
-            this.labelBekräfta.TabIndex = 15;
-            this.labelBekräfta.Text = "Bekräfta";
+            // labelGamla
             // 
-            // labelNytt
-            // 
-            this.labelNytt.AutoSize = true;
-            this.labelNytt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNytt.Location = new System.Drawing.Point(9, 324);
-            this.labelNytt.Name = "labelNytt";
-            this.labelNytt.Size = new System.Drawing.Size(31, 16);
-            this.labelNytt.TabIndex = 14;
-            this.labelNytt.Text = "Nytt";
-            // 
-            // maskedTextBoxBekräfta
-            // 
-            this.maskedTextBoxBekräfta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxBekräfta.Location = new System.Drawing.Point(148, 349);
-            this.maskedTextBoxBekräfta.Name = "maskedTextBoxBekräfta";
-            this.maskedTextBoxBekräfta.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxBekräfta.TabIndex = 8;
+            this.labelGamla.AutoSize = true;
+            this.labelGamla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGamla.Location = new System.Drawing.Point(16, 0);
+            this.labelGamla.Name = "labelGamla";
+            this.labelGamla.Size = new System.Drawing.Size(48, 16);
+            this.labelGamla.TabIndex = 18;
+            this.labelGamla.Text = "Gamla";
             // 
             // buttonRedigera
             // 
             this.buttonRedigera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRedigera.Location = new System.Drawing.Point(297, 347);
+            this.buttonRedigera.Location = new System.Drawing.Point(326, 86);
             this.buttonRedigera.Name = "buttonRedigera";
             this.buttonRedigera.Size = new System.Drawing.Size(75, 24);
             this.buttonRedigera.TabIndex = 9;
@@ -563,13 +561,51 @@
             this.buttonRedigera.UseVisualStyleBackColor = true;
             this.buttonRedigera.Click += new System.EventHandler(this.buttonRedigera_Click);
             // 
-            // maskedTextBoxNytt
+            // maskedTextBoxGamla
             // 
-            this.maskedTextBoxNytt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxNytt.Location = new System.Drawing.Point(12, 349);
-            this.maskedTextBoxNytt.Name = "maskedTextBoxNytt";
-            this.maskedTextBoxNytt.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxNytt.TabIndex = 7;
+            this.maskedTextBoxGamla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxGamla.Location = new System.Drawing.Point(19, 30);
+            this.maskedTextBoxGamla.Name = "maskedTextBoxGamla";
+            this.maskedTextBoxGamla.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxGamla.TabIndex = 6;
+            // 
+            // maskedTextBoxBekräfta
+            // 
+            this.maskedTextBoxBekräfta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxBekräfta.Location = new System.Drawing.Point(177, 88);
+            this.maskedTextBoxBekräfta.Name = "maskedTextBoxBekräfta";
+            this.maskedTextBoxBekräfta.Size = new System.Drawing.Size(115, 21);
+            this.maskedTextBoxBekräfta.TabIndex = 8;
+            // 
+            // labelNytt
+            // 
+            this.labelNytt.AutoSize = true;
+            this.labelNytt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNytt.Location = new System.Drawing.Point(16, 69);
+            this.labelNytt.Name = "labelNytt";
+            this.labelNytt.Size = new System.Drawing.Size(31, 16);
+            this.labelNytt.TabIndex = 14;
+            this.labelNytt.Text = "Nytt";
+            // 
+            // labelBekräfta
+            // 
+            this.labelBekräfta.AutoSize = true;
+            this.labelBekräfta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBekräfta.Location = new System.Drawing.Point(174, 63);
+            this.labelBekräfta.Name = "labelBekräfta";
+            this.labelBekräfta.Size = new System.Drawing.Size(58, 16);
+            this.labelBekräfta.TabIndex = 15;
+            this.labelBekräfta.Text = "Bekräfta";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(9, 213);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 16);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "label7";
             // 
             // labelEditLosen
             // 
@@ -764,6 +800,8 @@
             this.splitContainer2.ResumeLayout(false);
             this.tabPageProfil.ResumeLayout(false);
             this.tabPageProfil.PerformLayout();
+            this.panelRed.ResumeLayout(false);
+            this.panelRed.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -815,8 +853,8 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBoxBekräfta;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buttonProfil;
-        private System.Windows.Forms.Label labelGammla;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxGammla;
+        private System.Windows.Forms.Label labelGamla;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxGamla;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -828,5 +866,6 @@
         private System.Windows.Forms.RadioButton timeButton_14;
         private System.Windows.Forms.RadioButton timeButton_10;
         private System.Windows.Forms.RadioButton timeButton_08;
+        private System.Windows.Forms.Panel panelRed;
     }
 }
