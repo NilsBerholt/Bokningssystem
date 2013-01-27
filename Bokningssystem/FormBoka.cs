@@ -13,11 +13,14 @@ namespace Bokningssystem
     {
         public bool DEBUG = Properties.Settings.Default.Debug;
         private kund anvandare;
-        private bool kundHarReggadBil;
+        private bool kundHarReggadBil = false;
         private string uppdatera = null;
         private string dag = "";
         private string tid = "";
 
+        /// <summary>
+        /// Funktion som döljer och tömmer strängarna i labels och textboxar
+        /// </summary>
         public void DoljAndringar()
         {
             maskedTextBoxNytt.Hide();
@@ -28,6 +31,7 @@ namespace Bokningssystem
             maskedTextBoxGamla.Text = "";
             maskedTextBoxBekLosen.Hide();
             maskedTextBoxBekLosen.Text = "";
+            label7.Text = "";
             labelNytt.Hide();
             labelGamla.Hide();
             labelBekräfta.Hide();
@@ -35,42 +39,47 @@ namespace Bokningssystem
             buttonRedigera.Hide();
         }
 
+        /// <summary>
+        /// Konstruktören för FormBoka-formen, här börjar koden från FormBoka.
+        /// Här initalieras alla komponenter och kund objektet sparas som global variabel för formen.
+        /// 
+        /// Här tas även bilarna fram och sparas i Listan kundbilar.
+        /// </summary>
+        /// <param name="anvandare">Kund objektet för den som bokar</param>
         public FormBoka(kund anvandare)
         {
             InitializeComponent();
             SqlCeDatabase db = new SqlCeDatabase();
+            bil_objekt bil = new bil_objekt();
             this.anvandare = anvandare;
+            List<string> kundBilar = new List<string>();
+            
+            // Kolla efter bilar registrerade till kunden / användaren.
+            if (bil.kollaKundsBilar(anvandare) == 2)
+            {
+                if (DEBUG)
+                    richTextBoxBokningMeny.Text = "Något är fel med kollaKundsBilar-funktionen i bil_objekt.cs";
+            }
+            else if (bil.kollaKundsBilar(anvandare) == 0)
+            {
+                kundBilar.AddRange(bil.GetTmpMsgs());
+                this.kundHarReggadBil = true;
+            }
+            
+            // Lägg till en rad "Ny bil..." och lägg till bilarna till regnr-comboboxens datasource
+            kundBilar.Add("Ny bil...");
+            comboBoxReg.DataSource = kundBilar;
 
+            // Initiera profilvariablerna från kund objektet
             labelNamn.Text = anvandare.GetNamn();
             labelEmail.Text = anvandare.GetEmail();
             labelTfn.Text = anvandare.GetTfn();
             labelAdress.Text = anvandare.GetAdress();
-            label7.Text = "";
-            DoljAndringar();
+
+            // Fixar så man bara kan välja ett datum i monthCalendar1.
             monthCalendar1.MaxSelectionCount = 1;
+            DoljAndringar();
             panelTider.Hide();
-
-            string regQuery = "SELECT reg FROM fordon WHERE agare='?x?'";
-            string[] args = { anvandare.GetEmail() };
-
-            string[] queryResultat = db.query(regQuery, args);
-            if (queryResultat[0] == "1")
-            {
-                string[] ny = { "Ny bil" };
-                string[] fetchResultat = db.fetchAll();
-                if (fetchResultat[0] != "fel")
-                {
-                    List<string> kundBilar = fetchResultat.ToList();
-                    kundBilar.Add("Ny bil...");
-                    kundHarReggadBil = true;
-                    comboBoxReg.DataSource = kundBilar;
-                }
-                else
-                {
-                    kundHarReggadBil = false;
-                    comboBoxReg.DataSource = ny;
-                }
-            }
 
             richTextBoxBokningMeny.Text = "Tryck på Ny bokning för att göra en ny bokning.\nTryck på Mina Bokningar för att se vad du har bokat och när.";
             if (DEBUG)
@@ -78,18 +87,25 @@ namespace Bokningssystem
                 richTextBoxBokningMeny.Text += "\nNamn: " + anvandare.GetNamn();
                 richTextBoxBokningMeny.Text += "\nEmail: " + anvandare.GetEmail();
             }
-
         }
 
+        /// <summary>
+        /// Bokafunktionen, bokar in bilen på den valda tiden och datumet.
+        /// Funktionen kollar om man bokar en registrerad bil eller om man registrerar en ny och kommer i så fall registrera den nya bilen hos kunden.
+        /// </summary>
+        /// <param name="sender">Den knappen som startade eventet</param>
+        /// <param name="e"></param>
         public void buttonBoka_Click(object sender, EventArgs e)
         {
             input inmatning = new input();
 
             if (dag != "" & tid != "")
             {
+                // Formatterar datumet och hämtar regnumret
                 string datum = dag + " " + tid;
                 string regnr = comboBoxReg.Text;
-                if (kundHarReggadBil)
+                // Om det är en reggad bil som är markerad, boka bara bilen på datumet och tiden
+                if (this.kundHarReggadBil)
                 {
                     if (inmatning.boka(this.anvandare, regnr, datum))
                         richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
@@ -108,6 +124,7 @@ namespace Bokningssystem
                         }
                     }
                 }
+                // Om bilen inte är registrerad så registrera bilen först och sen boka in bilen på datument och tiden
                 else
                 {
                     string modell = textBoxModell.Text;
@@ -131,19 +148,53 @@ namespace Bokningssystem
                     }
                 }
             }
+            // Om tiden eller datument är tomt visa felmeddelandet
             else
             {
                 richTextBoxMeddelandenBoka.Text = "Du har inte valt vilket datum och vilken tid du vill utföra din bokning";
                 if (DEBUG)
-                    richTextBoxMeddelandenBoka.Text += "Datumet är " + dag + " och tiden är " + tid;
+                    richTextBoxMeddelandenBoka.Text += "\nDatumet är " + dag + " och tiden är " + tid;
             }
         }
 
+        /// <summary>
+        /// Byter bara tabsida till tabPageNyBok
+        /// </summary>
+        /// <param name="sender">Knapp-objektet som startade eventet</param>
+        /// <param name="e"></param>
         private void buttonNyBoka_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(tabPageNyBok);
         }
 
+        /// <summary>
+        /// Byter bara tabsida till tabPageMinBok
+        /// </summary>
+        /// <param name="sender">Knapp-objektet som startade eventet</param>
+        /// <param name="e"></param>
+        private void buttonMinBok_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab(tabPageMinBok);
+        }
+
+        /// <summary>
+        /// Byter bara tabsida till tabPageProfil
+        /// </summary>
+        /// <param name="sender">Knapp-objektet som startade eventet</param>
+        /// <param name="e"></param>
+        private void buttonProfil_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab(tabPageProfil);
+        }
+
+        /// <summary>
+        /// Regnummersväljaren, om regnummrets värde är Ny bil visa fälten för bilinformation och sätt kundHarReggadBil till false
+        /// Detta gör att när bokningen sen startas kommer man registrera bilen och sen boka den.
+        /// 
+        /// Om inte värdet är Ny bil så sätt kundHarReggadBil till true så att bokningen bara bokar bilen
+        /// </summary>
+        /// <param name="sender">Knapp-objekt som startade eventet</param>
+        /// <param name="e"></param>
         private void comboBoxReg_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxReg.Text.Contains("Ny bil"))
@@ -172,106 +223,112 @@ namespace Bokningssystem
             init_panelTider(dag);
         }
 
-        private void buttonMinBok_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectTab(tabPageMinBok);
-        }
-
-        private void labelEditNamn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Funktion som startar och gör i ordning profilsidans ändringslabels.
+        /// Den gör om sender objektet till en label och utifrån namnet på labeln så kommer den byta text
+        /// och synlighet på labels och textboxar.
+        /// Den lägger även till informationen om vad som uppdateras.
+        /// </summary>
+        /// <param name="sender">Objektet som startade eventet, måste vara en Label</param>
+        /// <param name="e"></param>
+        private void startEdit(object sender, EventArgs e)
         {
             DoljAndringar();
-            maskedTextBoxGamla.UseSystemPasswordChar = false;
-            maskedTextBoxBekräfta.UseSystemPasswordChar = false;
-            maskedTextBoxNytt.UseSystemPasswordChar = false;
+            // Skapar en array med de intressanta lablarna och gör object sender till en label
+            Label startLabel = sender as Label;
+            string namn = startLabel.Name.Substring(9, startLabel.Name.Length - 9);
+            bool bekräftelseBehövs = false;
+
+            // Om namnet är labelEditLosen så låt textboxen använda sig av PasswordChar istället för vanliga karaktärer
+            if (namn == "Losen")
+            {
+                maskedTextBoxGamla.UseSystemPasswordChar = true;
+                maskedTextBoxBekräfta.UseSystemPasswordChar = true;
+                maskedTextBoxNytt.UseSystemPasswordChar = true;
+            }
+            // Annars använd vanliga karaktärer
+            else
+            {
+                maskedTextBoxGamla.UseSystemPasswordChar = false;
+                maskedTextBoxBekräfta.UseSystemPasswordChar = false;
+                maskedTextBoxNytt.UseSystemPasswordChar = false;
+            }
+
+            // Använd substringen av labelns namn för att utföra mer specifika uppgifter
+            switch (namn)
+            {
+                case "Namn":
+                    labelNytt.Text = "Nytt namn";
+                    this.uppdatera = "namn";
+                    bekräftelseBehövs = false;
+                    break;
+
+                case "Adress":
+                    labelNytt.Text = "Din nya adress";
+                    this.uppdatera = "adress";
+                    bekräftelseBehövs = false;
+                    break;
+
+                case "Email":
+                    labelGamla.Text = "Din nuvarande email";
+                    labelBekräfta.Text = "Bekräfta din email";
+                    labelNytt.Text = "Din nya email";
+                    labelBekLosen.Text = "Dtt lösenord för att ändra emailen";
+                    this.uppdatera = "email";
+                    bekräftelseBehövs = true;
+                    break;
+
+                case "Losen":
+                    labelGamla.Text = "Ditt nuvarande lösenord";
+                    labelBekräfta.Text = "Bekräfta ditt lösenord";
+                    labelNytt.Text = "Ditt nya lösenord";
+                    this.uppdatera = "losen";
+                    labelBekLosen.Show();
+                    bekräftelseBehövs = true;
+                    break;
+
+                case "Tfn":
+                    labelGamla.Text = "Ditt nuvarande nummer";
+                    labelBekräfta.Text = "Bekräfta ditt telefonnummer";
+                    labelNytt.Text = "Ditt nya telefonnummer";
+                    labelBekLosen.Text = "Ditt lösenord för att ändra telefonnummer";
+                    this.uppdatera = "tfn";
+                    bekräftelseBehövs = true;
+                    break;
+
+                // Om namnet på labeln inte är något av ovanstående ge ett felmeddelande och avsluta
+                default:
+                    if (DEBUG)
+                    {
+                        labelNytt.Text = "Det blev något fel, det här är inte en giltig ändringslänk";
+                        labelNytt.Text += "Denna label heter " + startLabel.Name;
+                    }
+                    return;
+            }
+
+            // Om man behöver bekräftelse
+            if (bekräftelseBehövs)
+            {
+                labelBekLosen.Show();
+                maskedTextBoxBekräfta.Show();
+                maskedTextBoxGamla.Show();
+                maskedTextBoxBekLosen.Show();
+                labelGamla.Show();
+                labelNytt.Show();
+                labelBekräfta.Show();
+            }
+
             label7.Text = "";
             maskedTextBoxNytt.Show();
             labelNytt.Show();
             buttonRedigera.Show();
-            labelNytt.Text = "Nytt namn";
-            this.uppdatera = "namn";
-
         }
 
-        private void labelEditEmail_Click(object sender, EventArgs e)
-        {
-            DoljAndringar();
-            maskedTextBoxGamla.UseSystemPasswordChar = false;
-            maskedTextBoxBekräfta.UseSystemPasswordChar = false;
-            maskedTextBoxNytt.UseSystemPasswordChar = false;
-            label7.Text = "";
-            maskedTextBoxNytt.Show();
-            maskedTextBoxBekräfta.Show();
-            maskedTextBoxGamla.Show();
-            maskedTextBoxBekLosen.Show();
-            labelNytt.Show();
-            labelBekräfta.Show();
-            labelGamla.Show();
-            labelBekLosen.Show();
-            buttonRedigera.Show();
-            labelGamla.Text = "Din nuvarande email";
-            labelBekräfta.Text = "Bekräfta din email";
-            labelNytt.Text = "Din nya email";
-            labelBekLosen.Text = "Dtt lösenord för att ändra emailen";
-            this.uppdatera = "email";
-        }
-
-        private void labelEditTfn_Click(object sender, EventArgs e)
-        {
-            DoljAndringar();
-            maskedTextBoxGamla.UseSystemPasswordChar = false;
-            maskedTextBoxBekräfta.UseSystemPasswordChar = false;
-            maskedTextBoxNytt.UseSystemPasswordChar = false;
-            label7.Text = "";
-            maskedTextBoxNytt.Show();
-            maskedTextBoxBekräfta.Show();
-            maskedTextBoxGamla.Show();
-            maskedTextBoxBekLosen.Show();
-            labelGamla.Show();
-            labelNytt.Show();
-            labelBekräfta.Show();
-            labelBekLosen.Show();
-            buttonRedigera.Show();
-            labelGamla.Text = "Ditt nuvarande nummer";
-            labelBekräfta.Text = "Bekräfta ditt telefonnummer";
-            labelNytt.Text = "Ditt ny telefonnummer";
-            labelBekLosen.Text = "Ditt lösenord för att ändra emailen";
-            this.uppdatera = "tfn";
-        }
-
-        private void labelEditAdress_Click(object sender, EventArgs e)
-        {
-            DoljAndringar();
-            maskedTextBoxGamla.UseSystemPasswordChar = false;
-            maskedTextBoxBekräfta.UseSystemPasswordChar = false;
-            maskedTextBoxNytt.UseSystemPasswordChar = false;
-            label7.Text = "";
-            maskedTextBoxNytt.Show();
-            labelNytt.Show();
-            buttonRedigera.Show();
-            labelNytt.Text = "Din nya adress";
-            this.uppdatera = "adress";
-        }
-
-        private void labelEditLosen_Click(object sender, EventArgs e)
-        {
-            DoljAndringar();
-            label7.Text = "";
-            maskedTextBoxGamla.UseSystemPasswordChar = true;
-            maskedTextBoxBekräfta.UseSystemPasswordChar = true;
-            maskedTextBoxNytt.UseSystemPasswordChar = true;
-            maskedTextBoxNytt.Show();
-            maskedTextBoxBekräfta.Show();
-            maskedTextBoxGamla.Show();
-            labelGamla.Show();
-            labelNytt.Show();
-            labelBekräfta.Show();
-            buttonRedigera.Show();
-            labelGamla.Text = "Ditt nu varande lösenord";
-            labelBekräfta.Text = "Bekräfta ditt lösenord";
-            labelNytt.Text = "Ditt ny lösenord";
-            this.uppdatera = "losen";
-        }
-
+        /// <summary>
+        /// Utför redigeringen, kollar upp vilket uppdatering som ska utföras
+        /// </summary>
+        /// <param name="sender">Knappenobjektet som startade eventet</param>
+        /// <param name="e"></param>
         private void buttonRedigera_Click(object sender, EventArgs e)
         {
             string losen = maskedTextBoxBekLosen.Text;
@@ -403,11 +460,7 @@ namespace Bokningssystem
                     DoljAndringar();
                     break;
             }
-        }
-
-        private void buttonProfil_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectTab(tabPageProfil);
+            label7.Show();
         }
 
         /// <summary>

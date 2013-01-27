@@ -60,14 +60,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
-            this.labelBekLosen = new System.Windows.Forms.Label();
-            this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.labelBekräfta = new System.Windows.Forms.Label();
-            this.labelNytt = new System.Windows.Forms.Label();
-            this.maskedTextBoxBekräfta = new System.Windows.Forms.MaskedTextBox();
-            this.buttonRedigera = new System.Windows.Forms.Button();
             this.panelRed = new System.Windows.Forms.Panel();
+            this.labelBekLosen = new System.Windows.Forms.Label();
             this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxNytt = new System.Windows.Forms.MaskedTextBox();
             this.labelGamla = new System.Windows.Forms.Label();
@@ -480,23 +474,6 @@
             this.tabPageProfil.Text = "Profil";
             this.tabPageProfil.UseVisualStyleBackColor = true;
             // 
-            // labelBekLosen
-            // 
-            this.labelBekLosen.AutoSize = true;
-            this.labelBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBekLosen.Location = new System.Drawing.Point(145, 261);
-            this.labelBekLosen.Name = "labelBekLosen";
-            this.labelBekLosen.Size = new System.Drawing.Size(45, 16);
-            this.labelBekLosen.TabIndex = 20;
-            this.labelBekLosen.Text = "Losen";
-            // 
-            // maskedTextBoxBekLosen
-            // 
-            this.maskedTextBoxBekLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxBekLosen.Location = new System.Drawing.Point(148, 291);
-            this.maskedTextBoxBekLosen.Name = "maskedTextBoxBekLosen";
-            this.maskedTextBoxBekLosen.Size = new System.Drawing.Size(115, 21);
-            this.maskedTextBoxBekLosen.TabIndex = 19;
             // panelRed
             // 
             this.panelRed.Controls.Add(this.labelBekLosen);
@@ -510,7 +487,7 @@
             this.panelRed.Controls.Add(this.labelBekräfta);
             this.panelRed.Location = new System.Drawing.Point(12, 256);
             this.panelRed.Name = "panelRed";
-            this.panelRed.Size = new System.Drawing.Size(419, 124);
+            this.panelRed.Size = new System.Drawing.Size(459, 124);
             this.panelRed.TabIndex = 30;
             // 
             // labelBekLosen
@@ -530,6 +507,7 @@
             this.maskedTextBoxBekLosen.Name = "maskedTextBoxBekLosen";
             this.maskedTextBoxBekLosen.Size = new System.Drawing.Size(115, 21);
             this.maskedTextBoxBekLosen.TabIndex = 19;
+            this.maskedTextBoxBekLosen.UseSystemPasswordChar = true;
             // 
             // maskedTextBoxNytt
             // 
@@ -616,7 +594,7 @@
             this.labelEditLosen.Size = new System.Drawing.Size(74, 15);
             this.labelEditLosen.TabIndex = 5;
             this.labelEditLosen.Text = "Byt lösenord";
-            this.labelEditLosen.Click += new System.EventHandler(this.labelEditLosen_Click);
+            this.labelEditLosen.Click += new System.EventHandler(this.startEdit);
             // 
             // tableLayoutPanel1
             // 
@@ -658,7 +636,7 @@
             this.labelEditAdress.Size = new System.Drawing.Size(48, 15);
             this.labelEditAdress.TabIndex = 4;
             this.labelEditAdress.Text = "Ändra...";
-            this.labelEditAdress.Click += new System.EventHandler(this.labelEditAdress_Click);
+            this.labelEditAdress.Click += new System.EventHandler(this.startEdit);
             // 
             // labelEditTfn
             // 
@@ -670,7 +648,7 @@
             this.labelEditTfn.Size = new System.Drawing.Size(48, 15);
             this.labelEditTfn.TabIndex = 3;
             this.labelEditTfn.Text = "Ändra...";
-            this.labelEditTfn.Click += new System.EventHandler(this.labelEditTfn_Click);
+            this.labelEditTfn.Click += new System.EventHandler(this.startEdit);
             // 
             // labelEditEmail
             // 
@@ -682,7 +660,7 @@
             this.labelEditEmail.Size = new System.Drawing.Size(48, 15);
             this.labelEditEmail.TabIndex = 2;
             this.labelEditEmail.Text = "Ändra...";
-            this.labelEditEmail.Click += new System.EventHandler(this.labelEditEmail_Click);
+            this.labelEditEmail.Click += new System.EventHandler(this.startEdit);
             // 
             // labelEditNamn
             // 
@@ -694,7 +672,7 @@
             this.labelEditNamn.Size = new System.Drawing.Size(48, 15);
             this.labelEditNamn.TabIndex = 1;
             this.labelEditNamn.Text = "Ändra...";
-            this.labelEditNamn.Click += new System.EventHandler(this.labelEditNamn_Click);
+            this.labelEditNamn.Click += new System.EventHandler(this.startEdit);
             // 
             // labelNamn
             // 

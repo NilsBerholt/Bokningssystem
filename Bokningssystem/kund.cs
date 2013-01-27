@@ -138,14 +138,25 @@ namespace Bokningssystem
 
         /// <summary>
         /// Funktion som anger ett nytt namn till kunden
+        /// Om inget efternamn är angivet så skriver den efternamnet som tom sträng
         /// </summary>
         /// <param name="value">Namnet som det ska ändras till</param>
-        public void SetNamn(string value)
+        public void SetNamn(string namn)
         {
             List<string> errorMsgs = new List<string>();
-            string namn = value;
-            string fornamn = namn.Substring(0, namn.IndexOf(' '));
-            string efternamn = namn.Substring(namn.IndexOf(' '));
+            string efternamn;
+            string fornamn;
+
+            if (namn.Contains(' '))
+            {
+                fornamn = namn.Substring(0, namn.IndexOf(' '));
+                efternamn = namn.Substring(namn.IndexOf(' '));
+            }
+            else
+            {
+                fornamn = namn;
+                efternamn = "";
+            }
 
             string updateQuery = "UPDATE Kunder set fnamn='?x?', enamn='?x?' where email='?x?'";
             string[] args = { fornamn, efternamn, GetEmail() };
