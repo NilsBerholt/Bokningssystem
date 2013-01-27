@@ -89,7 +89,7 @@ namespace Bokningssystem
                 else
                 {
                     string queryLogin = "Select email, losen FROM KUNDER WHERE email='?x?'";
-                    if (db.query(queryLogin, kolladInmatning)[0] == "1")
+                    if (db.query(queryLogin, kolladInmatning) == 0)
                     {
                         string[] sokResultat = db.fetchAll();
                         if (sokResultat[1].Contains("inga värden"))
@@ -123,7 +123,7 @@ namespace Bokningssystem
                     {
                         if (DEBUG)
                         {
-                            errorMsg.AddRange(db.query(queryLogin, kolladInmatning));
+                            errorMsg.AddRange(db.GetTmpMsgs());
                             string fullFel = string.Empty;
                             foreach (string meddelande in errorMsg)
                                 fullFel += meddelande;
@@ -158,30 +158,28 @@ namespace Bokningssystem
                     foreach (string meddelande in errorMsgs)
                         richTextBoxMeddelanden.Text += meddelande + "\n";
                 }
-                string[] regResultat = inmatning.ReggaKund(inmatVärden);
-                if (regResultat[0] == "1" )
+                int regResultat = inmatning.ReggaKund(inmatVärden);
+                if (regResultat == 0)
                 {
                     if (DEBUG)
                         richTextBoxMeddelanden.Text += "Ditt konto registrerades utan problem!\nDu kan nu logga in.";
-                    else 
+                    else
                         richTextBoxMeddelanden1.Text = "Ditt konto registrerades utan problem!\nDu kan nu logga in.";
                     splitContainer1.Panel2Collapsed = true;
                 }
-                else if (regResultat[1].Contains("A duplicate value"))
-                {
-                    if (DEBUG)
-                        richTextBoxMeddelanden.Text += "Det finns redan ett konto med denna emailadress eller med detta personnummer. " +
-                            "\nKontrollera att du inte redan skapat ett konto.\n";
-                    else 
-                        richTextBoxMeddelanden.Text = "Det finns redan ett konto med denna emailadress eller med detta personnummer. " +
-                            "\nKontrollera att du inte redan skapat ett konto.\n";
-                }
                 else
                 {
-                    if (DEBUG)
-                        richTextBoxMeddelanden.Text += regResultat[1];
-                    else 
-                        richTextBoxMeddelanden.Text += "Det blev ett fel när du skulle registreras.\nFörsök gärna lite senare.";
+                    string[] felmeddelande = inmatning.GetTmpMsgs();
+                    if (felmeddelande.Contains("a duplicate value"))
+                        richTextBoxMeddelanden.Text = "Det finns redan ett konto med denna emailadress eller med detta personnummer. " +
+                            "\nKontrollera att du inte redan skapat ett konto.\n";
+                    else
+                    {
+                        if (DEBUG)
+                            richTextBoxMeddelanden.Text += felmeddelande[1];
+                        else
+                            richTextBoxMeddelanden.Text += "Det blev ett fel när du skulle registreras.\nFörsök gärna lite senare.";
+                    }
                 }
             }
             else richTextBoxMeddelanden.Text += "Dina lösenord stämmer inte överens\n";
@@ -219,8 +217,8 @@ namespace Bokningssystem
 
             SqlCeDatabase db = new SqlCeDatabase();
 
-            string[] kollaQuery = db.query(queryVisa, args);
-            if (kollaQuery[0] != "0")
+            int kollaQuery = db.query(queryVisa, args);
+            if (kollaQuery != 0)
             {
                 string[] läsResultat = db.fetchAll();
 
@@ -231,7 +229,7 @@ namespace Bokningssystem
             }
             else
             {
-                richTextBoxMeddelanden.Text = kollaQuery[1];
+                richTextBoxMeddelanden.Text = db.GetTmpMsgs()[1];
             }
         }
 

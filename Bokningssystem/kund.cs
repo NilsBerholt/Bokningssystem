@@ -28,8 +28,8 @@ namespace Bokningssystem
             List<string> errorMsg = new List<string>();
             string query = "Select email, fnamn, enamn, losen ,isAdmin, tfn, adress from Kunder where email='?x?'";
             string[] args = { email };
-            if (db.query(query, args)[0] != "1")
-                errorMsg.Add(db.query(query, args)[1]);
+            if (db.query(query, args) != 0)
+                errorMsg.AddRange(db.GetTmpMsgs());
             else
             {
                 string[] resultat = db.fetchAll();
@@ -160,15 +160,15 @@ namespace Bokningssystem
 
             string updateQuery = "UPDATE Kunder set fnamn='?x?', enamn='?x?' where email='?x?'";
             string[] args = { fornamn, efternamn, GetEmail() };
-            string[] queryResultat = this.db.query(updateQuery, args);
-            if (queryResultat[0] == "1")
+            int queryResultat = this.db.query(updateQuery, args);
+            if (queryResultat == 0)
             {
-                string[] operationResult = this.db.operation();
-                if (operationResult[0] != "1")
+                int operationResult = this.db.operation();
+                if (operationResult != 0)
                 {
                     errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
                     if (DEBUG)
-                        errorMsgs.AddRange(operationResult);
+                        errorMsgs.AddRange(this.db.GetTmpMsgs());
                 }
                 else
                 {
@@ -180,7 +180,7 @@ namespace Bokningssystem
             {
                 errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
                 if (DEBUG)
-                    errorMsgs.AddRange(queryResultat);
+                    errorMsgs.AddRange(this.db.GetTmpMsgs());
             }
         }
 
@@ -195,24 +195,24 @@ namespace Bokningssystem
             string querySetTfn = "UPDATE Kunder set tfn='?x?' where email='?x?'";
             string[] args = { tfnnummer, this.GetEmail() };
 
-            string[] queryResult = this.db.query(querySetTfn, args);
-            if (queryResult[0] == "1")
+            int queryResult = this.db.query(querySetTfn, args);
+            if (queryResult == 0)
             {
-                string[] operationResult = this.db.operation();
-                if (operationResult[0] == "1")
+                int operationResult = this.db.operation();
+                if (operationResult == 0)
                 {
                     this.tfn = tfnnummer;
                     return 0;
                 }
                 else
                 {
-                    this.tmpMsgs = operationResult;
+                    this.tmpMsgs = this.db.GetTmpMsgs();
                     return 1;
                 }
             }
             else
             {
-                this.tmpMsgs = queryResult;
+                this.tmpMsgs = this.db.GetTmpMsgs();
                 return 2;
             }
         }
@@ -229,15 +229,15 @@ namespace Bokningssystem
 
             string updateQuery = "UPDATE kunder set adress='?x?' where email='?x?'";
             string[] args = { NyAdress, GetEmail() };
-            string[] queryResultat = this.db.query(updateQuery, args);
-            if (queryResultat[0] == "1")
+            int queryResultat = this.db.query(updateQuery, args);
+            if (queryResultat == 0)
             {
-                string[] operationResult = this.db.operation();
-                if (operationResult[0] != "1")
+                int operationResult = this.db.operation();
+                if (operationResult != 0)
                 {
                     errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
                     if (DEBUG)
-                        errorMsgs.AddRange(operationResult);
+                        errorMsgs.AddRange(db.GetTmpMsgs());
                     return 10;
                 }
                 else
@@ -250,7 +250,7 @@ namespace Bokningssystem
             {
                 errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
                 if (DEBUG)
-                    errorMsgs.AddRange(queryResultat);
+                    errorMsgs.AddRange(db.GetTmpMsgs());
                 return 100;
             }
         }
@@ -267,15 +267,15 @@ namespace Bokningssystem
 
             string updateQuery = "UPDATE kunder set losen='?x?' where email='?x?'";
             string[] args = { NyttLosen, GetEmail() };
-            string[] queryResultat = this.db.query(updateQuery, args);
-            if (queryResultat[0] == "1")
+            int queryResultat = this.db.query(updateQuery, args);
+            if (queryResultat == 0)
             {
-                string[] operationResult = this.db.operation();
-                if (operationResult[0] != "1")
+                int operationResult = this.db.operation();
+                if (operationResult != 0)
                 {
                     errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
                     if (DEBUG)
-                        errorMsgs.AddRange(operationResult);
+                        errorMsgs.AddRange(this.db.GetTmpMsgs());
                     return 10;
                 }
                 else
@@ -288,7 +288,7 @@ namespace Bokningssystem
             {
                 errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
                 if (DEBUG)
-                    errorMsgs.AddRange(queryResultat);
+                    errorMsgs.AddRange(this.db.GetTmpMsgs());
                 return 100;
             }
         }
@@ -305,16 +305,16 @@ namespace Bokningssystem
 
             string updateQuery = "UPDATE kunder set email='?x?' where email='?x?'";
             string[] args = { NyEmail, GetEmail() };
-            string[] queryResultat = this.db.query(updateQuery, args);
+            int queryResultat = this.db.query(updateQuery, args);
             int returnkod;
-            if (queryResultat[0] == "1")
+            if (queryResultat == 0)
             {
-                string[] operationResult = this.db.operation();
-                if (operationResult[0] != "1")
+                int operationResult = this.db.operation();
+                if (operationResult != 0)
                 {
                     errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
                     if (DEBUG)
-                        errorMsgs.AddRange(operationResult);
+                        errorMsgs.AddRange(this.db.GetTmpMsgs());
                     returnkod = 1;
                 }
                 else
@@ -327,7 +327,7 @@ namespace Bokningssystem
             {
                 errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
                 if (DEBUG)
-                    errorMsgs.AddRange(queryResultat);
+                    errorMsgs.AddRange(this.db.GetTmpMsgs());
                 returnkod = 2;
             }
             if (errorMsgs.Count > 0)

@@ -18,6 +18,8 @@ namespace Bokningssystem
         /// </summary>
         static SqlCeConnection connection = new SqlCeConnection();
         private SqlCeCommand cmd = connection.CreateCommand();
+        private string[] tmpMsgs;
+
 
         /// <summary>
         /// Konstruktorn, sätter parametern ConnectionString till SQLCeConnection-variabeln connection.
@@ -26,6 +28,21 @@ namespace Bokningssystem
         {
             string connectionstring = Properties.Settings.Default.Database1ConnectionString;
             connection.ConnectionString = connectionstring;
+        }
+
+        /// <summary>
+        /// Denna funktion hämtar alla meddelanden som finns lagrade i sträng-arrayen tmpMsgs
+        /// </summary>
+        /// <returns>Skickar arrayen om den har något innehåll, annars en array med ett element som säger att det är tomt.</returns>
+        public string[] GetTmpMsgs()
+        {
+            if (this.tmpMsgs != null)
+                return this.tmpMsgs;
+            else
+            {
+                string[] meddelande = { };
+                return meddelande;
+            }
         }
 
         /// <summary>
@@ -38,11 +55,12 @@ namespace Bokningssystem
         /// </summary>
         /// <param name="query">Frågan som ska skickas till frågan, med platshållare för variabler i form av strängen ?x?</param>
         /// <param name="array">En array med alla variabler i den ordning de dyker upp i frågan, ersätter varje ?x? i frågan med motsvarande variabel</param>
-        /// <returns>Returnerar en array med 2 string-element, det första elementet är en huruvida funktionen utfördes utan problem, 1 eller 0.
-        /// Det andra elementet är eventuella felmeddelande. Om det finns fler möjliga felkällor kommer arrayen ha mer än två element, fast med samma syntax.</returns>
-        public String[] query(string query, string[] array)
+        /// <returns int>Returnerar ett int värde:
+        /// 0 om allt gick utan problem
+        /// 1 om det inte fanns lika många platshållare som variabler</returns>
+        public int query(string query, string[] array)
         {
-            List<string> resultat = new List<string>();
+            List<string> Msgs = new List<string>();
             int numArgs = array.Length;
             int places = 0;
             foreach (Match match in Regex.Matches(query, @"\?x\?"))         // Vid varje matchning av ?x? i frågan
@@ -61,15 +79,18 @@ namespace Bokningssystem
                     }
 
                 this.cmd.CommandText = query;
-                resultat.Add("1");
-                resultat.Add("Frågan innehöll inga syntaxfel.\nFrågan: " + query);
+                Msgs.Add("1");
+                Msgs.Add("Frågan innehöll inga syntaxfel.\nFrågan: " + query);
+                this.tmpMsgs = Msgs.ToArray();
+                return 0;
             }
             else
             {
-                resultat.Add("0");
-                resultat.Add("Det var inte lika många variabler som platser för variabler i frågan");
+                Msgs.Add("0");
+                Msgs.Add("Det var inte lika många variabler som platser för variabler i frågan");
+                this.tmpMsgs = Msgs.ToArray();
+                return 1;
             }
-            return resultat.ToArray();
         }
 
         /// <summary>
@@ -79,7 +100,8 @@ namespace Bokningssystem
         /// 
         /// Kan vara lite fishy, håll uppsikt över denna funktion.
         /// </summary>
-        /// <returns> Returnerar en array med fältnamnen från varje fråga, arrayens element är i sig arrayer på fälten, inte raderna.</returns>
+        /// <returns> Returnerar en array med fältnamnen från varje fråga, arrayens element är i sig arrayer på fälten, inte raderna.
+        /// Returnerar en tom array om det inte fanns något</returns>
         public string[] fetchAll()
         {
             connection.Open();
@@ -114,7 +136,8 @@ namespace Bokningssystem
             if (errorMsg.Count > 0)
             {
                 errorMsg.Insert(0, "fel");
-                return errorMsg.ToArray();
+                this.tmpMsgs = errorMsg.ToArray();
+                return resultat.ToArray();
             }
             else
                 return resultat.ToArray();
@@ -129,9 +152,10 @@ namespace Bokningssystem
         /// </summary>
         /// <returns>Returnerar en array med 2 string-element, det första elementet är en huruvida funktionen utfördes utan problem, 1 eller 0.
         /// Det andra elementet är eventuella felmeddelande. Om det finns fler möjliga felkällor kommer arrayen ha mer än två element, fast med samma syntax.</returns>
-        public string[] operation()
+        public int operation()
         {
-            List<string> resultat = new List<string>();
+            List<string> msgs = new List<string>();
+            int returnkod = 100;
             try
             {
                 connection.Open();
@@ -139,7 +163,8 @@ namespace Bokningssystem
             catch (SqlCeException ex)
             {
                 string connError = string.Format("Kunde inte ansluta till databasen, {0}\n Meddelande: {1}", ex.GetType(), ex.Message);
-                resultat.Add(connError);
+                this.tmpMsgs[0] = connError;
+
             }
             if (cmd.CommandText != "")
             {
@@ -151,23 +176,22 @@ namespace Bokningssystem
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
                     connection.Close();
-                    resultat.Add("1");
-                    resultat.Add("Operationen utfördes utan problem");
+                    return 0;
                 }
                 catch (SqlCeException ex)
                 {
                     connection.Close();
                     string errorText = string.Format("Ett fel av typen {0} har inträffat.\nMeddelande: {1}", ex.GetType(), ex.Message);
-                    resultat.Add("0");
-                    resultat.Add(errorText);
+                    msgs.Add(errorText);
+                    returnkod = 2;
                 }
             }
             else
             {
-                resultat.Add("0");
-                resultat.Add("Kunde inte slutföra åtgärden.\nDet finns inget kommando associerat med detta objekt");
+                msgs.Add("Kunde inte slutföra åtgärden.\nDet finns inget kommando associerat med detta objekt");
             }
-            return resultat.ToArray();
+            this.tmpMsgs = msgs.ToArray();
+            return returnkod;
         }
     }
 }

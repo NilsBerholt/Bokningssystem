@@ -13,7 +13,7 @@ namespace Bokningssystem
         /// <summary>
         /// Denna funktion hämtar alla meddelanden som finns lagrade i sträng-arrayen tmpMsgs
         /// </summary>
-        /// <returns>Skickar arrayen om den har något innehåll, annars en array med ett element som säger att det är tomt.</returns>
+        /// <returns>Skickar arrayen om den har något innehåll, annars en tom array.</returns>
         public string[] GetTmpMsgs()
         {
             if (this.tmpMsgs != null)
@@ -70,12 +70,12 @@ namespace Bokningssystem
                 " values ('?x?','?x?','?x?','?x?','?x?')";
 
             string[] argsNyBil = new string[5] { reg, modell, arsmodell, marke, agare };
-            string[] queryResultat = db.query(queryNyBil, argsNyBil);                   // Skapar en string-array av resultatet från db.query() för att kunna använda i jämförelser och returns
+            int queryResultat = db.query(queryNyBil, argsNyBil);                   // Skapar en string-array av resultatet från db.query() för att kunna använda i jämförelser och returns
             int returnkod;
-            if (queryResultat[0] == "1")
+            if (queryResultat == 0)
             {
-                string[] operationResultat = db.operation();                            // Skapar en string-array av resultatet från db.operation() för att kunna använda i jämförelser och returns
-                if (operationResultat[0] == "1")
+                int operationResultat = db.operation();                            // Skapar en string-array av resultatet från db.operation() för att kunna använda i jämförelser och returns
+                if (operationResultat == 0)
                 {
                     returnkod = 0;
                 }
@@ -83,7 +83,7 @@ namespace Bokningssystem
                 {
                     errorMsgs.Add("Det blev ett fel när ditt fordon skulle registreras. Kontakta systemansvarig.");
                     if (DEBUG)
-                        errorMsgs.AddRange(operationResultat);
+                        errorMsgs.AddRange(db.GetTmpMsgs());
                     returnkod = 1;
                 }
             }
@@ -91,7 +91,7 @@ namespace Bokningssystem
             {
                 errorMsgs.Add("Det blev ett fel med frågeformuleringen. Kontakta systemansvarig.");
                 if (DEBUG)
-                    errorMsgs.AddRange(queryResultat);
+                    errorMsgs.AddRange(db.GetTmpMsgs());
                 returnkod = 2;
             }
             if (errorMsgs.Count > 0)
@@ -115,8 +115,8 @@ namespace Bokningssystem
             string regQuery = "SELECT reg FROM fordon WHERE agare='?x?'";
             string[] args = { anvandare.GetEmail() };
 
-            string[] queryResultat = db.query(regQuery, args);
-            if (queryResultat[0] == "1")
+            int queryResultat = db.query(regQuery, args);
+            if (queryResultat == 0)
             {
                 string[] ny = { "Ny bil" };
                 string[] fetchResultat = db.fetchAll();
@@ -131,7 +131,7 @@ namespace Bokningssystem
                     return 1;
                 }
             }
-            this.tmpMsgs = queryResultat;
+            this.tmpMsgs = db.GetTmpMsgs();
             return 2;
         }
     }

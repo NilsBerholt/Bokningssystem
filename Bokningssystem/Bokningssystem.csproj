@@ -68,6 +68,7 @@
       <DependentUpon>Bokningssytem.xsd</DependentUpon>
     </Compile>
     <Compile Include="bil_objekt.cs" />
+    <Compile Include="boknings_objekt.cs" />
     <Compile Include="kund.cs" />
     <Compile Include="db.cs" />
     <Compile Include="FormBoka.cs">

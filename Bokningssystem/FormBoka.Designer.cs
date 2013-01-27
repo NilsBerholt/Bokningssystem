@@ -507,7 +507,6 @@
             this.maskedTextBoxBekLosen.Name = "maskedTextBoxBekLosen";
             this.maskedTextBoxBekLosen.Size = new System.Drawing.Size(115, 21);
             this.maskedTextBoxBekLosen.TabIndex = 19;
-            this.maskedTextBoxBekLosen.UseSystemPasswordChar = true;
             // 
             // maskedTextBoxNytt
             // 
@@ -750,7 +749,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 468);
+            this.ClientSize = new System.Drawing.Size(654, 468);
             this.Controls.Add(this.tabControl1);
             this.Enabled = false;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

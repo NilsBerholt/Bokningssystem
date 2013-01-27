@@ -96,6 +96,7 @@ namespace Bokningssystem
         /// <param name="e"></param>
         public void buttonBoka_Click(object sender, EventArgs e)
         {
+            boknings_objekt bokning = new boknings_objekt(new SqlCeDatabase(),this.anvandare);
             input inmatning = new input();
 
             if (dag != "" & tid != "")
@@ -106,12 +107,12 @@ namespace Bokningssystem
                 // Om det är en reggad bil som är markerad, boka bara bilen på datumet och tiden
                 if (this.kundHarReggadBil)
                 {
-                    if (inmatning.boka(this.anvandare, regnr, datum))
+                    if (bokning.boka(this.anvandare, regnr, datum))
                         richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
                     else
                     {
                         richTextBoxMeddelandenBoka.Text = "Det blev något fel med bokningen";
-                        string[] felmeddelande = inmatning.GetTmpMsgs();
+                        string[] felmeddelande = bokning.GetTmpMsgs();
                         if (felmeddelande.Contains("A duplicate value"))
                             richTextBoxMeddelandenBoka.Text = "Datumet du valt är upptaget, välj ett annat";
                         if (DEBUG)
@@ -129,12 +130,12 @@ namespace Bokningssystem
                     string modell = textBoxModell.Text;
                     string marke = textBoxMarke.Text;
                     string arsmodell = textBoxArsModell.Text;
-                    if (inmatning.boka(this.anvandare, regnr, datum, marke, modell, arsmodell))
+                    if (bokning.boka(this.anvandare, regnr, datum, marke, modell, arsmodell))
                         richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
                     else
                     {
                         richTextBoxMeddelandenBoka.Text = "Det blev något fel med bokningen";
-                        string[] felmeddelande = inmatning.GetTmpMsgs();
+                        string[] felmeddelande = bokning.GetTmpMsgs();
                         if (felmeddelande.Contains("A duplicate value"))
                             richTextBoxMeddelandenBoka.Text = "Datumet du valt är upptaget, välj ett annat";
                         if (DEBUG)

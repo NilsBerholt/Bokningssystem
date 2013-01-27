@@ -28,75 +28,6 @@ namespace Bokningssystem
         }
 
         /// <summary>
-        /// Denna funktion kollar om det finns en bil i registret med detta regnummer.
-        /// </summary>
-        /// <param name="reg">Regnumret på bilen</param>
-        /// <returns>Returnerar ett bool-värde, sant om bilen finns, annars falskt.</returns>
-        public bool kollaBilFinns(string reg)
-        {
-            SqlCeDatabase db = new SqlCeDatabase();
-
-            string queryCheckBil = "SELECT reg from Fordon where reg='?x?'";
-            string[] argsCheckBil = new string[1] { reg };
-
-            db.query(queryCheckBil, argsCheckBil);
-            string[] kollaBilRes = db.fetchAll();
-            if (kollaBilRes[0] == null)
-                return false;
-            else
-                return true;
-        }
-
-        /// <summary>
-        /// Denna funktion lägger till ett fordon i registret. 
-        /// Den använder sig av klassen SqlCeDatabase för att ansluta till en kompakt MSSQL-server/fil.
-        /// </summary>
-        /// <param name="reg">Regnumret på bilen.</param>
-        /// <param name="fnamn">Förnamnet på ägaren.</param>
-        /// <param name="enamn">Efternamnet på ägaren.</param>
-        /// <param name="modell">Modellen på bilen</param>
-        /// <param name="arsmodell">Årsmodellen på bilen</param>
-        /// <param name="marke">Märket på bilen</param>
-        /// <returns>Returnerar en array med strängar. Arrayen har minst två element; det första är statuskoden för funktionen 1 = framgång, 0 = misslyckande.
-        /// Det andra elementet är ett meddelande. Ibland kan ha fler än två element, men det är samma som innan, statuskod och meddelande.</returns>
-        public bool insertFordon(string reg, string modell, string arsmodell, string marke, kund anvandare)
-        {
-            SqlCeDatabase db = new SqlCeDatabase();
-            List<string> resultat = new List<string>();
-            List<string> errorMsgs = new List<string>();
-            string agare = anvandare.GetEmail();
-            string queryNyBil = "INSERT INTO Fordon" +
-                "(reg, modell, arsmodell, marke, agare) " +
-                " values ('?x?','?x?','?x?','?x?','?x?')";
-            
-            string[] argsNyBil = new string[5] { reg, modell, arsmodell, marke, agare };
-            string[] queryResultat = db.query(queryNyBil, argsNyBil);                   // Skapar en string-array av resultatet från db.query() för att kunna använda i jämförelser och returns
-            if (queryResultat[0] == "1")
-            {
-                string[] operationResultat = db.operation();                            // Skapar en string-array av resultatet från db.operation() för att kunna använda i jämförelser och returns
-                if (operationResultat[0] == "1")
-                {
-                    return true;
-                }
-                else
-                {
-                    errorMsgs.Add("Det blev ett fel när ditt fordon skulle registreras. Kontakta systemansvarig.");
-                    if (DEBUG)
-                        errorMsgs.AddRange(operationResultat);
-                }
-            }
-            else
-            {
-                errorMsgs.Add("Det blev ett fel med frågeformuleringen. Kontakta systemansvarig.");
-                if (DEBUG)
-                    errorMsgs.AddRange(queryResultat);
-            }
-            if (errorMsgs.Count > 0)
-                this.tmpMsgs = errorMsgs.ToArray();
-            return false;
-        }
-
-        /// <summary>
         /// Denna funktion kollar om det finns en bil i registret med detta id.
         /// </summary>
         /// <param name="id">Id:et på personen (första tre bokstäverna i förnamn och efternamn)</param>
@@ -107,7 +38,7 @@ namespace Bokningssystem
             string queryKund = "SELECT fnamn,enamn,id from Kunder where id='?x?'";
             string[] kundArgs = { id };
 
-            if (db.query(queryKund, kundArgs)[0] == "1")
+            if (db.query(queryKund, kundArgs) == 0)
             {
                 string[] kollPersResultat = db.fetchAll();
                 if (kollPersResultat[0] == null)
@@ -125,24 +56,27 @@ namespace Bokningssystem
         /// </summary>
         /// <param name="args">En array med strängar som representerar värdena till kunden.
         /// Kan med fördel användas med kollaInmatnings funktionen</param>
-        /// <returns>Returnerar en array med strängar. Arrayen har minst två element; det första är statuskoden för funktionen 1 = framgång, 0 = misslyckande.
-        /// Det andra elementet är ett meddelande. Ibland kan ha fler än två element, men det är samma som innan, statuskod och meddelande.</returns>
-        public string[] ReggaKund(string[] args)
+        /// <returns>Returnerar ett intvärde.
+        /// 0 om allt slutade utan problem
+        /// Annars returnerar den db.operation eller db.query felkoden.</returns>
+        public int ReggaKund(string[] args)
         {
             SqlCeDatabase db = new SqlCeDatabase();
             string query = "Insert into Kunder" +
                             "(fnamn, enamn, email, tfn, adress, personnr, losen)" +
                             " values " +
                             "('?x?','?x?','?x?','?x?','?x?','?x?','?x?')";
-            if (db.query(query, args)[0] == "1")
+            if (db.query(query, args) == 0)
             {
-                if (db.operation()[0] != "0")
+                if (db.operation() == 0)
                 {
-                    string[] resultat = { "1", "Ditt konto registrerades utan problem" };
+                    int resultat = 0;
                     return resultat;
                 }
                 else
+                {
                     return db.operation();
+                }
             }
             else
                 return db.query(query, args);
@@ -441,119 +375,7 @@ namespace Bokningssystem
             return false;
         }
 
-        /// <summary>
-        /// Bokar tid för fordonet i databasen, bokar in fordonet som endast registreringsnummer så denna
-        /// funktion förutsätter att bilen är registrerad.
-        /// Lämnar kvar felmeddelande i tmpMsgs-arrayen.
-        /// </summary>
-        /// <param name="anvandare">Kunden / administratörens kundobjekt</param>
-        /// <param name="regnr">Fordonets registreringsnummer</param>
-        /// <param name="datum">Datumet som bokningen gäller</param>
-        /// <returns>Returnerar true om allt gick som det skulle eller falskt annars.</returns>
-        public bool boka(kund anvandare, string regnr, string datum)
-        {
-            List<string> errorMsgs = new List<string>();
-            SqlCeDatabase db = new SqlCeDatabase();
-            string agare = anvandare.GetEmail();
-
-            string namn = anvandare.GetNamn();
-            string fnamn = namn.Substring(0, namn.IndexOf(' '));
-            string enamn = namn.Substring(namn.IndexOf(' ') + 1);
-            string tfn = anvandare.GetTfn();
-
-            string query = "INSERT INTO Bokning " +
-               "(datum, fnamn, enamn, bil, email, tfn) " +
-               "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
-            string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
-
-            if (db.query(query, args)[0] == "1")
-            {
-                string[] opResultat = db.operation();
-                if (opResultat[0] == "1")
-                    return true;
-                else
-                {
-                    errorMsgs.Add("Det blev något fel när din bokning skulle processeras. Kontakta ansvarig för programmet");
-                    if (DEBUG)
-                        errorMsgs.AddRange(opResultat);
-                }
-            }
-            else
-            {
-                errorMsgs.Add("Det blev ett fel vid skapandet av frågan. Kontakta ansvarig för programmet.");
-                if (DEBUG)
-                    errorMsgs.AddRange(db.query(query, args));
-            }
-
-            if (errorMsgs.Count > 0)
-            {
-                this.tmpMsgs = errorMsgs.ToArray();
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Bokar tid för fordonet i databasen, bokar in fordonet och registrerar samtidigt bilen med den 
-        /// nuvarande kunden som ägare. Lämplig att använda om bilen inte är registrerad.
-        /// Lämnar kvar felmeddelande i tmpMsgs-arrayen.
-        /// </summary>
-        /// <param name="anvandare">Kunden / administratörens kundobjekt</param>
-        /// <param name="regnr">Fordonets registreringsnummer</param>
-        /// <param name="datum">Datumet som bokningen gäller</param>
-        /// <param name="marke">Märket på fordonet</param>
-        /// <param name="modell">Modellen på fordonet</param>
-        /// <param name="arsmodell">Årsmodellen på fordonet</param>
-        /// <returns>Returnerar true om allt gick som det ska eller falskt annars</returns>
-        public bool boka(kund anvandare, string regnr, string datum, string marke, string modell, string arsmodell)
-        {
-            List<string> errorMsgs = new List<string>();
-            SqlCeDatabase db = new SqlCeDatabase();
-            string agare = anvandare.GetEmail();
-
-            string namn = anvandare.GetNamn();
-            string fnamn = namn.Substring(0, namn.IndexOf(' '));
-            string enamn = namn.Substring(namn.IndexOf(' ') + 1);
-            string tfn = anvandare.GetTfn();
-
-            if (insertFordon(regnr, modell, arsmodell, marke, anvandare))
-            {
-                string query = "INSERT INTO Bokning " +
-                   "(datum, fnamn, enamn, bil, email, tfn) " +
-                   "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
-                string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
-
-                if (db.query(query, args)[0] == "1")
-                {
-                    string[] opResultat = db.operation();
-                    if (opResultat[0] == "1")
-                        return true;
-                    else
-                    {
-                        errorMsgs.Add("Det blev något fel när din bokning skulle processeras. Kontakta systemansvarig");
-                        if (DEBUG)
-                            errorMsgs.AddRange(opResultat);
-                    }
-                }
-                else
-                {
-                    errorMsgs.Add("Det blev ett fel vid skapandet av frågan. Kontakta ansvarig för programmet.");
-                    if (DEBUG)
-                        errorMsgs.AddRange(db.query(query, args));
-                }
-            }
-            else
-            {
-                if (DEBUG)
-                    errorMsgs.AddRange(GetTmpMsgs());
-                else
-                    errorMsgs.Add("Det blev något fel när ditt fordon skulle registreras");
-            }
-            if (errorMsgs.Count > 0)
-            {
-                this.tmpMsgs = errorMsgs.ToArray();
-            }
-            return false;
-        }
+       
 
         /// <summary>
         /// Kollar om tiden är ledig i bokningsdatabasen
@@ -573,10 +395,10 @@ namespace Bokningssystem
             
             string queryTid = "SELECT * FROM Bokning WHERE datum BETWEEN '?x?' AND '?x?'";
             string[] args = { date1, date2 };
-            if (db.query(queryTid, args)[0] == "1")
+            if (db.query(queryTid, args) == 0)
             {
                 string[] resultat = db.fetchAll();
-                if (resultat[0] == "fel")
+                if (resultat.Length == 0 )
                     return true;
             }
             return false;
