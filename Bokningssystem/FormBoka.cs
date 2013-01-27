@@ -423,20 +423,31 @@ namespace Bokningssystem
             if (!inmatning.kollaTidLedig(dag, "08:00 - 10:00"))
                 timeButton_08.Enabled = false;
             else
+            {
                 någonLedigTid = true;
+                timeButton_08.Enabled = true;
+            }
             if (!inmatning.kollaTidLedig(dag, "10:00 - 12:00"))
                 timeButton_10.Enabled = false;
             else
+            {
                 någonLedigTid = true;
+                timeButton_10.Enabled = true;
+            }
             if (!inmatning.kollaTidLedig(dag, "14:00 - 16:00"))
                 timeButton_14.Enabled = false;
             else
+            {
                 någonLedigTid = true;
+                timeButton_14.Enabled = true;
+            }
             if (!inmatning.kollaTidLedig(dag, "16:00 - 18:00"))
                 timeButton_16.Enabled = false;
             else
+            {
+                timeButton_16.Enabled = true;
                 någonLedigTid = true;
-
+            }
             if (!någonLedigTid)
             {
                 if (DEBUG)

@@ -68,7 +68,6 @@
             this.maskedTextBoxBekräfta = new System.Windows.Forms.MaskedTextBox();
             this.buttonRedigera = new System.Windows.Forms.Button();
             this.panelRed = new System.Windows.Forms.Panel();
-            this.labelBekLosen = new System.Windows.Forms.Label();
             this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxNytt = new System.Windows.Forms.MaskedTextBox();
             this.labelGamla = new System.Windows.Forms.Label();
