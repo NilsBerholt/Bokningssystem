@@ -306,6 +306,7 @@ namespace Bokningssystem
             string updateQuery = "UPDATE kunder set email='?x?' where email='?x?'";
             string[] args = { NyEmail, GetEmail() };
             string[] queryResultat = this.db.query(updateQuery, args);
+            int returnkod;
             if (queryResultat[0] == "1")
             {
                 string[] operationResult = this.db.operation();
@@ -314,12 +315,12 @@ namespace Bokningssystem
                     errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
                     if (DEBUG)
                         errorMsgs.AddRange(operationResult);
-                    return 10;
+                    returnkod = 1;
                 }
                 else
                 {
                     this.email = NyEmail;
-                    return 0;
+                    returnkod = 0;
                 }
             }
             else
@@ -327,8 +328,11 @@ namespace Bokningssystem
                 errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
                 if (DEBUG)
                     errorMsgs.AddRange(queryResultat);
-                return 100;
+                returnkod = 2;
             }
+            if (errorMsgs.Count > 0)
+                this.tmpMsgs = errorMsgs.ToArray();
+            return returnkod;
         }
     }
 }
