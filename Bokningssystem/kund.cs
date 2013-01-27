@@ -90,7 +90,7 @@ namespace Bokningssystem
         }
         
         /// <summary>
-        /// Funktin som hämtar lösenordet till kunden
+        /// Funktion som hämtar lösenordet till kunden
         /// </summary>
         /// <returns>Lösenordet till personen / kunden</returns>
         public string GetLosen()
