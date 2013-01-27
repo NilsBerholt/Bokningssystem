@@ -15,6 +15,8 @@ namespace Bokningssystem
         private kund anvandare;
         private bool kundHarReggadBil;
         private string uppdatera = null;
+        private string dag = "";
+        private string tid = "";
 
         public void DoljAndringar()
         {
@@ -45,6 +47,8 @@ namespace Bokningssystem
             labelAdress.Text = anvandare.GetAdress();
             label7.Text = "";
             DoljAndringar();
+            monthCalendar1.MaxSelectionCount = 1;
+            panelTider.Hide();
 
             string regQuery = "SELECT reg FROM fordon WHERE agare='?x?'";
             string[] args = { anvandare.GetEmail() };
@@ -68,70 +72,75 @@ namespace Bokningssystem
                 }
             }
 
-            splitContainer1.Panel2Collapsed = true;
             richTextBoxBokningMeny.Text = "Tryck på Ny bokning för att göra en ny bokning.\nTryck på Mina Bokningar för att se vad du har bokat och när.";
             if (DEBUG)
             {
                 richTextBoxBokningMeny.Text += "\nNamn: " + anvandare.GetNamn();
                 richTextBoxBokningMeny.Text += "\nEmail: " + anvandare.GetEmail();
             }
-            
+
         }
 
         public void buttonBoka_Click(object sender, EventArgs e)
         {
             input inmatning = new input();
-            
-            DateTime datum = DateTime.Now;
-            string regnr = comboBoxReg.Text;
-            if (kundHarReggadBil)
+
+            if (dag != "" & tid != "")
             {
-                if (inmatning.boka(this.anvandare, regnr, datum))
-                    richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
+                string datum = dag + " " + tid;
+                string regnr = comboBoxReg.Text;
+                if (kundHarReggadBil)
+                {
+                    if (inmatning.boka(this.anvandare, regnr, datum))
+                        richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
+                    else
+                    {
+                        richTextBoxMeddelandenBoka.Text = "Det blev något fel med bokningen";
+                        string[] felmeddelande = inmatning.GetTmpMsgs();
+                        if (felmeddelande.Contains("A duplicate value"))
+                            richTextBoxMeddelandenBoka.Text = "Datumet du valt är upptaget, välj ett annat";
+                        if (DEBUG)
+                        {
+                            richTextBoxMeddelandenBoka.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+                            richTextBoxMeddelandenBoka.Text += "\n**** FELMEDDELANDE ****";
+                            foreach (string fel in felmeddelande)
+                                richTextBoxMeddelandenBoka.Text += "\n" + fel + "\n";
+                        }
+                    }
+                }
                 else
                 {
-                    richTextBoxMeddelandenBoka.Text = "Det blev något fel med bokningen";
-                    string[] felmeddelande = inmatning.GetTmpMsgs();
-                    if (felmeddelande.Contains("A duplicate value"))
-                        richTextBoxMeddelandenBoka.Text = "Datumet du valt är upptaget, välj ett annat";
-                    if (DEBUG)
+                    string modell = textBoxModell.Text;
+                    string marke = textBoxMarke.Text;
+                    string arsmodell = textBoxArsModell.Text;
+                    if (inmatning.boka(this.anvandare, regnr, datum, marke, modell, arsmodell))
+                        richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
+                    else
                     {
-                        richTextBoxMeddelandenBoka.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-                        richTextBoxMeddelandenBoka.Text += "\n**** FELMEDDELANDE ****";
-                        foreach (string fel in felmeddelande)
-                            richTextBoxMeddelandenBoka.Text += "\n" + fel + "\n";
+                        richTextBoxMeddelandenBoka.Text = "Det blev något fel med bokningen";
+                        string[] felmeddelande = inmatning.GetTmpMsgs();
+                        if (felmeddelande.Contains("A duplicate value"))
+                            richTextBoxMeddelandenBoka.Text = "Datumet du valt är upptaget, välj ett annat";
+                        if (DEBUG)
+                        {
+                            richTextBoxMeddelandenBoka.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+                            richTextBoxMeddelandenBoka.Text += "**** FELMEDDELANDE ****";
+                            foreach (string fel in felmeddelande)
+                                richTextBoxMeddelandenBoka.Text += "\n" + fel + "\n";
+                        }
                     }
                 }
             }
             else
             {
-                string modell = textBoxModell.Text;
-                string marke = textBoxMarke.Text;
-                string arsmodell = textBoxArsModell.Text;
-                if (inmatning.boka(this.anvandare, regnr, datum, marke, modell, arsmodell))
-                    richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
-                else
-                {
-                    richTextBoxMeddelandenBoka.Text = "Det blev något fel med bokningen";
-                    string[] felmeddelande = inmatning.GetTmpMsgs();
-                    if (felmeddelande.Contains("A duplicate value"))
-                        richTextBoxMeddelandenBoka.Text = "Datumet du valt är upptaget, välj ett annat";
-                    if (DEBUG)
-                    {
-                        richTextBoxMeddelandenBoka.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-                        richTextBoxMeddelandenBoka.Text += "**** FELMEDDELANDE ****";
-                        foreach (string fel in felmeddelande)
-                            richTextBoxMeddelandenBoka.Text += "\n" + fel + "\n";
-                    }
-                }
+                richTextBoxMeddelandenBoka.Text = "Du har inte valt vilket datum och vilken tid du vill utföra din bokning";
+                if (DEBUG)
+                    richTextBoxMeddelandenBoka.Text += "Datumet är " + dag + " och tiden är " + tid;
             }
         }
 
         private void buttonNyBoka_Click(object sender, EventArgs e)
         {
-            splitContainer1.Panel2Collapsed = false;
-            if (kundHarReggadBil)
-                panelNyBil.Hide();
             tabControl1.SelectTab(tabPageNyBok);
         }
 
@@ -149,9 +158,18 @@ namespace Bokningssystem
             }
         }
 
+        /// <summary>
+        /// Funktion som körs när datumet ändras i kalendern. Extraherar den valda datetimen och
+        /// gör om det till en sträng med bara datumet och skickar det till funktionen inti_panelTider
+        /// </summary>
+        /// <param name="sender">The button that called the event</param>
+        /// <param name="e"></param>
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-
+            dag = monthCalendar1.SelectionStart.Date.ToString();
+            // Tar bort de onödiga och totalt förstörande sista nollorna efter datumet
+            dag = dag.Substring(0, dag.IndexOf(' '));
+            init_panelTider(dag);
         }
 
         private void buttonMinBok_Click(object sender, EventArgs e)
@@ -171,7 +189,7 @@ namespace Bokningssystem
             buttonRedigera.Show();
             labelNytt.Text = "Nytt namn";
             this.uppdatera = "namn";
-            
+
         }
 
         private void labelEditEmail_Click(object sender, EventArgs e)
@@ -344,14 +362,14 @@ namespace Bokningssystem
                         label7.Text = "Du skrev in fel lösenord för att kunna ändra ditt telefonnummer.";
                     }
                     DoljAndringar();
-                        break;
+                    break;
 
                 case "adress":
-                        string adress = maskedTextBoxNytt.Text;
-                        this.anvandare.SetAdress(adress);
-                        labelAdress.Text = anvandare.GetAdress();
-                        label7.Text = "Du har nu ändrat din adress";
-                        DoljAndringar();
+                    string adress = maskedTextBoxNytt.Text;
+                    this.anvandare.SetAdress(adress);
+                    labelAdress.Text = anvandare.GetAdress();
+                    label7.Text = "Du har nu ändrat din adress";
+                    DoljAndringar();
                     break;
 
                 case "losen":
@@ -390,6 +408,55 @@ namespace Bokningssystem
         private void buttonProfil_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(tabPageProfil);
+        }
+
+        /// <summary>
+        /// Funktion som kontrollerar vilka tider som redan är upptagna i en speciell dag
+        /// </summary>
+        /// <param name="dag">Datumet som en sträng</param>
+        private void init_panelTider(string dag)
+        {
+            input inmatning = new input();
+            bool någonLedigTid = false;
+            // Kolla om tiderna är bokade redan och gör alternativen ovalbara
+            // Om ingen tid finns ledig, skriv det i meddelande-rutan
+            if (!inmatning.kollaTidLedig(dag, "08:00 - 10:00"))
+                timeButton_08.Enabled = false;
+            else
+                någonLedigTid = true;
+            if (!inmatning.kollaTidLedig(dag, "10:00 - 12:00"))
+                timeButton_10.Enabled = false;
+            else
+                någonLedigTid = true;
+            if (!inmatning.kollaTidLedig(dag, "14:00 - 16:00"))
+                timeButton_14.Enabled = false;
+            else
+                någonLedigTid = true;
+            if (!inmatning.kollaTidLedig(dag, "16:00 - 18:00"))
+                timeButton_16.Enabled = false;
+            else
+                någonLedigTid = true;
+
+            if (!någonLedigTid)
+            {
+                if (DEBUG)
+                    richTextBoxMeddelandenBoka.Text += "Tyvärr, det finns inga lediga tider på din valda dag. Var god välj en ny dag";
+                else
+                    richTextBoxMeddelandenBoka.Text = "Tyvärr, det finns inga lediga tider på din valda dag. Var god välj en ny dag";
+            }
+            panelTider.Show();
+        }
+
+        private void buttonValjTid_Click(object sender, EventArgs e)
+        {
+            if (timeButton_08.Checked)
+                this.tid = "08:00";
+            if (timeButton_10.Checked)
+                this.tid = "10:00";
+            if (timeButton_14.Checked)
+                this.tid = "14:00";
+            if (timeButton_16.Checked)
+                this.tid = "16:00";
         }
     }
 }
