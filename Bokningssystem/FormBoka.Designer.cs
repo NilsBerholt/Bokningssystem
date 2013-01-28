@@ -113,7 +113,7 @@
             this.buttonNyBoka.TabIndex = 28;
             this.buttonNyBoka.Text = "Ny bokning";
             this.buttonNyBoka.UseVisualStyleBackColor = true;
-            this.buttonNyBoka.Click += new System.EventHandler(this.buttonNyBoka_Click);
+            this.buttonNyBoka.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // buttonMinBok
             // 
@@ -124,7 +124,7 @@
             this.buttonMinBok.TabIndex = 29;
             this.buttonMinBok.Text = "Mina bokningar";
             this.buttonMinBok.UseVisualStyleBackColor = true;
-            this.buttonMinBok.Click += new System.EventHandler(this.buttonMinBok_Click);
+            this.buttonMinBok.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // label5
             // 
@@ -385,7 +385,7 @@
             this.buttonProfil.TabIndex = 31;
             this.buttonProfil.Text = "Profil";
             this.buttonProfil.UseVisualStyleBackColor = true;
-            this.buttonProfil.Click += new System.EventHandler(this.buttonProfil_Click);
+            this.buttonProfil.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // richTextBoxBokningMeny
             // 

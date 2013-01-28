@@ -121,23 +121,23 @@ namespace Bokningssystem
                    "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
                 string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
 
-                if (db.query(query, args)[0] == "1")
+                if (db.query(query, args) == 0)
                 {
-                    string[] opResultat = db.operation();
-                    if (opResultat[0] == "1")
+                    int opResultat = db.operation();
+                    if (opResultat == 0)
                         return true;
                     else
                     {
                         errorMsgs.Add("Det blev något fel när din bokning skulle processeras. Kontakta systemansvarig");
                         if (DEBUG)
-                            errorMsgs.AddRange(opResultat);
+                            errorMsgs.AddRange(db.GetTmpMsgs());
                     }
                 }
                 else
                 {
                     errorMsgs.Add("Det blev ett fel vid skapandet av frågan. Kontakta ansvarig för programmet.");
                     if (DEBUG)
-                        errorMsgs.AddRange(db.query(query, args));
+                        errorMsgs.AddRange(db.GetTmpMsgs());
                 }
             }
             else
@@ -154,20 +154,31 @@ namespace Bokningssystem
             return false;
         }
 
-        public int hamtaMinaBokningar() 
+        /// <summary>
+        /// Hämtar bokningarna för kunden som är registrerad i boknings_objektetet.
+        /// Hämtar värdena datumet, bilen, fordonsmodellen, fordonets årsmodell och märket i den ordningen
+        /// </summary>
+        /// <returns>Returnerar en string[] med alla träffar, om det inte fanns några träffar skickar den </returns>
+        public string[] hamtaMinaBokningar()
         {
             string email = this.anvandare.GetEmail();
-
-            string queryHamtaBokningar = "SELECT B.datum, B.bil, F.modell, F.arsmodell, F.marke "+
+            List<string> errorMsgs = new List<string>();
+            string[] fetch;
+            string queryHamtaBokningar = "SELECT B.datum, B.bil, F.modell, F.arsmodell, F.marke " +
             "FROM Bokning AS B INNER JOIN Fordon AS F ON B.bil = F.reg WHERE (B.email = '?x?')";
             string[] args = { email };
 
-            int queryRes = this.db.query(queryHamtaBokningar,args);
+            int queryRes = this.db.query(queryHamtaBokningar, args);
             if (queryRes == 0)
             {
-                string[] fetch = this.db.fetchAll();
-                if ()
-                }
+                fetch = this.db.fetchAll();
+                if (fetch.Length > 0)
+                    return fetch;
             }
+            errorMsgs.AddRange(db.GetTmpMsgs());
+            this.tmpMsgs = errorMsgs.ToArray();
+            string[] res = { };
+            return res;
+        }
     }
 }

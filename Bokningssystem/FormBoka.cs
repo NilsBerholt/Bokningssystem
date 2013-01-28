@@ -38,6 +38,15 @@ namespace Bokningssystem
             buttonRedigera.Hide();
         }
 
+        public void DoljBokningar()
+        {
+            timeButton_08.Checked = false;
+            timeButton_10.Checked = false;
+            timeButton_14.Checked = false;
+            timeButton_16.Checked = false;
+            panelTider.Hide();
+        }
+
         /// <summary>
         /// Konstruktören för FormBoka-formen, här börjar koden från FormBoka.
         /// Här initalieras alla komponenter och kund objektet sparas som global variabel för formen.
@@ -158,33 +167,38 @@ namespace Bokningssystem
         }
 
         /// <summary>
-        /// Byter bara tabsida till tabPageNyBok
+        /// Byter mellan tabbarna i Formen.
+        /// Kollar vilket namn som knappen som startade har och gör en switch case på dem.
         /// </summary>
-        /// <param name="sender">Knapp-objektet som startade eventet</param>
+        /// <param name="sender">objektet som startade eventet, måste vara en knapp</param>
         /// <param name="e"></param>
-        private void buttonNyBoka_Click(object sender, EventArgs e)
+        private void bytaTabPage(object sender, EventArgs e)
         {
-            tabControl1.SelectTab(tabPageNyBok);
-        }
+            Button tabButton = sender as Button;
+            string namn = tabButton.Name;
+            namn = namn.Substring(6);
 
-        /// <summary>
-        /// Byter bara tabsida till tabPageMinBok
-        /// </summary>
-        /// <param name="sender">Knapp-objektet som startade eventet</param>
-        /// <param name="e"></param>
-        private void buttonMinBok_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectTab(tabPageMinBok);
-        }
+            switch (namn)
+            {
+                case "NyBoka":
+                    tabControl1.SelectTab(tabPageNyBok);
+                    monthCalendar1.SelectionStart = DateTime.Today;
+                    DoljBokningar();
+                    break;
 
-        /// <summary>
-        /// Byter bara tabsida till tabPageProfil
-        /// </summary>
-        /// <param name="sender">Knapp-objektet som startade eventet</param>
-        /// <param name="e"></param>
-        private void buttonProfil_Click(object sender, EventArgs e)
-        {
-            tabControl1.SelectTab(tabPageProfil);
+                case "MinBok":
+                    tabControl1.SelectTab(tabPageMinBok);
+                    break;
+
+                case "Profil":
+                    tabControl1.SelectTab(tabPageProfil);
+                    break;
+                    
+                default:
+                    if (DEBUG)
+                        richTextBoxBokningMeny.Text = "Denna åtgärd är ännu inte implementerad i bytaTabPage\nKnappnamnet: " + namn;
+                    break;
+            }
         }
 
         /// <summary>
@@ -283,7 +297,6 @@ namespace Bokningssystem
                     labelBekräfta.Text = "Bekräfta ditt lösenord";
                     labelNytt.Text = "Ditt nya lösenord";
                     this.uppdatera = "losen";
-                    labelBekLosen.Show();
                     bekräftelseBehövs = true;
                     break;
 
@@ -314,7 +327,6 @@ namespace Bokningssystem
                 maskedTextBoxGamla.Show();
                 maskedTextBoxBekLosen.Show();
                 labelGamla.Show();
-                labelNytt.Show();
                 labelBekräfta.Show();
             }
 
@@ -459,7 +471,6 @@ namespace Bokningssystem
                         label7.Text = "Denna ändring är inte ännu implementerad i Redigeringsfunktionen";
                     break;
             }
-            label7.Show();
         }
 
         /// <summary>
