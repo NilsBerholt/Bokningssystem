@@ -37,7 +37,7 @@ namespace Bokningssystem
             labelBekLosen.Hide();
             buttonRedigera.Hide();
         }
-
+        
         public void DoljBokningar()
         {
             timeButton_08.Checked = false;
@@ -61,9 +61,9 @@ namespace Bokningssystem
             bil_objekt bil = new bil_objekt();
             this.anvandare = anvandare;
             List<string> kundBilar = new List<string>();
-            
+
             // Kolla efter bilar registrerade till kunden / användaren.
-            if (bil.kollaKundsBilar(anvandare) == 2)
+            if (bil.kollaKundsBilar(anvandare,"reg") == 2)
             {
                 if (DEBUG)
                     richTextBoxBokningMeny.Text = "Något är fel med kollaKundsBilar-funktionen i bil_objekt.cs";
@@ -73,7 +73,7 @@ namespace Bokningssystem
                 kundBilar.AddRange(bil.GetTmpMsgs());
                 this.kundHarReggadBil = true;
             }
-            
+
             // Lägg till en rad "Ny bil..." och lägg till bilarna till regnr-comboboxens datasource
             kundBilar.Add("Ny bil...");
             comboBoxReg.DataSource = kundBilar;
@@ -105,7 +105,7 @@ namespace Bokningssystem
         /// <param name="e"></param>
         public void buttonBoka_Click(object sender, EventArgs e)
         {
-            boknings_objekt bokning = new boknings_objekt(new SqlCeDatabase(),this.anvandare);
+            boknings_objekt bokning = new boknings_objekt(new SqlCeDatabase(), this.anvandare);
             input inmatning = new input();
 
             if (dag != "" & tid != "")
@@ -188,12 +188,13 @@ namespace Bokningssystem
 
                 case "MinBok":
                     tabControl1.SelectTab(tabPageMinBok);
+                    this.fyllBokningar_bilar();
                     break;
 
                 case "Profil":
                     tabControl1.SelectTab(tabPageProfil);
                     break;
-                    
+
                 default:
                     if (DEBUG)
                         richTextBoxBokningMeny.Text = "Denna åtgärd är ännu inte implementerad i bytaTabPage\nKnappnamnet: " + namn;
@@ -362,22 +363,22 @@ namespace Bokningssystem
                     string email1 = maskedTextBoxBekräfta.Text;
                     string email2 = maskedTextBoxGamla.Text;
                     // Kolla om allting är rätt
-                        if (losen != anvandare.GetLosen())
-                        {
-                            label7.Text = "Du skrev in fel lösenord för att kunna ändra din email.";
-                            break;
-                        }
-                        if (email2 != anvandare.GetEmail())
-                        {
-                            label7.Text = "Den emailen du skrev är inte samma som din gamla";
-                            break;
-                        }
-                        if (email != email1)
-                        {
-                            label7.Text = "Dina email-adresser stämmer inte överens";
-                            break;
-                        }
-                                
+                    if (losen != anvandare.GetLosen())
+                    {
+                        label7.Text = "Du skrev in fel lösenord för att kunna ändra din email.";
+                        break;
+                    }
+                    if (email2 != anvandare.GetEmail())
+                    {
+                        label7.Text = "Den emailen du skrev är inte samma som din gamla";
+                        break;
+                    }
+                    if (email != email1)
+                    {
+                        label7.Text = "Dina email-adresser stämmer inte överens";
+                        break;
+                    }
+
                     result = anvandare.SetEmail(email1);
                     if (result == 0)
                     {
@@ -407,13 +408,13 @@ namespace Bokningssystem
                         label7.Text = "Du skrev in fel lösenord för att kunna ändra ditt telefonnummer.";
                         break;
                     }
-                    
+
                     if (tfn2 != anvandare.GetTfn())
                     {
                         label7.Text = "Dina telefonnummer stämmer inte ihop";
                         break;
                     }
-                    
+
                     if (tfn == tfn1)
                     {
                         result = anvandare.SetTfn(tfn);
@@ -453,7 +454,7 @@ namespace Bokningssystem
                         label7.Text = "Det bekräftande lösenordet stämmer inte ihop med det ny du skrev";
                         break;
                     }
-                    
+
                     result = anvandare.SetLosen(losen2);
                     if (result == 0)
                     {
@@ -536,6 +537,61 @@ namespace Bokningssystem
                 this.tid = "14:00";
             if (timeButton_16.Checked)
                 this.tid = "16:00";
+        }
+
+        private void fyllBokningar_bilar()
+        {
+            boknings_objekt bokningar = new boknings_objekt(new SqlCeDatabase(), anvandare);
+            bil_objekt fordon = new bil_objekt();
+
+            Array[] bokningsResultat = bokningar.hamtaMinaBokningar();
+            int bilResultat = fordon.kollaKundsBilar(anvandare);
+
+            if (bilResultat != 0)
+            {
+                this.tableLayoutPanelBilar.Hide();
+                this.labelBilarMeddelande.Text = "Det finns inga bilar registrerade i systemet tryck på registrera för att registrera en bil";
+                this.labelBilarMeddelande.Show();
+            }
+
+            if (bokningsResultat.Length < 1)
+            {
+                this.tableLayoutPanelBokningar.Hide();
+                this.labelBokningarMeddelande.Text = "Du har inga bokade tider";
+                this.labelBokningarMeddelande.Show();
+            }
+
+            if (this.tableLayoutPanelBilar.Visible)
+            {
+                Array[] fordonLista = fordon.GetTmpMsgs(true);
+                int length = fordonLista.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    string[] fordonsfält = fordonLista[i] as string[];
+                    Label labelBilarReg = new Label(), labelBilarMarke = new Label(), labelBilarModell = new Label(), labelBilarArsmodell = new Label();
+                    Label[] labelBilar = { labelBilarReg, labelBilarMarke, labelBilarModell, labelBilarArsmodell };
+                    for (int o = 0; o < 4; o++)
+                    {
+                        labelBilar[o].Text = fordonsfält[o];
+                        this.tableLayoutPanelBilar.Controls.Add(labelBilar[o]);
+                    }
+                }
+            }
+            if (this.tableLayoutPanelBokningar.Visible)
+            {
+                int length = bokningsResultat.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    string[] bokningsString = bokningsResultat[i] as string[];
+                    Label labelBokningDatum = new Label(), labelBokningFordon = new Label();
+                    Label[] labelBokning = { labelBokningDatum, labelBokningFordon };
+                    for (int o = 0; o < 2; o++)
+                    {
+                        labelBokning[o].Text = bokningsString[o];
+                        this.tableLayoutPanelBokningar.Controls.Add(labelBokning[o]);
+                    }
+                }
+            }
         }
     }
 }

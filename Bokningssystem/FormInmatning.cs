@@ -91,10 +91,15 @@ namespace Bokningssystem
                     string queryLogin = "Select email, losen FROM KUNDER WHERE email='?x?'";
                     if (db.query(queryLogin, kolladInmatning) == 0)
                     {
-                        string[] sokResultat = db.fetchAll();
-                        if (sokResultat[1].Contains("inga värden"))
-                            errorMsg.Add("Din emailadress finns inte i vår databas, är du säker på att du har skapat en användare?\n" +
+                        string[] sokResultat = db.fetch();
+                        if (sokResultat.Length < 1)
+                        {
+                            if (db.GetTmpMsgs().Contains("inga värden"))
+                                errorMsg.Add("Din emailadress finns inte i vår databas, är du säker på att du har skapat en användare?\n" +
                                 "Om inte, klicka på Skapa användare för att göra just det.");
+                            else
+                                errorMsg.AddRange(db.GetTmpMsgs());
+                        }
                         else
                         {
                             if (sokResultat[1] == textBoxLosenLogin.Text)
@@ -151,7 +156,7 @@ namespace Bokningssystem
             {
                 TextBox[] inmatningsBoxar = { textBoxNamn, textBoxEmail, textBoxTelefon, textBoxAdress, textBoxPersnr, textBoxLosen };
                 string[] inmatVärden = inmatning.kollaInmatning(inmatningsBoxar);
-                if (DEBUG)
+                if (DEBUG && inmatning.GetTmpMsgs().Length > 0)
                 {
                     string[] errorMsgs = inmatning.GetTmpMsgs();
 
@@ -220,17 +225,18 @@ namespace Bokningssystem
             int kollaQuery = db.query(queryVisa, args);
             if (kollaQuery != 0)
             {
-                string[] läsResultat = db.fetchAll();
+                string[] läsResultat = db.fetch();
 
-                string FullResultat = string.Empty;
-                foreach (string resultat in läsResultat)
-                    FullResultat += resultat + "\n";
-                MessageBox.Show(FullResultat);
+                if (läsResultat.Length > 0)
+                {
+                    string FullResultat = string.Empty;
+                    foreach (string resultat in läsResultat)
+                        FullResultat += resultat + "\n";
+                    MessageBox.Show(FullResultat);
+                }
             }
             else
-            {
-                richTextBoxMeddelanden.Text = db.GetTmpMsgs()[1];
-            }
+                richTextBoxMeddelanden.Text = db.GetTmpMsgs()[0];
         }
 
         private void buttonDebug_Click(object sender, EventArgs e)

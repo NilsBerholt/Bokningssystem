@@ -40,7 +40,7 @@ namespace Bokningssystem
 
             if (db.query(queryKund, kundArgs) == 0)
             {
-                string[] kollPersResultat = db.fetchAll();
+                string[] kollPersResultat = db.fetch();
                 if (kollPersResultat[0] == null)
                     return false;
                 else
@@ -397,7 +397,7 @@ namespace Bokningssystem
             string[] args = { date1, date2 };
             if (db.query(queryTid, args) == 0)
             {
-                string[] resultat = db.fetchAll();
+                string[] resultat = db.fetch();
                 if (resultat.Length == 0 )
                     return true;
             }

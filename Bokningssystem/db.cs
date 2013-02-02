@@ -94,7 +94,7 @@ namespace Bokningssystem
         }
 
         /// <summary>
-        /// Database.fetchAll()
+        /// Database.fetch()
         /// Funktion som skickar SELECT-frågor till databasen och returnerar en array
         /// som innehåller svaren som frågan utvalt.
         /// 
@@ -102,7 +102,7 @@ namespace Bokningssystem
         /// </summary>
         /// <returns> Returnerar en array med fältnamnen från varje fråga, arrayens element är i sig arrayer på fälten, inte raderna.
         /// Returnerar en tom array om det inte fanns något</returns>
-        public string[] fetchAll()
+        public string[] fetch()
         {
             connection.Open();
 
@@ -114,7 +114,7 @@ namespace Bokningssystem
             SqlCeResultSet result;
             result = this.cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
             
-            int length = result.VisibleFieldCount;
+            int length = result.FieldCount;
             while (result.Read())
             {
                 for (int i = 0; i < length; i++)
@@ -141,6 +141,37 @@ namespace Bokningssystem
             }
             else
                 return resultat.ToArray();
+        }
+
+        /// <summary>
+        /// Database.fetchAll() Hämtar en lista med alla matchande fält
+        /// </summary>
+        /// <returns>Listan med alla objekt</returns>
+        public Array[] fetchAll()
+        {
+            connection.Open();
+
+            SqlCeTransaction transaction = connection.BeginTransaction();
+            List<string> errorMsg = new List<string>();
+            List<string[]> resultat = new List<string[]>();
+
+            this.cmd.Transaction = transaction;
+            SqlCeDataReader result;
+            result = this.cmd.ExecuteReader(System.Data.CommandBehavior.Default);
+
+            while (result.Read())
+            {
+                int fields = result.FieldCount;
+                string[] fieldValues = new string[fields];
+                for (int i = 0; i < fields; i++)
+                {
+                    fieldValues[i] = result[i].ToString();
+                }
+                resultat.Add(fieldValues);
+            }
+            result.Close();
+            connection.Close();
+            return resultat.ToArray(); 
         }
 
         /// <summary>
@@ -195,5 +226,3 @@ namespace Bokningssystem
         }
     }
 }
-
-                

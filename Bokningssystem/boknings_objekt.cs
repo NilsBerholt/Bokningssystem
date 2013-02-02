@@ -11,6 +11,7 @@ namespace Bokningssystem
         private SqlCeDatabase db;
         private kund anvandare;
         private string[] tmpMsgs;
+        private Array[] tmpMsgsArray;
 
         /// <summary>
         /// Kontruktören för boknings_objekt, tar en SqlCeDatabase och en kund som parametrar
@@ -34,6 +35,21 @@ namespace Bokningssystem
             else
             {
                 string[] meddelande = { };
+                return meddelande;
+            }
+        }
+
+        /// <summary>
+        /// Denna funktion hämtar alla meddelanden som finns lagrade i sträng-arrayen tmpMsgs
+        /// </summary>
+        /// <returns>Skickar arrayen om den har något innehåll, annars en array med ett element som säger att det är tomt.</returns>
+        public Array[] GetTmpMsgs( bool array )
+        {
+            if (this.tmpMsgs != null)
+                return this.tmpMsgsArray;
+            else
+            {
+                Array[] meddelande = { };
                 return meddelande;
             }
         }
@@ -159,11 +175,11 @@ namespace Bokningssystem
         /// Hämtar värdena datumet, bilen, fordonsmodellen, fordonets årsmodell och märket i den ordningen
         /// </summary>
         /// <returns>Returnerar en string[] med alla träffar, om det inte fanns några träffar skickar den </returns>
-        public string[] hamtaMinaBokningar()
+        public Array[] hamtaMinaBokningar()
         {
             string email = this.anvandare.GetEmail();
             List<string> errorMsgs = new List<string>();
-            string[] fetch;
+            Array[] fetch;
             string queryHamtaBokningar = "SELECT B.datum, B.bil, F.modell, F.arsmodell, F.marke " +
             "FROM Bokning AS B INNER JOIN Fordon AS F ON B.bil = F.reg WHERE (B.email = '?x?')";
             string[] args = { email };
@@ -177,7 +193,7 @@ namespace Bokningssystem
             }
             errorMsgs.AddRange(db.GetTmpMsgs());
             this.tmpMsgs = errorMsgs.ToArray();
-            string[] res = { };
+            Array[] res = { };
             return res;
         }
     }

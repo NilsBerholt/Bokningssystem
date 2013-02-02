@@ -57,7 +57,13 @@
             this.tabPageNyBok = new System.Windows.Forms.TabPage();
             this.tabPageMinBok = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.panelBokningar = new System.Windows.Forms.Panel();
+            this.labelBokningarMeddelande = new System.Windows.Forms.Label();
+            this.tableLayoutPanelBokningar = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
+            this.panelBilar = new System.Windows.Forms.Panel();
+            this.labelBilarMeddelande = new System.Windows.Forms.Label();
+            this.tableLayoutPanelBilar = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
             this.panelRed = new System.Windows.Forms.Panel();
@@ -99,6 +105,8 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.panelBokningar.SuspendLayout();
+            this.panelBilar.SuspendLayout();
             this.tabPageProfil.SuspendLayout();
             this.panelRed.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -210,11 +218,11 @@
             // 
             // panelNyBil
             // 
+            this.panelNyBil.Controls.Add(this.textBoxArsModell);
             this.panelNyBil.Controls.Add(this.labelModell);
             this.panelNyBil.Controls.Add(this.labelMarke);
             this.panelNyBil.Controls.Add(this.textBoxModell);
             this.panelNyBil.Controls.Add(this.labelArsmodell);
-            this.panelNyBil.Controls.Add(this.textBoxArsModell);
             this.panelNyBil.Controls.Add(this.textBoxMarke);
             this.panelNyBil.Location = new System.Drawing.Point(6, 258);
             this.panelNyBil.Name = "panelNyBil";
@@ -252,6 +260,7 @@
             // labelArsmodell
             // 
             this.labelArsmodell.AutoSize = true;
+            this.labelArsmodell.BackColor = System.Drawing.Color.Transparent;
             this.labelArsmodell.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelArsmodell.Location = new System.Drawing.Point(-4, 78);
             this.labelArsmodell.Name = "labelArsmodell";
@@ -430,14 +439,56 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.panelBokningar);
             this.splitContainer2.Panel1.Controls.Add(this.label8);
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.panelBilar);
             this.splitContainer2.Panel2.Controls.Add(this.label9);
             this.splitContainer2.Size = new System.Drawing.Size(605, 412);
             this.splitContainer2.SplitterDistance = 285;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // panelBokningar
+            // 
+            this.panelBokningar.Controls.Add(this.labelBokningarMeddelande);
+            this.panelBokningar.Controls.Add(this.tableLayoutPanelBokningar);
+            this.panelBokningar.Location = new System.Drawing.Point(3, 39);
+            this.panelBokningar.Name = "panelBokningar";
+            this.panelBokningar.Size = new System.Drawing.Size(279, 370);
+            this.panelBokningar.TabIndex = 1;
+            // 
+            // labelBokningarMeddelande
+            // 
+            this.labelBokningarMeddelande.AutoSize = true;
+            this.labelBokningarMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelBokningarMeddelande.Location = new System.Drawing.Point(0, 0);
+            this.labelBokningarMeddelande.Name = "labelBokningarMeddelande";
+            this.labelBokningarMeddelande.Size = new System.Drawing.Size(0, 13);
+            this.labelBokningarMeddelande.TabIndex = 1;
+            this.labelBokningarMeddelande.Visible = false;
+            // 
+            // tableLayoutPanelBokningar
+            // 
+            this.tableLayoutPanelBokningar.AutoSize = true;
+            this.tableLayoutPanelBokningar.ColumnCount = 2;
+            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBokningar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanelBokningar.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelBokningar.Name = "tableLayoutPanelBokningar";
+            this.tableLayoutPanelBokningar.RowCount = 1;
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBokningar.Size = new System.Drawing.Size(279, 0);
+            this.tableLayoutPanelBokningar.TabIndex = 0;
             // 
             // label8
             // 
@@ -448,6 +499,42 @@
             this.label8.Size = new System.Drawing.Size(95, 24);
             this.label8.TabIndex = 0;
             this.label8.Text = "Bokningar";
+            // 
+            // panelBilar
+            // 
+            this.panelBilar.Controls.Add(this.labelBilarMeddelande);
+            this.panelBilar.Controls.Add(this.tableLayoutPanelBilar);
+            this.panelBilar.Location = new System.Drawing.Point(3, 39);
+            this.panelBilar.Name = "panelBilar";
+            this.panelBilar.Size = new System.Drawing.Size(310, 370);
+            this.panelBilar.TabIndex = 2;
+            // 
+            // labelBilarMeddelande
+            // 
+            this.labelBilarMeddelande.AutoSize = true;
+            this.labelBilarMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelBilarMeddelande.Location = new System.Drawing.Point(0, 0);
+            this.labelBilarMeddelande.Name = "labelBilarMeddelande";
+            this.labelBilarMeddelande.Size = new System.Drawing.Size(0, 13);
+            this.labelBilarMeddelande.TabIndex = 2;
+            this.labelBilarMeddelande.Visible = false;
+            // 
+            // tableLayoutPanelBilar
+            // 
+            this.tableLayoutPanelBilar.AutoSize = true;
+            this.tableLayoutPanelBilar.ColumnCount = 4;
+            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelBilar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanelBilar.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelBilar.Name = "tableLayoutPanelBilar";
+            this.tableLayoutPanelBilar.RowCount = 1;
+            this.tableLayoutPanelBilar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelBilar.Size = new System.Drawing.Size(310, 0);
+            this.tableLayoutPanelBilar.TabIndex = 1;
             // 
             // label9
             // 
@@ -774,6 +861,10 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.panelBokningar.ResumeLayout(false);
+            this.panelBokningar.PerformLayout();
+            this.panelBilar.ResumeLayout(false);
+            this.panelBilar.PerformLayout();
             this.tabPageProfil.ResumeLayout(false);
             this.tabPageProfil.PerformLayout();
             this.panelRed.ResumeLayout(false);
@@ -843,5 +934,11 @@
         private System.Windows.Forms.RadioButton timeButton_10;
         private System.Windows.Forms.RadioButton timeButton_08;
         private System.Windows.Forms.Panel panelRed;
+        private System.Windows.Forms.Panel panelBokningar;
+        private System.Windows.Forms.Panel panelBilar;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBokningar;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBilar;
+        private System.Windows.Forms.Label labelBokningarMeddelande;
+        private System.Windows.Forms.Label labelBilarMeddelande;
     }
 }

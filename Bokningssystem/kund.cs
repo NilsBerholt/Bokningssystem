@@ -32,7 +32,7 @@ namespace Bokningssystem
                 errorMsg.AddRange(db.GetTmpMsgs());
             else
             {
-                string[] resultat = db.fetchAll();
+                string[] resultat = db.fetch();
                 string[] properties = { this.email, this.fnamn, this.enamn, this.losenord, this.tfn, this.adress };
 
                 if (resultat[0] != string.Empty)

@@ -8,6 +8,7 @@ namespace Bokningssystem
     class bil_objekt
     {
         string[] tmpMsgs;
+        Array[] tmpMsgsArray;
         bool DEBUG = Properties.Settings.Default.Debug;
 
         /// <summary>
@@ -26,6 +27,22 @@ namespace Bokningssystem
         }
 
         /// <summary>
+        /// Denna funktion hämtar alla meddelanden som finns lagrade i den flerdimensionella sträng-arrayen tmpMsgsArray
+        /// </summary>
+        /// <param name="array">bool som avgör att det blir en array</param>
+        /// <returns></returns>
+        public Array[] GetTmpMsgs(bool array)
+        {
+            if (this.tmpMsgsArray != null)
+                return this.tmpMsgsArray;
+            else
+            {
+                Array[] meddelande = { };
+                return meddelande;
+            }
+        }
+
+        /// <summary>
         /// Denna funktion kollar om det finns en bil i registret med detta regnummer.
         /// </summary>
         /// <param name="reg">Regnumret på bilen</param>
@@ -38,7 +55,7 @@ namespace Bokningssystem
             string[] argsCheckBil = new string[1] { reg };
 
             db.query(queryCheckBil, argsCheckBil);
-            string[] kollaBilRes = db.fetchAll();
+            string[] kollaBilRes = db.fetch();
             if (kollaBilRes[0] == null)
                 return false;
             else
@@ -108,27 +125,63 @@ namespace Bokningssystem
         /// 0 - Inga fel uppstod
         /// 1 - Inga bilar funna
         /// 2 - Fel vid frågeformuleringen</returns>
-        public int kollaKundsBilar( kund anvandare ) 
+        public int kollaKundsBilar(kund anvandare)
         {
             SqlCeDatabase db = new SqlCeDatabase();
 
-            string regQuery = "SELECT reg FROM fordon WHERE agare='?x?'";
+            string regQuery = "SELECT reg, marke, modell, arsmodell FROM fordon WHERE agare='?x?'";
             string[] args = { anvandare.GetEmail() };
 
             int queryResultat = db.query(regQuery, args);
             if (queryResultat == 0)
             {
-                string[] ny = { "Ny bil" };
-                string[] fetchResultat = db.fetchAll();
-               
-                if (fetchResultat[0] != "fel")
+                Array[] fetchResultat = db.fetchAll();
+
+                if (fetchResultat.Length < 1)
                 {
-                    this.tmpMsgs = fetchResultat;
-                    return 0;
+                    this.tmpMsgs = db.GetTmpMsgs();
+                    return 1;
                 }
                 else
                 {
+                    this.tmpMsgsArray = fetchResultat;
+                    return 0;
+                }
+            }
+            this.tmpMsgs = db.GetTmpMsgs();
+            return 2;
+        }
+
+        /// <summary>
+        /// KollaKundsBilar: Kollar efter kunders bilar och returnerar bara regnumret
+        /// </summary>
+        /// <param name="anvandare">Kundens kundobjekt</param>
+        /// <param name="what">Vad som ska frågas efter i Select-satsen</param>
+        /// <returns>Returnerar ett intvärde
+        /// 0 - om funktion slutfördes utan problem
+        /// 1 - Inga bilar fanns
+        /// 2 - Fel vid frågeformuleringen</returns>
+        public int kollaKundsBilar(kund anvandare, string what)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+
+            string regQuery = "SELECT ?x? FROM fordon WHERE agare='?x?'";
+            string[] args = { what, anvandare.GetEmail() };
+
+            int queryResultat = db.query(regQuery, args);
+            if (queryResultat == 0)
+            {
+                string[] fetchResultat = db.fetch();
+
+                if (fetchResultat.Length < 1)
+                {
+                    this.tmpMsgs = db.GetTmpMsgs();
                     return 1;
+                }
+                else
+                {
+                    this.tmpMsgs = fetchResultat;
+                    return 0;
                 }
             }
             this.tmpMsgs = db.GetTmpMsgs();
