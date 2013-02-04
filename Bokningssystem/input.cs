@@ -375,7 +375,44 @@ namespace Bokningssystem
             return false;
         }
 
-       
+        public bool loggaIn(string email, string Pw)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+            List<string> errorMsgs = new List<string>();
+            if (!this.kollaEmail(email))
+            {
+                errorMsgs.Add("Din email är inte en korrekt formatterad email");
+                this.tmpMsgs = errorMsgs.ToArray();
+                return false;
+            }
+
+            string queryLogin = "Select email, losen FROM KUNDER WHERE email='?x?'";
+            string[] arg = { email };
+            if (db.query(queryLogin, arg) != 0)
+            {
+                string[] sokResultat = db.fetch();
+                if (sokResultat.Length < 1)
+                {
+                    if (db.GetTmpMsgs().Contains("inga värden"))
+                        errorMsgs.Add("Din emailadress finns inte i vår databas, är du säker på att du har skapat en användare?\n" +
+                        "Om inte, klicka på Skapa användare för att göra just det.");
+                    else
+                        errorMsgs.AddRange(db.GetTmpMsgs());
+
+                    this.tmpMsgs = errorMsgs.ToArray();
+                    return false;
+                }
+
+                if (sokResultat[1] != Pw)
+                {
+                    errorMsgs.Add("Det blev fel med kombinationen med lösenord och emailadressen");
+                    this.tmpMsgs = errorMsgs.ToArray();
+                    return false;
+                }
+
+                return true;
+            }
+        }
 
         /// <summary>
         /// Kollar om tiden är ledig i bokningsdatabasen

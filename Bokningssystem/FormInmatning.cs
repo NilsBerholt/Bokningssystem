@@ -51,6 +51,11 @@ namespace Bokningssystem
             }
         }
 
+        /// <summary>
+        /// "Logga in"-funktion, kollar så
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonLogga_Click(object sender, EventArgs e)
         {
             string[] felMeddelanden;
