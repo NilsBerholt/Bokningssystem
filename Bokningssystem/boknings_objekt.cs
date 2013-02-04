@@ -11,7 +11,7 @@ namespace Bokningssystem
         private SqlCeDatabase db;
         private kund anvandare;
         private string[] tmpMsgs;
-        private Array[] tmpMsgsArray;
+        private Array[] tmpMsgsArray = null;
 
         /// <summary>
         /// Kontruktören för boknings_objekt, tar en SqlCeDatabase och en kund som parametrar
