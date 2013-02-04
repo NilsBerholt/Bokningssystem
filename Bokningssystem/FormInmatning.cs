@@ -56,7 +56,7 @@ namespace Bokningssystem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonLogga_Click(object sender, EventArgs e)
+        private void buttonLogga_ClickOLD(object sender, EventArgs e)
         {
             string[] felMeddelanden;
             List<string> errorMsg = new List<string>();
@@ -152,6 +152,34 @@ namespace Bokningssystem
                 richTextBoxMeddelanden1.Text = fullFel;
             }
         }
+
+        private void buttonLogga_Click(object sender, EventArgs e)
+        {
+            List<string> errorMsg = new List<string>();
+            input inmatning = new input();
+            if (textBoxEmailLogin.Text == "" | textBoxLosenLogin.Text == "")
+                errorMsg.Add("Du måste skriva in både email och lösenord för att logga in.");
+            else
+            {
+                if (inmatning.loggaIn(textBoxEmailLogin.Text, textBoxLosenLogin.Text))
+                {
+                    kund anvandare = new kund(textBoxEmailLogin.Text, textBoxLosenLogin.Text);
+                    FormBoka minBokning = new FormBoka(anvandare);
+                    minBokning.Enabled = true;
+                    this.Hide();
+                    minBokning.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    string[] felmeddelande = inmatning.GetTmpMsgs();
+                    foreach (string msg in felmeddelande)
+                        richTextBoxMeddelanden1.Text += msg;
+                }
+            }
+        }
+
+
 
         private void buttonRegistrera_Click(object sender, EventArgs e)
         {

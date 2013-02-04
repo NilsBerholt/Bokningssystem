@@ -26,7 +26,7 @@ namespace Bokningssystem
         /// </summary>
         static SqlCeDatabase()
         {
-            string connectionstring = Properties.Settings.Default.Database1ConnectionString;
+            string connectionstring = Properties.Settings.Default.Database1Version4ConnectionsString;
             connection.ConnectionString = connectionstring;
         }
 

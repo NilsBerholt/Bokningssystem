@@ -388,7 +388,7 @@ namespace Bokningssystem
 
             string queryLogin = "Select email, losen FROM KUNDER WHERE email='?x?'";
             string[] arg = { email };
-            if (db.query(queryLogin, arg) != 0)
+            if (db.query(queryLogin, arg) == 0)
             {
                 string[] sokResultat = db.fetch();
                 if (sokResultat.Length < 1)
@@ -403,6 +403,7 @@ namespace Bokningssystem
                     return false;
                 }
 
+
                 if (sokResultat[1] != Pw)
                 {
                     errorMsgs.Add("Det blev fel med kombinationen med lösenord och emailadressen");
@@ -412,6 +413,9 @@ namespace Bokningssystem
 
                 return true;
             }
+            errorMsgs.AddRange(db.GetTmpMsgs());
+            this.tmpMsgs = errorMsgs.ToArray();
+            return false;
         }
 
         /// <summary>
