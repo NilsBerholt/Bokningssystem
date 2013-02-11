@@ -45,6 +45,7 @@ namespace Bokningssystem
             timeButton_14.Checked = false;
             timeButton_16.Checked = false;
             panelTider.Hide();
+            buttonBoka.Hide();
         }
 
         /// <summary>
@@ -88,6 +89,7 @@ namespace Bokningssystem
             monthCalendar1.MaxSelectionCount = 1;
             DoljAndringar();
             panelTider.Hide();
+            buttonBoka.Hide();
 
             richTextBoxBokningMeny.Text = "Tryck på Ny bokning för att göra en ny bokning.\nTryck på Mina Bokningar för att se vad du har bokat och när.";
             if (DEBUG)
@@ -117,7 +119,10 @@ namespace Bokningssystem
                 if (this.kundHarReggadBil)
                 {
                     if (bokning.boka(this.anvandare, regnr, datum))
-                        richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
+                    {
+                        richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem.";
+                        richTextBoxMeddelandenBoka.Text += "\nDatumet är " + this.dag + " och tiden " + this.tid;
+                    }
                     else
                     {
                         richTextBoxMeddelandenBoka.Text = "Det blev något fel med bokningen";
@@ -140,7 +145,10 @@ namespace Bokningssystem
                     string marke = textBoxMarke.Text;
                     string arsmodell = textBoxArsModell.Text;
                     if (bokning.boka(this.anvandare, regnr, datum, marke, modell, arsmodell))
-                        richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem";
+                    {
+                        richTextBoxMeddelandenBoka.Text = "Bokningen genomfördes utan problem.";
+                        richTextBoxMeddelandenBoka.Text += "\nDatumet är " + this.dag + " och tiden " + this.tid;
+                    }
                     else
                     {
                         richTextBoxMeddelandenBoka.Text = "Det blev något fel med bokningen";
@@ -156,6 +164,7 @@ namespace Bokningssystem
                         }
                     }
                 }
+                DoljBokningar();
             }
             // Om tiden eller datument är tomt visa felmeddelandet
             else
@@ -183,11 +192,16 @@ namespace Bokningssystem
                 case "NyBoka":
                     tabControl1.SelectTab(tabPageNyBok);
                     monthCalendar1.SelectionStart = DateTime.Today;
+                    richTextBoxMeddelandenBoka.Text = "Du måste välj datum och tid innan du kan boka.";
                     DoljBokningar();
                     break;
 
                 case "MinBok":
+                    labelBilarMeddelande.Text = "";
+                    labelBokningarMeddelande.Text = "";
                     tabControl1.SelectTab(tabPageMinBok);
+                    tableLayoutPanelBilar.ResetText();
+                    tableLayoutPanelBokningar.ResetText();
                     this.fyllBokningar_bilar();
                     break;
 
@@ -537,6 +551,7 @@ namespace Bokningssystem
                 this.tid = "14:00";
             if (timeButton_16.Checked)
                 this.tid = "16:00";
+            buttonBoka.Show();
         }
 
         private void fyllBokningar_bilar()
@@ -583,9 +598,9 @@ namespace Bokningssystem
                 for (int i = 0; i < length; i++)
                 {
                     string[] bokningsString = bokningsResultat[i] as string[];
-                    Label labelBokningDatum = new Label(), labelBokningFordon = new Label();
-                    Label[] labelBokning = { labelBokningDatum, labelBokningFordon };
-                    for (int o = 0; o < 2; o++)
+                    Label labelBokningDatum = new Label(), labelBokningTid = new Label(), labelBokningFordon = new Label();
+                    Label[] labelBokning = { labelBokningDatum, labelBokningTid, labelBokningFordon };
+                    for (int o = 0; o < 3; o++)
                     {
                         labelBokning[o].Text = bokningsString[o];
                         this.tableLayoutPanelBokningar.Controls.Add(labelBokning[o]);

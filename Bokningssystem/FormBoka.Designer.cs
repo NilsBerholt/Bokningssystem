@@ -38,11 +38,11 @@
             this.richTextBoxMeddelandenBoka = new System.Windows.Forms.RichTextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelNyBil = new System.Windows.Forms.Panel();
+            this.textBoxArsModell = new System.Windows.Forms.TextBox();
             this.labelModell = new System.Windows.Forms.Label();
             this.labelMarke = new System.Windows.Forms.Label();
             this.textBoxModell = new System.Windows.Forms.TextBox();
             this.labelArsmodell = new System.Windows.Forms.Label();
-            this.textBoxArsModell = new System.Windows.Forms.TextBox();
             this.textBoxMarke = new System.Windows.Forms.TextBox();
             this.panelTider = new System.Windows.Forms.Panel();
             this.timeButton_16 = new System.Windows.Forms.RadioButton();
@@ -229,6 +229,14 @@
             this.panelNyBil.Size = new System.Drawing.Size(240, 105);
             this.panelNyBil.TabIndex = 32;
             // 
+            // textBoxArsModell
+            // 
+            this.textBoxArsModell.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxArsModell.Location = new System.Drawing.Point(77, 72);
+            this.textBoxArsModell.Name = "textBoxArsModell";
+            this.textBoxArsModell.Size = new System.Drawing.Size(145, 26);
+            this.textBoxArsModell.TabIndex = 18;
+            // 
             // labelModell
             // 
             this.labelModell.AutoSize = true;
@@ -267,14 +275,6 @@
             this.labelArsmodell.Size = new System.Drawing.Size(83, 20);
             this.labelArsmodell.TabIndex = 19;
             this.labelArsmodell.Text = "Årsmodell:";
-            // 
-            // textBoxArsModell
-            // 
-            this.textBoxArsModell.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxArsModell.Location = new System.Drawing.Point(77, 72);
-            this.textBoxArsModell.Name = "textBoxArsModell";
-            this.textBoxArsModell.Size = new System.Drawing.Size(145, 26);
-            this.textBoxArsModell.TabIndex = 18;
             // 
             // textBoxMarke
             // 
@@ -452,6 +452,7 @@
             // 
             // panelBokningar
             // 
+            this.panelBokningar.AutoScroll = true;
             this.panelBokningar.Controls.Add(this.labelBokningarMeddelande);
             this.panelBokningar.Controls.Add(this.tableLayoutPanelBokningar);
             this.panelBokningar.Location = new System.Drawing.Point(3, 39);
@@ -483,10 +484,10 @@
             this.tableLayoutPanelBokningar.Name = "tableLayoutPanelBokningar";
             this.tableLayoutPanelBokningar.RowCount = 1;
             this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.tableLayoutPanelBokningar.Size = new System.Drawing.Size(279, 0);
             this.tableLayoutPanelBokningar.TabIndex = 0;
             // 
@@ -494,7 +495,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(50, 12);
+            this.label8.Location = new System.Drawing.Point(86, 12);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(95, 24);
             this.label8.TabIndex = 0;
@@ -540,7 +541,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(72, 12);
+            this.label9.Location = new System.Drawing.Point(94, 12);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(91, 24);
             this.label9.TabIndex = 1;

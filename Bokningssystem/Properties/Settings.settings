@@ -16,9 +16,9 @@
     <Setting Name="Database1Version4ConnectionsString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=|DataDirectory|\Database1Version4.sdf&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=C:\Users\Lysekil.LEJAKJOH1\Documents\GitHub\Bokningssystem\Bokningssystem\Database1Version4.sdf&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=|DataDirectory|\Database1Version4.sdf</Value>
+      <Value Profile="(Default)">Data Source=C:\Users\Lysekil.LEJAKJOH1\Documents\GitHub\Bokningssystem\Bokningssystem\Database1Version4.sdf</Value>
     </Setting>
   </Settings>
 </SettingsFile>
