@@ -52,123 +52,6 @@ namespace Bokningssystem
             }
         }
 
-        /// <summary>
-        /// "Logga in"-funktion, kollar så
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonLogga_ClickOLD(object sender, EventArgs e)
-        {
-            string[] felMeddelanden;
-            List<string> errorMsg = new List<string>();
-            if (textBoxEmailLogin.Text == "" | textBoxLosenLogin.Text == "")
-                errorMsg.Add("Du måste skriva in både email och lösenord för att logga in.");
-            else
-            {
-                input inmatning = new input();
-                SqlCeDatabase db = new SqlCeDatabase();
-                TextBox[] inmatningar = { textBoxEmailLogin };
-
-                string[] kolladInmatning = inmatning.kollaInmatning(inmatningar);
-                felMeddelanden = inmatning.GetTmpMsgs();
-
-                if (felMeddelanden.Length > 0)
-                {
-                    if (DEBUG)
-                    {
-                        string fullFel = string.Empty;
-                        richTextBoxMeddelanden1.Text = "";
-                        foreach (string meddelande in felMeddelanden)
-                            fullFel += meddelande + "\n";
-
-                        MessageBox.Show(fullFel);
-                    }
-                    else
-                    {
-                        if (felMeddelanden.Contains("giltig adress"))
-                        {
-                            richTextBoxMeddelanden1.Text = "Du har inte skrivit in en giltig email-adress";
-                        }
-                        errorMsg.Add("Det blev ett fel med din inloggning.\nKontakta systemansvarig.");
-                    }
-                }
-                else
-                {
-                    string queryLogin = "Select email, losen FROM KUNDER WHERE email='?x?'";
-                    if (db.query(queryLogin, kolladInmatning) == 0)
-                    {
-                        string[] sokResultat = db.fetch();
-                        if (sokResultat.Length < 1)
-                        {
-                            if (db.GetTmpMsgs().Contains("inga värden"))
-                                errorMsg.Add("Din emailadress finns inte i vår databas, är du säker på att du har skapat en användare?\n" +
-                                "Om inte, klicka på Skapa användare för att göra just det.");
-                            else
-                                errorMsg.AddRange(db.GetTmpMsgs());
-                        }
-                        else
-                        {
-                            if (sokResultat[1] == textBoxLosenLogin.Text)
-                            {
-                                kund anvandare = new kund(sokResultat[0], sokResultat[1]);
-                                FormBoka minBokning = new FormBoka(anvandare);
-                                FormHyra minHyrning = new FormHyra(anvandare);
-                                minBokning.Enabled = true;
-                                if (DEBUG)
-                                {
-                                    this.Hide();
-                                    if (radioButtonLaga.Checked)
-                                    {
-                                        minBokning.ShowDialog();
-                                    }
-                                    else
-                                    {
-                                        minHyrning.ShowDialog();
-                                    }
-                                    this.Show();
-                                }
-                                else
-                                {
-                                    this.Hide();
-                                    if (radioButtonLaga.Checked)
-                                    {
-                                        minBokning.ShowDialog();
-                                    }
-                                    else
-                                    {
-                                        minHyrning.ShowDialog();
-                                    }
-                                    this.Close();
-                                }
-                            }
-                            else
-                                errorMsg.Add("Det blev fel med kombinationen med lösenord och emailadressen");
-                        }
-                    }
-                    else
-                    {
-                        if (DEBUG)
-                        {
-                            errorMsg.AddRange(db.GetTmpMsgs());
-                            string fullFel = string.Empty;
-                            foreach (string meddelande in errorMsg)
-                                fullFel += meddelande;
-                            MessageBox.Show(fullFel);
-                        }
-                        else
-                            errorMsg.Add("Det blev något fel med inloggningen, kontakta systemansvarig");
-                    }
-                }
-            }
-            if (errorMsg.Count > 0)
-            {
-                string fullFel = string.Empty;
-                foreach (string fel in errorMsg)
-                    fullFel += fel + "\n";
-                richTextBoxMeddelanden1.Text = fullFel;
-            }
-        }
-
         private void buttonLogga_Click(object sender, EventArgs e)
         {
             List<string> errorMsg = new List<string>();
@@ -181,9 +64,13 @@ namespace Bokningssystem
                 {
                     kund anvandare = new kund(textBoxEmailLogin.Text, textBoxLosenLogin.Text);
                     FormBoka minBokning = new FormBoka(anvandare);
+                    FormHyra minHyrning = new FormHyra(anvandare);
                     minBokning.Enabled = true;
                     this.Hide();
-                    minBokning.ShowDialog();
+                    if (radioButtonLaga.Checked)
+                        minBokning.ShowDialog();
+                    else
+                        minHyrning.ShowDialog();
                     this.Show();
                 }
                 else
@@ -194,8 +81,6 @@ namespace Bokningssystem
                 }
             }
         }
-
-
 
         private void buttonRegistrera_Click(object sender, EventArgs e)
         {
