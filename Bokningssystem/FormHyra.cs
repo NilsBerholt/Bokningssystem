@@ -11,7 +11,7 @@ namespace Bokningssystem
 {
     public partial class FormHyra : Form
     {
-        public FormHyra()
+        public FormHyra(kund anvandare)
         {
             InitializeComponent();
         }

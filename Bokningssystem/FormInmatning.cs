@@ -18,6 +18,7 @@ namespace Bokningssystem
         {
             InitializeComponent();
             //buttonRegistrera.Hide();
+            buttonLogga.Hide();
             if (DEBUG)
                 buttonDebug.Visible = true;
             else
@@ -111,17 +112,32 @@ namespace Bokningssystem
                             {
                                 kund anvandare = new kund(sokResultat[0], sokResultat[1]);
                                 FormBoka minBokning = new FormBoka(anvandare);
+                                FormHyra minHyrning = new FormHyra(anvandare);
                                 minBokning.Enabled = true;
                                 if (DEBUG)
                                 {
                                     this.Hide();
-                                    minBokning.ShowDialog();
+                                    if (radioButtonLaga.Checked)
+                                    {
+                                        minBokning.ShowDialog();
+                                    }
+                                    else
+                                    {
+                                        minHyrning.ShowDialog();
+                                    }
                                     this.Show();
                                 }
                                 else
                                 {
                                     this.Hide();
-                                    minBokning.ShowDialog();
+                                    if (radioButtonLaga.Checked)
+                                    {
+                                        minBokning.ShowDialog();
+                                    }
+                                    else
+                                    {
+                                        minHyrning.ShowDialog();
+                                    }
                                     this.Close();
                                 }
                             }
@@ -289,6 +305,16 @@ namespace Bokningssystem
 
             DEBUG = Properties.Settings.Default.Debug;
             MessageBox.Show("Debug är " + Properties.Settings.Default.Debug.ToString());
+        }
+
+        private void radioButtonHyra_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonLogga.Show();
+        }
+
+        private void radioButtonLaga_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonLogga.Show();
         }
     }
 }
