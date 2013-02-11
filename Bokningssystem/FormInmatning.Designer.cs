@@ -55,6 +55,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBoxMeddelanden = new System.Windows.Forms.RichTextBox();
             this.textBoxNamn = new System.Windows.Forms.TextBox();
+            this.radioButtonHyra = new System.Windows.Forms.RadioButton();
+            this.radioButtonLaga = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -94,7 +96,7 @@
             // 
             // buttonLogga
             // 
-            this.buttonLogga.Location = new System.Drawing.Point(7, 112);
+            this.buttonLogga.Location = new System.Drawing.Point(6, 133);
             this.buttonLogga.Name = "buttonLogga";
             this.buttonLogga.Size = new System.Drawing.Size(75, 23);
             this.buttonLogga.TabIndex = 6;
@@ -268,7 +270,7 @@
             // buttonRegistrera
             // 
             this.buttonRegistrera.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonRegistrera.Location = new System.Drawing.Point(207, 31);
+            this.buttonRegistrera.Location = new System.Drawing.Point(208, 31);
             this.buttonRegistrera.Name = "buttonRegistrera";
             this.buttonRegistrera.Size = new System.Drawing.Size(75, 23);
             this.buttonRegistrera.TabIndex = 23;
@@ -281,7 +283,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label6.Location = new System.Drawing.Point(3, 138);
+            this.label6.Location = new System.Drawing.Point(3, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 13);
             this.label6.TabIndex = 23;
@@ -299,6 +301,8 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Transparent;
+            this.splitContainer1.Panel1.Controls.Add(this.radioButtonLaga);
+            this.splitContainer1.Panel1.Controls.Add(this.radioButtonHyra);
             this.splitContainer1.Panel1.Controls.Add(this.richTextBoxMeddelanden1);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.textBoxLosenLogin);
@@ -381,6 +385,30 @@
             this.textBoxNamn.Size = new System.Drawing.Size(172, 26);
             this.textBoxNamn.TabIndex = 3;
             // 
+            // radioButtonHyra
+            // 
+            this.radioButtonHyra.AutoSize = true;
+            this.radioButtonHyra.Location = new System.Drawing.Point(13, 110);
+            this.radioButtonHyra.Name = "radioButtonHyra";
+            this.radioButtonHyra.Size = new System.Drawing.Size(47, 17);
+            this.radioButtonHyra.TabIndex = 26;
+            this.radioButtonHyra.TabStop = true;
+            this.radioButtonHyra.Text = "Hyra";
+            this.radioButtonHyra.UseVisualStyleBackColor = true;
+            this.radioButtonHyra.CheckedChanged += new System.EventHandler(this.radioButtonHyra_CheckedChanged);
+            // 
+            // radioButtonLaga
+            // 
+            this.radioButtonLaga.AutoSize = true;
+            this.radioButtonLaga.Location = new System.Drawing.Point(92, 110);
+            this.radioButtonLaga.Name = "radioButtonLaga";
+            this.radioButtonLaga.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonLaga.TabIndex = 27;
+            this.radioButtonLaga.TabStop = true;
+            this.radioButtonLaga.Text = "Laga";
+            this.radioButtonLaga.UseVisualStyleBackColor = true;
+            this.radioButtonLaga.CheckedChanged += new System.EventHandler(this.radioButtonLaga_CheckedChanged);
+            // 
             // FormInmatning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,6 +458,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonVisa;
         private System.Windows.Forms.Button buttonDebug;
+        private System.Windows.Forms.RadioButton radioButtonLaga;
+        private System.Windows.Forms.RadioButton radioButtonHyra;
     }
 }
 
