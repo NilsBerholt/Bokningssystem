@@ -359,6 +359,13 @@ namespace Bokningssystem
         private void buttonDagar_Click(object sender, EventArgs e)
         {
             string dagar = maskedTextBoxDagar.Text;
+            DateTime dagDate = DateTime.Parse(dag);
+            dagDate = dagDate.AddDays(Convert.ToDouble(dagar));
+            string Dag12 = dagDate.Date.ToString();
+            Dag12 = Dag12.Substring(0, Dag12.IndexOf(' '));
+
+            string meddelande ="\n" + dag + " och " + Dag12;
+            richTextBoxMeddelandenHyra.Text += meddelande;
         }
 
         private void buttonHyr_Click(object sender, EventArgs e)
