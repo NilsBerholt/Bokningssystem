@@ -72,10 +72,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.panelHyrningar = new System.Windows.Forms.Panel();
-            this.labelBokningarMeddelande = new System.Windows.Forms.Label();
-            this.tableLayoutPanelBokningar = new System.Windows.Forms.TableLayoutPanel();
+            this.panelHyrning = new System.Windows.Forms.Panel();
+            this.labelHyrningMeddelande = new System.Windows.Forms.Label();
+            this.tableLayoutPanelHyrning = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
+            this.buttonMeny = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyHyr.SuspendLayout();
@@ -88,7 +91,7 @@
             this.tabPageProfil.SuspendLayout();
             this.panelRed.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panelHyrningar.SuspendLayout();
+            this.panelHyrning.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -189,6 +192,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.richTextBoxMeddelandenHyra);
             this.splitContainer1.Panel2.Controls.Add(this.panelTider);
             this.splitContainer1.Size = new System.Drawing.Size(584, 394);
@@ -295,7 +299,8 @@
             // 
             // tabPageMinHyr
             // 
-            this.tabPageMinHyr.Controls.Add(this.panelHyrningar);
+            this.tabPageMinHyr.Controls.Add(this.buttonMeny);
+            this.tabPageMinHyr.Controls.Add(this.panelHyrning);
             this.tabPageMinHyr.Controls.Add(this.label8);
             this.tabPageMinHyr.Location = new System.Drawing.Point(4, 22);
             this.tabPageMinHyr.Name = "tabPageMinHyr";
@@ -307,6 +312,7 @@
             // 
             // tabPageProfil
             // 
+            this.tabPageProfil.Controls.Add(this.button2);
             this.tabPageProfil.Controls.Add(this.panelRed);
             this.tabPageProfil.Controls.Add(this.label7);
             this.tabPageProfil.Controls.Add(this.labelEditLosen);
@@ -591,56 +597,82 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-            // panelHyrningar
+            // panelHyrning
             // 
-            this.panelHyrningar.AutoScroll = true;
-            this.panelHyrningar.Controls.Add(this.labelBokningarMeddelande);
-            this.panelHyrningar.Controls.Add(this.tableLayoutPanelBokningar);
-            this.panelHyrningar.Location = new System.Drawing.Point(156, 34);
-            this.panelHyrningar.Name = "panelHyrningar";
-            this.panelHyrningar.Size = new System.Drawing.Size(279, 370);
-            this.panelHyrningar.TabIndex = 3;
+            this.panelHyrning.AutoScroll = true;
+            this.panelHyrning.Controls.Add(this.labelHyrningMeddelande);
+            this.panelHyrning.Controls.Add(this.tableLayoutPanelHyrning);
+            this.panelHyrning.Location = new System.Drawing.Point(156, 34);
+            this.panelHyrning.Name = "panelHyrning";
+            this.panelHyrning.Size = new System.Drawing.Size(279, 370);
+            this.panelHyrning.TabIndex = 5;
             // 
-            // labelBokningarMeddelande
+            // labelHyrningMeddelande
             // 
-            this.labelBokningarMeddelande.AutoSize = true;
-            this.labelBokningarMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelBokningarMeddelande.Location = new System.Drawing.Point(0, 0);
-            this.labelBokningarMeddelande.Name = "labelBokningarMeddelande";
-            this.labelBokningarMeddelande.Size = new System.Drawing.Size(0, 13);
-            this.labelBokningarMeddelande.TabIndex = 1;
-            this.labelBokningarMeddelande.Visible = false;
+            this.labelHyrningMeddelande.AutoSize = true;
+            this.labelHyrningMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelHyrningMeddelande.Location = new System.Drawing.Point(0, 0);
+            this.labelHyrningMeddelande.Name = "labelHyrningMeddelande";
+            this.labelHyrningMeddelande.Size = new System.Drawing.Size(0, 13);
+            this.labelHyrningMeddelande.TabIndex = 1;
+            this.labelHyrningMeddelande.Visible = false;
             // 
-            // tableLayoutPanelBokningar
+            // tableLayoutPanelHyrning
             // 
-            this.tableLayoutPanelBokningar.AutoSize = true;
-            this.tableLayoutPanelBokningar.ColumnCount = 2;
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanelBokningar.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelBokningar.Name = "tableLayoutPanelBokningar";
-            this.tableLayoutPanelBokningar.RowCount = 1;
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanelBokningar.Size = new System.Drawing.Size(279, 0);
-            this.tableLayoutPanelBokningar.TabIndex = 0;
+            this.tableLayoutPanelHyrning.AutoSize = true;
+            this.tableLayoutPanelHyrning.ColumnCount = 5;
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.01923F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.86538F));
+            this.tableLayoutPanelHyrning.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanelHyrning.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelHyrning.Name = "tableLayoutPanelHyrning";
+            this.tableLayoutPanelHyrning.RowCount = 1;
+            this.tableLayoutPanelHyrning.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelHyrning.Size = new System.Drawing.Size(279, 0);
+            this.tableLayoutPanelHyrning.TabIndex = 0;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(239, 7);
+            this.label8.Location = new System.Drawing.Point(236, 7);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(92, 24);
-            this.label8.TabIndex = 2;
+            this.label8.TabIndex = 4;
             this.label8.Text = "Hyrningar";
+            // 
+            // buttonMeny
+            // 
+            this.buttonMeny.Location = new System.Drawing.Point(490, 380);
+            this.buttonMeny.Name = "buttonMeny";
+            this.buttonMeny.Size = new System.Drawing.Size(75, 23);
+            this.buttonMeny.TabIndex = 6;
+            this.buttonMeny.Text = "Menyn";
+            this.buttonMeny.UseVisualStyleBackColor = true;
+            this.buttonMeny.Click += new System.EventHandler(this.bytaTabPage);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(240, 368);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Menyn";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.bytaTabPage);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(509, 381);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Menyn";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // FormHyra
             // 
@@ -668,8 +700,8 @@
             this.panelRed.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.panelHyrningar.ResumeLayout(false);
-            this.panelHyrningar.PerformLayout();
+            this.panelHyrning.ResumeLayout(false);
+            this.panelHyrning.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -720,9 +752,12 @@
         private System.Windows.Forms.Label labelDagar;
         private System.Windows.Forms.Button buttonDagar;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxDagar;
-        private System.Windows.Forms.Panel panelHyrningar;
-        private System.Windows.Forms.Label labelBokningarMeddelande;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBokningar;
+        private System.Windows.Forms.Panel panelHyrning;
+        private System.Windows.Forms.Label labelHyrningMeddelande;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelHyrning;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonMeny;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -15,6 +15,7 @@ namespace Bokningssystem
         private kund anvandare;
         private string uppdatera = null;
         private string dag = "";
+        private string slutdag = "";
 
         /// <summary>
         /// Funktion som döljer och tömmer strängarna i labels och textboxar
@@ -35,14 +36,22 @@ namespace Bokningssystem
             labelBekLosen.Hide();
             buttonRedigera.Hide();
         }
+        public void DoljHyr()
+        {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                { 
+                    checkedListBox1.SelectedItem = CheckState.Unchecked;
+                }
+            panelTider.Hide();
+            buttonHyr.Hide();
+        }
 
         /// <summary>
-        /// Konstruktören för FormBoka-formen, här börjar koden från FormBoka.
+        /// Konstruktören för FormHyra-formen, här börjar koden från FormHyra.
         /// Här initalieras alla komponenter och kund objektet sparas som global variabel för formen.
-        /// 
-        /// Här tas även bilarna fram och sparas i Listan kundbilar.
         /// </summary>
-        /// <param name="anvandare">Kund objektet för den som bokar</param>
+        /// <param name="anvandare">Kund objektet för den som hyr</param>
         public FormHyra(kund anvandare)
         {
             InitializeComponent(); 
@@ -61,7 +70,7 @@ namespace Bokningssystem
             panelTider.Hide();
             //buttonHyr.Hide();
 
-            richTextBoxBokningMeny.Text = "Tryck på Ny bokning för att göra en ny bokning.\nTryck på Mina Bokningar för att se vad du har bokat och när.";
+            richTextBoxBokningMeny.Text = "Tryck på Ny hyrning för att göra en ny hyrning.\nTryck på Mina hyrningar för att se vad du har hyrt och när.";
             if (DEBUG)
             {
                 richTextBoxBokningMeny.Text += "\nNamn: " + anvandare.GetNamn();
@@ -86,18 +95,35 @@ namespace Bokningssystem
                 case "NyHyr":
                     tabControl1.SelectTab(tabPageNyHyr);
                     monthCalendar1.SelectionStart = DateTime.Today;
+                    DoljHyr();
                     richTextBoxMeddelandenHyra.Text = "Du måste välj datum och hur många dagar du vill hyra ett fordon innan du kan hyra.";
                     break;
 
                 case "MinHyr":
-                    labelBokningarMeddelande.Text = "";
+                    labelHyrningMeddelande.Text = "";
                     tabControl1.SelectTab(tabPageMinHyr);
-                    tableLayoutPanelBokningar.ResetText();
+                    tableLayoutPanelHyrning.Controls.Clear();
+                    fyllHyrningar();
                     break;
 
                 case "Profil":
                     tabControl1.SelectTab(tabPageProfil);
                     break;
+
+                case "Meny":
+                    tabControl1.SelectTab(tabPageMeny);
+                    tableLayoutPanelHyrning.Controls.Clear();
+                    break;
+
+                case "1":
+                    tabControl1.SelectTab(tabPageMeny);
+                    DoljHyr();
+                    break;
+
+                case "2":
+                    tabControl1.SelectTab(tabPageMeny);
+                    break;
+                    
 
                 default:
                     if (DEBUG)
@@ -207,7 +233,7 @@ namespace Bokningssystem
 
         /// <summary>
         /// Funktion som körs när datumet ändras i kalendern. Extraherar den valda datetimen och
-        /// gör om det till en sträng med bara datumet och skickar det till funktionen inti_panelTider
+        /// gör om det till en sträng med bara datumet
         /// </summary>
         /// <param name="sender">The button that called the event</param>
         /// <param name="e"></param>
@@ -356,21 +382,57 @@ namespace Bokningssystem
             }
         }
 
+        /// <summary>
+        /// Räcknar fram vilken slutdagen är
+        /// </summary>
+        /// <param name="sender">Knappenobjektet som startade eventet</param>
+        /// <param name="e"></param>
         private void buttonDagar_Click(object sender, EventArgs e)
         {
             string dagar = maskedTextBoxDagar.Text;
             DateTime dagDate = DateTime.Parse(dag);
             dagDate = dagDate.AddDays(Convert.ToDouble(dagar));
-            string Dag12 = dagDate.Date.ToString();
-            Dag12 = Dag12.Substring(0, Dag12.IndexOf(' '));
+            slutdag = dagDate.Date.ToString();
+            slutdag = slutdag.Substring(0, slutdag.IndexOf(' '));
 
-            string meddelande ="\n" + dag + " och " + Dag12;
+            string meddelande ="\n" + dag + " och " + slutdag;
             richTextBoxMeddelandenHyra.Text += meddelande;
         }
 
+        /// <summary>
+        /// Hyrfunktionen, hyr fordon på den valda dagen till.
+        /// </summary>
+        /// <param name="sender">Den knappen som startade eventet</param>
+        /// <param name="e"></param>
         private void buttonHyr_Click(object sender, EventArgs e)
         {
+            Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+            input inmatning = new input();
 
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                {
+                    string fordon = checkedListBox1.Items[i] as string;
+                    //string objectText = string.Format("{0}, \n", fordon);
+
+                    if (hyrning.hyra(this.anvandare, dag, slutdag, fordon))
+                    {
+                        richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
+                        richTextBoxMeddelandenHyra.Text += "\nDu har nu hyrt;\n" + fordon + "\nOch startdagen:" + dag + "\nSlutdagen:" + slutdag;
+                    }
+                    else
+                    {
+                        richTextBoxMeddelandenHyra.Text = "Det blev något fel med hyrningen";
+                        string[] felmeddelande = hyrning.GetTmpMsgs();
+                        if (DEBUG)
+                        {
+                            richTextBoxMeddelandenHyra.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+                            richTextBoxMeddelandenHyra.Text += "\n**** FELMEDDELANDE ****";
+                            foreach (string fel in felmeddelande)
+                                richTextBoxMeddelandenHyra.Text += "\n" + fel + "\n";
+                        }
+                    }
+                }
         }
 
         /// <summary>
@@ -389,6 +451,42 @@ namespace Bokningssystem
                     hyrFordon += objectText;
                 }
             richTextBoxMeddelandenHyra.Text = hyrFordon;
+        }
+
+        /// <summary>
+        /// Funktion som skriver ut vilka fordon man har hyrt och vilka datum det gäller
+        /// </summary>
+        private void fyllHyrningar()
+        {
+            Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+            Array[] HyrningsResultat = hyrning.hamtaMinaHyrningar();
+
+            if (HyrningsResultat.Length < 1)
+            {
+                this.tableLayoutPanelHyrning.Hide();
+                this.labelHyrningMeddelande.Text = "Du har inga hyrda fordon";
+                this.labelHyrningMeddelande.Show();
+            }
+
+            if (this.tableLayoutPanelHyrning.Visible)
+            {
+                int length = HyrningsResultat.Length;
+                for (int i = 0; i < length; i++)
+                {
+                    string[] hyrningsString = HyrningsResultat[i] as string[];
+                    Label labelHyrningHyrning = new Label(), labelHyrningStartDatum = new Label(), labelHyrningSlutDatum = new Label(), labelHyrningFordon = new Label(), labelTabortHyrningar = new Label();
+                    Label[] labelHyrning = {labelHyrningHyrning, labelHyrningStartDatum, labelHyrningSlutDatum, labelHyrningFordon, labelTabortHyrningar };
+                    for (int o = 0; o < 5; o++)
+                    {
+                        if (o != 0)
+                            if (o % 4 == 0)
+                                hyrningsString[o] = "x";
+
+                        labelHyrning[o].Text = hyrningsString[o];
+                        this.tableLayoutPanelHyrning.Controls.Add(labelHyrning[o]);
+                    }
+                }
+            }
         }
     }
 }
