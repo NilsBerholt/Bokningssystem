@@ -47,6 +47,8 @@
             this.labelDagar = new System.Windows.Forms.Label();
             this.buttonDagar = new System.Windows.Forms.Button();
             this.tabPageMinHyr = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.richTextBoxMinHyr = new System.Windows.Forms.RichTextBox();
             this.buttonMeny = new System.Windows.Forms.Button();
             this.panelHyrning = new System.Windows.Forms.Panel();
             this.labelHyrningMeddelande = new System.Windows.Forms.Label();
@@ -79,8 +81,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.richTextBoxMinHyr = new System.Windows.Forms.RichTextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyHyr.SuspendLayout();
@@ -323,6 +323,28 @@
             this.tabPageMinHyr.TabIndex = 2;
             this.tabPageMinHyr.Text = "Mina hyrningar";
             this.tabPageMinHyr.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(511, 148);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "label5";
+            // 
+            // richTextBoxMinHyr
+            // 
+            this.richTextBoxMinHyr.AcceptsTab = true;
+            this.richTextBoxMinHyr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBoxMinHyr.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxMinHyr.Location = new System.Drawing.Point(6, 54);
+            this.richTextBoxMinHyr.Name = "richTextBoxMinHyr";
+            this.richTextBoxMinHyr.ReadOnly = true;
+            this.richTextBoxMinHyr.Size = new System.Drawing.Size(144, 271);
+            this.richTextBoxMinHyr.TabIndex = 31;
+            this.richTextBoxMinHyr.TabStop = false;
+            this.richTextBoxMinHyr.Text = "";
             // 
             // buttonMeny
             // 
@@ -677,28 +699,6 @@
             this.labelTfn.Size = new System.Drawing.Size(54, 18);
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
-            // 
-            // richTextBoxMinHyr
-            // 
-            this.richTextBoxMinHyr.AcceptsTab = true;
-            this.richTextBoxMinHyr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.richTextBoxMinHyr.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxMinHyr.Location = new System.Drawing.Point(6, 54);
-            this.richTextBoxMinHyr.Name = "richTextBoxMinHyr";
-            this.richTextBoxMinHyr.ReadOnly = true;
-            this.richTextBoxMinHyr.Size = new System.Drawing.Size(144, 271);
-            this.richTextBoxMinHyr.TabIndex = 31;
-            this.richTextBoxMinHyr.TabStop = false;
-            this.richTextBoxMinHyr.Text = "";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(511, 148);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "label5";
             // 
             // FormHyra
             // 

@@ -383,7 +383,7 @@ namespace Bokningssystem
         }
 
         /// <summary>
-        /// Räcknar fram vilken slutdagen är
+        /// Räknar fram vilken slutdagen är
         /// </summary>
         /// <param name="sender">Knappenobjektet som startade eventet</param>
         /// <param name="e"></param>
@@ -395,6 +395,7 @@ namespace Bokningssystem
             slutdag = dagDate.Date.ToString();
             slutdag = slutdag.Substring(0, slutdag.IndexOf(' '));
 
+            buttonHyr.Show();
             string meddelande ="\n" + dag + " och " + slutdag;
             richTextBoxMeddelandenHyra.Text += meddelande;
         }
@@ -482,7 +483,7 @@ namespace Bokningssystem
                             if (o % 4 == 0)
                             {
                                 hyrningsString[o] = "x";
-                                labelHyrning[o].Name = "Tabort" + o;
+                                labelHyrning[o].Name = "Tabort_" + hyrningsString[0];
                                 labelHyrning[o].Click += new System.EventHandler(this.TaBort);
                             }
 
@@ -493,14 +494,27 @@ namespace Bokningssystem
             }
         }
 
+        /// <summary>
+        /// En funktion som tar bort en hyrning, använder namnet på den label som kallade funktionen.
+        /// Kräver att labelns namn är Tabort_ID, där ID är ett nummer som stämmer överens med identiteten
+        /// </summary>
+        /// <param name="sender">Den labeln som kallade funktionen</param>
+        /// <param name="e">Oanvänd parameter för denna funktion, följer med ClickOnEvent</param>
         private void TaBort(object sender, EventArgs e)
         {
             Label Tabort = sender as Label;
-            string namn = Tabort.Name.Substring(6);
-            int hyrningar = Convert.ToInt16(namn);
+            string namn = Tabort.Name.Substring(7);
+            int hyrningar;
+            if (!int.TryParse(namn, out hyrningar))
+                MessageBox.Show("Detta är inget id: " + namn);
+            else
+            {
+                Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+                int TabortHyrning = hyrning.tabortMinaHyrningar(hyrningar);
 
-            Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
-            Array[] TabortHyrning = hyrning.tabortMinaHyrningar(hyrningar);
+                tableLayoutPanelHyrning.Controls.Clear();
+                fyllHyrningar();
+            }
         }
     }
 }

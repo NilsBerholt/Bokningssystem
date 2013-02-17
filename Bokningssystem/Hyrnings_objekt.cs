@@ -122,26 +122,35 @@ namespace Bokningssystem
         /// Hämtar värdena startdatum,  i den ordningen
         /// </summary>
         /// <returns>Returnerar en string[] med alla träffar, om det inte fanns några träffar skickar den </returns>
-        public Array[] tabortMinaHyrningar(int hyrning)
+        public int tabortMinaHyrningar(int hyrning)
         {
             string Hyrning = Convert.ToString(hyrning);
             List<string> errorMsgs = new List<string>();
-            Array[] fetch;
-            string queryTabortHyrningar = "DELETE * " +
+            //Array[] fetch;
+            string queryTabortHyrningar = "DELETE " +
             "FROM Hyrning WHERE (Hyrning = '?x?')";
             string[] args = { Hyrning };
 
             int queryRes = this.db.query(queryTabortHyrningar, args);
             if (queryRes == 0)
             {
-                fetch = this.db.fetchAll();
-                if (fetch.Length > 0)
-                    return fetch;
+                if (db.operation() == 0)
+                {
+                    int resultat = 0;
+                    return resultat;
+                }
+                else
+                {
+                    return db.operation();
+                }
             }
-            errorMsgs.AddRange(db.GetTmpMsgs());
+            else
+                return db.query(queryTabortHyrningar, args);
+           /* errorMsgs.AddRange(db.GetTmpMsgs());
             this.tmpMsgs = errorMsgs.ToArray();
             Array[] res = { };
             return res;
+            */
         }
     }
 }
