@@ -127,7 +127,7 @@ namespace Bokningssystem
             string Hyrning = Convert.ToString(hyrning);
             List<string> errorMsgs = new List<string>();
             Array[] fetch;
-            string queryTabortHyrningar = "Delete * " +
+            string queryTabortHyrningar = "DELETE * " +
             "FROM Hyrning WHERE (Hyrning = '?x?')";
             string[] args = { Hyrning };
 

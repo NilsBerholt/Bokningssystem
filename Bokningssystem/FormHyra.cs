@@ -475,18 +475,32 @@ namespace Bokningssystem
                 {
                     string[] hyrningsString = HyrningsResultat[i] as string[];
                     Label labelHyrningHyrning = new Label(), labelHyrningStartDatum = new Label(), labelHyrningSlutDatum = new Label(), labelHyrningFordon = new Label(), labelTabortHyrningar = new Label();
-                    Label[] labelHyrning = {labelHyrningHyrning, labelHyrningStartDatum, labelHyrningSlutDatum, labelHyrningFordon, labelTabortHyrningar };
+                    Label[] labelHyrning = { labelHyrningHyrning, labelHyrningStartDatum, labelHyrningSlutDatum, labelHyrningFordon, labelTabortHyrningar };
                     for (int o = 0; o < 5; o++)
                     {
                         if (o != 0)
                             if (o % 4 == 0)
+                            {
                                 hyrningsString[o] = "x";
+                                labelHyrning[o].Name = "Tabort" + o;
+                                labelHyrning[o].Click += new System.EventHandler(this.TaBort);
+                            }
 
                         labelHyrning[o].Text = hyrningsString[o];
                         this.tableLayoutPanelHyrning.Controls.Add(labelHyrning[o]);
                     }
                 }
             }
+        }
+
+        private void TaBort(object sender, EventArgs e)
+        {
+            Label Tabort = sender as Label;
+            string namn = Tabort.Name.Substring(6);
+            int hyrningar = Convert.ToInt16(namn);
+
+            Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+            Array[] TabortHyrning = hyrning.tabortMinaHyrningar(hyrningar);
         }
     }
 }

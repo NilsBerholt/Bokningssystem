@@ -40,13 +40,20 @@
             this.buttonHyr = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.richTextBoxMeddelandenHyra = new System.Windows.Forms.RichTextBox();
             this.panelTider = new System.Windows.Forms.Panel();
             this.maskedTextBoxDagar = new System.Windows.Forms.MaskedTextBox();
             this.labelDagar = new System.Windows.Forms.Label();
             this.buttonDagar = new System.Windows.Forms.Button();
             this.tabPageMinHyr = new System.Windows.Forms.TabPage();
+            this.buttonMeny = new System.Windows.Forms.Button();
+            this.panelHyrning = new System.Windows.Forms.Panel();
+            this.labelHyrningMeddelande = new System.Windows.Forms.Label();
+            this.tableLayoutPanelHyrning = new System.Windows.Forms.TableLayoutPanel();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.panelRed = new System.Windows.Forms.Panel();
             this.labelBekLosen = new System.Windows.Forms.Label();
             this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
@@ -72,13 +79,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.panelHyrning = new System.Windows.Forms.Panel();
-            this.labelHyrningMeddelande = new System.Windows.Forms.Label();
-            this.tableLayoutPanelHyrning = new System.Windows.Forms.TableLayoutPanel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.buttonMeny = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.richTextBoxMinHyr = new System.Windows.Forms.RichTextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyHyr.SuspendLayout();
@@ -88,10 +90,10 @@
             this.splitContainer1.SuspendLayout();
             this.panelTider.SuspendLayout();
             this.tabPageMinHyr.SuspendLayout();
+            this.panelHyrning.SuspendLayout();
             this.tabPageProfil.SuspendLayout();
             this.panelRed.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panelHyrning.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -245,6 +247,16 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Datum:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(240, 368);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Menyn";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.bytaTabPage);
+            // 
             // richTextBoxMeddelandenHyra
             // 
             this.richTextBoxMeddelandenHyra.AcceptsTab = true;
@@ -299,6 +311,8 @@
             // 
             // tabPageMinHyr
             // 
+            this.tabPageMinHyr.Controls.Add(this.label5);
+            this.tabPageMinHyr.Controls.Add(this.richTextBoxMinHyr);
             this.tabPageMinHyr.Controls.Add(this.buttonMeny);
             this.tabPageMinHyr.Controls.Add(this.panelHyrning);
             this.tabPageMinHyr.Controls.Add(this.label8);
@@ -309,6 +323,63 @@
             this.tabPageMinHyr.TabIndex = 2;
             this.tabPageMinHyr.Text = "Mina hyrningar";
             this.tabPageMinHyr.UseVisualStyleBackColor = true;
+            // 
+            // buttonMeny
+            // 
+            this.buttonMeny.Location = new System.Drawing.Point(490, 380);
+            this.buttonMeny.Name = "buttonMeny";
+            this.buttonMeny.Size = new System.Drawing.Size(75, 23);
+            this.buttonMeny.TabIndex = 6;
+            this.buttonMeny.Text = "Menyn";
+            this.buttonMeny.UseVisualStyleBackColor = true;
+            this.buttonMeny.Click += new System.EventHandler(this.bytaTabPage);
+            // 
+            // panelHyrning
+            // 
+            this.panelHyrning.AutoScroll = true;
+            this.panelHyrning.Controls.Add(this.labelHyrningMeddelande);
+            this.panelHyrning.Controls.Add(this.tableLayoutPanelHyrning);
+            this.panelHyrning.Location = new System.Drawing.Point(156, 34);
+            this.panelHyrning.Name = "panelHyrning";
+            this.panelHyrning.Size = new System.Drawing.Size(279, 370);
+            this.panelHyrning.TabIndex = 5;
+            // 
+            // labelHyrningMeddelande
+            // 
+            this.labelHyrningMeddelande.AutoSize = true;
+            this.labelHyrningMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelHyrningMeddelande.Location = new System.Drawing.Point(0, 0);
+            this.labelHyrningMeddelande.Name = "labelHyrningMeddelande";
+            this.labelHyrningMeddelande.Size = new System.Drawing.Size(0, 13);
+            this.labelHyrningMeddelande.TabIndex = 1;
+            this.labelHyrningMeddelande.Visible = false;
+            // 
+            // tableLayoutPanelHyrning
+            // 
+            this.tableLayoutPanelHyrning.AutoSize = true;
+            this.tableLayoutPanelHyrning.ColumnCount = 5;
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.01923F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.86538F));
+            this.tableLayoutPanelHyrning.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanelHyrning.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelHyrning.Name = "tableLayoutPanelHyrning";
+            this.tableLayoutPanelHyrning.RowCount = 1;
+            this.tableLayoutPanelHyrning.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelHyrning.Size = new System.Drawing.Size(279, 0);
+            this.tableLayoutPanelHyrning.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(236, 7);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 24);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Hyrningar";
             // 
             // tabPageProfil
             // 
@@ -325,6 +396,16 @@
             this.tabPageProfil.TabIndex = 3;
             this.tabPageProfil.Text = "Profil";
             this.tabPageProfil.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(509, 381);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Menyn";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // panelRed
             // 
@@ -597,82 +678,27 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-            // panelHyrning
+            // richTextBoxMinHyr
             // 
-            this.panelHyrning.AutoScroll = true;
-            this.panelHyrning.Controls.Add(this.labelHyrningMeddelande);
-            this.panelHyrning.Controls.Add(this.tableLayoutPanelHyrning);
-            this.panelHyrning.Location = new System.Drawing.Point(156, 34);
-            this.panelHyrning.Name = "panelHyrning";
-            this.panelHyrning.Size = new System.Drawing.Size(279, 370);
-            this.panelHyrning.TabIndex = 5;
+            this.richTextBoxMinHyr.AcceptsTab = true;
+            this.richTextBoxMinHyr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBoxMinHyr.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxMinHyr.Location = new System.Drawing.Point(6, 54);
+            this.richTextBoxMinHyr.Name = "richTextBoxMinHyr";
+            this.richTextBoxMinHyr.ReadOnly = true;
+            this.richTextBoxMinHyr.Size = new System.Drawing.Size(144, 271);
+            this.richTextBoxMinHyr.TabIndex = 31;
+            this.richTextBoxMinHyr.TabStop = false;
+            this.richTextBoxMinHyr.Text = "";
             // 
-            // labelHyrningMeddelande
+            // label5
             // 
-            this.labelHyrningMeddelande.AutoSize = true;
-            this.labelHyrningMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelHyrningMeddelande.Location = new System.Drawing.Point(0, 0);
-            this.labelHyrningMeddelande.Name = "labelHyrningMeddelande";
-            this.labelHyrningMeddelande.Size = new System.Drawing.Size(0, 13);
-            this.labelHyrningMeddelande.TabIndex = 1;
-            this.labelHyrningMeddelande.Visible = false;
-            // 
-            // tableLayoutPanelHyrning
-            // 
-            this.tableLayoutPanelHyrning.AutoSize = true;
-            this.tableLayoutPanelHyrning.ColumnCount = 5;
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.01923F));
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.86538F));
-            this.tableLayoutPanelHyrning.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanelHyrning.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelHyrning.Name = "tableLayoutPanelHyrning";
-            this.tableLayoutPanelHyrning.RowCount = 1;
-            this.tableLayoutPanelHyrning.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelHyrning.Size = new System.Drawing.Size(279, 0);
-            this.tableLayoutPanelHyrning.TabIndex = 0;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(236, 7);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 24);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Hyrningar";
-            // 
-            // buttonMeny
-            // 
-            this.buttonMeny.Location = new System.Drawing.Point(490, 380);
-            this.buttonMeny.Name = "buttonMeny";
-            this.buttonMeny.Size = new System.Drawing.Size(75, 23);
-            this.buttonMeny.TabIndex = 6;
-            this.buttonMeny.Text = "Menyn";
-            this.buttonMeny.UseVisualStyleBackColor = true;
-            this.buttonMeny.Click += new System.EventHandler(this.bytaTabPage);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(240, 368);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Menyn";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.bytaTabPage);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(509, 381);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "Menyn";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.bytaTabPage);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(511, 148);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "label5";
             // 
             // FormHyra
             // 
@@ -694,14 +720,14 @@
             this.panelTider.PerformLayout();
             this.tabPageMinHyr.ResumeLayout(false);
             this.tabPageMinHyr.PerformLayout();
+            this.panelHyrning.ResumeLayout(false);
+            this.panelHyrning.PerformLayout();
             this.tabPageProfil.ResumeLayout(false);
             this.tabPageProfil.PerformLayout();
             this.panelRed.ResumeLayout(false);
             this.panelRed.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.panelHyrning.ResumeLayout(false);
-            this.panelHyrning.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -759,5 +785,7 @@
         private System.Windows.Forms.Button buttonMeny;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox richTextBoxMinHyr;
+        private System.Windows.Forms.Label label5;
     }
 }
