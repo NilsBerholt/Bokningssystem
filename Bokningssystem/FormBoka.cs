@@ -200,8 +200,8 @@ namespace Bokningssystem
                     labelBilarMeddelande.Text = "";
                     labelBokningarMeddelande.Text = "";
                     tabControl1.SelectTab(tabPageMinBok);
-                    tableLayoutPanelBilar.ResetText();
-                    tableLayoutPanelBokningar.ResetText();
+                    tableLayoutPanelBilar.Controls.Clear();
+                    tableLayoutPanelBokningar.Controls.Clear();
                     this.fyllBokningar_bilar();
                     break;
 

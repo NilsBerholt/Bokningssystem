@@ -32,25 +32,29 @@
             this.tabPageMeny = new System.Windows.Forms.TabPage();
             this.buttonProfil = new System.Windows.Forms.Button();
             this.richTextBoxBokningMeny = new System.Windows.Forms.RichTextBox();
-            this.buttonMinBok = new System.Windows.Forms.Button();
-            this.buttonNyBoka = new System.Windows.Forms.Button();
-            this.tabPageNyBok = new System.Windows.Forms.TabPage();
+            this.buttonMinHyr = new System.Windows.Forms.Button();
+            this.buttonNyHyr = new System.Windows.Forms.Button();
+            this.tabPageNyHyr = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.buttonHyr = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label2 = new System.Windows.Forms.Label();
-            this.richTextBoxMeddelandenBoka = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.richTextBoxMeddelandenHyra = new System.Windows.Forms.RichTextBox();
             this.panelTider = new System.Windows.Forms.Panel();
-            this.tabPageMinBok = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.panelBokningar = new System.Windows.Forms.Panel();
-            this.labelBokningarMeddelande = new System.Windows.Forms.Label();
-            this.tableLayoutPanelBokningar = new System.Windows.Forms.TableLayoutPanel();
+            this.maskedTextBoxDagar = new System.Windows.Forms.MaskedTextBox();
+            this.labelDagar = new System.Windows.Forms.Label();
+            this.buttonDagar = new System.Windows.Forms.Button();
+            this.tabPageMinHyr = new System.Windows.Forms.TabPage();
+            this.richTextBoxMinHyr = new System.Windows.Forms.RichTextBox();
+            this.buttonMeny = new System.Windows.Forms.Button();
+            this.panelHyrning = new System.Windows.Forms.Panel();
+            this.labelHyrningMeddelande = new System.Windows.Forms.Label();
+            this.tableLayoutPanelHyrning = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
-            this.panelBilar = new System.Windows.Forms.Panel();
-            this.labelBilarMeddelande = new System.Windows.Forms.Label();
-            this.tableLayoutPanelBilar = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.panelRed = new System.Windows.Forms.Panel();
             this.labelBekLosen = new System.Windows.Forms.Label();
             this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
@@ -76,26 +80,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
-            this.buttonDagar = new System.Windows.Forms.Button();
-            this.buttonHyr = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.labelDagar = new System.Windows.Forms.Label();
-            this.maskedTextBoxDagar = new System.Windows.Forms.MaskedTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
-            this.tabPageNyBok.SuspendLayout();
+            this.tabPageNyHyr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panelTider.SuspendLayout();
-            this.tabPageMinBok.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.panelBokningar.SuspendLayout();
-            this.panelBilar.SuspendLayout();
+            this.tabPageMinHyr.SuspendLayout();
+            this.panelHyrning.SuspendLayout();
             this.tabPageProfil.SuspendLayout();
             this.panelRed.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -104,8 +98,8 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPageMeny);
-            this.tabControl1.Controls.Add(this.tabPageNyBok);
-            this.tabControl1.Controls.Add(this.tabPageMinBok);
+            this.tabControl1.Controls.Add(this.tabPageNyHyr);
+            this.tabControl1.Controls.Add(this.tabPageMinHyr);
             this.tabControl1.Controls.Add(this.tabPageProfil);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
@@ -119,8 +113,8 @@
             this.tabPageMeny.BackColor = System.Drawing.SystemColors.Control;
             this.tabPageMeny.Controls.Add(this.buttonProfil);
             this.tabPageMeny.Controls.Add(this.richTextBoxBokningMeny);
-            this.tabPageMeny.Controls.Add(this.buttonMinBok);
-            this.tabPageMeny.Controls.Add(this.buttonNyBoka);
+            this.tabPageMeny.Controls.Add(this.buttonMinHyr);
+            this.tabPageMeny.Controls.Add(this.buttonNyHyr);
             this.tabPageMeny.Location = new System.Drawing.Point(4, 22);
             this.tabPageMeny.Name = "tabPageMeny";
             this.tabPageMeny.Padding = new System.Windows.Forms.Padding(3);
@@ -137,6 +131,7 @@
             this.buttonProfil.TabIndex = 31;
             this.buttonProfil.Text = "Profil";
             this.buttonProfil.UseVisualStyleBackColor = true;
+            this.buttonProfil.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // richTextBoxBokningMeny
             // 
@@ -151,36 +146,38 @@
             this.richTextBoxBokningMeny.TabStop = false;
             this.richTextBoxBokningMeny.Text = "";
             // 
-            // buttonMinBok
+            // buttonMinHyr
             // 
-            this.buttonMinBok.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMinBok.Location = new System.Drawing.Point(29, 210);
-            this.buttonMinBok.Name = "buttonMinBok";
-            this.buttonMinBok.Size = new System.Drawing.Size(126, 29);
-            this.buttonMinBok.TabIndex = 29;
-            this.buttonMinBok.Text = "Mina bokningar";
-            this.buttonMinBok.UseVisualStyleBackColor = true;
+            this.buttonMinHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMinHyr.Location = new System.Drawing.Point(29, 210);
+            this.buttonMinHyr.Name = "buttonMinHyr";
+            this.buttonMinHyr.Size = new System.Drawing.Size(126, 29);
+            this.buttonMinHyr.TabIndex = 29;
+            this.buttonMinHyr.Text = "Mina hyrningar";
+            this.buttonMinHyr.UseVisualStyleBackColor = true;
+            this.buttonMinHyr.Click += new System.EventHandler(this.bytaTabPage);
             // 
-            // buttonNyBoka
+            // buttonNyHyr
             // 
-            this.buttonNyBoka.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNyBoka.Location = new System.Drawing.Point(187, 210);
-            this.buttonNyBoka.Name = "buttonNyBoka";
-            this.buttonNyBoka.Size = new System.Drawing.Size(105, 29);
-            this.buttonNyBoka.TabIndex = 28;
-            this.buttonNyBoka.Text = "Ny bokning";
-            this.buttonNyBoka.UseVisualStyleBackColor = true;
+            this.buttonNyHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNyHyr.Location = new System.Drawing.Point(187, 210);
+            this.buttonNyHyr.Name = "buttonNyHyr";
+            this.buttonNyHyr.Size = new System.Drawing.Size(105, 29);
+            this.buttonNyHyr.TabIndex = 28;
+            this.buttonNyHyr.Text = "Ny hyrning";
+            this.buttonNyHyr.UseVisualStyleBackColor = true;
+            this.buttonNyHyr.Click += new System.EventHandler(this.bytaTabPage);
             // 
-            // tabPageNyBok
+            // tabPageNyHyr
             // 
-            this.tabPageNyBok.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPageNyBok.Controls.Add(this.splitContainer1);
-            this.tabPageNyBok.Location = new System.Drawing.Point(4, 22);
-            this.tabPageNyBok.Name = "tabPageNyBok";
-            this.tabPageNyBok.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageNyBok.Size = new System.Drawing.Size(590, 410);
-            this.tabPageNyBok.TabIndex = 1;
-            this.tabPageNyBok.Text = "Ny hyrning";
+            this.tabPageNyHyr.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageNyHyr.Controls.Add(this.splitContainer1);
+            this.tabPageNyHyr.Location = new System.Drawing.Point(4, 22);
+            this.tabPageNyHyr.Name = "tabPageNyHyr";
+            this.tabPageNyHyr.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageNyHyr.Size = new System.Drawing.Size(590, 410);
+            this.tabPageNyHyr.TabIndex = 1;
+            this.tabPageNyHyr.Text = "Ny hyrning";
             // 
             // splitContainer1
             // 
@@ -196,17 +193,48 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBoxMeddelandenBoka);
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBoxMeddelandenHyra);
             this.splitContainer1.Panel2.Controls.Add(this.panelTider);
             this.splitContainer1.Size = new System.Drawing.Size(584, 394);
             this.splitContainer1.SplitterDistance = 265;
             this.splitContainer1.TabIndex = 33;
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.CheckOnClick = true;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Bil (2 pers)",
+            "Bil (5 pers)",
+            "Bil (7 pers)",
+            "Bil (9 pers)",
+            "Lastbil",
+            "Motorcykel",
+            "Skåpbil"});
+            this.checkedListBox1.Location = new System.Drawing.Point(44, 204);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(149, 109);
+            this.checkedListBox1.TabIndex = 33;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // buttonHyr
+            // 
+            this.buttonHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHyr.Location = new System.Drawing.Point(176, 358);
+            this.buttonHyr.Name = "buttonHyr";
+            this.buttonHyr.Size = new System.Drawing.Size(86, 33);
+            this.buttonHyr.TabIndex = 32;
+            this.buttonHyr.Text = "Hyr";
+            this.buttonHyr.UseVisualStyleBackColor = true;
+            this.buttonHyr.Click += new System.EventHandler(this.buttonHyr_Click);
             // 
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(44, 30);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 31;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // label2
             // 
@@ -218,18 +246,28 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Datum:";
             // 
-            // richTextBoxMeddelandenBoka
+            // button1
             // 
-            this.richTextBoxMeddelandenBoka.AcceptsTab = true;
-            this.richTextBoxMeddelandenBoka.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.richTextBoxMeddelandenBoka.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxMeddelandenBoka.Location = new System.Drawing.Point(30, 208);
-            this.richTextBoxMeddelandenBoka.Name = "richTextBoxMeddelandenBoka";
-            this.richTextBoxMeddelandenBoka.ReadOnly = true;
-            this.richTextBoxMeddelandenBoka.Size = new System.Drawing.Size(238, 164);
-            this.richTextBoxMeddelandenBoka.TabIndex = 28;
-            this.richTextBoxMeddelandenBoka.TabStop = false;
-            this.richTextBoxMeddelandenBoka.Text = "";
+            this.button1.Location = new System.Drawing.Point(240, 368);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Menyn";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.bytaTabPage);
+            // 
+            // richTextBoxMeddelandenHyra
+            // 
+            this.richTextBoxMeddelandenHyra.AcceptsTab = true;
+            this.richTextBoxMeddelandenHyra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBoxMeddelandenHyra.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxMeddelandenHyra.Location = new System.Drawing.Point(30, 208);
+            this.richTextBoxMeddelandenHyra.Name = "richTextBoxMeddelandenHyra";
+            this.richTextBoxMeddelandenHyra.ReadOnly = true;
+            this.richTextBoxMeddelandenHyra.Size = new System.Drawing.Size(238, 164);
+            this.richTextBoxMeddelandenHyra.TabIndex = 28;
+            this.richTextBoxMeddelandenHyra.TabStop = false;
+            this.richTextBoxMeddelandenHyra.Text = "";
             // 
             // panelTider
             // 
@@ -241,135 +279,123 @@
             this.panelTider.Size = new System.Drawing.Size(275, 187);
             this.panelTider.TabIndex = 30;
             // 
-            // tabPageMinBok
+            // maskedTextBoxDagar
             // 
-            this.tabPageMinBok.Controls.Add(this.splitContainer2);
-            this.tabPageMinBok.Location = new System.Drawing.Point(4, 22);
-            this.tabPageMinBok.Name = "tabPageMinBok";
-            this.tabPageMinBok.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMinBok.Size = new System.Drawing.Size(590, 410);
-            this.tabPageMinBok.TabIndex = 2;
-            this.tabPageMinBok.Text = "Mina hyrningar";
-            this.tabPageMinBok.UseVisualStyleBackColor = true;
+            this.maskedTextBoxDagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxDagar.Location = new System.Drawing.Point(13, 55);
+            this.maskedTextBoxDagar.Name = "maskedTextBoxDagar";
+            this.maskedTextBoxDagar.Size = new System.Drawing.Size(129, 26);
+            this.maskedTextBoxDagar.TabIndex = 2;
             // 
-            // splitContainer2
+            // labelDagar
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
+            this.labelDagar.AutoSize = true;
+            this.labelDagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDagar.Location = new System.Drawing.Point(9, 13);
+            this.labelDagar.Name = "labelDagar";
+            this.labelDagar.Size = new System.Drawing.Size(133, 20);
+            this.labelDagar.TabIndex = 1;
+            this.labelDagar.Text = "Hur många dagar";
             // 
-            // splitContainer2.Panel1
+            // buttonDagar
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.panelBokningar);
-            this.splitContainer2.Panel1.Controls.Add(this.label8);
+            this.buttonDagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDagar.Location = new System.Drawing.Point(165, 52);
+            this.buttonDagar.Name = "buttonDagar";
+            this.buttonDagar.Size = new System.Drawing.Size(86, 33);
+            this.buttonDagar.TabIndex = 0;
+            this.buttonDagar.Text = "Välj dagar";
+            this.buttonDagar.UseVisualStyleBackColor = true;
+            this.buttonDagar.Click += new System.EventHandler(this.buttonDagar_Click);
             // 
-            // splitContainer2.Panel2
+            // tabPageMinHyr
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.panelBilar);
-            this.splitContainer2.Panel2.Controls.Add(this.label9);
-            this.splitContainer2.Size = new System.Drawing.Size(584, 404);
-            this.splitContainer2.SplitterDistance = 275;
-            this.splitContainer2.TabIndex = 0;
+            this.tabPageMinHyr.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageMinHyr.Controls.Add(this.richTextBoxMinHyr);
+            this.tabPageMinHyr.Controls.Add(this.buttonMeny);
+            this.tabPageMinHyr.Controls.Add(this.panelHyrning);
+            this.tabPageMinHyr.Controls.Add(this.label8);
+            this.tabPageMinHyr.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMinHyr.Name = "tabPageMinHyr";
+            this.tabPageMinHyr.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageMinHyr.Size = new System.Drawing.Size(590, 410);
+            this.tabPageMinHyr.TabIndex = 2;
+            this.tabPageMinHyr.Text = "Mina hyrningar";
             // 
-            // panelBokningar
+            // richTextBoxMinHyr
             // 
-            this.panelBokningar.AutoScroll = true;
-            this.panelBokningar.Controls.Add(this.labelBokningarMeddelande);
-            this.panelBokningar.Controls.Add(this.tableLayoutPanelBokningar);
-            this.panelBokningar.Location = new System.Drawing.Point(3, 39);
-            this.panelBokningar.Name = "panelBokningar";
-            this.panelBokningar.Size = new System.Drawing.Size(279, 370);
-            this.panelBokningar.TabIndex = 1;
+            this.richTextBoxMinHyr.AcceptsTab = true;
+            this.richTextBoxMinHyr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBoxMinHyr.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxMinHyr.Location = new System.Drawing.Point(6, 54);
+            this.richTextBoxMinHyr.Name = "richTextBoxMinHyr";
+            this.richTextBoxMinHyr.ReadOnly = true;
+            this.richTextBoxMinHyr.Size = new System.Drawing.Size(144, 271);
+            this.richTextBoxMinHyr.TabIndex = 31;
+            this.richTextBoxMinHyr.TabStop = false;
+            this.richTextBoxMinHyr.Text = "";
             // 
-            // labelBokningarMeddelande
+            // buttonMeny
             // 
-            this.labelBokningarMeddelande.AutoSize = true;
-            this.labelBokningarMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelBokningarMeddelande.Location = new System.Drawing.Point(0, 0);
-            this.labelBokningarMeddelande.Name = "labelBokningarMeddelande";
-            this.labelBokningarMeddelande.Size = new System.Drawing.Size(0, 13);
-            this.labelBokningarMeddelande.TabIndex = 1;
-            this.labelBokningarMeddelande.Visible = false;
+            this.buttonMeny.Location = new System.Drawing.Point(490, 380);
+            this.buttonMeny.Name = "buttonMeny";
+            this.buttonMeny.Size = new System.Drawing.Size(75, 23);
+            this.buttonMeny.TabIndex = 6;
+            this.buttonMeny.Text = "Menyn";
+            this.buttonMeny.UseVisualStyleBackColor = true;
+            this.buttonMeny.Click += new System.EventHandler(this.bytaTabPage);
             // 
-            // tableLayoutPanelBokningar
+            // panelHyrning
             // 
-            this.tableLayoutPanelBokningar.AutoSize = true;
-            this.tableLayoutPanelBokningar.ColumnCount = 2;
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBokningar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanelBokningar.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelBokningar.Name = "tableLayoutPanelBokningar";
-            this.tableLayoutPanelBokningar.RowCount = 1;
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanelBokningar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanelBokningar.Size = new System.Drawing.Size(279, 0);
-            this.tableLayoutPanelBokningar.TabIndex = 0;
+            this.panelHyrning.AutoScroll = true;
+            this.panelHyrning.Controls.Add(this.labelHyrningMeddelande);
+            this.panelHyrning.Controls.Add(this.tableLayoutPanelHyrning);
+            this.panelHyrning.Location = new System.Drawing.Point(156, 34);
+            this.panelHyrning.Name = "panelHyrning";
+            this.panelHyrning.Size = new System.Drawing.Size(279, 370);
+            this.panelHyrning.TabIndex = 5;
+            // 
+            // labelHyrningMeddelande
+            // 
+            this.labelHyrningMeddelande.AutoSize = true;
+            this.labelHyrningMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelHyrningMeddelande.Location = new System.Drawing.Point(0, 0);
+            this.labelHyrningMeddelande.Name = "labelHyrningMeddelande";
+            this.labelHyrningMeddelande.Size = new System.Drawing.Size(0, 13);
+            this.labelHyrningMeddelande.TabIndex = 1;
+            this.labelHyrningMeddelande.Visible = false;
+            // 
+            // tableLayoutPanelHyrning
+            // 
+            this.tableLayoutPanelHyrning.AutoSize = true;
+            this.tableLayoutPanelHyrning.ColumnCount = 5;
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.01923F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.86538F));
+            this.tableLayoutPanelHyrning.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanelHyrning.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelHyrning.Name = "tableLayoutPanelHyrning";
+            this.tableLayoutPanelHyrning.RowCount = 1;
+            this.tableLayoutPanelHyrning.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelHyrning.Size = new System.Drawing.Size(279, 0);
+            this.tableLayoutPanelHyrning.TabIndex = 0;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(86, 12);
+            this.label8.Location = new System.Drawing.Point(236, 7);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(95, 24);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Bokningar";
-            // 
-            // panelBilar
-            // 
-            this.panelBilar.Controls.Add(this.labelBilarMeddelande);
-            this.panelBilar.Controls.Add(this.tableLayoutPanelBilar);
-            this.panelBilar.Location = new System.Drawing.Point(3, 39);
-            this.panelBilar.Name = "panelBilar";
-            this.panelBilar.Size = new System.Drawing.Size(310, 370);
-            this.panelBilar.TabIndex = 2;
-            // 
-            // labelBilarMeddelande
-            // 
-            this.labelBilarMeddelande.AutoSize = true;
-            this.labelBilarMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelBilarMeddelande.Location = new System.Drawing.Point(0, 0);
-            this.labelBilarMeddelande.Name = "labelBilarMeddelande";
-            this.labelBilarMeddelande.Size = new System.Drawing.Size(0, 13);
-            this.labelBilarMeddelande.TabIndex = 2;
-            this.labelBilarMeddelande.Visible = false;
-            // 
-            // tableLayoutPanelBilar
-            // 
-            this.tableLayoutPanelBilar.AutoSize = true;
-            this.tableLayoutPanelBilar.ColumnCount = 4;
-            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBilar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelBilar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanelBilar.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelBilar.Name = "tableLayoutPanelBilar";
-            this.tableLayoutPanelBilar.RowCount = 1;
-            this.tableLayoutPanelBilar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelBilar.Size = new System.Drawing.Size(310, 0);
-            this.tableLayoutPanelBilar.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(94, 12);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 24);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Mina bilar";
+            this.label8.Size = new System.Drawing.Size(92, 24);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Hyrningar";
             // 
             // tabPageProfil
             // 
+            this.tabPageProfil.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageProfil.Controls.Add(this.button2);
             this.tabPageProfil.Controls.Add(this.panelRed);
             this.tabPageProfil.Controls.Add(this.label7);
             this.tabPageProfil.Controls.Add(this.labelEditLosen);
@@ -381,7 +407,16 @@
             this.tabPageProfil.Size = new System.Drawing.Size(590, 410);
             this.tabPageProfil.TabIndex = 3;
             this.tabPageProfil.Text = "Profil";
-            this.tabPageProfil.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(509, 381);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Menyn";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // panelRed
             // 
@@ -444,6 +479,7 @@
             this.buttonRedigera.TabIndex = 9;
             this.buttonRedigera.Text = "Redigera";
             this.buttonRedigera.UseVisualStyleBackColor = true;
+            this.buttonRedigera.Click += new System.EventHandler(this.buttonRedigera_Click);
             // 
             // maskedTextBoxGamla
             // 
@@ -501,6 +537,7 @@
             this.labelEditLosen.Size = new System.Drawing.Size(74, 15);
             this.labelEditLosen.TabIndex = 5;
             this.labelEditLosen.Text = "Byt lösenord";
+            this.labelEditLosen.Click += new System.EventHandler(this.startEdit);
             // 
             // tableLayoutPanel1
             // 
@@ -542,6 +579,7 @@
             this.labelEditAdress.Size = new System.Drawing.Size(48, 15);
             this.labelEditAdress.TabIndex = 4;
             this.labelEditAdress.Text = "Ändra...";
+            this.labelEditAdress.Click += new System.EventHandler(this.startEdit);
             // 
             // labelEditTfn
             // 
@@ -553,6 +591,7 @@
             this.labelEditTfn.Size = new System.Drawing.Size(48, 15);
             this.labelEditTfn.TabIndex = 3;
             this.labelEditTfn.Text = "Ändra...";
+            this.labelEditTfn.Click += new System.EventHandler(this.startEdit);
             // 
             // labelEditEmail
             // 
@@ -564,6 +603,7 @@
             this.labelEditEmail.Size = new System.Drawing.Size(48, 15);
             this.labelEditEmail.TabIndex = 2;
             this.labelEditEmail.Text = "Ändra...";
+            this.labelEditEmail.Click += new System.EventHandler(this.startEdit);
             // 
             // labelEditNamn
             // 
@@ -575,6 +615,7 @@
             this.labelEditNamn.Size = new System.Drawing.Size(48, 15);
             this.labelEditNamn.TabIndex = 1;
             this.labelEditNamn.Text = "Ändra...";
+            this.labelEditNamn.Click += new System.EventHandler(this.startEdit);
             // 
             // labelNamn
             // 
@@ -648,56 +689,6 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
-            // buttonDagar
-            // 
-            this.buttonDagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDagar.Location = new System.Drawing.Point(165, 52);
-            this.buttonDagar.Name = "buttonDagar";
-            this.buttonDagar.Size = new System.Drawing.Size(86, 33);
-            this.buttonDagar.TabIndex = 0;
-            this.buttonDagar.Text = "Välj dagar";
-            this.buttonDagar.UseVisualStyleBackColor = true;
-            // 
-            // buttonHyr
-            // 
-            this.buttonHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonHyr.Location = new System.Drawing.Point(176, 358);
-            this.buttonHyr.Name = "buttonHyr";
-            this.buttonHyr.Size = new System.Drawing.Size(86, 33);
-            this.buttonHyr.TabIndex = 32;
-            this.buttonHyr.Text = "Hyr";
-            this.buttonHyr.UseVisualStyleBackColor = true;
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Bil",
-            "Lastbil",
-            "MC"});
-            this.checkedListBox1.Location = new System.Drawing.Point(33, 208);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(149, 64);
-            this.checkedListBox1.TabIndex = 33;
-            // 
-            // labelDagar
-            // 
-            this.labelDagar.AutoSize = true;
-            this.labelDagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDagar.Location = new System.Drawing.Point(9, 13);
-            this.labelDagar.Name = "labelDagar";
-            this.labelDagar.Size = new System.Drawing.Size(133, 20);
-            this.labelDagar.TabIndex = 1;
-            this.labelDagar.Text = "Hur många dagar";
-            // 
-            // maskedTextBoxDagar
-            // 
-            this.maskedTextBoxDagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxDagar.Location = new System.Drawing.Point(13, 55);
-            this.maskedTextBoxDagar.Name = "maskedTextBoxDagar";
-            this.maskedTextBoxDagar.Size = new System.Drawing.Size(129, 26);
-            this.maskedTextBoxDagar.TabIndex = 2;
-            // 
             // FormHyra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -708,7 +699,7 @@
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
             this.tabPageMeny.ResumeLayout(false);
-            this.tabPageNyBok.ResumeLayout(false);
+            this.tabPageNyHyr.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -716,17 +707,10 @@
             this.splitContainer1.ResumeLayout(false);
             this.panelTider.ResumeLayout(false);
             this.panelTider.PerformLayout();
-            this.tabPageMinBok.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.panelBokningar.ResumeLayout(false);
-            this.panelBokningar.PerformLayout();
-            this.panelBilar.ResumeLayout(false);
-            this.panelBilar.PerformLayout();
+            this.tabPageMinHyr.ResumeLayout(false);
+            this.tabPageMinHyr.PerformLayout();
+            this.panelHyrning.ResumeLayout(false);
+            this.panelHyrning.PerformLayout();
             this.tabPageProfil.ResumeLayout(false);
             this.tabPageProfil.PerformLayout();
             this.panelRed.ResumeLayout(false);
@@ -743,24 +727,15 @@
         private System.Windows.Forms.TabPage tabPageMeny;
         private System.Windows.Forms.Button buttonProfil;
         private System.Windows.Forms.RichTextBox richTextBoxBokningMeny;
-        private System.Windows.Forms.Button buttonMinBok;
-        private System.Windows.Forms.Button buttonNyBoka;
-        private System.Windows.Forms.TabPage tabPageNyBok;
+        private System.Windows.Forms.Button buttonMinHyr;
+        private System.Windows.Forms.Button buttonNyHyr;
+        private System.Windows.Forms.TabPage tabPageNyHyr;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox richTextBoxMeddelandenBoka;
+        private System.Windows.Forms.RichTextBox richTextBoxMeddelandenHyra;
         private System.Windows.Forms.Panel panelTider;
-        private System.Windows.Forms.TabPage tabPageMinBok;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.Panel panelBokningar;
-        private System.Windows.Forms.Label labelBokningarMeddelande;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBokningar;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panelBilar;
-        private System.Windows.Forms.Label labelBilarMeddelande;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBilar;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TabPage tabPageMinHyr;
         private System.Windows.Forms.TabPage tabPageProfil;
         private System.Windows.Forms.Panel panelRed;
         private System.Windows.Forms.Label labelBekLosen;
@@ -792,5 +767,13 @@
         private System.Windows.Forms.Label labelDagar;
         private System.Windows.Forms.Button buttonDagar;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxDagar;
+        private System.Windows.Forms.Panel panelHyrning;
+        private System.Windows.Forms.Label labelHyrningMeddelande;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelHyrning;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonMeny;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox richTextBoxMinHyr;
     }
 }

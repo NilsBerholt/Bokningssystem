@@ -51,12 +51,12 @@
             this.buttonRegistrera = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.radioButtonLaga = new System.Windows.Forms.RadioButton();
+            this.radioButtonHyra = new System.Windows.Forms.RadioButton();
             this.richTextBoxMeddelanden1 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBoxMeddelanden = new System.Windows.Forms.RichTextBox();
             this.textBoxNamn = new System.Windows.Forms.TextBox();
-            this.radioButtonHyra = new System.Windows.Forms.RadioButton();
-            this.radioButtonLaga = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,7 +68,7 @@
             this.buttonDebug.Location = new System.Drawing.Point(0, 0);
             this.buttonDebug.Name = "buttonDebug";
             this.buttonDebug.Size = new System.Drawing.Size(75, 23);
-            this.buttonDebug.TabIndex = 0;
+            this.buttonDebug.TabIndex = 16;
             this.buttonDebug.Click += new System.EventHandler(this.buttonDebug_Click);
             // 
             // buttonVisa
@@ -77,7 +77,7 @@
             this.buttonVisa.Location = new System.Drawing.Point(330, 6);
             this.buttonVisa.Name = "buttonVisa";
             this.buttonVisa.Size = new System.Drawing.Size(100, 100);
-            this.buttonVisa.TabIndex = 42;
+            this.buttonVisa.TabIndex = 17;
             this.buttonVisa.Text = "Visa Kontakter";
             this.buttonVisa.UseVisualStyleBackColor = true;
             this.buttonVisa.Visible = false;
@@ -99,7 +99,7 @@
             this.buttonLogga.Location = new System.Drawing.Point(6, 133);
             this.buttonLogga.Name = "buttonLogga";
             this.buttonLogga.Size = new System.Drawing.Size(75, 23);
-            this.buttonLogga.TabIndex = 6;
+            this.buttonLogga.TabIndex = 5;
             this.buttonLogga.Text = "Logga in";
             this.buttonLogga.UseVisualStyleBackColor = true;
             this.buttonLogga.Click += new System.EventHandler(this.buttonLogga_Click);
@@ -111,7 +111,7 @@
             this.textBoxPersnr.Location = new System.Drawing.Point(12, 237);
             this.textBoxPersnr.Name = "textBoxPersnr";
             this.textBoxPersnr.Size = new System.Drawing.Size(172, 26);
-            this.textBoxPersnr.TabIndex = 7;
+            this.textBoxPersnr.TabIndex = 11;
             // 
             // textBoxAdress
             // 
@@ -120,7 +120,7 @@
             this.textBoxAdress.Location = new System.Drawing.Point(12, 185);
             this.textBoxAdress.Name = "textBoxAdress";
             this.textBoxAdress.Size = new System.Drawing.Size(172, 26);
-            this.textBoxAdress.TabIndex = 6;
+            this.textBoxAdress.TabIndex = 10;
             // 
             // textBoxTelefon
             // 
@@ -129,7 +129,7 @@
             this.textBoxTelefon.Location = new System.Drawing.Point(12, 133);
             this.textBoxTelefon.Name = "textBoxTelefon";
             this.textBoxTelefon.Size = new System.Drawing.Size(172, 26);
-            this.textBoxTelefon.TabIndex = 5;
+            this.textBoxTelefon.TabIndex = 9;
             // 
             // textBoxEmail
             // 
@@ -138,7 +138,7 @@
             this.textBoxEmail.Location = new System.Drawing.Point(12, 81);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(172, 26);
-            this.textBoxEmail.TabIndex = 4;
+            this.textBoxEmail.TabIndex = 8;
             // 
             // labelPersnr
             // 
@@ -254,7 +254,7 @@
             this.textBoxLosenBek.Location = new System.Drawing.Point(12, 341);
             this.textBoxLosenBek.Name = "textBoxLosenBek";
             this.textBoxLosenBek.Size = new System.Drawing.Size(172, 26);
-            this.textBoxLosenBek.TabIndex = 9;
+            this.textBoxLosenBek.TabIndex = 13;
             this.textBoxLosenBek.UseSystemPasswordChar = true;
             // 
             // textBoxLosen
@@ -264,16 +264,16 @@
             this.textBoxLosen.Location = new System.Drawing.Point(12, 289);
             this.textBoxLosen.Name = "textBoxLosen";
             this.textBoxLosen.Size = new System.Drawing.Size(172, 26);
-            this.textBoxLosen.TabIndex = 8;
+            this.textBoxLosen.TabIndex = 12;
             this.textBoxLosen.UseSystemPasswordChar = true;
             // 
             // buttonRegistrera
             // 
             this.buttonRegistrera.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonRegistrera.Location = new System.Drawing.Point(208, 31);
+            this.buttonRegistrera.Location = new System.Drawing.Point(210, 31);
             this.buttonRegistrera.Name = "buttonRegistrera";
             this.buttonRegistrera.Size = new System.Drawing.Size(75, 23);
-            this.buttonRegistrera.TabIndex = 23;
+            this.buttonRegistrera.TabIndex = 14;
             this.buttonRegistrera.Text = "Registrera";
             this.buttonRegistrera.UseVisualStyleBackColor = true;
             this.buttonRegistrera.Click += new System.EventHandler(this.buttonRegistrera_Click);
@@ -286,7 +286,7 @@
             this.label6.Location = new System.Drawing.Point(3, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 13);
-            this.label6.TabIndex = 23;
+            this.label6.TabIndex = 6;
             this.label6.Text = "Skapa användare";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
@@ -339,6 +339,30 @@
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 25;
             // 
+            // radioButtonLaga
+            // 
+            this.radioButtonLaga.AutoSize = true;
+            this.radioButtonLaga.Location = new System.Drawing.Point(92, 110);
+            this.radioButtonLaga.Name = "radioButtonLaga";
+            this.radioButtonLaga.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonLaga.TabIndex = 4;
+            this.radioButtonLaga.TabStop = true;
+            this.radioButtonLaga.Text = "Laga";
+            this.radioButtonLaga.UseVisualStyleBackColor = true;
+            this.radioButtonLaga.CheckedChanged += new System.EventHandler(this.radioButtonLaga_CheckedChanged);
+            // 
+            // radioButtonHyra
+            // 
+            this.radioButtonHyra.AutoSize = true;
+            this.radioButtonHyra.Location = new System.Drawing.Point(13, 110);
+            this.radioButtonHyra.Name = "radioButtonHyra";
+            this.radioButtonHyra.Size = new System.Drawing.Size(47, 17);
+            this.radioButtonHyra.TabIndex = 3;
+            this.radioButtonHyra.TabStop = true;
+            this.radioButtonHyra.Text = "Hyra";
+            this.radioButtonHyra.UseVisualStyleBackColor = true;
+            this.radioButtonHyra.CheckedChanged += new System.EventHandler(this.radioButtonHyra_CheckedChanged);
+            // 
             // richTextBoxMeddelanden1
             // 
             this.richTextBoxMeddelanden1.AcceptsTab = true;
@@ -359,7 +383,7 @@
             this.label2.Location = new System.Drawing.Point(201, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(198, 13);
-            this.label2.TabIndex = 27;
+            this.label2.TabIndex = 15;
             this.label2.Text = "Jag ångrade mig, jag har redan ett konto";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
@@ -383,31 +407,7 @@
             this.textBoxNamn.Location = new System.Drawing.Point(12, 29);
             this.textBoxNamn.Name = "textBoxNamn";
             this.textBoxNamn.Size = new System.Drawing.Size(172, 26);
-            this.textBoxNamn.TabIndex = 3;
-            // 
-            // radioButtonHyra
-            // 
-            this.radioButtonHyra.AutoSize = true;
-            this.radioButtonHyra.Location = new System.Drawing.Point(13, 110);
-            this.radioButtonHyra.Name = "radioButtonHyra";
-            this.radioButtonHyra.Size = new System.Drawing.Size(47, 17);
-            this.radioButtonHyra.TabIndex = 26;
-            this.radioButtonHyra.TabStop = true;
-            this.radioButtonHyra.Text = "Hyra";
-            this.radioButtonHyra.UseVisualStyleBackColor = true;
-            this.radioButtonHyra.CheckedChanged += new System.EventHandler(this.radioButtonHyra_CheckedChanged);
-            // 
-            // radioButtonLaga
-            // 
-            this.radioButtonLaga.AutoSize = true;
-            this.radioButtonLaga.Location = new System.Drawing.Point(92, 110);
-            this.radioButtonLaga.Name = "radioButtonLaga";
-            this.radioButtonLaga.Size = new System.Drawing.Size(49, 17);
-            this.radioButtonLaga.TabIndex = 27;
-            this.radioButtonLaga.TabStop = true;
-            this.radioButtonLaga.Text = "Laga";
-            this.radioButtonLaga.UseVisualStyleBackColor = true;
-            this.radioButtonLaga.CheckedChanged += new System.EventHandler(this.radioButtonLaga_CheckedChanged);
+            this.textBoxNamn.TabIndex = 7;
             // 
             // FormInmatning
             // 
