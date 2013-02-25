@@ -38,13 +38,16 @@ namespace Bokningssystem
         }
         public void DoljHyr()
         {
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
-                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
-                { 
-                    checkedListBox1.SelectedItem = CheckState.Unchecked;
-                }
-            panelTider.Hide();
-            buttonHyr.Hide();
+          for (int i = 0; i < checkedListBox1.Items.Count; i++)
+               if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+               {
+                   checkedListBox1.SelectedItem = CheckState.Unchecked;
+               }
+           checkedListBox1.ClearSelected();
+           maskedTextBoxDagar.Text = "";
+           panelTider.Hide();
+           buttonHyr.Hide();
+           monthCalendar1.SelectionStart = DateTime.Today;
         }
 
         /// <summary>
@@ -66,9 +69,10 @@ namespace Bokningssystem
 
             // Fixar så man bara kan välja ett datum i monthCalendar1.
             monthCalendar1.MaxSelectionCount = 1;
+            
             DoljAndringar();
-            panelTider.Hide();
-            //buttonHyr.Hide();
+            DoljHyr();
+            fyllHyrningar();
 
             richTextBoxBokningMeny.Text = "Tryck på Ny hyrning för att göra en ny hyrning.\nTryck på Mina hyrningar för att se vad du har hyrt och när.";
             if (DEBUG)
@@ -94,15 +98,14 @@ namespace Bokningssystem
             {
                 case "NyHyr":
                     tabControl1.SelectTab(tabPageNyHyr);
-                    monthCalendar1.SelectionStart = DateTime.Today;
                     DoljHyr();
                     richTextBoxMeddelandenHyra.Text = "Du måste välj datum och hur många dagar du vill hyra ett fordon innan du kan hyra.";
                     break;
 
                 case "MinHyr":
+                    tableLayoutPanelHyrning.Controls.Clear();
                     labelHyrningMeddelande.Text = "";
                     tabControl1.SelectTab(tabPageMinHyr);
-                    tableLayoutPanelHyrning.Controls.Clear();
                     fyllHyrningar();
                     break;
 
@@ -396,8 +399,12 @@ namespace Bokningssystem
             slutdag = slutdag.Substring(0, slutdag.IndexOf(' '));
 
             buttonHyr.Show();
-            string meddelande ="\n" + dag + " och " + slutdag;
-            richTextBoxMeddelandenHyra.Text += meddelande;
+            
+            if (DEBUG)
+            {
+                string meddelande = "\n" + dag + " och " + slutdag;
+                richTextBoxMeddelandenHyra.Text += meddelande;
+            }
         }
 
         /// <summary>
@@ -409,17 +416,19 @@ namespace Bokningssystem
         {
             Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
             input inmatning = new input();
+            string valdaFordon = string.Empty;
 
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
                 {
                     string fordon = checkedListBox1.Items[i] as string;
+                    valdaFordon += ", "+fordon;
                     //string objectText = string.Format("{0}, \n", fordon);
 
                     if (hyrning.hyra(this.anvandare, dag, slutdag, fordon))
                     {
                         richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
-                        richTextBoxMeddelandenHyra.Text += "\nDu har nu hyrt;\n" + fordon + "\nOch startdagen:" + dag + "\nSlutdagen:" + slutdag;
+                        richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt;\n" + valdaFordon.Substring(2) + "\nOch startdagen: " + dag + "\nSlutdagen: " + slutdag;
                     }
                     else
                     {
@@ -434,6 +443,7 @@ namespace Bokningssystem
                         }
                     }
                 }
+            DoljHyr();
         }
 
         /// <summary>
@@ -443,15 +453,18 @@ namespace Bokningssystem
         /// <param name="e"></param>
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string hyrFordon = "Detta är de fordon du vill hyra:\n";
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
-                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
-                {
-                    string vald = checkedListBox1.Items[i] as string;
-                    string objectText = string.Format("{0}, \n", vald);
-                    hyrFordon += objectText;
-                }
-            richTextBoxMeddelandenHyra.Text = hyrFordon;
+            if (DEBUG)
+            {
+                string hyrFordon = "Detta är de fordon du vill hyra:\n";
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                    if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                    {
+                        string vald = checkedListBox1.Items[i] as string;
+                        string objectText = string.Format("{0}, \n", vald);
+                        hyrFordon += objectText;
+                    }
+                richTextBoxMeddelandenHyra.Text = hyrFordon;
+            }
         }
 
         /// <summary>
@@ -486,7 +499,6 @@ namespace Bokningssystem
                                 labelHyrning[o].Name = "Tabort_" + hyrningsString[0];
                                 labelHyrning[o].Click += new System.EventHandler(this.TaBort);
                             }
-
                         labelHyrning[o].Text = hyrningsString[o];
                         this.tableLayoutPanelHyrning.Controls.Add(labelHyrning[o]);
                     }

@@ -47,7 +47,6 @@
             this.labelDagar = new System.Windows.Forms.Label();
             this.buttonDagar = new System.Windows.Forms.Button();
             this.tabPageMinHyr = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
             this.richTextBoxMinHyr = new System.Windows.Forms.RichTextBox();
             this.buttonMeny = new System.Windows.Forms.Button();
             this.panelHyrning = new System.Windows.Forms.Panel();
@@ -311,7 +310,7 @@
             // 
             // tabPageMinHyr
             // 
-            this.tabPageMinHyr.Controls.Add(this.label5);
+            this.tabPageMinHyr.BackColor = System.Drawing.SystemColors.Control;
             this.tabPageMinHyr.Controls.Add(this.richTextBoxMinHyr);
             this.tabPageMinHyr.Controls.Add(this.buttonMeny);
             this.tabPageMinHyr.Controls.Add(this.panelHyrning);
@@ -322,16 +321,6 @@
             this.tabPageMinHyr.Size = new System.Drawing.Size(590, 410);
             this.tabPageMinHyr.TabIndex = 2;
             this.tabPageMinHyr.Text = "Mina hyrningar";
-            this.tabPageMinHyr.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(511, 148);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "label5";
             // 
             // richTextBoxMinHyr
             // 
@@ -405,6 +394,7 @@
             // 
             // tabPageProfil
             // 
+            this.tabPageProfil.BackColor = System.Drawing.SystemColors.Control;
             this.tabPageProfil.Controls.Add(this.button2);
             this.tabPageProfil.Controls.Add(this.panelRed);
             this.tabPageProfil.Controls.Add(this.label7);
@@ -417,7 +407,6 @@
             this.tabPageProfil.Size = new System.Drawing.Size(590, 410);
             this.tabPageProfil.TabIndex = 3;
             this.tabPageProfil.Text = "Profil";
-            this.tabPageProfil.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -786,6 +775,5 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox richTextBoxMinHyr;
-        private System.Windows.Forms.Label label5;
     }
 }
