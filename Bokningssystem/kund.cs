@@ -10,7 +10,6 @@ namespace Bokningssystem
         public bool DEBUG = Properties.Settings.Default.Debug;
 
         private string email, fnamn, enamn, losenord, tfn, adress;
-        static bool isAdmin;
         private string[] tmpMsgs;
         private SqlCeDatabase db = null;
 
@@ -26,7 +25,7 @@ namespace Bokningssystem
             this.db = new SqlCeDatabase();
 
             List<string> errorMsg = new List<string>();
-            string query = "Select email, fnamn, enamn, losen ,isAdmin, tfn, adress from Kunder where email='?x?'";
+            string query = "Select email, fnamn, enamn, losen, tfn, adress from Kunder where email='?x?'";
             string[] args = { email };
             if (db.query(query, args) != 0)
                 errorMsg.AddRange(db.GetTmpMsgs());
@@ -55,15 +54,13 @@ namespace Bokningssystem
                 else
                     errorMsg.Add("Fältet för lösenordet är tomt");
                 
-                isAdmin = !resultat[4].Equals("0");
-                
-                if (resultat[5] != string.Empty)
-                    this.tfn = resultat[5];
+                if (resultat[4] != string.Empty)
+                    this.tfn = resultat[4];
                 else
                     errorMsg.Add("Fältet för telefonnummret är tomt");
 
-                if (resultat[6] != string.Empty)
-                    this.adress = resultat[6];
+                if (resultat[5] != string.Empty)
+                    this.adress = resultat[5];
                 else
                     errorMsg.Add("Fältet för adressen är tomt");
             }
