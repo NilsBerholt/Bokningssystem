@@ -80,6 +80,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
+            this.tabPageOmOss = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.richTextBoxOmOss = new System.Windows.Forms.RichTextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyHyr.SuspendLayout();
@@ -93,6 +107,8 @@
             this.tabPageProfil.SuspendLayout();
             this.panelRed.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tabPageOmOss.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -101,6 +117,7 @@
             this.tabControl1.Controls.Add(this.tabPageNyHyr);
             this.tabControl1.Controls.Add(this.tabPageMinHyr);
             this.tabControl1.Controls.Add(this.tabPageProfil);
+            this.tabControl1.Controls.Add(this.tabPageOmOss);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -689,6 +706,157 @@
             this.labelTfn.TabIndex = 3;
             this.labelTfn.Text = "label10";
             // 
+            // tabPageOmOss
+            // 
+            this.tabPageOmOss.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageOmOss.Controls.Add(this.label18);
+            this.tabPageOmOss.Controls.Add(this.richTextBoxOmOss);
+            this.tabPageOmOss.Controls.Add(this.tableLayoutPanel2);
+            this.tabPageOmOss.Location = new System.Drawing.Point(4, 22);
+            this.tabPageOmOss.Name = "tabPageOmOss";
+            this.tabPageOmOss.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOmOss.Size = new System.Drawing.Size(590, 410);
+            this.tabPageOmOss.TabIndex = 4;
+            this.tabPageOmOss.Text = "Om Oss";
+            this.tabPageOmOss.Click += new System.EventHandler(this.bytaTabPage);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.82079F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.17921F));
+            this.tableLayoutPanel2.Controls.Add(this.label17, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.label16, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label15, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label10, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label12, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label13, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label14, 1, 1);
+            this.tableLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(26, 73);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(279, 295);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 18);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Företaget";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 59);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(97, 18);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Epost-adress";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 118);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(116, 18);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Telefon nummer";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 177);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 18);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Adress";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 236);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(72, 18);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Öppetider";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(142, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 18);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "label13";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(142, 59);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(54, 18);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "label14";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(142, 118);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(54, 18);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "label15";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(142, 177);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(54, 18);
+            this.label16.TabIndex = 17;
+            this.label16.Text = "label16";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(142, 236);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(54, 18);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "label17";
+            // 
+            // richTextBoxOmOss
+            // 
+            this.richTextBoxOmOss.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBoxOmOss.Location = new System.Drawing.Point(357, 73);
+            this.richTextBoxOmOss.Name = "richTextBoxOmOss";
+            this.richTextBoxOmOss.Size = new System.Drawing.Size(197, 295);
+            this.richTextBoxOmOss.TabIndex = 1;
+            this.richTextBoxOmOss.Text = "";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(239, 13);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(79, 24);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Om Oss";
+            // 
             // FormHyra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -696,7 +864,7 @@
             this.ClientSize = new System.Drawing.Size(708, 484);
             this.Controls.Add(this.tabControl1);
             this.Name = "FormHyra";
-            this.Text = "Form1";
+            this.Text = "Hyra";
             this.tabControl1.ResumeLayout(false);
             this.tabPageMeny.ResumeLayout(false);
             this.tabPageNyHyr.ResumeLayout(false);
@@ -717,6 +885,10 @@
             this.panelRed.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tabPageOmOss.ResumeLayout(false);
+            this.tabPageOmOss.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -775,5 +947,19 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox richTextBoxMinHyr;
+        private System.Windows.Forms.TabPage tabPageOmOss;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.RichTextBox richTextBoxOmOss;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
     }
 }

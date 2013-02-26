@@ -41,9 +41,9 @@ namespace Bokningssystem
           for (int i = 0; i < checkedListBox1.Items.Count; i++)
                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
                {
-                   checkedListBox1.SelectedItem = CheckState.Unchecked;
+                   checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
                }
-           checkedListBox1.ClearSelected();
+
            maskedTextBoxDagar.Text = "";
            panelTider.Hide();
            buttonHyr.Hide();
@@ -111,6 +111,10 @@ namespace Bokningssystem
 
                 case "Profil":
                     tabControl1.SelectTab(tabPageProfil);
+                    break;
+
+                case "OmOss":
+                    tabControl1.SelectTab(tabPageOmOss);
                     break;
 
                 case "Meny":
