@@ -14,6 +14,14 @@ namespace Bokningssystem
         private SqlCeDatabase db = null;
 
         /// <summary>
+        /// Tom konstruktör
+        /// </summary>
+        public kund()
+        {
+            this.db = new SqlCeDatabase();
+        }
+
+        /// <summary>
         /// Konstruktören för klassen kund.
         /// Använder sig av databasen med tabellen kunder och hämtar fältvärden som email, förnamn, enamn, telefonnummer
         /// och kollar om det är en administratör.

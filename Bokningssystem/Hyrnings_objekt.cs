@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Bokningssystem
 {
-    class Hyrnings_objekt
+    class hyrnings_objekt
     {
         private bool DEBUG = Properties.Settings.Default.Debug;
         private SqlCeDatabase db;
@@ -18,7 +18,7 @@ namespace Bokningssystem
         /// </summary>
         /// <param name="db">SqlCeDatabase som ska användas för databasen</param>
         /// <param name="anvandare">kunden som bokar</param>
-        public Hyrnings_objekt(SqlCeDatabase db, kund anvandare)
+        public hyrnings_objekt(SqlCeDatabase db, kund anvandare)
         {
             this.anvandare = anvandare;
             this.db = db;
@@ -54,16 +54,25 @@ namespace Bokningssystem
             }
         }
 
+        /// <summary>
+        /// Funktion som skapar en hyrning efter parametrarna, 
+        /// den bokar första lediga fordon av rätt typ till användaren under de valda dagarna.
+        /// </summary>
+        /// <param name="anvandare">Kunden som begärt hyrningen</param>
+        /// <param name="startdag">Datumet då hyrningen börjar</param>
+        /// <param name="slutdag">Datumet då hyrningen slutar</param>
+        /// <param name="fordon">Regnumret till fordonet som hyrts</param>
+        /// <returns></returns>
         public bool hyra(kund anvandare, string startdag, string slutdag, string fordon)
         {
             List<string> errorMsgs = new List<string>();
             SqlCeDatabase db = new SqlCeDatabase();
-            string agare = anvandare.GetEmail();
+            string kund = anvandare.GetEmail();
 
             string query = "INSERT INTO Hyrning " +
                "(Fordon, Startdag, Slutdag, Kund) " +
                "VALUES  ('?x?','?x?','?x?','?x?')";
-            string[] args = new string[4] { fordon, startdag, slutdag, agare  };
+            string[] args = new string[4] { fordon, startdag, slutdag, kund  };
 
             if (db.query(query, args) == 0)
             {
@@ -100,8 +109,8 @@ namespace Bokningssystem
         {
             List<string> errorMsgs = new List<string>();
             Array[] fetch;
-            string queryHamtaHyrningar = "SELECT Hyrning, Startdag, Fordon, Slutdag, Kund " +
-            "FROM Hyrning WHERE (Kund = '?x?')";
+            string queryHamtaHyrningar = "SELECT H.Startdag, H.Fordon, H.Slutdag, F.typ, F.marke, F.modell " +
+            "FROM Hyrning as H INNER JOIN HyrFordon as F on H.Fordon = F.regnr WHERE (Kund = '?x?')";
             string[] args = { this.anvandare.GetEmail() };
 
             int queryRes = this.db.query(queryHamtaHyrningar, args);

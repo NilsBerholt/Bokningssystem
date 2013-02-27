@@ -181,12 +181,14 @@ namespace Bokningssystem
         /// 
         /// För att denna metod ska kunna köras måste instansen ha egenskaperna ConnectionString vara satt och databasen måste ha ett kommando med CommandText.
         /// </summary>
-        /// <returns>Returnerar en array med 2 string-element, det första elementet är en huruvida funktionen utfördes utan problem, 1 eller 0.
-        /// Det andra elementet är eventuella felmeddelande. Om det finns fler möjliga felkällor kommer arrayen ha mer än två element, fast med samma syntax.</returns>
+        /// <returns>Returnerar en int.
+        /// 0 - Operationen utfördes utan problem
+        /// 2 - Databashanteraren försökte utföra frågan, men stötte på problem
+        /// 4 - Kommandot var inte ordentligt inställd</returns>
         public int operation()
         {
             List<string> msgs = new List<string>();
-            int returnkod = 100;
+            int returnkod = 4;
             try
             {
                 connection.Open();

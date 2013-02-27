@@ -36,6 +36,10 @@ namespace Bokningssystem
             labelBekLosen.Hide();
             buttonRedigera.Hide();
         }
+
+        /// <summary>
+        /// Funktion som tömmer checkboxen och resetar kalendern
+        /// </summary>
         public void DoljHyr()
         {
           for (int i = 0; i < checkedListBox1.Items.Count; i++)
@@ -418,7 +422,7 @@ namespace Bokningssystem
         /// <param name="e"></param>
         private void buttonHyr_Click(object sender, EventArgs e)
         {
-            Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+            hyrnings_objekt hyrning = new hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
             input inmatning = new input();
             string valdaFordon = string.Empty;
 
@@ -476,7 +480,7 @@ namespace Bokningssystem
         /// </summary>
         private void fyllHyrningar()
         {
-            Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+            hyrnings_objekt hyrning = new hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
             Array[] HyrningsResultat = hyrning.hamtaMinaHyrningar();
 
             if (HyrningsResultat.Length < 1)
@@ -525,7 +529,7 @@ namespace Bokningssystem
                 MessageBox.Show("Detta är inget id: " + namn);
             else
             {
-                Hyrnings_objekt hyrning = new Hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+                hyrnings_objekt hyrning = new hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
                 int TabortHyrning = hyrning.tabortMinaHyrningar(hyrningar);
 
                 tableLayoutPanelHyrning.Controls.Clear();

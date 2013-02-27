@@ -117,6 +117,41 @@ namespace Bokningssystem
         }
 
         /// <summary>
+        /// Denna funktion lägger till ett fordon i hyrregistret.
+        /// Den använder sig av klassen SQLCeDatabase för att ansluta till en kompakt MSSQL-server/fil.
+        /// </summary>
+        /// <param name="reg">Regnumret på fordonet</param>
+        /// <param name="modell">Fordonets modell</param>
+        /// <param name="arsmodell">Fordonets årsmodell</param>
+        /// <param name="marke">Fordonets märke</param>
+        /// <param name="typ">Typen av fordon</param>
+        /// <returns>Returnerar returnkod som int.
+        /// 0 - Operationen utfördes utan problem
+        /// </returns>
+        public int insertHyrFordon(string reg, string modell, string arsmodell, string marke, string typ)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+
+            string insertQuery = "INSERT INTO HyrFordon (regnr, typ, modell, arsmodell, marke) values ('?x?','?x?','?x?','?x?','?x?')";
+            string[] args = { reg, typ, modell, arsmodell, marke };
+
+            if (db.query(insertQuery, args) != 0)
+            {
+                this.tmpMsgs = db.GetTmpMsgs();
+                return 1;
+            }
+
+            if (db.operation() != 0)
+            {
+                this.tmpMsgs = db.GetTmpMsgs();
+                return 2;
+            }
+
+            return 0;
+
+        }
+
+        /// <summary>
         /// Hämtar alla bilar som är registrerade på kundens email och sparar dem i tmpMsgs.
         /// För att hämta arrayen med bilar kör getTmpMgsg.
         /// </summary>
@@ -150,6 +185,24 @@ namespace Bokningssystem
             }
             this.tmpMsgs = db.GetTmpMsgs();
             return 2;
+        }
+
+        /// <summary>
+        /// Funktion som ska kunna söka efter lediga fordon i specificerad typ under visst tidsinterval
+        /// </summary>
+        /// <param name="typ">Typ av fordon</param>
+        /// <param name="starttid">Starttiden för hyrningen då fordonet måste vara ledig</param>
+        /// <param name="sluttid">Sluttuden för hyrningen då fordonet kommer lämnas tillbaka, måste också vara ledig</param>
+        /// <returns>Returnerar en int
+        /// 0 - Om det finns lediga fordon
+        /// 1 - Om det inte finns några lediga fordon
+        /// 2 - Vid kommunikationsfel med databasen</returns>
+        public int kollaLedigaHyrFordon(string typ,string starttid, string sluttid)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+
+            string checkQuery = "SELECT F.regnr FROM HyrFordon AS F OUTER JOIN Hyrningar AS H on H.Fordon=F.regnr where typ='?x?'";
+            string[] args = { typ };
         }
 
         /// <summary>

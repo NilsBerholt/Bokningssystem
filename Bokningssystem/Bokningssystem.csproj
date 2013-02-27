@@ -84,7 +84,7 @@
     <Compile Include="administrator.cs" />
     <Compile Include="bil_objekt.cs" />
     <Compile Include="boknings_objekt.cs" />
-    <Compile Include="Hyrnings_objekt.cs" />
+    <Compile Include="hyrnings_objekt.cs" />
     <Compile Include="FormHyra.cs">
       <SubType>Form</SubType>
     </Compile>
