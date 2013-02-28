@@ -30,6 +30,7 @@ namespace Bokningssystem
             maskedTextBoxGamla.Text = "";
             maskedTextBoxBekLosen.Hide();
             maskedTextBoxBekLosen.Text = "";
+            label7.Text = "";
             labelNytt.Hide();
             labelGamla.Hide();
             labelBekräfta.Hide();
@@ -70,6 +71,15 @@ namespace Bokningssystem
             labelEmail.Text = anvandare.GetEmail();
             labelTfn.Text = anvandare.GetTfn();
             labelAdress.Text = anvandare.GetAdress();
+
+            // Initiera OmOss
+            label13.Text = "Företaget AB";
+            label14.Text = "Företaget@foretag.com";
+            label15.Text = "073-456 12 89";
+            label16.Text = "Foretagsgatan 1";
+            label17.Text = "08:00 - 18:00";
+
+            richTextBoxOmOss.Text = "Vi är ett företag som lagar bilar och vi kan även hyra ut bilar och släp om man behöver det.";
 
             // Fixar så man bara kan välja ett datum i monthCalendar1.
             monthCalendar1.MaxSelectionCount = 1;
@@ -125,16 +135,6 @@ namespace Bokningssystem
                     tabControl1.SelectTab(tabPageMeny);
                     tableLayoutPanelHyrning.Controls.Clear();
                     break;
-
-                case "1":
-                    tabControl1.SelectTab(tabPageMeny);
-                    DoljHyr();
-                    break;
-
-                case "2":
-                    tabControl1.SelectTab(tabPageMeny);
-                    break;
-                    
 
                 default:
                     if (DEBUG)

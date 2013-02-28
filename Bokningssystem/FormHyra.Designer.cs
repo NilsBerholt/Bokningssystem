@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMeny = new System.Windows.Forms.TabPage();
+            this.buttonOmOss = new System.Windows.Forms.Button();
             this.buttonProfil = new System.Windows.Forms.Button();
             this.richTextBoxBokningMeny = new System.Windows.Forms.RichTextBox();
             this.buttonMinHyr = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.buttonHyr = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.richTextBoxMeddelandenHyra = new System.Windows.Forms.RichTextBox();
             this.panelTider = new System.Windows.Forms.Panel();
             this.maskedTextBoxDagar = new System.Windows.Forms.MaskedTextBox();
@@ -54,7 +54,6 @@
             this.tableLayoutPanelHyrning = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPageProfil = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
             this.panelRed = new System.Windows.Forms.Panel();
             this.labelBekLosen = new System.Windows.Forms.Label();
             this.maskedTextBoxBekLosen = new System.Windows.Forms.MaskedTextBox();
@@ -81,19 +80,19 @@
             this.labelAdress = new System.Windows.Forms.Label();
             this.labelTfn = new System.Windows.Forms.Label();
             this.tabPageOmOss = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.richTextBoxOmOss = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.richTextBoxOmOss = new System.Windows.Forms.RichTextBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
             this.tabPageNyHyr.SuspendLayout();
@@ -128,6 +127,7 @@
             // tabPageMeny
             // 
             this.tabPageMeny.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageMeny.Controls.Add(this.buttonOmOss);
             this.tabPageMeny.Controls.Add(this.buttonProfil);
             this.tabPageMeny.Controls.Add(this.richTextBoxBokningMeny);
             this.tabPageMeny.Controls.Add(this.buttonMinHyr);
@@ -138,6 +138,17 @@
             this.tabPageMeny.Size = new System.Drawing.Size(590, 410);
             this.tabPageMeny.TabIndex = 0;
             this.tabPageMeny.Text = "Meny";
+            // 
+            // buttonOmOss
+            // 
+            this.buttonOmOss.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOmOss.Location = new System.Drawing.Point(461, 210);
+            this.buttonOmOss.Name = "buttonOmOss";
+            this.buttonOmOss.Size = new System.Drawing.Size(105, 29);
+            this.buttonOmOss.TabIndex = 33;
+            this.buttonOmOss.Text = "Om Oss";
+            this.buttonOmOss.UseVisualStyleBackColor = true;
+            this.buttonOmOss.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // buttonProfil
             // 
@@ -210,7 +221,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.richTextBoxMeddelandenHyra);
             this.splitContainer1.Panel2.Controls.Add(this.panelTider);
             this.splitContainer1.Size = new System.Drawing.Size(584, 394);
@@ -262,16 +272,6 @@
             this.label2.Size = new System.Drawing.Size(61, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Datum:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(240, 368);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Menyn";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // richTextBoxMeddelandenHyra
             // 
@@ -329,7 +329,6 @@
             // 
             this.tabPageMinHyr.BackColor = System.Drawing.SystemColors.Control;
             this.tabPageMinHyr.Controls.Add(this.richTextBoxMinHyr);
-            this.tabPageMinHyr.Controls.Add(this.buttonMeny);
             this.tabPageMinHyr.Controls.Add(this.panelHyrning);
             this.tabPageMinHyr.Controls.Add(this.label8);
             this.tabPageMinHyr.Location = new System.Drawing.Point(4, 22);
@@ -354,7 +353,7 @@
             // 
             // buttonMeny
             // 
-            this.buttonMeny.Location = new System.Drawing.Point(490, 380);
+            this.buttonMeny.Location = new System.Drawing.Point(616, 421);
             this.buttonMeny.Name = "buttonMeny";
             this.buttonMeny.Size = new System.Drawing.Size(75, 23);
             this.buttonMeny.TabIndex = 6;
@@ -412,7 +411,6 @@
             // tabPageProfil
             // 
             this.tabPageProfil.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPageProfil.Controls.Add(this.button2);
             this.tabPageProfil.Controls.Add(this.panelRed);
             this.tabPageProfil.Controls.Add(this.label7);
             this.tabPageProfil.Controls.Add(this.labelEditLosen);
@@ -424,16 +422,6 @@
             this.tabPageProfil.Size = new System.Drawing.Size(590, 410);
             this.tabPageProfil.TabIndex = 3;
             this.tabPageProfil.Text = "Profil";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(509, 381);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "Menyn";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // panelRed
             // 
@@ -720,6 +708,26 @@
             this.tabPageOmOss.Text = "Om Oss";
             this.tabPageOmOss.Click += new System.EventHandler(this.bytaTabPage);
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(239, 13);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(79, 24);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Om Oss";
+            // 
+            // richTextBoxOmOss
+            // 
+            this.richTextBoxOmOss.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBoxOmOss.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxOmOss.Location = new System.Drawing.Point(357, 73);
+            this.richTextBoxOmOss.Name = "richTextBoxOmOss";
+            this.richTextBoxOmOss.Size = new System.Drawing.Size(197, 295);
+            this.richTextBoxOmOss.TabIndex = 1;
+            this.richTextBoxOmOss.Text = "";
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
@@ -747,24 +755,32 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(279, 295);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // label5
+            // label17
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 18);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Företaget";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(142, 236);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(54, 18);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "label17";
             // 
-            // label9
+            // label16
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 59);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(97, 18);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Epost-adress";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(142, 177);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(54, 18);
+            this.label16.TabIndex = 17;
+            this.label16.Text = "label16";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(142, 118);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(54, 18);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "label15";
             // 
             // label10
             // 
@@ -793,6 +809,25 @@
             this.label12.TabIndex = 9;
             this.label12.Text = "Öppetider";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 18);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Företaget";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 59);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(97, 18);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Epost-adress";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -811,58 +846,13 @@
             this.label14.TabIndex = 13;
             this.label14.Text = "label14";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(142, 118);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(54, 18);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "label15";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(142, 177);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 18);
-            this.label16.TabIndex = 17;
-            this.label16.Text = "label16";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(142, 236);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(54, 18);
-            this.label17.TabIndex = 19;
-            this.label17.Text = "label17";
-            // 
-            // richTextBoxOmOss
-            // 
-            this.richTextBoxOmOss.BackColor = System.Drawing.SystemColors.Control;
-            this.richTextBoxOmOss.Location = new System.Drawing.Point(357, 73);
-            this.richTextBoxOmOss.Name = "richTextBoxOmOss";
-            this.richTextBoxOmOss.Size = new System.Drawing.Size(197, 295);
-            this.richTextBoxOmOss.TabIndex = 1;
-            this.richTextBoxOmOss.Text = "";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(239, 13);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(79, 24);
-            this.label18.TabIndex = 3;
-            this.label18.Text = "Om Oss";
-            // 
             // FormHyra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 484);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.buttonMeny);
             this.Name = "FormHyra";
             this.Text = "Hyra";
             this.tabControl1.ResumeLayout(false);
@@ -944,8 +934,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelHyrning;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonMeny;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RichTextBox richTextBoxMinHyr;
         private System.Windows.Forms.TabPage tabPageOmOss;
         private System.Windows.Forms.Label label18;
@@ -961,5 +949,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button buttonOmOss;
     }
 }
