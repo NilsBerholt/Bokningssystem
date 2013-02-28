@@ -192,8 +192,7 @@ namespace Bokningssystem
         private void bytaTabPage(object sender, EventArgs e)
         {
             Button tabButton = sender as Button;
-            string namn = tabButton.Name;
-            namn = namn.Substring(6);
+            string namn = tabButton.Name.Substring(6);
 
             switch (namn)
             {
@@ -205,20 +204,34 @@ namespace Bokningssystem
                     break;
 
                 case "MinBok":
-                    labelBilarMeddelande.Text = "";
                     labelBokningarMeddelande.Text = "";
                     tabControl1.SelectTab(tabPageMinBok);
-                    tableLayoutPanelBilar.Controls.Clear();
                     tableLayoutPanelBokningar.Controls.Clear();
+                    this.fyllBokningar_bilar();
+                    break;
+
+                case "MinFordon":
+                    labelBilarMeddelande.Text = "";
+                    tableLayoutPanelBilar.Controls.Clear();
+                    tabControl1.SelectTab(tabPageMinFordon);
                     this.fyllBokningar_bilar();
                     break;
 
                 case "Profil":
                     tabControl1.SelectTab(tabPageProfil);
+                    DoljAndringar();
                     break;
 
                 case "OmOss":
                     tabControl1.SelectTab(tabPageOmOss);
+                    break;
+
+                case "Meny":
+                    tabControl1.SelectTab(tabPageMeny);
+                    tableLayoutPanelBilar.Controls.Clear();
+                    tableLayoutPanelBokningar.Controls.Clear();
+                    DoljAndringar();
+                    DoljBokningar();
                     break;
 
                 default:
@@ -610,14 +623,44 @@ namespace Bokningssystem
                 for (int i = 0; i < length; i++)
                 {
                     string[] bokningsString = bokningsResultat[i] as string[];
-                    Label labelBokningDatum = new Label(), labelBokningTid = new Label(), labelBokningFordon = new Label();
-                    Label[] labelBokning = { labelBokningDatum, labelBokningTid, labelBokningFordon };
-                    for (int o = 0; o < 3; o++)
+                    Label  labelBokningsID = new Label(), labelBokningDatum = new Label(), labelBokningTid = new Label(), labelBokningFordon = new Label();
+                    Label[] labelBokning = { labelBokningsID, labelBokningDatum, labelBokningTid, labelBokningFordon };
+                    for (int o = 0; o < 4; o++)
                     {
+                        if (o != 0)
+                            if (o % 3 == 0)
+                            {
+                                bokningsString[o] = "x";
+                                labelBokning[o].Name = "Tabort_" + bokningsString[0];
+                                labelBokning[o].Click += new System.EventHandler(this.TaBort);
+                            }
                         labelBokning[o].Text = bokningsString[o];
                         this.tableLayoutPanelBokningar.Controls.Add(labelBokning[o]);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// En funktion som tar bort en hyrning, använder namnet på den label som kallade funktionen.
+        /// Kräver att labelns namn är Tabort_ID, där ID är ett nummer som stämmer överens med identiteten
+        /// </summary>
+        /// <param name="sender">Den labeln som kallade funktionen</param>
+        /// <param name="e">Oanvänd parameter för denna funktion, följer med ClickOnEvent</param>
+        private void TaBort(object sender, EventArgs e)
+        {
+            Label Tabort = sender as Label;
+            string namn = Tabort.Name.Substring(7);
+            int bokning;
+            if (!int.TryParse(namn, out bokning))
+                MessageBox.Show("Detta är inget id: " + namn);
+            else
+            {
+                boknings_objekt tabort = new boknings_objekt(new SqlCeDatabase(), this.anvandare);
+                int TabortHyrning = tabort.tabortMinaBokningar(bokning);
+
+                tableLayoutPanelBokningar.Controls.Clear();
+                fyllBokningar_bilar();
             }
         }
     }

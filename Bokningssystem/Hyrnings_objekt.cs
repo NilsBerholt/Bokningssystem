@@ -126,11 +126,6 @@ namespace Bokningssystem
             return res;
         }
 
-        /// <summary>
-        /// Hämtar hyrningarna för kunden som är registrerad i Hyrnings_objektetet.
-        /// Hämtar värdena startdatum,  i den ordningen
-        /// </summary>
-        /// <returns>Returnerar en string[] med alla träffar, om det inte fanns några träffar skickar den </returns>
         public int tabortMinaHyrningar(int hyrning)
         {
             string Hyrning = Convert.ToString(hyrning);

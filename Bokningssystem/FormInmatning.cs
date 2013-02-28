@@ -65,7 +65,6 @@ namespace Bokningssystem
                     kund anvandare = new kund(textBoxEmailLogin.Text, textBoxLosenLogin.Text);
                     FormBoka minBokning = new FormBoka(anvandare);
                     FormHyra minHyrning = new FormHyra(anvandare);
-                    minBokning.Enabled = true;
                     this.Hide();
                     if (radioButtonLaga.Checked)
                         minBokning.ShowDialog();

@@ -15,7 +15,8 @@ namespace Bokningssystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormInmatning());
+            kund användare = new kund("jassob@live.se","jonsson");
+            Application.Run(new FormBoka(användare));
         }
     }
 }

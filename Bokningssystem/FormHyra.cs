@@ -105,8 +105,7 @@ namespace Bokningssystem
         private void bytaTabPage(object sender, EventArgs e)
         {
             Button tabButton = sender as Button;
-            string namn = tabButton.Name;
-            namn = namn.Substring(6);
+            string namn = tabButton.Name.Substring(6);
 
             switch (namn)
             {

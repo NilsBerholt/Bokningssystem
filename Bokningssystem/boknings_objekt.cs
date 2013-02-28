@@ -180,7 +180,7 @@ namespace Bokningssystem
             string email = this.anvandare.GetEmail();
             List<string> errorMsgs = new List<string>();
             Array[] fetch;
-            string queryHamtaBokningar = "SELECT B.datum, B.bil, F.modell, F.arsmodell, F.marke " +
+            string queryHamtaBokningar = "SELECT B.id B.datum, B.bil, F.modell, F.arsmodell, F.marke " +
             "FROM Bokning AS B INNER JOIN Fordon AS F ON B.bil = F.reg WHERE (B.email = '?x?')";
             string[] args = { email };
 
@@ -195,6 +195,37 @@ namespace Bokningssystem
             this.tmpMsgs = errorMsgs.ToArray();
             Array[] res = { };
             return res;
+        }
+        
+        public int tabortMinaBokningar(int bokning)
+        {
+            string Bokning = Convert.ToString(bokning);
+            List<string> errorMsgs = new List<string>();
+            //Array[] fetch;
+            string queryTabortBokningar = "DELETE " +
+            "FROM Bokning WHERE (Bokning = '?x?')";
+            string[] args = { Bokning };
+
+            int queryRes = this.db.query(queryTabortBokningar, args);
+            if (queryRes == 0)
+            {
+                if (db.operation() == 0)
+                {
+                    int resultat = 0;
+                    return resultat;
+                }
+                else
+                {
+                    return db.operation();
+                }
+            }
+            else
+                return db.query(queryTabortBokningar, args);
+           /* errorMsgs.AddRange(db.GetTmpMsgs());
+            this.tmpMsgs = errorMsgs.ToArray();
+            Array[] res = { };
+            return res;
+            */
         }
     }
 }

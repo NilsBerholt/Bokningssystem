@@ -197,13 +197,13 @@ namespace Bokningssystem
         /// 0 - Om det finns lediga fordon
         /// 1 - Om det inte finns några lediga fordon
         /// 2 - Vid kommunikationsfel med databasen</returns>
-        public int kollaLedigaHyrFordon(string typ,string starttid, string sluttid)
+      /*  public int kollaLedigaHyrFordon(string typ,string starttid, string sluttid)
         {
             SqlCeDatabase db = new SqlCeDatabase();
 
             string checkQuery = "SELECT F.regnr FROM HyrFordon AS F OUTER JOIN Hyrningar AS H on H.Fordon=F.regnr where typ='?x?'";
             string[] args = { typ };
-        }
+        }*/
 
         /// <summary>
         /// KollaKundsBilar: Kollar efter kunders bilar och returnerar bara regnumret
