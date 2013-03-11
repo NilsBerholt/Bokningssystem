@@ -65,7 +65,7 @@
             // 
             // buttonDebug
             // 
-            this.buttonDebug.Location = new System.Drawing.Point(0, 0);
+            this.buttonDebug.Location = new System.Drawing.Point(249, 9);
             this.buttonDebug.Name = "buttonDebug";
             this.buttonDebug.Size = new System.Drawing.Size(75, 23);
             this.buttonDebug.TabIndex = 16;
@@ -85,10 +85,9 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 6);
+            this.label1.Location = new System.Drawing.Point(20, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 1;
@@ -96,7 +95,7 @@
             // 
             // buttonLogga
             // 
-            this.buttonLogga.Location = new System.Drawing.Point(6, 133);
+            this.buttonLogga.Location = new System.Drawing.Point(25, 133);
             this.buttonLogga.Name = "buttonLogga";
             this.buttonLogga.Size = new System.Drawing.Size(75, 23);
             this.buttonLogga.TabIndex = 5;
@@ -106,46 +105,41 @@
             // 
             // textBoxPersnr
             // 
-            this.textBoxPersnr.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxPersnr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPersnr.Location = new System.Drawing.Point(12, 237);
+            this.textBoxPersnr.Location = new System.Drawing.Point(20, 240);
             this.textBoxPersnr.Name = "textBoxPersnr";
             this.textBoxPersnr.Size = new System.Drawing.Size(172, 26);
             this.textBoxPersnr.TabIndex = 11;
             // 
             // textBoxAdress
             // 
-            this.textBoxAdress.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxAdress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAdress.Location = new System.Drawing.Point(12, 185);
+            this.textBoxAdress.Location = new System.Drawing.Point(20, 188);
             this.textBoxAdress.Name = "textBoxAdress";
             this.textBoxAdress.Size = new System.Drawing.Size(172, 26);
             this.textBoxAdress.TabIndex = 10;
             // 
             // textBoxTelefon
             // 
-            this.textBoxTelefon.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxTelefon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTelefon.Location = new System.Drawing.Point(12, 133);
+            this.textBoxTelefon.Location = new System.Drawing.Point(20, 136);
             this.textBoxTelefon.Name = "textBoxTelefon";
             this.textBoxTelefon.Size = new System.Drawing.Size(172, 26);
             this.textBoxTelefon.TabIndex = 9;
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmail.Location = new System.Drawing.Point(12, 81);
+            this.textBoxEmail.Location = new System.Drawing.Point(20, 84);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(172, 26);
             this.textBoxEmail.TabIndex = 8;
             // 
             // labelPersnr
             // 
-            this.labelPersnr.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelPersnr.AutoSize = true;
             this.labelPersnr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPersnr.Location = new System.Drawing.Point(12, 214);
+            this.labelPersnr.Location = new System.Drawing.Point(20, 217);
             this.labelPersnr.Name = "labelPersnr";
             this.labelPersnr.Size = new System.Drawing.Size(121, 20);
             this.labelPersnr.TabIndex = 20;
@@ -153,10 +147,9 @@
             // 
             // labelAdress
             // 
-            this.labelAdress.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAdress.AutoSize = true;
             this.labelAdress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdress.Location = new System.Drawing.Point(12, 162);
+            this.labelAdress.Location = new System.Drawing.Point(20, 165);
             this.labelAdress.Name = "labelAdress";
             this.labelAdress.Size = new System.Drawing.Size(63, 20);
             this.labelAdress.TabIndex = 19;
@@ -164,10 +157,9 @@
             // 
             // labelTfn
             // 
-            this.labelTfn.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelTfn.AutoSize = true;
             this.labelTfn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTfn.Location = new System.Drawing.Point(12, 110);
+            this.labelTfn.Location = new System.Drawing.Point(20, 113);
             this.labelTfn.Name = "labelTfn";
             this.labelTfn.Size = new System.Drawing.Size(66, 20);
             this.labelTfn.TabIndex = 18;
@@ -175,10 +167,9 @@
             // 
             // labelEmail
             // 
-            this.labelEmail.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelEmail.AutoSize = true;
             this.labelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmail.Location = new System.Drawing.Point(12, 58);
+            this.labelEmail.Location = new System.Drawing.Point(20, 61);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(105, 20);
             this.labelEmail.TabIndex = 17;
@@ -227,10 +218,9 @@
             // 
             // labelLosen
             // 
-            this.labelLosen.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelLosen.AutoSize = true;
             this.labelLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLosen.Location = new System.Drawing.Point(12, 266);
+            this.labelLosen.Location = new System.Drawing.Point(20, 269);
             this.labelLosen.Name = "labelLosen";
             this.labelLosen.Size = new System.Drawing.Size(80, 20);
             this.labelLosen.TabIndex = 22;
@@ -238,10 +228,9 @@
             // 
             // label
             // 
-            this.label.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(12, 318);
+            this.label.Location = new System.Drawing.Point(20, 321);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(139, 20);
             this.label.TabIndex = 22;
@@ -249,9 +238,8 @@
             // 
             // textBoxLosenBek
             // 
-            this.textBoxLosenBek.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxLosenBek.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLosenBek.Location = new System.Drawing.Point(12, 341);
+            this.textBoxLosenBek.Location = new System.Drawing.Point(20, 344);
             this.textBoxLosenBek.Name = "textBoxLosenBek";
             this.textBoxLosenBek.Size = new System.Drawing.Size(172, 26);
             this.textBoxLosenBek.TabIndex = 13;
@@ -259,9 +247,8 @@
             // 
             // textBoxLosen
             // 
-            this.textBoxLosen.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxLosen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLosen.Location = new System.Drawing.Point(12, 289);
+            this.textBoxLosen.Location = new System.Drawing.Point(20, 292);
             this.textBoxLosen.Name = "textBoxLosen";
             this.textBoxLosen.Size = new System.Drawing.Size(172, 26);
             this.textBoxLosen.TabIndex = 12;
@@ -269,8 +256,8 @@
             // 
             // buttonRegistrera
             // 
-            this.buttonRegistrera.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.buttonRegistrera.Location = new System.Drawing.Point(210, 31);
+            this.buttonRegistrera.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRegistrera.Location = new System.Drawing.Point(382, 344);
             this.buttonRegistrera.Name = "buttonRegistrera";
             this.buttonRegistrera.Size = new System.Drawing.Size(75, 23);
             this.buttonRegistrera.TabIndex = 14;
@@ -283,7 +270,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label6.Location = new System.Drawing.Point(3, 159);
+            this.label6.Location = new System.Drawing.Point(143, 138);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 13);
             this.label6.TabIndex = 6;
@@ -334,15 +321,17 @@
             this.splitContainer1.Panel2.Controls.Add(this.labelTfn);
             this.splitContainer1.Panel2.Controls.Add(this.buttonVisa);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(619, 376);
+            this.splitContainer1.Size = new System.Drawing.Size(655, 379);
             this.splitContainer1.SplitterDistance = 185;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 25;
             // 
             // radioButtonLaga
             // 
+            this.radioButtonLaga.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonLaga.AutoSize = true;
-            this.radioButtonLaga.Location = new System.Drawing.Point(92, 110);
+            this.radioButtonLaga.Location = new System.Drawing.Point(176, 110);
             this.radioButtonLaga.Name = "radioButtonLaga";
             this.radioButtonLaga.Size = new System.Drawing.Size(49, 17);
             this.radioButtonLaga.TabIndex = 4;
@@ -353,8 +342,10 @@
             // 
             // radioButtonHyra
             // 
+            this.radioButtonHyra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonHyra.AutoSize = true;
-            this.radioButtonHyra.Location = new System.Drawing.Point(13, 110);
+            this.radioButtonHyra.Location = new System.Drawing.Point(53, 110);
             this.radioButtonHyra.Name = "radioButtonHyra";
             this.radioButtonHyra.Size = new System.Drawing.Size(47, 17);
             this.radioButtonHyra.TabIndex = 3;
@@ -366,21 +357,23 @@
             // richTextBoxMeddelanden1
             // 
             this.richTextBoxMeddelanden1.AcceptsTab = true;
-            this.richTextBoxMeddelanden1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.richTextBoxMeddelanden1.Location = new System.Drawing.Point(7, 268);
+            this.richTextBoxMeddelanden1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.richTextBoxMeddelanden1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxMeddelanden1.Location = new System.Drawing.Point(10, 162);
             this.richTextBoxMeddelanden1.Name = "richTextBoxMeddelanden1";
             this.richTextBoxMeddelanden1.ReadOnly = true;
-            this.richTextBoxMeddelanden1.Size = new System.Drawing.Size(168, 99);
+            this.richTextBoxMeddelanden1.Size = new System.Drawing.Size(172, 99);
             this.richTextBoxMeddelanden1.TabIndex = 25;
             this.richTextBoxMeddelanden1.TabStop = false;
             this.richTextBoxMeddelanden1.Text = "";
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(201, 141);
+            this.label2.Location = new System.Drawing.Point(259, 136);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(198, 13);
             this.label2.TabIndex = 15;
@@ -390,9 +383,10 @@
             // richTextBoxMeddelanden
             // 
             this.richTextBoxMeddelanden.AcceptsTab = true;
-            this.richTextBoxMeddelanden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.richTextBoxMeddelanden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBoxMeddelanden.BackColor = System.Drawing.SystemColors.Control;
-            this.richTextBoxMeddelanden.Location = new System.Drawing.Point(204, 268);
+            this.richTextBoxMeddelanden.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxMeddelanden.Location = new System.Drawing.Point(289, 170);
             this.richTextBoxMeddelanden.Name = "richTextBoxMeddelanden";
             this.richTextBoxMeddelanden.ReadOnly = true;
             this.richTextBoxMeddelanden.Size = new System.Drawing.Size(168, 99);
@@ -402,9 +396,8 @@
             // 
             // textBoxNamn
             // 
-            this.textBoxNamn.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxNamn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNamn.Location = new System.Drawing.Point(12, 29);
+            this.textBoxNamn.Location = new System.Drawing.Point(20, 32);
             this.textBoxNamn.Name = "textBoxNamn";
             this.textBoxNamn.Size = new System.Drawing.Size(172, 26);
             this.textBoxNamn.TabIndex = 7;
@@ -415,7 +408,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(619, 376);
+            this.ClientSize = new System.Drawing.Size(655, 379);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormInmatning";
             this.Text = "Inloggning";

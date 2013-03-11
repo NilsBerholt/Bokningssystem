@@ -30,11 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMeny = new System.Windows.Forms.TabPage();
-            this.buttonOmOss = new System.Windows.Forms.Button();
-            this.buttonProfil = new System.Windows.Forms.Button();
             this.richTextBoxBokningMeny = new System.Windows.Forms.RichTextBox();
-            this.buttonMinHyr = new System.Windows.Forms.Button();
-            this.buttonNyHyr = new System.Windows.Forms.Button();
             this.tabPageNyHyr = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
@@ -47,7 +43,6 @@
             this.labelDagar = new System.Windows.Forms.Label();
             this.buttonDagar = new System.Windows.Forms.Button();
             this.tabPageMinHyr = new System.Windows.Forms.TabPage();
-            this.richTextBoxMinHyr = new System.Windows.Forms.RichTextBox();
             this.panelHyrning = new System.Windows.Forms.Panel();
             this.labelHyrningMeddelande = new System.Windows.Forms.Label();
             this.tableLayoutPanelHyrning = new System.Windows.Forms.TableLayoutPanel();
@@ -92,6 +87,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.buttonOmOss = new System.Windows.Forms.Button();
+            this.buttonProfil = new System.Windows.Forms.Button();
+            this.buttonMinHyr = new System.Windows.Forms.Button();
+            this.buttonNyHyr = new System.Windows.Forms.Button();
             this.buttonMeny = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageMeny.SuspendLayout();
@@ -135,28 +134,6 @@
             this.tabPageMeny.TabIndex = 0;
             this.tabPageMeny.Text = "Meny";
             // 
-            // buttonOmOss
-            // 
-            this.buttonOmOss.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOmOss.Location = new System.Drawing.Point(616, 278);
-            this.buttonOmOss.Name = "buttonOmOss";
-            this.buttonOmOss.Size = new System.Drawing.Size(75, 30);
-            this.buttonOmOss.TabIndex = 33;
-            this.buttonOmOss.Text = "Om Oss";
-            this.buttonOmOss.UseVisualStyleBackColor = true;
-            this.buttonOmOss.Click += new System.EventHandler(this.bytaTabPage);
-            // 
-            // buttonProfil
-            // 
-            this.buttonProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonProfil.Location = new System.Drawing.Point(616, 247);
-            this.buttonProfil.Name = "buttonProfil";
-            this.buttonProfil.Size = new System.Drawing.Size(75, 30);
-            this.buttonProfil.TabIndex = 31;
-            this.buttonProfil.Text = "Profil";
-            this.buttonProfil.UseVisualStyleBackColor = true;
-            this.buttonProfil.Click += new System.EventHandler(this.bytaTabPage);
-            // 
             // richTextBoxBokningMeny
             // 
             this.richTextBoxBokningMeny.AcceptsTab = true;
@@ -169,28 +146,6 @@
             this.richTextBoxBokningMeny.TabIndex = 30;
             this.richTextBoxBokningMeny.TabStop = false;
             this.richTextBoxBokningMeny.Text = "";
-            // 
-            // buttonMinHyr
-            // 
-            this.buttonMinHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMinHyr.Location = new System.Drawing.Point(616, 136);
-            this.buttonMinHyr.Name = "buttonMinHyr";
-            this.buttonMinHyr.Size = new System.Drawing.Size(75, 47);
-            this.buttonMinHyr.TabIndex = 29;
-            this.buttonMinHyr.Text = "Mina hyrningar";
-            this.buttonMinHyr.UseVisualStyleBackColor = true;
-            this.buttonMinHyr.Click += new System.EventHandler(this.bytaTabPage);
-            // 
-            // buttonNyHyr
-            // 
-            this.buttonNyHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNyHyr.Location = new System.Drawing.Point(616, 189);
-            this.buttonNyHyr.Name = "buttonNyHyr";
-            this.buttonNyHyr.Size = new System.Drawing.Size(75, 52);
-            this.buttonNyHyr.TabIndex = 28;
-            this.buttonNyHyr.Text = "Ny hyrning";
-            this.buttonNyHyr.UseVisualStyleBackColor = true;
-            this.buttonNyHyr.Click += new System.EventHandler(this.bytaTabPage);
             // 
             // tabPageNyHyr
             // 
@@ -239,6 +194,7 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(149, 109);
             this.checkedListBox1.TabIndex = 33;
+            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ItemCheck);
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // buttonHyr
@@ -255,7 +211,9 @@
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(44, 30);
+            this.monthCalendar1.MaxSelectionCount = 99999999;
             this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.ShowWeekNumbers = true;
             this.monthCalendar1.TabIndex = 31;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
@@ -324,7 +282,6 @@
             // tabPageMinHyr
             // 
             this.tabPageMinHyr.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPageMinHyr.Controls.Add(this.richTextBoxMinHyr);
             this.tabPageMinHyr.Controls.Add(this.panelHyrning);
             this.tabPageMinHyr.Controls.Add(this.label8);
             this.tabPageMinHyr.Location = new System.Drawing.Point(4, 22);
@@ -334,27 +291,14 @@
             this.tabPageMinHyr.TabIndex = 2;
             this.tabPageMinHyr.Text = "Mina hyrningar";
             // 
-            // richTextBoxMinHyr
-            // 
-            this.richTextBoxMinHyr.AcceptsTab = true;
-            this.richTextBoxMinHyr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.richTextBoxMinHyr.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxMinHyr.Location = new System.Drawing.Point(6, 107);
-            this.richTextBoxMinHyr.Name = "richTextBoxMinHyr";
-            this.richTextBoxMinHyr.ReadOnly = true;
-            this.richTextBoxMinHyr.Size = new System.Drawing.Size(144, 271);
-            this.richTextBoxMinHyr.TabIndex = 31;
-            this.richTextBoxMinHyr.TabStop = false;
-            this.richTextBoxMinHyr.Text = "";
-            // 
             // panelHyrning
             // 
             this.panelHyrning.AutoScroll = true;
             this.panelHyrning.Controls.Add(this.labelHyrningMeddelande);
             this.panelHyrning.Controls.Add(this.tableLayoutPanelHyrning);
-            this.panelHyrning.Location = new System.Drawing.Point(156, 34);
+            this.panelHyrning.Location = new System.Drawing.Point(55, 34);
             this.panelHyrning.Name = "panelHyrning";
-            this.panelHyrning.Size = new System.Drawing.Size(279, 370);
+            this.panelHyrning.Size = new System.Drawing.Size(478, 370);
             this.panelHyrning.TabIndex = 5;
             // 
             // labelHyrningMeddelande
@@ -370,18 +314,18 @@
             // tableLayoutPanelHyrning
             // 
             this.tableLayoutPanelHyrning.AutoSize = true;
-            this.tableLayoutPanelHyrning.ColumnCount = 5;
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.01923F));
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.03846F));
-            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.86538F));
+            this.tableLayoutPanelHyrning.ColumnCount = 4;
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelHyrning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelHyrning.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanelHyrning.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelHyrning.Name = "tableLayoutPanelHyrning";
             this.tableLayoutPanelHyrning.RowCount = 1;
             this.tableLayoutPanelHyrning.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelHyrning.Size = new System.Drawing.Size(279, 0);
+            this.tableLayoutPanelHyrning.Size = new System.Drawing.Size(478, 0);
             this.tableLayoutPanelHyrning.TabIndex = 0;
             // 
             // label8
@@ -831,12 +775,56 @@
             this.label14.TabIndex = 13;
             this.label14.Text = "label14";
             // 
+            // buttonOmOss
+            // 
+            this.buttonOmOss.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOmOss.Location = new System.Drawing.Point(616, 261);
+            this.buttonOmOss.Name = "buttonOmOss";
+            this.buttonOmOss.Size = new System.Drawing.Size(90, 30);
+            this.buttonOmOss.TabIndex = 33;
+            this.buttonOmOss.Text = "Om Oss";
+            this.buttonOmOss.UseVisualStyleBackColor = true;
+            this.buttonOmOss.Click += new System.EventHandler(this.bytaTabPage);
+            // 
+            // buttonProfil
+            // 
+            this.buttonProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonProfil.Location = new System.Drawing.Point(616, 225);
+            this.buttonProfil.Name = "buttonProfil";
+            this.buttonProfil.Size = new System.Drawing.Size(90, 30);
+            this.buttonProfil.TabIndex = 31;
+            this.buttonProfil.Text = "Profil";
+            this.buttonProfil.UseVisualStyleBackColor = true;
+            this.buttonProfil.Click += new System.EventHandler(this.bytaTabPage);
+            // 
+            // buttonMinHyr
+            // 
+            this.buttonMinHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMinHyr.Location = new System.Drawing.Point(616, 172);
+            this.buttonMinHyr.Name = "buttonMinHyr";
+            this.buttonMinHyr.Size = new System.Drawing.Size(90, 47);
+            this.buttonMinHyr.TabIndex = 29;
+            this.buttonMinHyr.Text = "Mina hyrningar";
+            this.buttonMinHyr.UseVisualStyleBackColor = true;
+            this.buttonMinHyr.Click += new System.EventHandler(this.bytaTabPage);
+            // 
+            // buttonNyHyr
+            // 
+            this.buttonNyHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNyHyr.Location = new System.Drawing.Point(616, 136);
+            this.buttonNyHyr.Name = "buttonNyHyr";
+            this.buttonNyHyr.Size = new System.Drawing.Size(90, 30);
+            this.buttonNyHyr.TabIndex = 28;
+            this.buttonNyHyr.Text = "Ny hyrning";
+            this.buttonNyHyr.UseVisualStyleBackColor = true;
+            this.buttonNyHyr.Click += new System.EventHandler(this.bytaTabPage);
+            // 
             // buttonMeny
             // 
             this.buttonMeny.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMeny.Location = new System.Drawing.Point(616, 95);
+            this.buttonMeny.Location = new System.Drawing.Point(616, 100);
             this.buttonMeny.Name = "buttonMeny";
-            this.buttonMeny.Size = new System.Drawing.Size(75, 30);
+            this.buttonMeny.Size = new System.Drawing.Size(90, 30);
             this.buttonMeny.TabIndex = 6;
             this.buttonMeny.Text = "Menyn";
             this.buttonMeny.UseVisualStyleBackColor = true;
@@ -846,7 +834,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 484);
+            this.ClientSize = new System.Drawing.Size(718, 484);
             this.Controls.Add(this.buttonOmOss);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.buttonProfil);
@@ -934,7 +922,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelHyrning;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonMeny;
-        private System.Windows.Forms.RichTextBox richTextBoxMinHyr;
         private System.Windows.Forms.TabPage tabPageOmOss;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.RichTextBox richTextBoxOmOss;

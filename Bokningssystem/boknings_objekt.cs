@@ -9,9 +9,12 @@ namespace Bokningssystem
     {
         private bool DEBUG = Properties.Settings.Default.Debug;
         private SqlCeDatabase db;
-        private kund anvandare;
         private string[] tmpMsgs;
         private Array[] tmpMsgsArray = null;
+
+        // Globala användarobjekt
+        private kund anvandare;
+        private administrator admin;
 
         /// <summary>
         /// Kontruktören för boknings_objekt, tar en SqlCeDatabase och en kund som parametrar
@@ -21,6 +24,17 @@ namespace Bokningssystem
         public boknings_objekt(SqlCeDatabase db, kund anvandare)
         {
             this.anvandare = anvandare;
+            this.db = db;
+        }
+
+        /// <summary>
+        /// Kontruktören för boknings_objekt, tar en SqlCeDatabase och en admin som parametrar
+        /// </summary>
+        /// <param name="db">SqlCeDatabase som ska användas för databasen</param>
+        /// <param name="anvandare">admin som bokar</param>
+        public boknings_objekt(SqlCeDatabase db, administrator admin)
+        {
+            this.admin = admin;
             this.db = db;
         }
 
@@ -75,9 +89,9 @@ namespace Bokningssystem
             string tfn = anvandare.GetTfn();
 
             string query = "INSERT INTO Bokning " +
-               "(datum, fnamn, enamn, bil, email, tfn) " +
-               "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
-            string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
+               "(datum, fnamn, enamn, bil, email, tfn, datumDate) " +
+               "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?', '?x?')";
+            string[] args = new string[7] { datum, fnamn, enamn, regnr, agare, tfn, datum };
 
             if (db.query(query, args) == 0)
             {
@@ -180,7 +194,7 @@ namespace Bokningssystem
             string email = this.anvandare.GetEmail();
             List<string> errorMsgs = new List<string>();
             Array[] fetch;
-            string queryHamtaBokningar = "SELECT B.id B.datum, B.bil, F.modell, F.arsmodell, F.marke " +
+            string queryHamtaBokningar = "SELECT B.datum, B.bil, B.id, F.modell, F.arsmodell, F.marke " +
             "FROM Bokning AS B INNER JOIN Fordon AS F ON B.bil = F.reg WHERE (B.email = '?x?')";
             string[] args = { email };
 
@@ -197,13 +211,20 @@ namespace Bokningssystem
             return res;
         }
         
+        /// <summary>
+        /// Funktion som tar bort bokningen med id:et bokning
+        /// Om funktionen inte returnerar 0, hämta felmeddelanden från db.GetTmpMsgs()
+        /// </summary>
+        /// <param name="bokning">Int värde med id:t för bokningen</param>
+        /// <returns>Returnerar ett int värde
+        /// 0 - Funktionen utfördes utan problem
+        /// Annars returneras db.operation()'s respektive db.query()'s returnkoder.</returns>
         public int tabortMinaBokningar(int bokning)
         {
             string Bokning = Convert.ToString(bokning);
             List<string> errorMsgs = new List<string>();
-            //Array[] fetch;
             string queryTabortBokningar = "DELETE " +
-            "FROM Bokning WHERE (Bokning = '?x?')";
+            "FROM Bokning WHERE (id = '?x?')";
             string[] args = { Bokning };
 
             int queryRes = this.db.query(queryTabortBokningar, args);
@@ -221,11 +242,6 @@ namespace Bokningssystem
             }
             else
                 return db.query(queryTabortBokningar, args);
-           /* errorMsgs.AddRange(db.GetTmpMsgs());
-            this.tmpMsgs = errorMsgs.ToArray();
-            Array[] res = { };
-            return res;
-            */
         }
     }
 }

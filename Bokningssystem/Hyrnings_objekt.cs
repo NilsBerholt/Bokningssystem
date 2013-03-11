@@ -109,8 +109,8 @@ namespace Bokningssystem
         {
             List<string> errorMsgs = new List<string>();
             Array[] fetch;
-            string queryHamtaHyrningar = "SELECT H.Startdag, H.Fordon, H.Slutdag, F.typ, F.marke, F.modell " +
-            "FROM Hyrning as H INNER JOIN HyrFordon as F on H.Fordon = F.regnr WHERE (Kund = '?x?')";
+            string queryHamtaHyrningar = "SELECT H.Startdag, H.Fordon, H.Slutdag, F.typ, F.marke, F.modell, H.Hyrning " +
+            "FROM Hyrning as H INNER JOIN HyrFordon as F ON H.Fordon = F.typ WHERE (H.Kund = '?x?')";
             string[] args = { this.anvandare.GetEmail() };
 
             int queryRes = this.db.query(queryHamtaHyrningar, args);

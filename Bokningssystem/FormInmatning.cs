@@ -17,8 +17,12 @@ namespace Bokningssystem
         public FormInmatning()
         {
             InitializeComponent();
-            //buttonRegistrera.Hide();
             buttonLogga.Hide();
+
+            this.Height = 312;
+            this.Width = 289;
+            splitContainer1.Panel2Collapsed = true;
+
             if (DEBUG)
                 buttonDebug.Visible = true;
             else
@@ -35,20 +39,18 @@ namespace Bokningssystem
                 buttonRegistrera.Show();
                 splitContainer1.Panel2Collapsed = false;
                 splitContainer1.Panel1Collapsed = true;
-                // splitContainer1.Width = 420;
                 richTextBoxMeddelanden.Text = "Fyll i alla fälten till höger\nför att göra en korrekt registrering.";
-                this.Width = 420;
-                this.Height = 414;
+                this.Width = 417;
+                this.Height = 418;
 
             }
             else
             {
                 buttonRegistrera.Hide();
                 splitContainer1.Panel2Collapsed = true;
-                // splitContainer1.Width = 180;
                 richTextBoxMeddelanden1.Text = "Logga in med din email-adress\nför att kunna lägga till en bokning\neller för att se när du har bokat.";
-                this.Width = 420;
-                this.Height = 414;
+                this.Width = 289;
+                this.Height = 312;
             }
         }
 
@@ -131,20 +133,18 @@ namespace Bokningssystem
                 richTextBoxMeddelanden.BorderStyle = BorderStyle.None;
                 splitContainer1.Panel1Collapsed = false;
                 splitContainer1.Panel2Collapsed = true;
-                // splitContainer1.Width = 420;
                 richTextBoxMeddelanden1.Text = "Logga in med din email-adress\nför att kunna lägga till en bokning\neller för att se när du har bokat.";
-                this.Width = 420;
-                this.Height = 414;
+                this.Width = 289;
+                this.Height = 312;
 
             }
             else
             {
                 buttonRegistrera.Hide();
                 splitContainer1.Panel1Collapsed = true;
-                // splitContainer1.Width = 180;
                 richTextBoxMeddelanden.Text = "Fyll i alla fälten till höger\nför att göra en korrekt registrering.";
-                this.Width = 420;
-                this.Height = 414;
+                this.Width = 417;
+                this.Height = 418;
             }
         }
 

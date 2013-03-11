@@ -336,6 +336,7 @@ namespace Bokningssystem
                     labelGamla.Text = "Ditt nuvarande lösenord";
                     labelBekräfta.Text = "Bekräfta ditt lösenord";
                     labelNytt.Text = "Ditt nya lösenord";
+                    labelBekLosen.Text = "Bekräfta med ditt lösenord";
                     this.uppdatera = "losen";
                     bekräftelseBehövs = true;
                     break;
@@ -344,7 +345,7 @@ namespace Bokningssystem
                     labelGamla.Text = "Ditt nuvarande nummer";
                     labelBekräfta.Text = "Bekräfta ditt telefonnummer";
                     labelNytt.Text = "Ditt nya telefonnummer";
-                    labelBekLosen.Text = "Ditt lösenord för att ändra telefonnummer";
+                    labelBekLosen.Text = "Bekräfta med ditt lösenord";
                     this.uppdatera = "tfn";
                     bekräftelseBehövs = true;
                     break;
@@ -594,7 +595,7 @@ namespace Bokningssystem
                 this.labelBilarMeddelande.Show();
             }
 
-            if (bokningsResultat.Length < 1)
+            if (bokningsResultat.Length == 0)
             {
                 this.tableLayoutPanelBokningar.Hide();
                 this.labelBokningarMeddelande.Text = "Du har inga bokade tider";
@@ -623,18 +624,19 @@ namespace Bokningssystem
                 for (int i = 0; i < length; i++)
                 {
                     string[] bokningsString = bokningsResultat[i] as string[];
-                    Label  labelBokningsID = new Label(), labelBokningDatum = new Label(), labelBokningTid = new Label(), labelBokningFordon = new Label();
-                    Label[] labelBokning = { labelBokningsID, labelBokningDatum, labelBokningTid, labelBokningFordon };
-                    for (int o = 0; o < 4; o++)
+                    Label labelBokningDatum = new Label(), labelBokningTid = new Label(), labelBokningFordon = new Label();
+                    Label[] labelBokning = { labelBokningDatum, labelBokningTid, labelBokningFordon};
+                    for (int o = 0; o < 3; o++)
                     {
-                        if (o != 0)
-                            if (o % 3 == 0)
-                            {
-                                bokningsString[o] = "x";
-                                labelBokning[o].Name = "Tabort_" + bokningsString[0];
-                                labelBokning[o].Click += new System.EventHandler(this.TaBort);
-                            }
-                        labelBokning[o].Text = bokningsString[o];
+                        if ((o % 2 == 0) & o != 0)
+                        {
+                            labelBokning[o].Text = "Ta bort";
+                            labelBokning[o].Name = "Tabort_" + bokningsString[2];
+                            labelBokning[o].Cursor = System.Windows.Forms.Cursors.Hand;
+                            labelBokning[o].Click += new System.EventHandler(this.TaBort);
+                        }
+                        else
+                            labelBokning[o].Text = bokningsString[o];
                         this.tableLayoutPanelBokningar.Controls.Add(labelBokning[o]);
                     }
                 }
@@ -657,7 +659,7 @@ namespace Bokningssystem
             else
             {
                 boknings_objekt tabort = new boknings_objekt(new SqlCeDatabase(), this.anvandare);
-                int TabortHyrning = tabort.tabortMinaBokningar(bokning);
+                int TabortBokningar = tabort.tabortMinaBokningar(bokning);
 
                 tableLayoutPanelBokningar.Controls.Clear();
                 fyllBokningar_bilar();
