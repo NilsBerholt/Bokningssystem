@@ -135,7 +135,6 @@ namespace Bokningssystem
 
             if (errorMsg.Count > 0)
             {
-                errorMsg.Insert(0, "fel");
                 this.tmpMsgs = errorMsg.ToArray();
                 return resultat.ToArray();
             }

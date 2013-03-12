@@ -128,6 +128,9 @@ namespace Bokningssystem
                     break;
 
                 case "OmOss":
+                    administrator admin = new administrator("jassob@live.se","jonsson");
+                    FormOmOss Om = new FormOmOss(anvandare);
+                    Om.Show();
                     tabControl1.SelectTab(tabPageOmOss);
                     break;
 

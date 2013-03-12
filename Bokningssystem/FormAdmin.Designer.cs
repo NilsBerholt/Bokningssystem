@@ -367,7 +367,7 @@
             this.monthCalendarBokning.Name = "monthCalendarBokning";
             this.monthCalendarBokning.TabIndex = 0;
             this.monthCalendarBokning.MaxSelectionCount = 1;
-            this.monthCalendarBokning.DateSelected = new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarBokning_ChangedDays);
+            //this.monthCalendarBokning.DateSelected = new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarBokning_ChangedDays);
             // 
             // panelNyBok
             // 

@@ -14,5 +14,6 @@ namespace Bokningssystem
         /// <param name="email">Email-adressen som ska användas</param>
         /// <param name="losen">Lösenordet, som en säkerhetsåtgärd</param>
         public administrator(string email, string password) : base(email, password) {}
+
     }
 }

@@ -2,14 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Bokningssystem.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Database1ConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=|DataDirectory|\Database1.sdf&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;Microsoft.SqlServerCe.Client.3.5&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=|DataDirectory|\Database1.sdf</Value>
-    </Setting>
     <Setting Name="Debug" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -19,6 +11,21 @@
   &lt;ConnectionString&gt;Data Source=|DataDirectory|\Database1Version4.sdf&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=|DataDirectory|\Database1Version4.sdf</Value>
+    </Setting>
+    <Setting Name="Foretag" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TestForetag AB</Value>
+    </Setting>
+    <Setting Name="Oppetider" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Alla dagar 08:00 - 18:00</Value>
+    </Setting>
+    <Setting Name="ForetagTelefon" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0730 47 51 99</Value>
+    </Setting>
+    <Setting Name="ForetagEmail" Type="System.String" Scope="User">
+      <Value Profile="(Default)">kontakt@foretag.se</Value>
+    </Setting>
+    <Setting Name="ForetagAdress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Foretagsgatan 18, Fogersta</Value>
     </Setting>
   </Settings>
 </SettingsFile>
