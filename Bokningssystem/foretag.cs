@@ -51,7 +51,7 @@ namespace Bokningssystem
 
             string selectQuery = "SELECT Namn, Email, Oppetider, Telefon, Adress, PostAdress" +
                                   " FROM Företag WHERE id=?x?";
-            string[] args = { namn };
+            string[] args = { id.ToString() };
 
             int queryResultat = db.query(selectQuery, args);
             if (queryResultat != 0)
@@ -249,7 +249,7 @@ namespace Bokningssystem
         /// Övrigt, fel</returns>
         public int SetFalt(string falt, string varde)
         {
-            string updateFalt = "UPDATE Företag SET '?x?'='?x?' WHERE Namn='?x?'";
+            string updateFalt = "UPDATE Företag SET ?x?='?x?' WHERE Namn='?x?'";
             string[] args = { falt, varde, this.namn };
 
             int queryRes = db.query(updateFalt, args);
@@ -267,6 +267,15 @@ namespace Bokningssystem
             }
 
             return 0;
+        }
+
+        /// <summary>
+        /// Hämtar de tillfälliga meddelandena i tmpMsgs arrayen
+        /// </summary>
+        /// <returns>Arrayen med (strings) tillfälliga meddelanden</returns>
+        public string[] GetTmpMsgs()
+        {
+            return this.tmpMsgs;
         }
     }
 }

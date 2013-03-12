@@ -31,18 +31,18 @@
             this.label18 = new System.Windows.Forms.Label();
             this.richTextBoxOmOss = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBoxPostAdress = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxAdress = new System.Windows.Forms.TextBox();
+            this.textBoxTelefon = new System.Windows.Forms.TextBox();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.textBoxNamn = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBoxNamn = new System.Windows.Forms.TextBox();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.textBoxTfn = new System.Windows.Forms.TextBox();
-            this.textBoxAdress = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.textBoxOppetider = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxPostAdress = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +77,7 @@
             this.tableLayoutPanel2.Controls.Add(this.textBoxPostAdress, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.textBoxAdress, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textBoxTfn, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.textBoxTelefon, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.textBoxEmail, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.textBoxNamn, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label10, 0, 2);
@@ -100,6 +100,100 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(299, 295);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
+            // textBoxPostAdress
+            // 
+            this.textBoxPostAdress.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxPostAdress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPostAdress.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBoxPostAdress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxPostAdress.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPostAdress.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBoxPostAdress.Location = new System.Drawing.Point(151, 207);
+            this.textBoxPostAdress.Name = "textBoxPostAdress";
+            this.textBoxPostAdress.ReadOnly = true;
+            this.textBoxPostAdress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxPostAdress.Size = new System.Drawing.Size(145, 17);
+            this.textBoxPostAdress.TabIndex = 21;
+            this.textBoxPostAdress.TabStop = false;
+            this.textBoxPostAdress.Text = "Postadress";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 204);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 18);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Postadress";
+            // 
+            // textBoxAdress
+            // 
+            this.textBoxAdress.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxAdress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAdress.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBoxAdress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxAdress.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxAdress.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBoxAdress.Location = new System.Drawing.Point(151, 156);
+            this.textBoxAdress.Name = "textBoxAdress";
+            this.textBoxAdress.ReadOnly = true;
+            this.textBoxAdress.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxAdress.Size = new System.Drawing.Size(145, 17);
+            this.textBoxAdress.TabIndex = 18;
+            this.textBoxAdress.TabStop = false;
+            this.textBoxAdress.Text = "Adress";
+            // 
+            // textBoxTelefon
+            // 
+            this.textBoxTelefon.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxTelefon.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxTelefon.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBoxTelefon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTelefon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBoxTelefon.Location = new System.Drawing.Point(151, 105);
+            this.textBoxTelefon.MaximumSize = new System.Drawing.Size(145, 50);
+            this.textBoxTelefon.Name = "textBoxTelefon";
+            this.textBoxTelefon.ReadOnly = true;
+            this.textBoxTelefon.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxTelefon.Size = new System.Drawing.Size(145, 17);
+            this.textBoxTelefon.TabIndex = 16;
+            this.textBoxTelefon.TabStop = false;
+            this.textBoxTelefon.Text = "Tfn";
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxEmail.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBoxEmail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxEmail.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBoxEmail.Location = new System.Drawing.Point(151, 54);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.ReadOnly = true;
+            this.textBoxEmail.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxEmail.Size = new System.Drawing.Size(145, 17);
+            this.textBoxEmail.TabIndex = 12;
+            this.textBoxEmail.TabStop = false;
+            this.textBoxEmail.Text = "Email";
+            // 
+            // textBoxNamn
+            // 
+            this.textBoxNamn.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxNamn.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxNamn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBoxNamn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxNamn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNamn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.textBoxNamn.Location = new System.Drawing.Point(151, 3);
+            this.textBoxNamn.Name = "textBoxNamn";
+            this.textBoxNamn.ReadOnly = true;
+            this.textBoxNamn.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxNamn.Size = new System.Drawing.Size(145, 17);
+            this.textBoxNamn.TabIndex = 7;
+            this.textBoxNamn.TabStop = false;
+            this.textBoxNamn.Text = "Namn";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -117,15 +211,6 @@
             this.label11.Size = new System.Drawing.Size(54, 18);
             this.label11.TabIndex = 7;
             this.label11.Text = "Adress";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 255);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(72, 18);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Öppetider";
             // 
             // label5
             // 
@@ -146,73 +231,14 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "Epost-adress";
             // 
-            // textBoxNamn
+            // label12
             // 
-            this.textBoxNamn.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxNamn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxNamn.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBoxNamn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxNamn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNamn.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.textBoxNamn.Location = new System.Drawing.Point(151, 3);
-            this.textBoxNamn.Multiline = true;
-            this.textBoxNamn.Name = "textBoxNamn";
-            this.textBoxNamn.ReadOnly = true;
-            this.textBoxNamn.Size = new System.Drawing.Size(145, 45);
-            this.textBoxNamn.TabIndex = 7;
-            this.textBoxNamn.TabStop = false;
-            this.textBoxNamn.Text = "Namn";
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEmail.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBoxEmail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmail.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.textBoxEmail.Location = new System.Drawing.Point(151, 54);
-            this.textBoxEmail.Multiline = true;
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.ReadOnly = true;
-            this.textBoxEmail.Size = new System.Drawing.Size(145, 45);
-            this.textBoxEmail.TabIndex = 12;
-            this.textBoxEmail.TabStop = false;
-            this.textBoxEmail.Text = "Email";
-            // 
-            // textBoxTfn
-            // 
-            this.textBoxTfn.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxTfn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxTfn.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBoxTfn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxTfn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTfn.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.textBoxTfn.Location = new System.Drawing.Point(151, 105);
-            this.textBoxTfn.Multiline = true;
-            this.textBoxTfn.Name = "textBoxTfn";
-            this.textBoxTfn.ReadOnly = true;
-            this.textBoxTfn.Size = new System.Drawing.Size(145, 45);
-            this.textBoxTfn.TabIndex = 16;
-            this.textBoxTfn.TabStop = false;
-            this.textBoxTfn.Text = "Tfn";
-            // 
-            // textBoxAdress
-            // 
-            this.textBoxAdress.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxAdress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxAdress.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBoxAdress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxAdress.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAdress.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.textBoxAdress.Location = new System.Drawing.Point(151, 156);
-            this.textBoxAdress.Multiline = true;
-            this.textBoxAdress.Name = "textBoxAdress";
-            this.textBoxAdress.ReadOnly = true;
-            this.textBoxAdress.Size = new System.Drawing.Size(145, 45);
-            this.textBoxAdress.TabIndex = 18;
-            this.textBoxAdress.TabStop = false;
-            this.textBoxAdress.Text = "Adress";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 255);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(72, 18);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Öppetider";
             // 
             // textBoxOppetider
             // 
@@ -221,41 +247,15 @@
             this.textBoxOppetider.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBoxOppetider.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxOppetider.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxOppetider.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.textBoxOppetider.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.textBoxOppetider.Location = new System.Drawing.Point(151, 258);
-            this.textBoxOppetider.Multiline = true;
             this.textBoxOppetider.Name = "textBoxOppetider";
             this.textBoxOppetider.ReadOnly = true;
-            this.textBoxOppetider.Size = new System.Drawing.Size(145, 34);
+            this.textBoxOppetider.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxOppetider.Size = new System.Drawing.Size(145, 17);
             this.textBoxOppetider.TabIndex = 20;
             this.textBoxOppetider.TabStop = false;
             this.textBoxOppetider.Text = "Öppetider";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 204);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 18);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Postadress";
-            // 
-            // textBoxPostAdress
-            // 
-            this.textBoxPostAdress.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxPostAdress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxPostAdress.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textBoxPostAdress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxPostAdress.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPostAdress.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.textBoxPostAdress.Location = new System.Drawing.Point(151, 207);
-            this.textBoxPostAdress.Multiline = true;
-            this.textBoxPostAdress.Name = "textBoxPostAdress";
-            this.textBoxPostAdress.ReadOnly = true;
-            this.textBoxPostAdress.Size = new System.Drawing.Size(145, 45);
-            this.textBoxPostAdress.TabIndex = 21;
-            this.textBoxPostAdress.TabStop = false;
-            this.textBoxPostAdress.Text = "Postadress";
             // 
             // FormOmOss
             // 
@@ -283,13 +283,13 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxNamn;
         private System.Windows.Forms.RichTextBox richTextBoxOmOss;
-        private System.Windows.Forms.TextBox textBoxPostAdress;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxAdress;
-        private System.Windows.Forms.TextBox textBoxTfn;
+        public System.Windows.Forms.TextBox textBoxPostAdress;
+        public System.Windows.Forms.TextBox textBoxAdress;
+        public System.Windows.Forms.TextBox textBoxOppetider;
+        private System.Windows.Forms.TextBox textBoxNamn;
+        private System.Windows.Forms.TextBox textBoxTelefon;
         private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.TextBox textBoxOppetider;
     }
 }
