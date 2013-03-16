@@ -7,7 +7,7 @@ namespace Bokningssystem
 {
     class foretag
     {
-        private string namn, email, oppetider, tfn, adress, postadr;
+        private string namn, email, oppetider, tfn, adress, postadr, info;
         private SqlCeDatabase db;
         private string[] tmpMsgs;
 
@@ -20,7 +20,7 @@ namespace Bokningssystem
         {
             this.db = new SqlCeDatabase();
 
-            string selectQuery = "SELECT Namn, Email, Oppetider, Telefon, Adress, PostAdress" +
+            string selectQuery = "SELECT Namn, Email, Oppetider, Telefon, Adress, PostAdress, Information" +
                                   " FROM Företag WHERE Namn='?x?'";
             string[] args = { namn };
 
@@ -38,6 +38,7 @@ namespace Bokningssystem
             this.tfn = fetchResultat[3];
             this.adress = fetchResultat[4];
             this.postadr = fetchResultat[5];
+            this.info = fetchResultat[6];
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace Bokningssystem
         {
             this.db = new SqlCeDatabase();
 
-            string selectQuery = "SELECT Namn, Email, Oppetider, Telefon, Adress, PostAdress" +
+            string selectQuery = "SELECT Namn, Email, Oppetider, Telefon, Adress, PostAdress, Information" +
                                   " FROM Företag WHERE id=?x?";
             string[] args = { id.ToString() };
 
@@ -67,6 +68,7 @@ namespace Bokningssystem
             this.tfn = fetchResultat[3];
             this.adress = fetchResultat[4];
             this.postadr = fetchResultat[5];
+            this.info = fetchResultat[6];
         }
 
         /// <summary>
@@ -121,6 +123,15 @@ namespace Bokningssystem
         public string GetPostAdr()
         {
             return this.postadr;
+        }
+
+        /// <summary>
+        /// Hämtar informationen om företaget
+        /// </summary>
+        /// <returns>Företagets egna beskrivning</returns>
+        public string GetInfo()
+        {
+            return this.info;
         }
 
         /// <summary>

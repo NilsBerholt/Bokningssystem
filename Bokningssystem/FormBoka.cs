@@ -84,15 +84,6 @@ namespace Bokningssystem
             labelTfn.Text = anvandare.GetTfn();
             labelAdress.Text = anvandare.GetAdress();
 
-            // Initiera OmOss
-            label19.Text = "Företaget AB";
-            label20.Text = "Företaget@foretag.com";
-            label15.Text = "073-456 12 89";
-            label16.Text = "Foretagsgatan 1";
-            label17.Text = "08:00 - 18:00";
-
-            richTextBoxOmOss.Text = "Vi är ett företag som lagar bilar och vi kan även hyra ut bilar och släp om man behöver det.";
-
             // Fixar så man bara kan välja ett datum i monthCalendar1.
             monthCalendar1.MaxSelectionCount = 1;
             DoljAndringar();
@@ -223,7 +214,10 @@ namespace Bokningssystem
                     break;
 
                 case "OmOss":
-                    tabControl1.SelectTab(tabPageOmOss);
+                    FormOmOss omOss = new FormOmOss(anvandare);
+                    this.Hide();
+                    omOss.ShowDialog();
+                    this.Show();
                     break;
 
                 case "Meny":

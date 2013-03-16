@@ -23,19 +23,29 @@ namespace Bokningssystem
         public FormOmOss(administrator admin)
         {
             InitializeComponent();
-            TextBox[] textboxar = { textBoxNamn, textBoxEmail, textBoxTelefon, textBoxOppetider, textBoxPostAdress };
+            TextBox[] textboxar = { textBoxNamn, textBoxEmail, textBoxTelefon, textBoxOppetider, textBoxPostAdress, textBoxAdress };
             this.admin = admin;
             initFormOmOss();
 
+            // RichTextBoxOmOss properties
             richTextBoxOmOss.ReadOnly = false;
             richTextBoxOmOss.Cursor = Cursors.IBeam;
+            richTextBoxOmOss.BackColor = SystemColors.ControlLightLight;
+            richTextBoxOmOss.BorderStyle = BorderStyle.Fixed3D;
+            richTextBoxOmOss.KeyDown += new KeyEventHandler(this.richTextBoxKnappTryck);
+
+            richTextBoxOmOssMsgs.Text = "För att ändra på något värde: \n1. Klicka i textrutan \n2. Ändra värdet \n3. Spara genom att trycka på ENTER";
+
+            // Alla informations textboxar som alla har samma egenskaper
             foreach (TextBox textbox in textboxar)
             {
+                textbox.BackColor = SystemColors.ControlLightLight;
+                textbox.BorderStyle = BorderStyle.Fixed3D;
                 textbox.Enabled = true;
                 textbox.ReadOnly = false;
                 textbox.Cursor = Cursors.IBeam;
-                textbox.KeyPress += new KeyPressEventHandler(this.textBoxKnapptryck);
-                textbox.Multiline = false;
+                textbox.KeyDown += new KeyEventHandler(this.textBoxKnapptryck);
+                textbox.Multiline = true;
                 textbox.WordWrap = true;
             }
             
@@ -48,7 +58,7 @@ namespace Bokningssystem
         public FormOmOss(kund användare)
         {
             InitializeComponent();
-            TextBox[] textboxar = { textBoxNamn, textBoxEmail, textBoxTelefon, textBoxOppetider, textBoxPostAdress };
+            TextBox[] textboxar = { textBoxNamn, textBoxEmail, textBoxTelefon, textBoxOppetider, textBoxPostAdress, textBoxAdress };
             this.anvandare = användare;
             initFormOmOss();
 
@@ -77,6 +87,7 @@ namespace Bokningssystem
             textBoxPostAdress.Text = företag.GetPostAdr();
             textBoxTelefon.Text = företag.GetTfn();
             textBoxAdress.Text = företag.GetAdress();
+            richTextBoxOmOss.Text = företag.GetInfo();
         }
 
         /// <summary>
@@ -85,10 +96,13 @@ namespace Bokningssystem
         /// </summary>
         /// <param name="sender">TextBoxen (eller annan control som har keyPressEvent) som startade eventet</param>
         /// <param name="e">Intressant info som genereras av eventet</param>
-        private void textBoxKnapptryck(object sender, KeyPressEventArgs e)
+        private void textBoxKnapptryck(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar != (char)Keys.Return)
+            if (e.KeyCode != Keys.Return)
                 return;
+            
+            // Se till att inga nya rader skapas
+            e.SuppressKeyPress = true;
 
             input inmatning = new input();
             TextBox textbox = sender as TextBox;
@@ -152,7 +166,7 @@ namespace Bokningssystem
 
             // Uppdatera företaget med de nya värdena på fältet
             if (företag.SetFalt(namn,nyttVarde) == 0)
-                MessageBox.Show(string.Format("Du har nu uppdaterat företagets {0} från {1} till {2}",namn.ToLower(),gammaltVarde,nyttVarde));
+                richTextBoxOmOssMsgs.Text = string.Format("Du har nu uppdaterat företagets {0} från {1} till {2}",namn.ToLower(),gammaltVarde,nyttVarde);
             else
             {
                 // Gör om string-arrayen till en enda lång string
@@ -162,11 +176,52 @@ namespace Bokningssystem
                     allaMsgs += msg + "\n";
 
                 // Visa felmeddelandena / t i en MessageBox
-                MessageBox.Show(string.Format("Uppdateringen av fält {0} lyckades inte, nedan finns mer information. "+
-                                            "Detaljer: {1}",namn.ToLower(), allaMsgs));
+                richTextBoxOmOssMsgs.Text = string.Format("Uppdateringen av fält {0} lyckades inte, nedan finns mer information. "+
+                                            "Detaljer: {1}",namn.ToLower(), allaMsgs);
             }
 
             // Ta bort fula nyrader
+            initFormOmOss();
+        }
+
+        /// <summary>
+        /// Aktiverar sparaknappen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void richTextBoxKnappTryck(object sender, KeyEventArgs e)
+        {
+            this.buttonSpara.Enabled = true;
+            this.buttonSpara.Visible = true; 
+        }
+
+        /// <summary>
+        /// Sparar informationen om företaget som skrivits in i richTextBoxOmOss
+        /// </summary>
+        /// <param name="sender">Objektet som startade eventet</param>
+        /// <param name="e">Eventinformation som genereras a eventet</param>
+        private void buttonSparaTryck(object sender, EventArgs e)
+        {
+            foretag företag = new foretag(1);
+
+            string företagsInfo = företag.GetInfo();
+            string nyInfo = richTextBoxOmOss.Text;
+
+            // Gör inget om det inte har ändrats något
+            if (företagsInfo == richTextBoxOmOss.Text)
+                return;
+
+            // Skriv ut eventuella felmeddelanden
+            if (företag.SetFalt("Information", nyInfo) != 0)
+            {
+                richTextBoxOmOssMsgs.Lines = företag.GetTmpMsgs();
+                return;
+            }
+
+            // Skriv ut att uppdateringen gick bra
+            richTextBoxOmOssMsgs.Text = "Du har nu uppdaterat företagets information";
+
+            // "Ladda om" vyn
             initFormOmOss();
         }
     }
