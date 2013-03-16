@@ -80,60 +80,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="administrator.cs" />
-    <Compile Include="bil_objekt.cs" />
-    <Compile Include="boknings_objekt.cs" />
-    <Compile Include="foretag.cs" />
-    <Compile Include="FormOmOss.cs">
+    <Compile Include="class\administrator.cs" />
+    <Compile Include="class\bil_objekt.cs" />
+    <Compile Include="class\boknings_objekt.cs" />
+    <Compile Include="class\foretag.cs" />
+    <Compile Include="forms\FormOmOss.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOmOss.Designer.cs">
+    <Compile Include="forms\FormOmOss.Designer.cs">
       <DependentUpon>FormOmOss.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAdmin.cs">
+    <Compile Include="forms\FormAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAdmin.Designer.cs">
+    <Compile Include="forms\FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="hyrnings_objekt.cs" />
-    <Compile Include="FormHyra.cs">
+    <Compile Include="class\hyrnings_objekt.cs" />
+    <Compile Include="forms\FormHyra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormHyra.Designer.cs">
+    <Compile Include="forms\FormHyra.Designer.cs">
       <DependentUpon>FormHyra.cs</DependentUpon>
     </Compile>
-    <Compile Include="kund.cs" />
-    <Compile Include="db.cs" />
-    <Compile Include="FormBoka.cs">
+    <Compile Include="class\kund.cs" />
+    <Compile Include="class\db.cs" />
+    <Compile Include="forms\FormBoka.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBoka.Designer.cs">
+    <Compile Include="forms\FormBoka.Designer.cs">
       <DependentUpon>FormBoka.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormInmatning.cs">
+    <Compile Include="forms\FormInmatning.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormInmatning.Designer.cs">
+    <Compile Include="forms\FormInmatning.Designer.cs">
       <DependentUpon>FormInmatning.cs</DependentUpon>
     </Compile>
-    <Compile Include="input.cs" />
+    <Compile Include="class\input.cs" />
+    <Compile Include="forms\FormProfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\FormProfil.Designer.cs">
+      <DependentUpon>FormProfil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormAdmin.resx">
+    <EmbeddedResource Include="forms\FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormHyra.resx">
+    <EmbeddedResource Include="forms\FormHyra.resx">
       <DependentUpon>FormHyra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBoka.resx">
+    <EmbeddedResource Include="forms\FormBoka.resx">
       <DependentUpon>FormBoka.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormInmatning.resx">
+    <EmbeddedResource Include="forms\FormInmatning.resx">
       <DependentUpon>FormInmatning.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOmOss.resx">
+    <EmbeddedResource Include="forms\FormOmOss.resx">
       <DependentUpon>FormOmOss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\FormProfil.resx">
+      <DependentUpon>FormProfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

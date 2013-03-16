@@ -33,14 +33,17 @@ namespace Bokningssystem
             this.db = new SqlCeDatabase();
 
             List<string> errorMsg = new List<string>();
-            string query = "Select email, fnamn, enamn, losen, tfn, adress from Kunder where email='?x?'";
-            string[] args = { email };
+            string query = "Select email, fnamn, enamn, losen, tfn, adress from Kunder where email='?x?' and losen='?x?'";
+            string[] args = { email, losen };
             if (db.query(query, args) != 0)
                 errorMsg.AddRange(db.GetTmpMsgs());
             else
             {
                 string[] resultat = db.fetch();
                 string[] properties = { this.email, this.fnamn, this.enamn, this.losenord, this.tfn, this.adress };
+
+                if (resultat.Length == 0)
+                    throw new Exception("Lösenordet och e-postadressen stämde inte överens med någon kund i registret");
 
                 if (resultat[0] != string.Empty)
                     this.email = resultat[0];
@@ -146,7 +149,7 @@ namespace Bokningssystem
         /// Om inget efternamn är angivet så skriver den efternamnet som tom sträng
         /// </summary>
         /// <param name="value">Namnet som det ska ändras till</param>
-        public void SetNamn(string namn)
+        public int SetNamn(string namn)
         {
             List<string> errorMsgs = new List<string>();
             string efternamn;
@@ -174,11 +177,13 @@ namespace Bokningssystem
                     errorMsgs.Add("Det blev ett fel med uppdateringen av din profil.");
                     if (DEBUG)
                         errorMsgs.AddRange(this.db.GetTmpMsgs());
+                    return 1;
                 }
                 else
                 {
                     this.fnamn = fornamn;
                     this.enamn = efternamn;
+                    return 0;
                 }
             }
             else
@@ -186,6 +191,7 @@ namespace Bokningssystem
                 errorMsgs.Add("Det blev ett fel med frågestrukturen. Kontakta systemansvarig");
                 if (DEBUG)
                     errorMsgs.AddRange(this.db.GetTmpMsgs());
+                return 2;
             }
         }
 

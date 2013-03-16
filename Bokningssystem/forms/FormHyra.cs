@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Bokningssystem.forms;
 
 namespace Bokningssystem
 {
@@ -16,27 +17,6 @@ namespace Bokningssystem
         private string uppdatera = null;
         private string dag = "";
         private string slutdag = "";
-
-        /// <summary>
-        /// Funktion som döljer och tömmer strängarna i labels och textboxar
-        /// </summary>
-        public void DoljAndringar()
-        {
-            maskedTextBoxNytt.Hide();
-            maskedTextBoxNytt.Text = "";
-            maskedTextBoxBekräfta.Hide();
-            maskedTextBoxBekräfta.Text = "";
-            maskedTextBoxGamla.Hide();
-            maskedTextBoxGamla.Text = "";
-            maskedTextBoxBekLosen.Hide();
-            maskedTextBoxBekLosen.Text = "";
-            label7.Text = "";
-            labelNytt.Hide();
-            labelGamla.Hide();
-            labelBekräfta.Hide();
-            labelBekLosen.Hide();
-            buttonRedigera.Hide();
-        }
 
         /// <summary>
         /// Funktion som tömmer checkboxen och resetar kalendern
@@ -66,16 +46,9 @@ namespace Bokningssystem
             SqlCeDatabase db = new SqlCeDatabase();
             this.anvandare = anvandare;
 
-            // Initiera profilvariablerna från kund objektet
-            labelNamn.Text = anvandare.GetNamn();
-            labelEmail.Text = anvandare.GetEmail();
-            labelTfn.Text = anvandare.GetTfn();
-            labelAdress.Text = anvandare.GetAdress();
-
             // Fixar så man bara kan välja ett datum i monthCalendar1.
             monthCalendar1.MaxSelectionCount = 30;
             
-            DoljAndringar();
             DoljHyr();
             fyllHyrningar();
 
@@ -115,7 +88,10 @@ namespace Bokningssystem
                     break;
 
                 case "Profil":
-                    tabControl1.SelectTab(tabPageProfil);
+                    FormProfil profil = new FormProfil(anvandare);
+                    this.Hide();
+                    profil.ShowDialog();
+                    this.Show();
                     break;
 
                 case "OmOss":
@@ -138,106 +114,6 @@ namespace Bokningssystem
         }
 
         /// <summary>
-        /// Funktion som startar och gör i ordning profilsidans ändringslabels.
-        /// Den gör om sender objektet till en label och utifrån namnet på labeln så kommer den byta text
-        /// och synlighet på labels och textboxar.
-        /// Den lägger även till informationen om vad som uppdateras.
-        /// </summary>
-        /// <param name="sender">Objektet som startade eventet, måste vara en Label</param>
-        /// <param name="e"></param>
-        private void startEdit(object sender, EventArgs e)
-        {
-            DoljAndringar();
-            // Skapar en array med de intressanta lablarna och gör object sender till en label
-            Label startLabel = sender as Label;
-            string namn = startLabel.Name.Substring(9, startLabel.Name.Length - 9);
-            bool bekräftelseBehövs = false;
-
-            // Om namnet är labelEditLosen så låt textboxen använda sig av PasswordChar istället för vanliga karaktärer
-            if (namn == "Losen")
-            {
-                maskedTextBoxGamla.UseSystemPasswordChar = true;
-                maskedTextBoxBekräfta.UseSystemPasswordChar = true;
-                maskedTextBoxNytt.UseSystemPasswordChar = true;
-            }
-            // Annars använd vanliga karaktärer
-            else
-            {
-                maskedTextBoxGamla.UseSystemPasswordChar = false;
-                maskedTextBoxBekräfta.UseSystemPasswordChar = false;
-                maskedTextBoxNytt.UseSystemPasswordChar = false;
-            }
-
-            // Använd substringen av labelns namn för att utföra mer specifika uppgifter
-            switch (namn)
-            {
-                case "Namn":
-                    labelNytt.Text = "Nytt namn";
-                    this.uppdatera = "namn";
-                    bekräftelseBehövs = false;
-                    break;
-
-                case "Adress":
-                    labelNytt.Text = "Din nya adress";
-                    this.uppdatera = "adress";
-                    bekräftelseBehövs = false;
-                    break;
-
-                case "Email":
-                    labelGamla.Text = "Din nuvarande email";
-                    labelBekräfta.Text = "Bekräfta din email";
-                    labelNytt.Text = "Din nya email";
-                    labelBekLosen.Text = "Dtt lösenord för att ändra emailen";
-                    this.uppdatera = "email";
-                    bekräftelseBehövs = true;
-                    break;
-
-                case "Losen":
-                    labelGamla.Text = "Ditt nuvarande lösenord";
-                    labelBekräfta.Text = "Bekräfta ditt lösenord";
-                    labelNytt.Text = "Ditt nya lösenord";
-                    labelBekLosen.Text = "Bekräfta med ditt lösenord";
-                    this.uppdatera = "losen";
-                    bekräftelseBehövs = true;
-                    break;
-
-                case "Tfn":
-                    labelGamla.Text = "Ditt nuvarande nummer";
-                    labelBekräfta.Text = "Bekräfta ditt telefonnummer";
-                    labelNytt.Text = "Ditt nya telefonnummer";
-                    labelBekLosen.Text = "Bekräfta med ditt lösenord";
-                    this.uppdatera = "tfn";
-                    bekräftelseBehövs = true;
-                    break;
-
-                // Om namnet på labeln inte är något av ovanstående ge ett felmeddelande och avsluta
-                default:
-                    if (DEBUG)
-                    {
-                        labelNytt.Text = "Det blev något fel, det här är inte en giltig ändringslänk";
-                        labelNytt.Text += "Denna label heter " + startLabel.Name;
-                    }
-                    return;
-            }
-
-            // Om man behöver bekräftelse
-            if (bekräftelseBehövs)
-            {
-                labelBekLosen.Show();
-                maskedTextBoxBekräfta.Show();
-                maskedTextBoxGamla.Show();
-                maskedTextBoxBekLosen.Show();
-                labelGamla.Show();
-                labelBekräfta.Show();
-            }
-
-            label7.Text = "";
-            maskedTextBoxNytt.Show();
-            labelNytt.Show();
-            buttonRedigera.Show();
-        }
-
-        /// <summary>
         /// Funktion som körs när datumet ändras i kalendern. Extraherar den valda datetimen och
         /// gör om det till en sträng med bara datumet
         /// </summary>
@@ -249,143 +125,6 @@ namespace Bokningssystem
             // Tar bort de onödiga och totalt förstörande sista nollorna efter datumet
             dag = dag.Substring(0, dag.IndexOf(' '));
             panelTider.Show();
-        }
-
-        /// <summary>
-        /// Utför redigeringen, kollar upp vilket uppdatering som ska utföras och uppdaterar sedan
-        /// uppdatering är en global privat strängvariabel som måste vara deklarerad innan denna funktion körs
-        /// </summary>
-        /// <param name="sender">Knappenobjektet som startade eventet</param>
-        /// <param name="e"></param>
-        private void buttonRedigera_Click(object sender, EventArgs e)
-        {
-            string losen = maskedTextBoxBekLosen.Text;
-            int result;
-
-            switch (this.uppdatera)
-            {
-                case "namn":
-                    string namn = maskedTextBoxNytt.Text;
-                    this.anvandare.SetNamn(namn);
-                    label7.Text = "Du har nu bytt namn";
-                    labelNamn.Text = anvandare.GetNamn();
-                    DoljAndringar();
-                    break;
-
-                case "email":
-                    string email = maskedTextBoxNytt.Text;
-                    string email1 = maskedTextBoxBekräfta.Text;
-                    string email2 = maskedTextBoxGamla.Text;
-                    // Kolla om allting är rätt
-                    if (losen != anvandare.GetLosen())
-                    {
-                        label7.Text = "Du skrev in fel lösenord för att kunna ändra din email.";
-                        break;
-                    }
-                    if (email2 != anvandare.GetEmail())
-                    {
-                        label7.Text = "Den emailen du skrev är inte samma som din gamla";
-                        break;
-                    }
-                    if (email != email1)
-                    {
-                        label7.Text = "Dina email-adresser stämmer inte överens";
-                        break;
-                    }
-
-                    result = anvandare.SetEmail(email1);
-                    if (result == 0)
-                    {
-                        label7.Text = "Du har nu bytt email-adress";
-                        labelEmail.Text = anvandare.GetEmail();
-                    }
-                    else
-                    {
-                        if (DEBUG)
-                        {
-                            if (result == 1)
-                                foreach (string msg in anvandare.GetTmpMsgs())
-                                    label7.Text += msg;
-                            label7.Text = "Det blev något fel någonstans...";
-                        }
-                    }
-                    DoljAndringar();
-                    break;
-
-                case "tfn":
-                    string tfn = maskedTextBoxNytt.Text;
-                    string tfn1 = maskedTextBoxBekräfta.Text;
-                    string tfn2 = maskedTextBoxGamla.Text;
-
-                    if (losen != anvandare.GetLosen())
-                    {
-                        label7.Text = "Du skrev in fel lösenord för att kunna ändra ditt telefonnummer.";
-                        break;
-                    }
-
-                    if (tfn2 != anvandare.GetTfn())
-                    {
-                        label7.Text = "Dina telefonnummer stämmer inte ihop";
-                        break;
-                    }
-
-                    if (tfn == tfn1)
-                    {
-                        result = anvandare.SetTfn(tfn);
-                        if (result == 0)
-                        {
-                            label7.Text = "Du har nu bytt telefonnummer";
-                            labelTfn.Text = anvandare.GetTfn();
-                        }
-                        else
-                        {
-                            label7.Text = "Det blev något fel någonstans...";
-                        }
-                    }
-                    DoljAndringar();
-                    break;
-
-                case "adress":
-                    string adress = maskedTextBoxNytt.Text;
-                    this.anvandare.SetAdress(adress);
-                    labelAdress.Text = anvandare.GetAdress();
-                    label7.Text = "Du har nu ändrat din adress";
-                    DoljAndringar();
-                    break;
-
-                case "losen":
-                    string losen1 = maskedTextBoxGamla.Text;
-                    string losen2 = maskedTextBoxNytt.Text;
-                    string losen3 = maskedTextBoxBekräfta.Text;
-
-                    if (losen1 != anvandare.GetLosen())
-                    {
-                        label7.Text = "Ditt lösenord stämmer inte ihop med det du skrev nu";
-                        break;
-                    }
-                    if (losen2 != losen3)
-                    {
-                        label7.Text = "Det bekräftande lösenordet stämmer inte ihop med det ny du skrev";
-                        break;
-                    }
-
-                    result = anvandare.SetLosen(losen2);
-                    if (result == 0)
-                    {
-                        label7.Text = "Du har nu bytt lösenord";
-                    }
-                    else
-                    {
-                        label7.Text = "Det blev något fel någonstans...";
-                    }
-                    DoljAndringar();
-                    break;
-
-                default:
-                    if (DEBUG)
-                        label7.Text = "Denna ändring är inte ännu implementerad i Redigeringsfunktionen";
-                    break;
-            }
         }
 
         /// <summary>
