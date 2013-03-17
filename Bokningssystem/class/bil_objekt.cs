@@ -187,23 +187,6 @@ namespace Bokningssystem
             return 2;
         }
 
-        /// <summary>
-        /// Funktion som ska kunna söka efter lediga fordon i specificerad typ under visst tidsinterval
-        /// </summary>
-        /// <param name="typ">Typ av fordon</param>
-        /// <param name="starttid">Starttiden för hyrningen då fordonet måste vara ledig</param>
-        /// <param name="sluttid">Sluttuden för hyrningen då fordonet kommer lämnas tillbaka, måste också vara ledig</param>
-        /// <returns>Returnerar en int
-        /// 0 - Om det finns lediga fordon
-        /// 1 - Om det inte finns några lediga fordon
-        /// 2 - Vid kommunikationsfel med databasen</returns>
-      /*  public int kollaLedigaHyrFordon(string typ,string starttid, string sluttid)
-        {
-            SqlCeDatabase db = new SqlCeDatabase();
-
-            string checkQuery = "SELECT F.regnr FROM HyrFordon AS F OUTER JOIN Hyrningar AS H on H.Fordon=F.regnr where typ='?x?'";
-            string[] args = { typ };
-        }*/
 
         /// <summary>
         /// KollaKundsBilar: Kollar efter kunders bilar och returnerar bara regnumret
@@ -239,6 +222,138 @@ namespace Bokningssystem
             }
             this.tmpMsgs = db.GetTmpMsgs();
             return 2;
+        }
+
+        /// <summary>
+        /// Funktion som ska kunna söka efter lediga fordon i specificerad typ under visst tidsinterval
+        /// </summary>
+        /// <param name="typ">Typ av fordon</param>
+        /// <param name="starttid">Starttiden för hyrningen då fordonet måste vara ledig</param>
+        /// <param name="sluttid">Sluttuden för hyrningen då fordonet kommer lämnas tillbaka, måste också vara ledig</param>
+        /// <returns>Returnerar en int
+        /// 0 - Om det finns lediga fordon
+        /// 10 - Om det inte finns några lediga fordon
+        /// 20 - Vid kommunikationsfel med databasen</returns>
+        public int kollaLedigaHyrFordon(string typ, string starttid, string sluttid)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+            string[] allaFordon;
+            string[] hyrdaFordon;
+            int hyrFordonStatus;
+            int allaFordonStatus;
+            
+            /* Hämtar alla hyrfordon och skapar Exceptions om det inte finns fordon */
+            allaFordonStatus = hamtaAllaHyrFordon(typ);
+            if (allaFordonStatus == 0)
+                allaFordon = GetTmpMsgs();
+            else if (allaFordonStatus == 10)
+                throw new Exception("Det fanns inga fordon som matchade typen som angivits");
+            else
+                throw new Exception(db.GetTmpMsgs()[0]);
+
+            /* Hämtar alla hyrfordon som är hyrda under den angivna tidsperioden
+             * och skapar ett Exception om det blev något fel med själva förfrågningen till databasen */
+            hyrFordonStatus = hamtaHyrdaFordon(typ, starttid, sluttid);
+            if (hyrFordonStatus == 0)
+                hyrdaFordon = GetTmpMsgs();
+            else if (hyrFordonStatus == 10)
+            {
+                this.tmpMsgs = allaFordon;
+                return 0;
+            }
+            else
+                throw new Exception(db.GetTmpMsgs()[0]);
+
+            List<string> ledigaFordon = new List<string>();
+            
+            /* Går igenom alla hyrfordon och kollar om tabellen med hyrda fordon innehåller det registreringsnumret
+             * i så fall händer inget, annars läggs fordonet till i ledigaFordon-listan */
+            foreach (string fordon in allaFordon)
+            {
+                if (!hyrdaFordon.Contains(fordon))
+                    ledigaFordon.Add(fordon);
+            }
+
+            /* Returnerar 10 om det inte fanns några lediga fordon */
+            if (ledigaFordon.Count == 0)
+                return 10;
+            else
+            {
+                this.tmpMsgs = ledigaFordon.ToArray();
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Hämtar alla hyrfordon av en typ och sparar dem i tmpMsgs-arrayen;
+        /// </summary>
+        /// <param name="typ">Fordonstypen</param>
+        /// <returns>Statuskoden för funktionen
+        /// 0 - funktionen utfördes utan problem
+        /// 10 - inga fordon hittades
+        /// 20 - kommunikation/frågefel</returns>
+        public int hamtaAllaHyrFordon(string typ)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+
+            string hyrQuery = "SELECT regnr FROM HyrFordon WHERE typ='?x?'";
+            string[] args = { typ };
+
+            int queryRes = db.query(hyrQuery, args);
+            if (queryRes != 0)
+            {
+                this.tmpMsgs = db.GetTmpMsgs();
+                return 20;
+            }
+
+            string[] allaFordon = db.fetch();
+            if (allaFordon.Length < 1)
+            {
+                this.tmpMsgs = db.GetTmpMsgs();
+                return 10;
+            }
+
+            this.tmpMsgs = allaFordon;
+            return 0;
+        }
+
+        /// <summary>
+        /// Hämtar alla fordon som är hyrda inom ett visst tidsintervall och av en specificerad typ
+        /// och sparar dem i tmpMsgs-arrayen
+        /// </summary>
+        /// <param name="typ">Fordonets typ</param>
+        /// <param name="starttid">Hyrningens startdatum</param>
+        /// <param name="sluttid">Hyrningens slutdatum</param>
+        /// <returns>Statuskod för funktionen
+        /// 0 - funktionen utfördes utan problem
+        /// 10 - inga fordon matchade parametrarna
+        /// 20 - kommunikations/frågefel mo databasen</returns>
+        public int hamtaHyrdaFordon(string typ, string starttid, string sluttid)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+            string checkHyrdaQuery = "SELECT H.Fordon " +
+                                      "FROM Hyrning AS H INNER JOIN HyrFordon AS F ON H.Fordon = F.regnr " +
+                                      "WHERE (H.Startdag < '?x?') AND (H.Slutdag > '?x?' AND F.typ='?x?')";
+            string[] hyrdaArgs = { starttid, sluttid, typ };
+
+            int queryRes = db.query(checkHyrdaQuery, hyrdaArgs);
+
+            if (queryRes != 0)
+            {
+                this.tmpMsgs = db.GetTmpMsgs();
+                return 20;
+            }
+
+            string[] hyrdaFordon = db.fetch();
+
+            if (hyrdaFordon.Length < 1)
+            {
+                this.tmpMsgs = db.GetTmpMsgs();
+                return 10;
+            }
+
+            this.tmpMsgs = hyrdaFordon;
+            return 0;
         }
     }
 }

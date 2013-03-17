@@ -157,35 +157,44 @@ namespace Bokningssystem
         private void buttonHyr_Click(object sender, EventArgs e)
         {
             hyrnings_objekt hyrning = new hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+            bil_objekt fordonregister = new bil_objekt();
             input inmatning = new input();
+            int antalTyper = checkedListBox1.Items.Count;
+            int antalValdaTyper = checkedListBox1.CheckedItems.Count;
             string valdaFordon = string.Empty;
-
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            string reg;
+            for (int i = 0; i < antalTyper; i++)
                 if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                //foreach (string fordon in checkedListBox1.CheckedItems)
                 {
                     string fordon = checkedListBox1.Items[i] as string;
-                    valdaFordon += ", "+fordon;
-                    //string objectText = string.Format("{0}, \n", fordon);
+                    valdaFordon += ", " + fordon;
+                    if (fordonregister.kollaLedigaHyrFordon(fordon, dag, slutdag) == 0)
+                    {
+                        reg = fordonregister.GetTmpMsgs()[0];
 
-                    if (hyrning.hyra(this.anvandare, dag, slutdag, fordon))
-                    {
-                        richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
-                        richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt;\n" + valdaFordon.Substring(2) + "\nStartdagen: " + dag + "\nSlutdagen: " + slutdag;
-                    }
-                    else
-                    {
-                        richTextBoxMeddelandenHyra.Text = "Det blev något fel med hyrningen";
-                        string[] felmeddelande = hyrning.GetTmpMsgs();
-                        if (DEBUG)
+                        if (hyrning.hyra(this.anvandare, dag, slutdag, reg))
                         {
-                            richTextBoxMeddelandenHyra.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-                            richTextBoxMeddelandenHyra.Text += "\n**** FELMEDDELANDE ****";
-                            foreach (string fel in felmeddelande)
-                                richTextBoxMeddelandenHyra.Text += "\n" + fel + "\n";
+                            richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
+                            richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + valdaFordon.Substring(2) + "\nRegnummer: "+ reg +"\nStartdagen: " + dag + "\nSlutdagen: " + slutdag;
+                        }
+                        else
+                        {
+                            richTextBoxMeddelandenHyra.Text = "Det blev något fel med hyrningen";
+                            string[] felmeddelande = hyrning.GetTmpMsgs();
+                            if (DEBUG)
+                            {
+                                richTextBoxMeddelandenHyra.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+                                richTextBoxMeddelandenHyra.Text += "\n**** FELMEDDELANDE ****";
+                                foreach (string fel in felmeddelande)
+                                    richTextBoxMeddelandenHyra.Text += "\n" + fel + "\n";
+                            }
                         }
                     }
+                    else
+                        richTextBoxMeddelandenHyra.Text = "Tyvärr finns inga fordon lediga att hyras av den önskade typen";
+                    DoljHyr();
                 }
-            DoljHyr();
         }
 
         /// <summary>

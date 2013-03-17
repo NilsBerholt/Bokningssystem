@@ -44,6 +44,11 @@ namespace Bokningssystem
                     panelVisaBok.Enabled = true;
                     panelVisaBok.Show();
                     break;
+
+                case "läggTillHyrfordon":
+                    panelNyHyrfordon.Enabled = true;
+                    panelNyHyrfordon.Show();
+                    break;
                 
                 // Skapa ett felmeddelande för alla case som inte uppfylls av något ovan
                 default:
@@ -72,6 +77,40 @@ namespace Bokningssystem
 
 
             
+        }
+
+        /// <summary>
+        /// Lägger till hyrfordon
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonLäggTillFordon_Click(object sender, EventArgs e)
+        {
+            bil_objekt fordon = new bil_objekt();
+            string reg, marke, modell, arsmodell, typ;
+            reg = TextBoxReg.Text;
+            marke = TextBoxMarke.Text;
+            modell = TextBoxModell.Text;
+            arsmodell = TextBoxArsmodell.Text;
+            typ = checkedListBoxFordonsTyp.CheckedItems[0].ToString();
+
+            int insertStatus = fordon.insertHyrFordon(reg, modell, arsmodell, marke, typ);
+            if (insertStatus == 0)
+                richTextBoxFormAdminMsgs.Text = "Fordonet lades till";
+            else
+            {
+                string msgs = "Det blev ett fel när fordonet lades till";
+                if (!DEBUG)
+                    richTextBoxFormAdminMsgs.Text = msgs;
+                else
+                {
+                    List<string> debugMsgs = new List<string>();
+                    debugMsgs.Add(msgs);
+                    debugMsgs.AddRange(fordon.GetTmpMsgs());
+                    richTextBoxFormAdminMsgs.Lines = debugMsgs.ToArray();
+                }
+                richTextBoxFormAdminMsgs.Show();
+            }          
         }
     }
 }

@@ -126,6 +126,13 @@ namespace Bokningssystem
             return res;
         }
 
+        /// <summary>
+        /// Tar bort hyrningar med identiteten hyrning
+        /// </summary>
+        /// <param name="hyrning">Hyrningens identitet</param>
+        /// <returns>Statuskod för funktionen
+        /// 0 - funktionen utfördes utan problem
+        /// Allt annat - fel</returns>
         public int tabortMinaHyrningar(int hyrning)
         {
             string Hyrning = Convert.ToString(hyrning);
@@ -150,11 +157,6 @@ namespace Bokningssystem
             }
             else
                 return db.query(queryTabortHyrningar, args);
-           /* errorMsgs.AddRange(db.GetTmpMsgs());
-            this.tmpMsgs = errorMsgs.ToArray();
-            Array[] res = { };
-            return res;
-            */
         }
     }
 }
