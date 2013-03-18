@@ -14,7 +14,6 @@ namespace Bokningssystem
     {
         public bool DEBUG = Properties.Settings.Default.Debug;
         private kund anvandare;
-        private string uppdatera = null;
         private string dag = "";
         private string slutdag = "";
 

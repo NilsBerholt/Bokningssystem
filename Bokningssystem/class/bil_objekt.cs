@@ -117,6 +117,54 @@ namespace Bokningssystem
         }
 
         /// <summary>
+        /// Registrerar ett fordon för oregistrerade kunder
+        /// </summary>
+        /// <param name="reg">Fordonets registreringsnummer</param>
+        /// <param name="modell">Fordonets modell</param>
+        /// <param name="arsmodell">Fordonets årsmodell</param>
+        /// <param name="marke">Fordonets märke</param>
+        /// <param name="agare">Fordonets ägare</param>
+        /// <returns></returns>
+        public int insertFordon(string reg, string modell, string arsmodell, string marke, string agare)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+            List<string> resultat = new List<string>();
+            List<string> errorMsgs = new List<string>();
+            string queryNyBil = "INSERT INTO Fordon" +
+                "(reg, modell, arsmodell, marke, agare) " +
+                " values ('?x?','?x?','?x?','?x?','?x?')";
+
+            string[] argsNyBil = new string[5] { reg, modell, arsmodell, marke, agare };
+            int queryResultat = db.query(queryNyBil, argsNyBil);                   // Skapar en string-array av resultatet från db.query() för att kunna använda i jämförelser och returns
+            int returnkod;
+            if (queryResultat == 0)
+            {
+                int operationResultat = db.operation();                            // Skapar en string-array av resultatet från db.operation() för att kunna använda i jämförelser och returns
+                if (operationResultat == 0)
+                {
+                    returnkod = 0;
+                }
+                else
+                {
+                    errorMsgs.Add("Det blev ett fel när ditt fordon skulle registreras. Kontakta systemansvarig.");
+                    if (DEBUG)
+                        errorMsgs.AddRange(db.GetTmpMsgs());
+                    returnkod = 1;
+                }
+            }
+            else
+            {
+                errorMsgs.Add("Det blev ett fel med frågeformuleringen. Kontakta systemansvarig.");
+                if (DEBUG)
+                    errorMsgs.AddRange(db.GetTmpMsgs());
+                returnkod = 2;
+            }
+            if (errorMsgs.Count > 0)
+                this.tmpMsgs = errorMsgs.ToArray();
+            return returnkod;
+        }
+
+        /// <summary>
         /// Denna funktion lägger till ett fordon i hyrregistret.
         /// Den använder sig av klassen SQLCeDatabase för att ansluta till en kompakt MSSQL-server/fil.
         /// </summary>

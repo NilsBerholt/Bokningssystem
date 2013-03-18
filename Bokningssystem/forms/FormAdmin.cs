@@ -12,10 +12,12 @@ namespace Bokningssystem
     public partial class FormAdmin : Form
     {
         public bool DEBUG = Properties.Settings.Default.Debug;
+        administrator admin;
 
         public FormAdmin(administrator admin)
         {
             InitializeComponent();
+            this.admin = admin;
         }
 
         /// <summary>
@@ -70,13 +72,97 @@ namespace Bokningssystem
         private void monthCalendarBokning_ChangedDays(object sender, DateRangeEventArgs e)
         {
             DateTime dag = e.Start;
-
+            bokningar(dag);
         }
-        private void bokningar()
+
+        /// <summary>
+        /// Hämtar alla bokningar under en viss dag
+        /// </summary>
+        private void bokningar(DateTime dag)
         {
+            boknings_objekt bokningar = new boknings_objekt(new SqlCeDatabase(), this.admin);
+            Array[] allaBokningar;
+            Label[] tider = { labelTid08, labelTid10, labelTid14, labelTid16 };
 
-
+            allaBokningar = bokningar.hamtaAllaBokningar(dag.ToShortDateString());
+            if (allaBokningar.Length == 1)
+            {
+                if (DEBUG)
+                    richTextBoxFormAdminMsgs.Lines = bokningar.GetTmpMsgs();
+                foreach (Label label in tider)
+                {
+                    label.Text = "Ledig";
+                    label.Click += new EventHandler(label_Click);
+                    label.Cursor = Cursors.Hand;
+                }
+                labelNyBokDag.Text = dag.ToShortDateString();
+                labelDag.Text = string.Format("Det valda datumet är {0}", dag.ToShortDateString());
+                panelBokDag.Show();
+            }
             
+        }
+
+        /// <summary>
+        /// Visar panelen för ny bokning
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void label_Click(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            string tid = label.Name.Substring(8);
+            labelNyBokTid.Text = tid + ":00";
+            panelNyBok.Enabled = true;
+            this.panelNyBok.Show();
+        }
+
+        /// <summary>
+        /// Bokar fordonet för kunden som är inskrivna i panelNyBok
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonBoka_Click(object sender, EventArgs e)
+        {
+            boknings_objekt bokningar = new boknings_objekt(new SqlCeDatabase(), this.admin);
+            string namn, tfn, reg, marke, modell, arsmodell, beskr, datum;
+            namn = maskedTextBoxNamn.Text;
+            tfn = maskedTextBoxTfn.Text;
+            reg = maskedTextBoxReg.Text;
+            marke = maskedTextBoxMarke.Text;
+            modell = maskedTextBoxModell.Text;
+            arsmodell = maskedTextBoxArsmodell.Text;
+            beskr = richTextBoxBokMeddelande.Text;
+            datum = labelNyBokDag.Text + " " + labelNyBokTid.Text;
+
+            // Om något av de obligatoriska fälten är tomma avbryt
+            if (namn == string.Empty | tfn == string.Empty | reg == string.Empty | marke == string.Empty | modell == string.Empty | arsmodell == string.Empty)
+            {
+                MessageBox.Show("Du måste fylla i alla fälten");
+                return;
+            }
+
+            string fnamn, enamn;
+            if (namn.Contains(' '))
+            {
+                fnamn = namn.Substring(0,namn.IndexOf(' '));
+                enamn = namn.Substring(namn.IndexOf(' '));
+            }
+            else
+            {
+                fnamn = namn;
+                enamn = "";
+            }
+            if (bokningar.boka(fnamn, enamn, tfn, reg, datum, marke, modell, arsmodell, namn))
+                richTextBoxFormAdminMsgs.Text = "Bokningen utfördes utan problem!";
+            else
+            {
+                if (DEBUG)
+                    richTextBoxFormAdminMsgs.Lines = bokningar.GetTmpMsgs();
+                else
+                    richTextBoxFormAdminMsgs.Text = "Det blev något fel med bokningen";
+                
+                richTextBoxFormAdminMsgs.Show();
+            }
         }
 
         /// <summary>

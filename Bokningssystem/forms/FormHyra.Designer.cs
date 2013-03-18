@@ -163,7 +163,7 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(44, 30);
+            this.monthCalendar1.Location = new System.Drawing.Point(7, 30);
             this.monthCalendar1.MaxSelectionCount = 99999999;
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.ShowWeekNumbers = true;

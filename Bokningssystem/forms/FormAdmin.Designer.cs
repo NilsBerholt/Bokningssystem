@@ -37,15 +37,16 @@
             this.nyHyrningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.visaHyrningarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.läggTillHyrfordon = new System.Windows.Forms.ToolStripMenuItem();
             this.profilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omOssToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowPanelRoot = new System.Windows.Forms.FlowLayoutPanel();
             this.panelVisaBok = new System.Windows.Forms.Panel();
             this.panelBokDag = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelTid16 = new System.Windows.Forms.Label();
+            this.labelTid14 = new System.Windows.Forms.Label();
+            this.labelTid10 = new System.Windows.Forms.Label();
+            this.labelTid08 = new System.Windows.Forms.Label();
             this.panelInfo = new System.Windows.Forms.Panel();
             this.panelInfoProblem = new System.Windows.Forms.Panel();
             this.richTextBoxInfoProblem = new System.Windows.Forms.RichTextBox();
@@ -59,7 +60,7 @@
             this.labelValj = new System.Windows.Forms.Label();
             this.monthCalendarBokning = new System.Windows.Forms.MonthCalendar();
             this.panelNyBok = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxBokMeddelande = new System.Windows.Forms.RichTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.maskedTextBoxArsmodell = new System.Windows.Forms.MaskedTextBox();
             this.labelArsmodell = new System.Windows.Forms.Label();
@@ -84,8 +85,10 @@
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.läggTillHyrfordon = new System.Windows.Forms.ToolStripMenuItem();
             this.panelNyHyrfordon = new System.Windows.Forms.Panel();
+            this.checkedListBoxFordonsTyp = new System.Windows.Forms.CheckedListBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.buttonLäggTillFordon = new System.Windows.Forms.Button();
             this.TextBoxArsmodell = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.TextBoxModell = new System.Windows.Forms.MaskedTextBox();
@@ -94,10 +97,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.TextBoxReg = new System.Windows.Forms.MaskedTextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.buttonLäggTillFordon = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
-            this.checkedListBoxFordonsTyp = new System.Windows.Forms.CheckedListBox();
             this.richTextBoxFormAdminMsgs = new System.Windows.Forms.RichTextBox();
+            this.labelNyBokTid = new System.Windows.Forms.Label();
+            this.labelNyBokDag = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.flowPanelRoot.SuspendLayout();
             this.panelVisaBok.SuspendLayout();
@@ -119,7 +121,7 @@
             this.omOssToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1177, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -180,6 +182,13 @@
             this.visaHyrningarToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.visaHyrningarToolStripMenuItem.Text = "Visa hyrningar";
             // 
+            // läggTillHyrfordon
+            // 
+            this.läggTillHyrfordon.Name = "läggTillHyrfordon";
+            this.läggTillHyrfordon.Size = new System.Drawing.Size(172, 22);
+            this.läggTillHyrfordon.Text = "Lägg till hyrfordon";
+            this.läggTillHyrfordon.Click += new System.EventHandler(this.MenuItem_Click);
+            // 
             // profilToolStripMenuItem
             // 
             this.profilToolStripMenuItem.Name = "profilToolStripMenuItem";
@@ -194,6 +203,8 @@
             // 
             // flowPanelRoot
             // 
+            this.flowPanelRoot.AutoSize = true;
+            this.flowPanelRoot.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowPanelRoot.Controls.Add(this.panelVisaBok);
             this.flowPanelRoot.Controls.Add(this.panelNyBok);
             this.flowPanelRoot.Controls.Add(this.panelNyHyr);
@@ -201,74 +212,78 @@
             this.flowPanelRoot.Controls.Add(this.richTextBoxFormAdminMsgs);
             this.flowPanelRoot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowPanelRoot.Location = new System.Drawing.Point(0, 24);
+            this.flowPanelRoot.MaximumSize = new System.Drawing.Size(800, 12000);
+            this.flowPanelRoot.MinimumSize = new System.Drawing.Size(400, 200);
             this.flowPanelRoot.Name = "flowPanelRoot";
-            this.flowPanelRoot.Size = new System.Drawing.Size(1177, 526);
+            this.flowPanelRoot.Size = new System.Drawing.Size(800, 725);
             this.flowPanelRoot.TabIndex = 1;
             // 
             // panelVisaBok
             // 
+            this.panelVisaBok.AutoSize = true;
+            this.panelVisaBok.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelVisaBok.Controls.Add(this.panelBokDag);
             this.panelVisaBok.Controls.Add(this.labelValj);
             this.panelVisaBok.Controls.Add(this.monthCalendarBokning);
             this.panelVisaBok.Location = new System.Drawing.Point(3, 3);
             this.panelVisaBok.Name = "panelVisaBok";
-            this.panelVisaBok.Size = new System.Drawing.Size(715, 202);
+            this.panelVisaBok.Size = new System.Drawing.Size(771, 202);
             this.panelVisaBok.TabIndex = 2;
             this.panelVisaBok.Visible = false;
             // 
             // panelBokDag
             // 
-            this.panelBokDag.Controls.Add(this.label7);
-            this.panelBokDag.Controls.Add(this.label6);
-            this.panelBokDag.Controls.Add(this.label5);
-            this.panelBokDag.Controls.Add(this.label4);
+            this.panelBokDag.Controls.Add(this.labelTid16);
+            this.panelBokDag.Controls.Add(this.labelTid14);
+            this.panelBokDag.Controls.Add(this.labelTid10);
+            this.panelBokDag.Controls.Add(this.labelTid08);
             this.panelBokDag.Controls.Add(this.panelInfo);
             this.panelBokDag.Controls.Add(this.label16);
             this.panelBokDag.Controls.Add(this.label14);
             this.panelBokDag.Controls.Add(this.label10);
             this.panelBokDag.Controls.Add(this.label8);
             this.panelBokDag.Controls.Add(this.labelDag);
-            this.panelBokDag.Location = new System.Drawing.Point(182, 4);
+            this.panelBokDag.Location = new System.Drawing.Point(238, 4);
             this.panelBokDag.Name = "panelBokDag";
             this.panelBokDag.Size = new System.Drawing.Size(530, 189);
             this.panelBokDag.TabIndex = 2;
             this.panelBokDag.Visible = false;
             // 
-            // label7
+            // labelTid16
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(355, 60);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "label7";
+            this.labelTid16.AutoSize = true;
+            this.labelTid16.Location = new System.Drawing.Point(355, 60);
+            this.labelTid16.Name = "labelTid16";
+            this.labelTid16.Size = new System.Drawing.Size(35, 13);
+            this.labelTid16.TabIndex = 15;
+            this.labelTid16.Text = "label7";
             // 
-            // label6
+            // labelTid14
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(243, 60);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "label6";
+            this.labelTid14.AutoSize = true;
+            this.labelTid14.Location = new System.Drawing.Point(243, 60);
+            this.labelTid14.Name = "labelTid14";
+            this.labelTid14.Size = new System.Drawing.Size(35, 13);
+            this.labelTid14.TabIndex = 14;
+            this.labelTid14.Text = "label6";
             // 
-            // label5
+            // labelTid10
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(131, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "label5";
+            this.labelTid10.AutoSize = true;
+            this.labelTid10.Location = new System.Drawing.Point(131, 60);
+            this.labelTid10.Name = "labelTid10";
+            this.labelTid10.Size = new System.Drawing.Size(35, 13);
+            this.labelTid10.TabIndex = 13;
+            this.labelTid10.Text = "label5";
             // 
-            // label4
+            // labelTid08
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 60);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "label4";
+            this.labelTid08.AutoSize = true;
+            this.labelTid08.Location = new System.Drawing.Point(19, 60);
+            this.labelTid08.Name = "labelTid08";
+            this.labelTid08.Size = new System.Drawing.Size(35, 13);
+            this.labelTid08.TabIndex = 12;
+            this.labelTid08.Text = "label4";
             // 
             // panelInfo
             // 
@@ -385,10 +400,13 @@
             this.monthCalendarBokning.MaxSelectionCount = 1;
             this.monthCalendarBokning.Name = "monthCalendarBokning";
             this.monthCalendarBokning.TabIndex = 0;
+            this.monthCalendarBokning.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarBokning_ChangedDays);
             // 
             // panelNyBok
             // 
-            this.panelNyBok.Controls.Add(this.richTextBox1);
+            this.panelNyBok.Controls.Add(this.labelNyBokTid);
+            this.panelNyBok.Controls.Add(this.labelNyBokDag);
+            this.panelNyBok.Controls.Add(this.richTextBoxBokMeddelande);
             this.panelNyBok.Controls.Add(this.label9);
             this.panelNyBok.Controls.Add(this.maskedTextBoxArsmodell);
             this.panelNyBok.Controls.Add(this.labelArsmodell);
@@ -404,19 +422,19 @@
             this.panelNyBok.Controls.Add(this.labelTfn);
             this.panelNyBok.Controls.Add(this.labelNamn);
             this.panelNyBok.Enabled = false;
-            this.panelNyBok.Location = new System.Drawing.Point(724, 3);
+            this.panelNyBok.Location = new System.Drawing.Point(3, 211);
             this.panelNyBok.Name = "panelNyBok";
             this.panelNyBok.Size = new System.Drawing.Size(430, 243);
             this.panelNyBok.TabIndex = 0;
             this.panelNyBok.Visible = false;
             // 
-            // richTextBox1
+            // richTextBoxBokMeddelande
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 127);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(244, 110);
-            this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "";
+            this.richTextBoxBokMeddelande.Location = new System.Drawing.Point(6, 127);
+            this.richTextBoxBokMeddelande.Name = "richTextBoxBokMeddelande";
+            this.richTextBoxBokMeddelande.Size = new System.Drawing.Size(244, 110);
+            this.richTextBoxBokMeddelande.TabIndex = 18;
+            this.richTextBoxBokMeddelande.Text = "";
             // 
             // label9
             // 
@@ -488,11 +506,12 @@
             this.buttonBoka.TabIndex = 10;
             this.buttonBoka.Text = "Boka";
             this.buttonBoka.UseVisualStyleBackColor = true;
+            this.buttonBoka.Click += new System.EventHandler(this.buttonBoka_Click);
             // 
             // maskedTextBoxReg
             // 
             this.maskedTextBoxReg.Location = new System.Drawing.Point(107, 67);
-            this.maskedTextBoxReg.Mask = "___ ___";
+            this.maskedTextBoxReg.Mask = "AAA 000";
             this.maskedTextBoxReg.Name = "maskedTextBoxReg";
             this.maskedTextBoxReg.Size = new System.Drawing.Size(100, 20);
             this.maskedTextBoxReg.TabIndex = 7;
@@ -552,9 +571,9 @@
             this.panelNyHyr.Controls.Add(this.maskedTextBox2);
             this.panelNyHyr.Controls.Add(this.label1);
             this.panelNyHyr.Controls.Add(this.label2);
-            this.panelNyHyr.Location = new System.Drawing.Point(3, 252);
+            this.panelNyHyr.Location = new System.Drawing.Point(3, 460);
             this.panelNyHyr.Name = "panelNyHyr";
-            this.panelNyHyr.Size = new System.Drawing.Size(157, 220);
+            this.panelNyHyr.Size = new System.Drawing.Size(427, 415);
             this.panelNyHyr.TabIndex = 1;
             this.panelNyHyr.Visible = false;
             // 
@@ -642,13 +661,6 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Namn:";
             // 
-            // läggTillHyrfordon
-            // 
-            this.läggTillHyrfordon.Name = "läggTillHyrfordon";
-            this.läggTillHyrfordon.Size = new System.Drawing.Size(172, 22);
-            this.läggTillHyrfordon.Text = "Lägg till hyrfordon";
-            this.läggTillHyrfordon.Click += new System.EventHandler(this.MenuItem_Click);
-            // 
             // panelNyHyrfordon
             // 
             this.panelNyHyrfordon.Controls.Add(this.checkedListBoxFordonsTyp);
@@ -662,11 +674,49 @@
             this.panelNyHyrfordon.Controls.Add(this.label13);
             this.panelNyHyrfordon.Controls.Add(this.TextBoxReg);
             this.panelNyHyrfordon.Controls.Add(this.label15);
-            this.panelNyHyrfordon.Location = new System.Drawing.Point(166, 252);
+            this.panelNyHyrfordon.Location = new System.Drawing.Point(3, 881);
             this.panelNyHyrfordon.Name = "panelNyHyrfordon";
             this.panelNyHyrfordon.Size = new System.Drawing.Size(436, 210);
             this.panelNyHyrfordon.TabIndex = 3;
             this.panelNyHyrfordon.Visible = false;
+            // 
+            // checkedListBoxFordonsTyp
+            // 
+            this.checkedListBoxFordonsTyp.CheckOnClick = true;
+            this.checkedListBoxFordonsTyp.FormattingEnabled = true;
+            this.checkedListBoxFordonsTyp.Items.AddRange(new object[] {
+            "Bil (2 pers)",
+            "Bil (5 pers)",
+            "Bil (7 pers)",
+            "Bil (9 pers)",
+            "Lastbil",
+            "Motorcykel",
+            "Skåpbil"});
+            this.checkedListBoxFordonsTyp.Location = new System.Drawing.Point(248, 33);
+            this.checkedListBoxFordonsTyp.Name = "checkedListBoxFordonsTyp";
+            this.checkedListBoxFordonsTyp.Size = new System.Drawing.Size(149, 109);
+            this.checkedListBoxFordonsTyp.TabIndex = 34;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(245, 12);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(98, 18);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "Typ av fordon";
+            // 
+            // buttonLäggTillFordon
+            // 
+            this.buttonLäggTillFordon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLäggTillFordon.Location = new System.Drawing.Point(153, 160);
+            this.buttonLäggTillFordon.Name = "buttonLäggTillFordon";
+            this.buttonLäggTillFordon.Size = new System.Drawing.Size(75, 29);
+            this.buttonLäggTillFordon.TabIndex = 25;
+            this.buttonLäggTillFordon.Text = "Lägg till";
+            this.buttonLäggTillFordon.UseVisualStyleBackColor = true;
+            this.buttonLäggTillFordon.Click += new System.EventHandler(this.buttonLäggTillFordon_Click);
             // 
             // TextBoxArsmodell
             // 
@@ -737,65 +787,56 @@
             this.label15.TabIndex = 17;
             this.label15.Text = "Reg nummer:";
             // 
-            // buttonLäggTillFordon
-            // 
-            this.buttonLäggTillFordon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLäggTillFordon.Location = new System.Drawing.Point(153, 160);
-            this.buttonLäggTillFordon.Name = "buttonLäggTillFordon";
-            this.buttonLäggTillFordon.Size = new System.Drawing.Size(75, 29);
-            this.buttonLäggTillFordon.TabIndex = 25;
-            this.buttonLäggTillFordon.Text = "Lägg till";
-            this.buttonLäggTillFordon.UseVisualStyleBackColor = true;
-            this.buttonLäggTillFordon.Click += new System.EventHandler(this.buttonLäggTillFordon_Click);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(245, 12);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(98, 18);
-            this.label17.TabIndex = 27;
-            this.label17.Text = "Typ av fordon";
-            // 
-            // checkedListBoxFordonsTyp
-            // 
-            this.checkedListBoxFordonsTyp.CheckOnClick = true;
-            this.checkedListBoxFordonsTyp.FormattingEnabled = true;
-            this.checkedListBoxFordonsTyp.Items.AddRange(new object[] {
-            "Bil (2 pers)",
-            "Bil (5 pers)",
-            "Bil (7 pers)",
-            "Bil (9 pers)",
-            "Lastbil",
-            "Motorcykel",
-            "Skåpbil"});
-            this.checkedListBoxFordonsTyp.Location = new System.Drawing.Point(248, 33);
-            this.checkedListBoxFordonsTyp.Name = "checkedListBoxFordonsTyp";
-            this.checkedListBoxFordonsTyp.Size = new System.Drawing.Size(149, 109);
-            this.checkedListBoxFordonsTyp.TabIndex = 34;
-            // 
             // richTextBoxFormAdminMsgs
             // 
             this.richTextBoxFormAdminMsgs.BackColor = System.Drawing.SystemColors.Control;
             this.richTextBoxFormAdminMsgs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxFormAdminMsgs.Location = new System.Drawing.Point(608, 252);
+            this.richTextBoxFormAdminMsgs.Location = new System.Drawing.Point(445, 881);
             this.richTextBoxFormAdminMsgs.Name = "richTextBoxFormAdminMsgs";
             this.richTextBoxFormAdminMsgs.Size = new System.Drawing.Size(100, 96);
             this.richTextBoxFormAdminMsgs.TabIndex = 4;
             this.richTextBoxFormAdminMsgs.Text = "";
             this.richTextBoxFormAdminMsgs.Visible = false;
             // 
+            // labelNyBokTid
+            // 
+            this.labelNyBokTid.AutoSize = true;
+            this.labelNyBokTid.Enabled = false;
+            this.labelNyBokTid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNyBokTid.Location = new System.Drawing.Point(265, 137);
+            this.labelNyBokTid.Name = "labelNyBokTid";
+            this.labelNyBokTid.Size = new System.Drawing.Size(78, 18);
+            this.labelNyBokTid.TabIndex = 20;
+            this.labelNyBokTid.Text = "Årsmodell:";
+            this.labelNyBokTid.Visible = false;
+            // 
+            // labelNyBokDag
+            // 
+            this.labelNyBokDag.AutoSize = true;
+            this.labelNyBokDag.Enabled = false;
+            this.labelNyBokDag.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNyBokDag.Location = new System.Drawing.Point(265, 110);
+            this.labelNyBokDag.Name = "labelNyBokDag";
+            this.labelNyBokDag.Size = new System.Drawing.Size(35, 18);
+            this.labelNyBokDag.TabIndex = 19;
+            this.labelNyBokDag.Text = "Dag";
+            this.labelNyBokDag.Visible = false;
+            // 
             // FormAdmin
             // 
-            this.ClientSize = new System.Drawing.Size(1177, 550);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(884, 749);
             this.Controls.Add(this.flowPanelRoot);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(900, 1200);
+            this.MinimumSize = new System.Drawing.Size(400, 200);
             this.Name = "FormAdmin";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.flowPanelRoot.ResumeLayout(false);
+            this.flowPanelRoot.PerformLayout();
             this.panelVisaBok.ResumeLayout(false);
             this.panelVisaBok.PerformLayout();
             this.panelBokDag.ResumeLayout(false);
@@ -860,14 +901,14 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelTid16;
+        private System.Windows.Forms.Label labelTid14;
+        private System.Windows.Forms.Label labelTid10;
+        private System.Windows.Forms.Label labelTid08;
         private System.Windows.Forms.Panel panelInfo;
         private System.Windows.Forms.Panel panelInfoProblem;
         private System.Windows.Forms.Panel panelInfoBil;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxBokMeddelande;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBoxInfoProblem;
         private System.Windows.Forms.RichTextBox richTextBoxInfoBil;
@@ -886,5 +927,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckedListBox checkedListBoxFordonsTyp;
         private System.Windows.Forms.RichTextBox richTextBoxFormAdminMsgs;
+        private System.Windows.Forms.Label labelNyBokTid;
+        private System.Windows.Forms.Label labelNyBokDag;
     }
 }
