@@ -221,6 +221,10 @@ namespace Bokningssystem
             // Skriv ut att uppdateringen gick bra
             richTextBoxOmOssMsgs.Text = "Du har nu uppdaterat företagets information";
 
+            // Döljer spara knappen
+            this.buttonSpara.Enabled = false;
+            this.buttonSpara.Visible = false; 
+
             // "Ladda om" vyn
             initFormOmOss();
         }

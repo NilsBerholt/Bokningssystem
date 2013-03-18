@@ -68,8 +68,10 @@ namespace Bokningssystem.forms
             if (namn != "Bekräfta")
             {
                 this.uppdatera = namn;
+                labelAvbryt.Visible = true;
                 labelBekräfta.Visible = true;
                 textBoxBekräfta.Visible = true;
+                textBoxBekräfta.Focus();
                 this.nyttvarde = textbox.Text;
                 return;
             }
@@ -143,6 +145,7 @@ namespace Bokningssystem.forms
             textBoxBekräfta.Clear();
             textBoxBekräfta.Hide();
             labelBekräfta.Hide();
+            labelAvbryt.Hide();
             panelRed.Hide();
             buttonBytLösen.Hide();
         }
@@ -200,6 +203,16 @@ namespace Bokningssystem.forms
         {
             if (e.KeyCode == Keys.Return)
                 buttonBytLösen_Click((object)buttonBytLösen, new EventArgs());
+        }
+
+        /// <summary>
+        /// Avbryter uppdateringenpå profilen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void labelAvbryt_Click(object sender, EventArgs e)
+        {
+            initProfil();
         }
     }
 }

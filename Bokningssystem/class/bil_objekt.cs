@@ -235,7 +235,6 @@ namespace Bokningssystem
             return 2;
         }
 
-
         /// <summary>
         /// KollaKundsBilar: Kollar efter kunders bilar och returnerar bara regnumret
         /// </summary>
