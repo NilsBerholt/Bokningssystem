@@ -81,11 +81,11 @@ namespace Bokningssystem
         private void bokningar(DateTime dag)
         {
             boknings_objekt bokningar = new boknings_objekt(new SqlCeDatabase(), this.admin);
-            Array[] allaBokningar;
+            SortedList<string,string>[] allaBokningar;
             Label[] tider = { labelTid08, labelTid10, labelTid14, labelTid16 };
 
             allaBokningar = bokningar.hamtaAllaBokningar(dag.ToShortDateString());
-            if (allaBokningar.Length == 1)
+            if (allaBokningar.Length == 0)
             {
                 if (DEBUG)
                     richTextBoxFormAdminMsgs.Lines = bokningar.GetTmpMsgs();
@@ -99,7 +99,35 @@ namespace Bokningssystem
                 labelDag.Text = string.Format("Det valda datumet är {0}", dag.ToShortDateString());
                 panelBokDag.Show();
             }
-            
+            else
+            {
+                for (int i = 0; i < allaBokningar.Length; i++)
+                {
+                    SortedList<string, string> bokning = allaBokningar[i];
+                    string tid = bokning["tid"];
+                    switch (tid)
+                    {
+                        case "08:00":
+                            labelTid08.Text = bokning["bil"];
+                            break;
+
+                        case "10:00":
+                            labelTid10.Text = bokning["bil"];
+                            break;
+
+                        case "14:00":
+                            labelTid14.Text = bokning["bil"];
+                            break;
+
+                        case "16:00":
+                            labelTid16.Text = bokning["bil"];
+                            break;
+                    }
+                }
+                labelNyBokDag.Text = dag.ToShortDateString();
+                labelDag.Text = string.Format("Det valda datumet är {0}", dag.ToShortDateString());
+                panelBokDag.Show();
+            }
         }
 
         /// <summary>

@@ -579,7 +579,7 @@ namespace Bokningssystem
             boknings_objekt bokningar = new boknings_objekt(new SqlCeDatabase(), anvandare);
             bil_objekt fordon = new bil_objekt();
 
-            Array[] bokningsResultat = bokningar.hamtaMinaBokningar();
+            SortedList<string, string>[] bokningsResultat = bokningar.hamtaMinaBokningar();
             int bilResultat = fordon.kollaKundsBilar(anvandare);
 
             if (bilResultat != 0)
@@ -598,16 +598,16 @@ namespace Bokningssystem
 
             if (this.tableLayoutPanelBilar.Visible)
             {
-                Array[] fordonLista = fordon.GetTmpMsgs(true);
+                SortedList<string, string>[] fordonLista = fordon.GetTmpMsgs(true);
                 int length = fordonLista.Length;
                 for (int i = 0; i < length; i++)
                 {
-                    string[] fordonsfält = fordonLista[i] as string[];
+                    SortedList<string, string> fordonsfält = fordonLista[i] as SortedList<string, string>;
                     Label labelBilarReg = new Label(), labelBilarMarke = new Label(), labelBilarModell = new Label(), labelBilarArsmodell = new Label();
                     Label[] labelBilar = { labelBilarReg, labelBilarMarke, labelBilarModell, labelBilarArsmodell };
                     for (int o = 0; o < 4; o++)
                     {
-                        labelBilar[o].Text = fordonsfält[o];
+                        labelBilar[o].Text = fordonsfält[fordonsfält.Keys[o]];
                         this.tableLayoutPanelBilar.Controls.Add(labelBilar[o]);
                     }
                 }
@@ -617,7 +617,7 @@ namespace Bokningssystem
                 int length = bokningsResultat.Length;
                 for (int i = 0; i < length; i++)
                 {
-                    string[] bokningsString = bokningsResultat[i] as string[];
+                    SortedList<string, string> bokningsString = bokningsResultat[i] as SortedList<string, string>;
                     Label labelBokningDatum = new Label(), labelBokningTid = new Label(), labelBokningFordon = new Label();
                     Label[] labelBokning = { labelBokningDatum, labelBokningTid, labelBokningFordon};
                     for (int o = 0; o < 3; o++)
@@ -625,12 +625,12 @@ namespace Bokningssystem
                         if ((o % 2 == 0) & o != 0)
                         {
                             labelBokning[o].Text = "Ta bort";
-                            labelBokning[o].Name = "Tabort_" + bokningsString[2];
+                            labelBokning[o].Name = "Tabort_" + bokningsString["id"];
                             labelBokning[o].Cursor = System.Windows.Forms.Cursors.Hand;
                             labelBokning[o].Click += new System.EventHandler(this.TaBort);
                         }
                         else
-                            labelBokning[o].Text = bokningsString[o];
+                            labelBokning[o].Text = bokningsString[bokningsString.Keys[o]];
                         this.tableLayoutPanelBokningar.Controls.Add(labelBokning[o]);
                     }
                 }

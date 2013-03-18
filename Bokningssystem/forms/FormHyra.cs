@@ -224,7 +224,7 @@ namespace Bokningssystem
         private void fyllHyrningar()
         {
             hyrnings_objekt hyrning = new hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
-            Array[] HyrningsResultat = hyrning.hamtaMinaHyrningar();
+            SortedList<string, string>[] HyrningsResultat = hyrning.hamtaMinaHyrningar();
 
             if (HyrningsResultat.Length == 0)
             {
@@ -238,7 +238,7 @@ namespace Bokningssystem
                 int length = HyrningsResultat.Length;
                 for (int i = 0; i < length; i++)
                 {
-                    string[] hyrningsString = HyrningsResultat[i] as string[];
+                    SortedList<string, string> hyrningsString = HyrningsResultat[i] as SortedList<string, string>;
                     Label labelHyrningStartDatum = new Label(), labelHyrningSlutDatum = new Label(), labelHyrningFordon = new Label(), labelTabortHyrningar = new Label();
                     Label[] labelHyrning = { labelHyrningStartDatum, labelHyrningSlutDatum, labelHyrningFordon, labelTabortHyrningar };
                     for (int o = 0; o < 4; o++)
@@ -246,12 +246,12 @@ namespace Bokningssystem
                         if (o == 3)
                         {
                             labelHyrning[o].Text = "Ta bort";
-                            labelHyrning[o].Name = "Tabort_" + hyrningsString[6];
+                            labelHyrning[o].Name = "Tabort_" + hyrningsString["Hyrning"];
                             labelHyrning[o].Cursor = Cursors.Hand;
                             labelHyrning[o].Click += new System.EventHandler(this.TaBort);
                         }
                         else
-                            labelHyrning[o].Text = hyrningsString[o];
+                            labelHyrning[o].Text = hyrningsString[hyrningsString.Keys[o]];
                         this.tableLayoutPanelHyrning.Controls.Add(labelHyrning[o]);
                     }
                 }

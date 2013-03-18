@@ -8,7 +8,7 @@ namespace Bokningssystem
     class bil_objekt
     {
         string[] tmpMsgs;
-        Array[] tmpMsgsArray;
+        SortedList<string,string>[] tmpMsgsArray;
         bool DEBUG = Properties.Settings.Default.Debug;
 
         /// <summary>
@@ -31,13 +31,13 @@ namespace Bokningssystem
         /// </summary>
         /// <param name="array">bool som avgör att det blir en array</param>
         /// <returns></returns>
-        public Array[] GetTmpMsgs(bool array)
+        public SortedList<string,string>[] GetTmpMsgs(bool array)
         {
             if (this.tmpMsgsArray != null)
                 return this.tmpMsgsArray;
             else
             {
-                Array[] meddelande = { };
+                SortedList<string,string>[] meddelande = { };
                 return meddelande;
             }
         }
@@ -218,7 +218,7 @@ namespace Bokningssystem
             int queryResultat = db.query(regQuery, args);
             if (queryResultat == 0)
             {
-                Array[] fetchResultat = db.fetchAll();
+                SortedList<string,string>[] fetchResultat = db.fetchAllList();
 
                 if (fetchResultat.Length < 1)
                 {

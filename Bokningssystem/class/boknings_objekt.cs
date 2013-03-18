@@ -247,11 +247,11 @@ namespace Bokningssystem
         /// Hämtar värdena datumet, bilen, fordonsmodellen, fordonets årsmodell och märket i den ordningen
         /// </summary>
         /// <returns>Returnerar en string[] med alla träffar, om det inte fanns några träffar skickar den </returns>
-        public Array[] hamtaMinaBokningar()
+        public SortedList<string,string>[] hamtaMinaBokningar()
         {
             string email = this.anvandare.GetEmail();
             List<string> errorMsgs = new List<string>();
-            Array[] fetch;
+            SortedList<string,string>[] fetch;
             string queryHamtaBokningar = "SELECT B.datum, B.bil, B.id, F.modell, F.arsmodell, F.marke " +
             "FROM Bokning AS B INNER JOIN Fordon AS F ON B.bil = F.reg WHERE (B.email = '?x?')";
             string[] args = { email };
@@ -259,39 +259,39 @@ namespace Bokningssystem
             int queryRes = this.db.query(queryHamtaBokningar, args);
             if (queryRes == 0)
             {
-                fetch = this.db.fetchAll();
+                fetch = this.db.fetchAllList();
                 if (fetch.Length > 0)
                     return fetch;
             }
             errorMsgs.AddRange(db.GetTmpMsgs());
             this.tmpMsgs = errorMsgs.ToArray();
-            Array[] res = { };
+            SortedList<string,string>[] res = { };
             return res;
         }
 
         /// <summary>
         /// Hämtar alla bokningar under en viss tidsperiod.
-        /// Hämtar värdena kund, datumet, bilen, fordonsmodellen, fordonets årsmodell och märket i den ordningen
+        /// Hämtar värdena förnamn, efternamn, datumet, tiden, bilen, bokningens id, fordonsmodellen, fordonets årsmodell och märket i den ordningen
         /// </summary>
         /// <returns>Returnerar en string[] med alla träffar, om det inte fanns några träffar skickar den </returns>
-        public Array[] hamtaAllaBokningar(string dag)
+        public SortedList<string,string>[] hamtaAllaBokningar(string dag)
         {
             List<string> errorMsgs = new List<string>();
-            Array[] fetch;
-            string queryHamtaBokningar = "SELECT B.fnamn, B.enamn, B.datum, B.bil, B.id, F.modell, F.arsmodell, F.marke " +
-            "FROM Bokning AS B INNER JOIN Fordon AS F ON B.bil = F.reg WHERE (B.datum = '?x?')";
+            SortedList<string,string>[] fetch;
+            string queryHamtaBokningar = "SELECT B.fnamn, B.enamn, B.datum, B.tid, B.bil, B.id, F.modell, F.arsmodell, F.marke " +
+            "FROM Bokning AS B LEFT OUTER JOIN Fordon AS F ON B.bil = F.reg WHERE (B.datum = '?x?')";
             string[] args = { dag };
 
             int queryRes = this.db.query(queryHamtaBokningar, args);
             if (queryRes == 0)
             {
-                fetch = this.db.fetchAll();
+                fetch = this.db.fetchAllList();
                 if (fetch.Length > 0)
                     return fetch;
             }
             errorMsgs.AddRange(db.GetTmpMsgs());
             this.tmpMsgs = errorMsgs.ToArray();
-            Array[] res = { };
+            SortedList<string, string>[] res = { };
             return res;
         }
         

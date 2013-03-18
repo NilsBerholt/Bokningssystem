@@ -105,24 +105,24 @@ namespace Bokningssystem
         /// Hämtar värdena startdatum,  i den ordningen
         /// </summary>
         /// <returns>Returnerar en string[] med alla träffar, om det inte fanns några träffar skickar den </returns>
-        public Array[] hamtaMinaHyrningar()
+        public SortedList<string,string>[] hamtaMinaHyrningar()
         {
             List<string> errorMsgs = new List<string>();
-            Array[] fetch;
+            SortedList<string, string>[] fetch;
             string queryHamtaHyrningar = "SELECT H.Startdag, H.Fordon, H.Slutdag, F.typ, F.marke, F.modell, H.Hyrning " +
-            "FROM Hyrning as H INNER JOIN HyrFordon as F ON H.Fordon = F.typ WHERE (H.Kund = '?x?')";
+            "FROM Hyrning as H INNER JOIN HyrFordon as F ON H.Fordon = F.regnr WHERE (H.Kund = '?x?')";
             string[] args = { this.anvandare.GetEmail() };
 
             int queryRes = this.db.query(queryHamtaHyrningar, args);
             if (queryRes == 0)
             {
-                fetch = this.db.fetchAll();
+                fetch = this.db.fetchAllList();
                 if (fetch.Length > 0)
                     return fetch;
             }
             errorMsgs.AddRange(db.GetTmpMsgs());
             this.tmpMsgs = errorMsgs.ToArray();
-            Array[] res = { };
+            SortedList<string, string>[] res = { };
             return res;
         }
 

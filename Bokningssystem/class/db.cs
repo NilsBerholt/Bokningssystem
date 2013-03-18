@@ -109,7 +109,6 @@ namespace Bokningssystem
             SqlCeTransaction transaction = connection.BeginTransaction();
             List<string> errorMsg = new List<string>();
             List<string> resultat = new List<string>();
-
             this.cmd.Transaction = transaction;
             SqlCeResultSet result;
             result = this.cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
@@ -170,7 +169,40 @@ namespace Bokningssystem
             }
             result.Close();
             connection.Close();
-            return resultat.ToArray(); 
+            return resultat.ToArray();
+        }
+
+        /// <summary>
+        /// Samma som fetchAll fast den använder sig av SortedLists, vilket är så fantastiskt att de sparar informationen i associativa arrays.
+        /// Alltså kommer informationen sparas i SortedList['fältnamn'] istället för List[nummerbaserat id].
+        /// </summary>
+        /// <returns></returns>
+        public SortedList<string,string>[] fetchAllList()
+        {
+            connection.Open();
+
+            SqlCeTransaction transaction = connection.BeginTransaction();
+            List<string> errorMsg = new List<string>();
+            List<string[]> resultat = new List<string[]>();
+
+            this.cmd.Transaction = transaction;
+            SqlCeDataReader result;
+            result = this.cmd.ExecuteReader(System.Data.CommandBehavior.Default);
+
+            List<SortedList<string, string>> resultatArray = new List<SortedList<string, string>>();
+            while (result.Read())
+            {
+                int fields = result.FieldCount;
+                SortedList<string, string> fieldValues = new SortedList<string, string>();
+                for (int i = 0; i < fields; i++)
+                {
+                    fieldValues[result.GetName(i)] = result[i].ToString();
+                }
+                resultatArray.Add(fieldValues);
+            }
+            result.Close();
+            connection.Close();
+            return resultatArray.ToArray();
         }
 
         /// <summary>

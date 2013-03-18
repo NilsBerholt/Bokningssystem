@@ -60,6 +60,8 @@
             this.labelValj = new System.Windows.Forms.Label();
             this.monthCalendarBokning = new System.Windows.Forms.MonthCalendar();
             this.panelNyBok = new System.Windows.Forms.Panel();
+            this.labelNyBokTid = new System.Windows.Forms.Label();
+            this.labelNyBokDag = new System.Windows.Forms.Label();
             this.richTextBoxBokMeddelande = new System.Windows.Forms.RichTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.maskedTextBoxArsmodell = new System.Windows.Forms.MaskedTextBox();
@@ -98,8 +100,6 @@
             this.TextBoxReg = new System.Windows.Forms.MaskedTextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.richTextBoxFormAdminMsgs = new System.Windows.Forms.RichTextBox();
-            this.labelNyBokTid = new System.Windows.Forms.Label();
-            this.labelNyBokDag = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.flowPanelRoot.SuspendLayout();
             this.panelVisaBok.SuspendLayout();
@@ -427,6 +427,30 @@
             this.panelNyBok.Size = new System.Drawing.Size(430, 243);
             this.panelNyBok.TabIndex = 0;
             this.panelNyBok.Visible = false;
+            // 
+            // labelNyBokTid
+            // 
+            this.labelNyBokTid.AutoSize = true;
+            this.labelNyBokTid.Enabled = false;
+            this.labelNyBokTid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNyBokTid.Location = new System.Drawing.Point(265, 137);
+            this.labelNyBokTid.Name = "labelNyBokTid";
+            this.labelNyBokTid.Size = new System.Drawing.Size(78, 18);
+            this.labelNyBokTid.TabIndex = 20;
+            this.labelNyBokTid.Text = "Årsmodell:";
+            this.labelNyBokTid.Visible = false;
+            // 
+            // labelNyBokDag
+            // 
+            this.labelNyBokDag.AutoSize = true;
+            this.labelNyBokDag.Enabled = false;
+            this.labelNyBokDag.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNyBokDag.Location = new System.Drawing.Point(265, 110);
+            this.labelNyBokDag.Name = "labelNyBokDag";
+            this.labelNyBokDag.Size = new System.Drawing.Size(35, 18);
+            this.labelNyBokDag.TabIndex = 19;
+            this.labelNyBokDag.Text = "Dag";
+            this.labelNyBokDag.Visible = false;
             // 
             // richTextBoxBokMeddelande
             // 
@@ -797,30 +821,6 @@
             this.richTextBoxFormAdminMsgs.TabIndex = 4;
             this.richTextBoxFormAdminMsgs.Text = "";
             this.richTextBoxFormAdminMsgs.Visible = false;
-            // 
-            // labelNyBokTid
-            // 
-            this.labelNyBokTid.AutoSize = true;
-            this.labelNyBokTid.Enabled = false;
-            this.labelNyBokTid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNyBokTid.Location = new System.Drawing.Point(265, 137);
-            this.labelNyBokTid.Name = "labelNyBokTid";
-            this.labelNyBokTid.Size = new System.Drawing.Size(78, 18);
-            this.labelNyBokTid.TabIndex = 20;
-            this.labelNyBokTid.Text = "Årsmodell:";
-            this.labelNyBokTid.Visible = false;
-            // 
-            // labelNyBokDag
-            // 
-            this.labelNyBokDag.AutoSize = true;
-            this.labelNyBokDag.Enabled = false;
-            this.labelNyBokDag.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNyBokDag.Location = new System.Drawing.Point(265, 110);
-            this.labelNyBokDag.Name = "labelNyBokDag";
-            this.labelNyBokDag.Size = new System.Drawing.Size(35, 18);
-            this.labelNyBokDag.TabIndex = 19;
-            this.labelNyBokDag.Text = "Dag";
-            this.labelNyBokDag.Visible = false;
             // 
             // FormAdmin
             // 

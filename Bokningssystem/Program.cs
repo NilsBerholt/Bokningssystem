@@ -18,7 +18,7 @@ namespace Bokningssystem
             Application.SetCompatibleTextRenderingDefault(false);
             kund anvandare = new kund("jassob@live.se", "jonsson");
             //administrator admin = new administrator("jassob@live.se","jonsson");
-            Application.Run(new FormInmatning());
+            Application.Run(new FormBoka(anvandare));
         }
     }
 }
