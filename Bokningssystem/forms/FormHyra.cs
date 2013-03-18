@@ -15,7 +15,7 @@ namespace Bokningssystem
         public bool DEBUG = Properties.Settings.Default.Debug;
         private kund anvandare;
         private string uppdatera = null;
-        private string dag = "";
+        private string startdag = "";
         private string slutdag = "";
 
         /// <summary>
@@ -25,14 +25,11 @@ namespace Bokningssystem
         {
           for (int i = 0; i < checkedListBox1.Items.Count; i++)
                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
-               {
-                   checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
-               }
-
-           maskedTextBoxDagar.Text = "";
-           panelTider.Hide();
-           buttonHyr.Hide();
-           monthCalendar1.SelectionStart = DateTime.Today;
+                    checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+           
+            buttonHyr.Hide();
+            labelTyp.Hide();
+            panelTyp.Hide();
         }
 
         /// <summary>
@@ -45,10 +42,7 @@ namespace Bokningssystem
             InitializeComponent(); 
             SqlCeDatabase db = new SqlCeDatabase();
             this.anvandare = anvandare;
-
-            // Fixar så man bara kan välja ett datum i monthCalendar1.
-            monthCalendar1.MaxSelectionCount = 30;
-            
+                        
             DoljHyr();
             fyllHyrningar();
 
@@ -76,7 +70,6 @@ namespace Bokningssystem
                 case "NyHyr":
                     tabControl1.SelectTab(tabPageNyHyr);
                     DoljHyr();
-                    checkedListBox1.SetItemCheckState(1, CheckState.Indeterminate);
                     richTextBoxMeddelandenHyra.Text = "Du måste välj datum och hur många dagar du vill hyra ett fordon innan du kan hyra.";
                     break;
 
@@ -112,43 +105,7 @@ namespace Bokningssystem
                     break;
             }
         }
-
-        /// <summary>
-        /// Funktion som körs när datumet ändras i kalendern. Extraherar den valda datetimen och
-        /// gör om det till en sträng med bara datumet
-        /// </summary>
-        /// <param name="sender">The button that called the event</param>
-        /// <param name="e"></param>
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            dag = monthCalendar1.SelectionStart.Date.ToString();
-            // Tar bort de onödiga och totalt förstörande sista nollorna efter datumet
-            dag = dag.Substring(0, dag.IndexOf(' '));
-            panelTider.Show();
-        }
-
-        /// <summary>
-        /// Räknar fram vilken slutdagen är
-        /// </summary>
-        /// <param name="sender">Knappenobjektet som startade eventet</param>
-        /// <param name="e"></param>
-        private void buttonDagar_Click(object sender, EventArgs e)
-        {
-            string dagar = maskedTextBoxDagar.Text;
-            DateTime dagDate = DateTime.Parse(dag);
-            dagDate = dagDate.AddDays(Convert.ToDouble(dagar));
-            slutdag = dagDate.Date.ToString();
-            slutdag = slutdag.Substring(0, slutdag.IndexOf(' '));
-
-            buttonHyr.Show();
-            
-            if (DEBUG)
-            {
-                string meddelande = "\n" + dag + " och " + slutdag;
-                richTextBoxMeddelandenHyra.Text += meddelande;
-            }
-        }
-
+        
         /// <summary>
         /// Hyrfunktionen, hyr fordon på den valda dagen till.
         /// </summary>
@@ -169,14 +126,14 @@ namespace Bokningssystem
                 {
                     string fordon = checkedListBox1.Items[i] as string;
                     valdaFordon += ", " + fordon;
-                    if (fordonregister.kollaLedigaHyrFordon(fordon, dag, slutdag) == 0)
+                    if (fordonregister.kollaLedigaHyrFordon(fordon, startdag, slutdag) == 0)
                     {
                         reg = fordonregister.GetTmpMsgs()[0];
 
-                        if (hyrning.hyra(this.anvandare, dag, slutdag, reg))
+                        if (hyrning.hyra(this.anvandare, startdag, slutdag, reg))
                         {
                             richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
-                            richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + valdaFordon.Substring(2) + "\nRegnummer: "+ reg +"\nStartdagen: " + dag + "\nSlutdagen: " + slutdag;
+                            richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + valdaFordon.Substring(2) + "\nRegnummer: "+ reg +"\nStartdagen: " + startdag + "\nSlutdagen: " + slutdag;
                         }
                         else
                         {
@@ -196,6 +153,21 @@ namespace Bokningssystem
                     DoljHyr();
                 }
         }
+        
+        /// <summary>
+        /// Väljer startdag och slutdag
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void datum(object sender, EventArgs e)
+        {
+            
+            startdag = dateTimePicker1.Value.ToString(startdag);
+            richTextBoxMeddelandenHyra.Text = string.Format("Startdag " + startdag);
+            slutdag = dateTimePicker2.Value.ToString(slutdag);
+            richTextBoxMeddelandenHyra.Text += string.Format("Slutdag " + slutdag);
+
+        }
 
         /// <summary>
         /// Eventhandler som ser till att items som inte ska gå att checka inte heller går att checka
@@ -206,27 +178,43 @@ namespace Bokningssystem
         {
             if (e.CurrentValue == CheckState.Indeterminate)
                 e.NewValue = CheckState.Indeterminate;
+            if (e.CurrentValue == CheckState.Unchecked)
+            {
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                    if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                        checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+                e.NewValue = CheckState.Checked;
+            }
         }
 
         /// <summary>
-        /// Skriver ut vilka fordon kunden vill hyra
+        /// Skriver ut i en tabellayout med all iformation som är nödvändig för kunden
         /// </summary>
-        /// <param name="sender">Knappobjektet som startade eventet</param>
-        /// <param name="e"></param>
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        /// <param name="typ">Vilken typ kunden vill ha</param>
+        /// <param name="startdag">Startdagen för hyrningen</param>
+        /// <param name="slutdag">Slutdagen för hyrningen</param>
+        private void HyrablaFordon(string typ, string startdag, string slutdag)
         {
-            if (DEBUG)
+            bil_objekt hyrabel = new bil_objekt();
+
+            if (hyrabel.kollaLedigaHyrFordon(typ, startdag, slutdag) == 10)
             {
-                string hyrFordon = "Detta är de fordon du vill hyra:\n";
-                for (int i = 0; i < checkedListBox1.Items.Count; i++)
-                    if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
-                    {
-                        string vald = checkedListBox1.Items[i] as string;
-                        string objectText = string.Format("{0}, \n", vald);
-                        hyrFordon += objectText;
-                    }
-                richTextBoxMeddelandenHyra.Text = hyrFordon;
+                this.tableLayoutPanelTyp.Hide();
+                this.labelHyrningMeddelande.Text = "Du har inga hyrda fordon";
+                this.labelHyrningMeddelande.Show();
             }
+            else if (hyrabel.kollaLedigaHyrFordon(typ, startdag, slutdag) == 0)
+                if (this.tableLayoutPanelTyp.Visible)
+                {
+                    int length = hyrabel.kollaLedigaHyrFordon(typ, startdag, slutdag);
+                    for (int i = 0; i < length; i++)
+                    {
+                        string[] ledigaFordon = hyrabel.GetTmpMsgs();
+                        Label labelLedigaFordonMarke = new Label();
+                        // Fortsätt här!!!!!! Du är inte klar än!
+                    }
+                }
+
         }
         
         /// <summary>

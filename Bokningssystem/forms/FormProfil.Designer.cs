@@ -47,6 +47,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.buttonBytLösen = new System.Windows.Forms.Button();
+            this.labelAvbryt = new System.Windows.Forms.Label();
             this.panelRed.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -260,11 +261,24 @@
             this.buttonBytLösen.Visible = false;
             this.buttonBytLösen.Click += new System.EventHandler(this.buttonBytLösen_Click);
             // 
+            // labelAvbryt
+            // 
+            this.labelAvbryt.AutoSize = true;
+            this.labelAvbryt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAvbryt.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.labelAvbryt.Location = new System.Drawing.Point(336, 270);
+            this.labelAvbryt.Name = "labelAvbryt";
+            this.labelAvbryt.Size = new System.Drawing.Size(38, 15);
+            this.labelAvbryt.TabIndex = 37;
+            this.labelAvbryt.Text = "Avbryt";
+            this.labelAvbryt.Click += new System.EventHandler(this.labelAvbryt_Click);
+            // 
             // FormProfil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 382);
+            this.Controls.Add(this.labelAvbryt);
             this.Controls.Add(this.buttonBytLösen);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.textBoxBekräfta);
@@ -304,6 +318,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button buttonBytLösen;
+        private System.Windows.Forms.Label labelAvbryt;
 
     }
 }

@@ -17,7 +17,7 @@ namespace Bokningssystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             kund anvandare = new kund("jassob@live.se", "jonsson");
-            //administrator admin = new administrator("jassob@live.se","jonsson");
+            administrator admin = new administrator("jassob@live.se","jonsson");
             Application.Run(new FormHyra(anvandare));
         }
     }
