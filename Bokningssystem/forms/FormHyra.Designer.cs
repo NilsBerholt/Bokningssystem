@@ -32,8 +32,9 @@
             this.tabPageMeny = new System.Windows.Forms.TabPage();
             this.richTextBoxBokningMeny = new System.Windows.Forms.RichTextBox();
             this.tabPageNyHyr = new System.Windows.Forms.TabPage();
+            this.buttonValj = new System.Windows.Forms.Button();
             this.panelTyp = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelFordonsTypMeddelande = new System.Windows.Forms.Label();
             this.tableLayoutPanelTyp = new System.Windows.Forms.TableLayoutPanel();
             this.labelFordonsTyp = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -101,6 +102,7 @@
             // tabPageNyHyr
             // 
             this.tabPageNyHyr.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageNyHyr.Controls.Add(this.buttonValj);
             this.tabPageNyHyr.Controls.Add(this.panelTyp);
             this.tabPageNyHyr.Controls.Add(this.labelFordonsTyp);
             this.tabPageNyHyr.Controls.Add(this.dateTimePicker2);
@@ -118,25 +120,36 @@
             this.tabPageNyHyr.TabIndex = 1;
             this.tabPageNyHyr.Text = "Ny hyrning";
             // 
+            // buttonValj
+            // 
+            this.buttonValj.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonValj.Location = new System.Drawing.Point(165, 195);
+            this.buttonValj.Name = "buttonValj";
+            this.buttonValj.Size = new System.Drawing.Size(66, 26);
+            this.buttonValj.TabIndex = 41;
+            this.buttonValj.Text = "Välj";
+            this.buttonValj.UseVisualStyleBackColor = true;
+            this.buttonValj.Click += new System.EventHandler(this.buttonValj_Click);
+            // 
             // panelTyp
             // 
             this.panelTyp.AutoScroll = true;
-            this.panelTyp.Controls.Add(this.label1);
+            this.panelTyp.Controls.Add(this.labelFordonsTypMeddelande);
             this.panelTyp.Controls.Add(this.tableLayoutPanelTyp);
             this.panelTyp.Location = new System.Drawing.Point(281, 30);
             this.panelTyp.Name = "panelTyp";
             this.panelTyp.Size = new System.Drawing.Size(319, 302);
             this.panelTyp.TabIndex = 40;
             // 
-            // label1
+            // labelFordonsTypMeddelande
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Visible = false;
+            this.labelFordonsTypMeddelande.AutoSize = true;
+            this.labelFordonsTypMeddelande.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelFordonsTypMeddelande.Location = new System.Drawing.Point(0, 0);
+            this.labelFordonsTypMeddelande.Name = "labelFordonsTypMeddelande";
+            this.labelFordonsTypMeddelande.Size = new System.Drawing.Size(0, 13);
+            this.labelFordonsTypMeddelande.TabIndex = 1;
+            this.labelFordonsTypMeddelande.Visible = false;
             // 
             // tableLayoutPanelTyp
             // 
@@ -228,17 +241,6 @@
             this.checkedListBox1.Size = new System.Drawing.Size(149, 109);
             this.checkedListBox1.TabIndex = 33;
             this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ItemCheck);
-            // 
-            // buttonHyr
-            // 
-            this.buttonHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonHyr.Location = new System.Drawing.Point(176, 358);
-            this.buttonHyr.Name = "buttonHyr";
-            this.buttonHyr.Size = new System.Drawing.Size(86, 33);
-            this.buttonHyr.TabIndex = 32;
-            this.buttonHyr.Text = "Hyr";
-            this.buttonHyr.UseVisualStyleBackColor = true;
-            this.buttonHyr.Click += new System.EventHandler(this.buttonHyr_Click);
             // 
             // richTextBoxMeddelandenHyra
             // 
@@ -426,7 +428,7 @@
         private System.Windows.Forms.Button buttonMeny;
         private System.Windows.Forms.Button buttonOmOss;
         private System.Windows.Forms.Panel panelTyp;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelFordonsTypMeddelande;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelTyp;
         private System.Windows.Forms.Label labelFordonsTyp;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
@@ -434,5 +436,6 @@
         private System.Windows.Forms.Label labelTyp;
         private System.Windows.Forms.Label labelSlut;
         private System.Windows.Forms.Label labelStart;
+        private System.Windows.Forms.Button buttonValj;
     }
 }
