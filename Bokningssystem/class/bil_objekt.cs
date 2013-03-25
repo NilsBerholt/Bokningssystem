@@ -435,5 +435,31 @@ namespace Bokningssystem
             else
                 throw new Exception("Det fanns inga fordon med de regnumren");
         }
+
+        /// <summary>
+        /// Hämtar information om hyrfordonen som marke, modell, arsmodell och sparar dem i en SortedList där nycklarna är fältnamnen ifrån databasen.
+        /// </summary>
+        /// <param name="reg">Regnumret som datan ska hämtas om</param>
+        /// <returns>En SortedList med fordonsinformationen.
+        /// Innehåller även en nyckel för "regnr"</returns>
+        public SortedList<string, string> hamtaValtHyrfordon(string reg)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+            SortedList<string, string> fordon = new SortedList<string, string>();
+
+            string queryFetchFordon = "SELECT regnr,marke,modell,arsmodell from HyrFordon where regnr='?x?'";
+            string[] args = { reg };
+
+            int queryRes = db.query(queryFetchFordon, arg);
+
+            if (queryRes != 0)
+                throw new Exception(string.Format("Det blev något fel när frågan skapades.\nFelkod: {0}", queryRes));
+
+            if (db.fetchList().Count == 0)
+                return db.fetchList();
+
+            else
+                throw new Exception("Det fanns inget fordon med de regnumret");
+        }
     }
 }
