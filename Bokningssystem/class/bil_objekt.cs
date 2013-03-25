@@ -450,7 +450,7 @@ namespace Bokningssystem
             string queryFetchFordon = "SELECT regnr,marke,modell,arsmodell from HyrFordon where regnr='?x?'";
             string[] args = { reg };
 
-            int queryRes = db.query(queryFetchFordon, arg);
+            int queryRes = db.query(queryFetchFordon, args);
 
             if (queryRes != 0)
                 throw new Exception(string.Format("Det blev något fel när frågan skapades.\nFelkod: {0}", queryRes));
