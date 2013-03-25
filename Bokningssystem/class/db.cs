@@ -153,9 +153,10 @@ namespace Bokningssystem
             SqlCeTransaction transaction = connection.BeginTransaction();
             List<string> errorMsg = new List<string>();
             SortedList<string,string> resultat = new SortedList<string,string>();
+            
             this.cmd.Transaction = transaction;
-            SqlCeResultSet result;
-            result = this.cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
+            SqlCeDataReader result;
+            result = this.cmd.ExecuteReader(System.Data.CommandBehavior.SingleRow);
 
             int length = result.FieldCount;
             while (result.Read())

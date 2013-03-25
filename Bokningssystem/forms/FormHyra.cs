@@ -14,6 +14,7 @@ namespace Bokningssystem
     {
         public bool DEBUG = Properties.Settings.Default.Debug;
         private kund anvandare;
+        private string fordon = "";
         private string startdag = "";
         private string slutdag = "";
 
@@ -206,7 +207,7 @@ namespace Bokningssystem
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
                 {
-                    string fordon = checkedListBox1.Items[i] as string;
+                    fordon = checkedListBox1.Items[i] as string;
                     labelFordonsTyp.Text = fordon;
 
                     HyrablaFordon(fordon, startdag, slutdag);
@@ -235,29 +236,42 @@ namespace Bokningssystem
             }
             else if (hyrabelStatus == 0)
             {
-                if (this.tableLayoutPanelTyp.Visible)
+                tableLayoutPanelTyp.Visible = true;
+                panelTyp.Show();
+
+                string[] ledigaFordon = hyrabel.GetTmpMsgs();
+                SortedList<string, string>[] hyrabelInformation = hyrabel.hamtaValtHyrfordon(ledigaFordon);
+                int length = ledigaFordon.Length;
+                for (int i = 0; i < length; i++)
                 {
-                    string[] ledigaFordon = hyrabel.GetTmpMsgs();
-                    int length = ledigaFordon.Length;
-                    for (int i = 0; i < length; i++)
-                    {
-                        Label labelLedigaFordonMarke = new Label(), labelLedigaFordonModell = new Label(), labelLedigaFordonArsmodell = new Label(), labelLedigaFordonReg = new Label(), labelLedigaFordonHyr = new Label();
-                        Label[] labelFordon = { labelLedigaFordonReg, labelLedigaFordonMarke, labelLedigaFordonModell, labelLedigaFordonArsmodell, labelLedigaFordonHyr };
-                        for (int o = 0; o < 5; o++)
+                    Label labelLedigaFordonMarke = new Label(), labelLedigaFordonModell = new Label(), labelLedigaFordonArsmodell = new Label(), labelLedigaFordonReg = new Label(), labelLedigaFordonHyr = new Label();
+                    Label[] labelFordon = { labelLedigaFordonReg, labelLedigaFordonMarke, labelLedigaFordonModell, labelLedigaFordonArsmodell, labelLedigaFordonHyr };
+                    for (int o = 0; o < 5; o++)
+                        switch (o)
                         {
-                            if (o == 4)
-                            {
+                            case 0:
+                                labelFordon[o].Text = hyrabelInformation[i]["regnr"];
+                                break;
+
+                            case 1:
+                                labelFordon[o].Text = hyrabelInformation[i]["marke"];
+                                break;
+
+                            case 2:
+                                labelFordon[o].Text = hyrabelInformation[i]["modell"];
+                                break;
+
+                            case 3:
+                                labelFordon[o].Text = hyrabelInformation[i]["arsmodell"];
+                                break;
+
+                            case 4:
                                 labelFordon[o].Text = "Hyr";
-                                labelFordon[o].Name = "Hyr_" + ledigaFordon[i];
+                                labelFordon[o].Name = "Hyr_" + hyrabelInformation[i]["regnr"];
                                 labelFordon[o].Cursor = Cursors.Hand;
-                                labelFordon[o].Click += new System.EventHandler(this.Hyr); 
-                            }
-                            else
-                            {
-                                labelFordon[o].Text = ledigaFordon[o];
-                            }
+                                labelFordon[o].Click += new System.EventHandler(this.Hyr);
+                                break;
                         }
-                    }
                 }
             }
         }
@@ -342,7 +356,7 @@ namespace Bokningssystem
             if (hyrning.hyra(this.anvandare, startdag, slutdag, reg))
             {
                 richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
-                richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + typ + "\nRegnummer: " + reg + "\nStartdagen: " + startdag + "\nSlutdagen: " + slutdag;
+                richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + fordon as string + "\nRegnummer: " + reg + "\nStartdagen: " + startdag + "\nSlutdagen: " + slutdag;
             }
             else
             {

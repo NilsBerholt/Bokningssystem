@@ -418,7 +418,7 @@ namespace Bokningssystem
 
             foreach (string regnummer in reg)
             {
-                string queryFetchFordon = "SELECT regnr,marke, modell, arsmodell from HyrFordon where regnr='?x?'";
+                string queryFetchFordon = "SELECT regnr, marke, modell, arsmodell from HyrFordon where regnr='?x?'";
                 string[] args = { regnummer };
 
                 int queryRes = db.query(queryFetchFordon, args);
@@ -426,8 +426,9 @@ namespace Bokningssystem
                 if (queryRes != 0)
                     throw new Exception(string.Format("Det blev något fel när frågan skapades.\nFelkod: {0}", queryRes));
 
-                if (db.fetchList().Count == 0)
-                    fordon.Add(db.fetchList());
+                SortedList<string,string> ettFordon = db.fetchList();
+                if (ettFordon.Count > 0)
+                    fordon.Add(ettFordon);
             }
 
             if (fordon.Count > 0)
