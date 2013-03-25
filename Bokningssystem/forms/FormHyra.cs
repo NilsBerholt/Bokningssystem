@@ -14,8 +14,6 @@ namespace Bokningssystem
     {
         public bool DEBUG = Properties.Settings.Default.Debug;
         private kund anvandare;
-        private string dag = "";
-        private string uppdatera = null;
         private string startdag = "";
         private string slutdag = "";
 
@@ -28,8 +26,7 @@ namespace Bokningssystem
                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
                     checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
            
-            buttonHyr.Hide();
-            labelTyp.Hide();
+            labelFordonsTyp.Hide();
             panelTyp.Hide();
         }
 
@@ -162,12 +159,23 @@ namespace Bokningssystem
         /// <param name="e"></param>
         private void datum(object sender, EventArgs e)
         {
-            
-            startdag = dateTimePicker1.Value.ToString(startdag);
-            richTextBoxMeddelandenHyra.Text = string.Format("Startdag " + startdag);
-            slutdag = dateTimePicker2.Value.ToString(slutdag);
-            richTextBoxMeddelandenHyra.Text += string.Format("Slutdag " + slutdag);
+            if (sender == dateTimePicker1)
+            {
+                startdag = dateTimePicker1.Value.ToShortDateString();
+            }
 
+            if (sender == dateTimePicker2)
+            {
+                slutdag = dateTimePicker2.Value.ToShortDateString();
+            }
+
+            richTextBoxMeddelandenHyra.Text = "";
+            string[] lines = new string[2];
+            if (this.startdag != "")
+                lines[0] = "Startdag: " + startdag;
+            if (this.slutdag != "")
+                lines[1] = "Slutdag: " + slutdag;
+            richTextBoxMeddelandenHyra.Lines = lines;
         }
 
         /// <summary>
@@ -189,6 +197,26 @@ namespace Bokningssystem
         }
 
         /// <summary>
+        /// Väljer datumena och vilken fordonstyp kunden vill hyra
+        /// </summary>
+        /// <param name="sender">Button</param>
+        /// <param name="e"></param>
+        private void buttonValj_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                {
+                    string fordon = checkedListBox1.Items[i] as string;
+                    labelFordonsTyp.Text = fordon;
+
+                    HyrablaFordon(fordon, startdag, slutdag);
+                }
+
+            labelFordonsTyp.Show();
+            panelTyp.Show();
+        }
+
+        /// <summary>
         /// Skriver ut i en tabellayout med all iformation som är nödvändig för kunden
         /// </summary>
         /// <param name="typ">Vilken typ kunden vill ha</param>
@@ -198,24 +226,40 @@ namespace Bokningssystem
         {
             bil_objekt hyrabel = new bil_objekt();
 
-            if (hyrabel.kollaLedigaHyrFordon(typ, startdag, slutdag) == 10)
+            int hyrabelStatus = hyrabel.kollaLedigaHyrFordon(typ, startdag, slutdag);
+            if (hyrabelStatus == 10)
             {
                 this.tableLayoutPanelTyp.Hide();
-                this.labelHyrningMeddelande.Text = "Du har inga hyrda fordon";
-                this.labelHyrningMeddelande.Show();
+                this.labelFordonsTypMeddelande.Text = "Det finns inga lediga fordon utav denna typ under din önskade tid";
+                this.labelFordonsTypMeddelande.Show();
             }
-            else if (hyrabel.kollaLedigaHyrFordon(typ, startdag, slutdag) == 0)
+            else if (hyrabelStatus == 0)
+            {
                 if (this.tableLayoutPanelTyp.Visible)
                 {
-                    int length = hyrabel.kollaLedigaHyrFordon(typ, startdag, slutdag);
+                    string[] ledigaFordon = hyrabel.GetTmpMsgs();
+                    int length = ledigaFordon.Length;
                     for (int i = 0; i < length; i++)
                     {
-                        string[] ledigaFordon = hyrabel.GetTmpMsgs();
-                        Label labelLedigaFordonMarke = new Label();
-                        // Fortsätt här!!!!!! Du är inte klar än!
+                        Label labelLedigaFordonMarke = new Label(), labelLedigaFordonModell = new Label(), labelLedigaFordonArsmodell = new Label(), labelLedigaFordonReg = new Label(), labelLedigaFordonHyr = new Label();
+                        Label[] labelFordon = { labelLedigaFordonReg, labelLedigaFordonMarke, labelLedigaFordonModell, labelLedigaFordonArsmodell, labelLedigaFordonHyr };
+                        for (int o = 0; o < 5; o++)
+                        {
+                            if (o == 4)
+                            {
+                                labelFordon[o].Text = "Hyr";
+                                labelFordon[o].Name = "Hyr_" + ledigaFordon[i];
+                                labelFordon[o].Cursor = Cursors.Hand;
+                                labelFordon[o].Click += new System.EventHandler(this.Hyr); 
+                            }
+                            else
+                            {
+                                labelFordon[o].Text = ledigaFordon[o];
+                            }
+                        }
                     }
                 }
-
+            }
         }
         
         /// <summary>
@@ -280,6 +324,38 @@ namespace Bokningssystem
                 fyllHyrningar();
             }
 
+        }
+
+        /// <summary>
+        /// Funktion som hyr det valda fordonet
+        /// </summary>
+        /// <param name="sender">label</param>
+        /// <param name="e"></param>
+        private void Hyr(object sender, EventArgs e)
+        {
+            hyrnings_objekt hyrning = new hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
+            bil_objekt hyrabel = new bil_objekt();
+            Label hyr = sender as Label;
+
+            string reg = hyr.Name.Substring(4);
+
+            if (hyrning.hyra(this.anvandare, startdag, slutdag, reg))
+            {
+                richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
+                richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + typ + "\nRegnummer: " + reg + "\nStartdagen: " + startdag + "\nSlutdagen: " + slutdag;
+            }
+            else
+            {
+                richTextBoxMeddelandenHyra.Text = "Det blev något fel med hyrningen";
+                string[] felmeddelande = hyrning.GetTmpMsgs();
+                if (DEBUG)
+                {
+                    richTextBoxMeddelandenHyra.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
+                    richTextBoxMeddelandenHyra.Text += "\n**** FELMEDDELANDE ****";
+                    foreach (string fel in felmeddelande)
+                        richTextBoxMeddelandenHyra.Text += "\n" + fel + "\n";
+                }
+            }
         }
     }
 }
