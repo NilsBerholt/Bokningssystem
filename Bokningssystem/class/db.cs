@@ -142,6 +142,50 @@ namespace Bokningssystem
         }
 
         /// <summary>
+        /// Hämtar alla värden som specifierats av db's query metod och sparar dem i en SortedList med strängar som både nycklar och värden
+        /// Denna SortedList innehåller då namnet på fältet i databasen som nyckel och värdet från databasen.
+        /// </summary>
+        /// <returns>Alla värdena i en SortedList, där nycklarna är fältens namn.</returns>
+        public SortedList<string,string> fetchList()
+        {
+            connection.Open();
+
+            SqlCeTransaction transaction = connection.BeginTransaction();
+            List<string> errorMsg = new List<string>();
+            SortedList<string,string> resultat = new SortedList<string,string>();
+            this.cmd.Transaction = transaction;
+            SqlCeResultSet result;
+            result = this.cmd.ExecuteResultSet(ResultSetOptions.Scrollable);
+
+            int length = result.FieldCount;
+            while (result.Read())
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    if (result[i] != DBNull.Value)
+                        resultat[result.GetName(i)] = result[i].ToString();
+                    else
+                        errorMsg.Add("Det fanns inget värde i fältet " + result.GetName(i));
+                }
+            }
+            result.Close();
+            connection.Close();
+
+            if (resultat.Count == 0)
+            {
+                errorMsg.Add("Det fanns inga värden i databasen för denna fråga.");
+            }
+
+            if (errorMsg.Count > 0)
+            {
+                this.tmpMsgs = errorMsg.ToArray();
+                return new SortedList<string,string>();
+            }
+            else
+                return resultat;
+        }
+
+        /// <summary>
         /// Database.fetchAll() Hämtar en lista med alla matchande fält
         /// </summary>
         /// <returns>Listan med alla objekt</returns>

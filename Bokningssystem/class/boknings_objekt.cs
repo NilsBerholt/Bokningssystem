@@ -89,9 +89,9 @@ namespace Bokningssystem
             string tfn = anvandare.GetTfn();
 
             string query = "INSERT INTO Bokning " +
-               "(datum, fnamn, enamn, bil, email, tfn, datumDate) " +
-               "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?', '?x?')";
-            string[] args = new string[7] { datum, fnamn, enamn, regnr, agare, tfn, datum };
+               "(datum, fnamn, enamn, bil, email, tfn) " +
+               "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
+            string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
 
             if (db.query(query, args) == 0)
             {
