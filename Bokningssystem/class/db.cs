@@ -227,13 +227,12 @@ namespace Bokningssystem
 
             SqlCeTransaction transaction = connection.BeginTransaction();
             List<string> errorMsg = new List<string>();
-            List<string[]> resultat = new List<string[]>();
+            List<SortedList<string, string>> resultatArray = new List<SortedList<string, string>>();
 
             this.cmd.Transaction = transaction;
             SqlCeDataReader result;
             result = this.cmd.ExecuteReader(System.Data.CommandBehavior.Default);
 
-            List<SortedList<string, string>> resultatArray = new List<SortedList<string, string>>();
             while (result.Read())
             {
                 int fields = result.FieldCount;
