@@ -201,13 +201,15 @@ namespace Bokningssystem
             SqlCeDatabase db = new SqlCeDatabase();
             bil_objekt bil = new bil_objekt();
 
+            string tid = datum.Substring(11);
+            datum = datum.Substring(0, 10);
             int kod = bil.insertFordon(regnr, modell, arsmodell, marke, agare);
             if (kod == 0)
             {
                 string query = "INSERT INTO Bokning " +
-                   "(datum, fnamn, enamn, bil, tfn) " +
-                   "VALUES  ('?x?','?x?','?x?', '?x?', '?x?')";
-                string[] args = new string[5] { datum, fnamn, enamn, regnr, tfn };
+                   "(datum, fnamn, enamn, bil, tfn, tid) " +
+                   "VALUES  ('?x?','?x?','?x?', '?x?', '?x?', '?x?')";
+                string[] args = { datum, fnamn, enamn, regnr, tfn, tid };
 
                 if (db.query(query, args) == 0)
                 {
@@ -277,6 +279,7 @@ namespace Bokningssystem
         public SortedList<string,string>[] hamtaAllaBokningar(string dag)
         {
             List<string> errorMsgs = new List<string>();
+            SortedList<string,string>[] result = new SortedList<string,string>[4];
             SortedList<string,string>[] fetch;
             string queryHamtaBokningar = "SELECT B.fnamn, B.enamn, B.datum, B.tid, B.bil, B.id, F.modell, F.arsmodell, F.marke " +
             "FROM Bokning AS B LEFT OUTER JOIN Fordon AS F ON B.bil = F.reg WHERE (B.datum = '?x?')";
@@ -286,8 +289,29 @@ namespace Bokningssystem
             if (queryRes == 0)
             {
                 fetch = this.db.fetchAllList();
-                if (fetch.Length > 0)
-                    return fetch;
+                int length = fetch.Length;
+                if (length > 0)
+                {
+                    for (int i = 0; i < length; i++)
+                        switch (fetch[i]["tid"])
+                        {
+                            case "08:00":
+                                result[0] = fetch[i];
+                                break;
+                            case "10:00":
+                                result[1] = fetch[i];
+                                break;
+                            case "14:00":
+                                result[2] = fetch[i];
+                                break;
+                            case "16:00":
+                                result[3] = fetch[i];
+                                break;
+                            default:
+                                throw new Exception("Denna tid finns inte med i programmet, kontrollera att allt är korrekt " + fetch[i]["tid"]);
+                        }
+                }
+                return result;
             }
             errorMsgs.AddRange(db.GetTmpMsgs());
             this.tmpMsgs = errorMsgs.ToArray();

@@ -380,7 +380,7 @@ namespace Bokningssystem
             SqlCeDatabase db = new SqlCeDatabase();
             string checkHyrdaQuery = "SELECT H.Fordon " +
                                       "FROM Hyrning AS H INNER JOIN HyrFordon AS F ON H.Fordon = F.regnr " +
-                                      "WHERE (H.Startdag < '?x?') AND (H.Slutdag > '?x?' AND F.typ='?x?')";
+                                      "WHERE (H.Startdag < '?x?') AND (H.Slutdag > '?x?') AND (F.typ='?x?')";
             string[] hyrdaArgs = { starttid, sluttid, typ };
 
             int queryRes = db.query(checkHyrdaQuery, hyrdaArgs);
@@ -448,7 +448,7 @@ namespace Bokningssystem
             SqlCeDatabase db = new SqlCeDatabase();
             SortedList<string, string> fordon = new SortedList<string, string>();
 
-            string queryFetchFordon = "SELECT regnr,marke,modell,arsmodell from HyrFordon where regnr='?x?'";
+            string queryFetchFordon = "SELECT reg,marke,modell,arsmodell from HyrFordon where regnr='?x?'";
             string[] args = { reg };
 
             int queryRes = db.query(queryFetchFordon, args);
@@ -457,6 +457,63 @@ namespace Bokningssystem
                 throw new Exception(string.Format("Det blev något fel när frågan skapades.\nFelkod: {0}", queryRes));
 
             if (db.fetchList().Count == 0)
+                return db.fetchList();
+
+            else
+                throw new Exception("Det fanns inget fordon med de regnumret");
+        }
+
+        /// <summary>
+        /// Hämtar information om fordonen med regnumrena från string arrayen reg.
+        /// Hämtar fälten (och även nycklarna) reg, marke, modell, arsmodell, agare från bokningsfordonen och sparar dem i associativa arrays. 
+        /// </summary>
+        /// <param name="reg">Array med alla regnummer</param>
+        /// <returns>En SortedList där nycklarna är fältnamnen, ex "reg", "marke" osv.</returns>
+        public SortedList<string, string>[] hamtaValtFordon(string[] reg)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+            List<SortedList<string, string>> fordon = new List<SortedList<string, string>>();
+
+            foreach (string regnummer in reg)
+            {
+
+                string queryFetchFordon = "SELECT reg,marke,modell,arsmodell,agare from Fordon where reg='?x?'";
+                string[] args = { regnummer };
+
+                int queryRes = db.query(queryFetchFordon, args);
+
+                if (queryRes != 0)
+                    throw new Exception(string.Format("Det blev något fel när frågan skapades.\nFelkod: {0}", queryRes));
+
+                if (db.fetchList().Count == 0)
+                    fordon.Add(db.fetchList());
+
+                else
+                    throw new Exception("Det fanns inget fordon med de regnumret");
+            }
+            return fordon.ToArray();
+        }
+
+        /// <summary>
+        /// Hämtar information om bilen vars regnummer är parametern till metoden.
+        /// Hämtar fälten (och även nycklarna) reg, marke, modell, arsmodell, agare från bokningsfordonen och sparar dem i associativa arrays.
+        /// </summary>
+        /// <param name="reg">Regnumret på fordonet</param>
+        /// <returns>En SortedList där fältnamnen är nycklarna, ex "reg", "marke" osv.</returns>
+        public SortedList<string, string> hamtaValtFordon(string reg)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+            SortedList<string, string> fordon = new SortedList<string, string>();
+
+            string queryFetchFordon = "SELECT reg,marke,modell,arsmodell,agare from Fordon where reg='?x?'";
+            string[] args = { reg };
+
+            int queryRes = db.query(queryFetchFordon, args);
+
+            if (queryRes != 0)
+                throw new Exception(string.Format("Det blev något fel när frågan skapades.\nFelkod: {0}", queryRes));
+
+            if (db.fetchList().Count > 0)
                 return db.fetchList();
 
             else
