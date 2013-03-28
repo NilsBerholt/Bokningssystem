@@ -199,7 +199,7 @@ namespace Bokningssystem
                 fnamn = namn;
                 enamn = "";
             }
-            if (bokningar.boka(fnamn, enamn, tfn, reg, datum, marke, modell, arsmodell, namn))
+            if (bokningar.boka(fnamn, enamn, tfn, reg, datum, marke, modell, arsmodell, namn, beskr))
                 richTextBoxFormAdminMsgs.Text = "Bokningen utfördes utan problem!";
             else
             {

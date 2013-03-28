@@ -1,4 +1,4 @@
-﻿namespace Bokningssystem.forms
+﻿namespace Bokningssystem
 {
     partial class FormProfil
     {

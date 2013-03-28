@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Bokningssystem.forms
+namespace Bokningssystem
 {
     public partial class FormProfil : Form
     {

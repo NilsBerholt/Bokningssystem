@@ -77,7 +77,7 @@ namespace Bokningssystem
         /// <param name="regnr">Fordonets registreringsnummer</param>
         /// <param name="datum">Datumet som bokningen gäller</param>
         /// <returns>Returnerar true om allt gick som det skulle eller falskt annars.</returns>
-        public bool boka(kund anvandare, string regnr, string datum)
+        public bool boka(kund anvandare, string regnr, string datum, string spec)
         {
             List<string> errorMsgs = new List<string>();
             SqlCeDatabase db = new SqlCeDatabase();
@@ -89,9 +89,9 @@ namespace Bokningssystem
             string tfn = anvandare.GetTfn();
 
             string query = "INSERT INTO Bokning " +
-               "(datum, fnamn, enamn, bil, email, tfn) " +
-               "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
-            string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
+               "(datum, fnamn, enamn, bil, email, tfn, spec) " +
+               "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?', '?x?')";
+            string[] args = new string[7] { datum, fnamn, enamn, regnr, agare, tfn, spec };
 
             if (db.query(query, args) == 0)
             {
@@ -131,7 +131,7 @@ namespace Bokningssystem
         /// <param name="modell">Modellen på fordonet</param>
         /// <param name="arsmodell">Årsmodellen på fordonet</param>
         /// <returns>Returnerar true om allt gick som det ska eller falskt annars</returns>
-        public bool boka(kund anvandare, string regnr, string datum, string marke, string modell, string arsmodell)
+        public bool boka(kund anvandare, string regnr, string datum, string marke, string modell, string arsmodell, string spec)
         {
             List<string> errorMsgs = new List<string>();
             SqlCeDatabase db = new SqlCeDatabase();
@@ -147,9 +147,9 @@ namespace Bokningssystem
             if (kod == 0)
             {
                 string query = "INSERT INTO Bokning " +
-                   "(datum, fnamn, enamn, bil, email, tfn) " +
-                   "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?')";
-                string[] args = new string[6] { datum, fnamn, enamn, regnr, agare, tfn };
+                   "(datum, fnamn, enamn, bil, email, tfn, spec) " +
+                   "VALUES  ('?x?','?x?','?x?','?x?', '?x?', '?x?', '?x?')";
+                string[] args = new string[7] { datum, fnamn, enamn, regnr, agare, tfn, spec };
 
                 if (db.query(query, args) == 0)
                 {
@@ -195,7 +195,7 @@ namespace Bokningssystem
         /// <param name="modell">Fordonets modell</param>
         /// <param name="arsmodell">Fordonets årsmodell</param>
         /// <returns></returns>
-        public bool boka(string fnamn, string enamn, string tfn, string regnr, string datum, string marke, string modell, string arsmodell, string agare)
+        public bool boka(string fnamn, string enamn, string tfn, string regnr, string datum, string marke, string modell, string arsmodell, string agare, string spec)
         {
             List<string> errorMsgs = new List<string>();
             SqlCeDatabase db = new SqlCeDatabase();
@@ -207,9 +207,9 @@ namespace Bokningssystem
             if (kod == 0)
             {
                 string query = "INSERT INTO Bokning " +
-                   "(datum, fnamn, enamn, bil, tfn, tid) " +
-                   "VALUES  ('?x?','?x?','?x?', '?x?', '?x?', '?x?')";
-                string[] args = { datum, fnamn, enamn, regnr, tfn, tid };
+                   "(datum, fnamn, enamn, bil, tfn, tid, spec) " +
+                   "VALUES  ('?x?','?x?','?x?', '?x?', '?x?', '?x?', '?x?')";
+                string[] args = { datum, fnamn, enamn, regnr, tfn, tid, spec };
 
                 if (db.query(query, args) == 0)
                 {
