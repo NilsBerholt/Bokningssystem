@@ -73,6 +73,8 @@ namespace Bokningssystem
         {
             DateTime dag = e.Start;
             bokningar(dag);
+            richTextBoxInfoBil.Hide();
+            panelNyBok.Hide();
         }
 
         /// <summary>
@@ -83,47 +85,27 @@ namespace Bokningssystem
             boknings_objekt bokningar = new boknings_objekt(new SqlCeDatabase(), this.admin);
             SortedList<string,string>[] allaBokningar;
             Label[] tider = { labelTid08, labelTid10, labelTid14, labelTid16 };
-
+            
             allaBokningar = bokningar.hamtaAllaBokningar(dag.ToShortDateString());
-            if (allaBokningar.Length == 0)
+            for (int i = 0; i < 4; i++)
             {
+                tider[i].Click -= fordonsInfo;
+                tider[i].Click -= label_Click;
+                if (allaBokningar[i] == null)
+                {                    
+                    tider[i].Text = "Ledig";
+                    tider[i].Click -= fordonsInfo;
+                    tider[i].Click += new EventHandler(label_Click);
+                    tider[i].Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    tider[i].Text = allaBokningar[i]["bil"];
+                    tider[i].Click += new EventHandler(fordonsInfo);
+                    tider[i].Cursor = Cursors.Hand;
+                }
                 if (DEBUG)
                     richTextBoxFormAdminMsgs.Lines = bokningar.GetTmpMsgs();
-                foreach (Label label in tider)
-                {
-                    label.Text = "Ledig";
-                    label.Click += new EventHandler(label_Click);
-                    label.Cursor = Cursors.Hand;
-                }
-                labelNyBokDag.Text = dag.ToShortDateString();
-                labelDag.Text = string.Format("Det valda datumet är {0}", dag.ToShortDateString());
-                panelBokDag.Show();
-            }
-            else
-            {
-                for (int i = 0; i < allaBokningar.Length; i++)
-                {
-                    SortedList<string, string> bokning = allaBokningar[i];
-                    string tid = bokning["tid"];
-                    switch (tid)
-                    {
-                        case "08:00":
-                            labelTid08.Text = bokning["bil"];
-                            break;
-
-                        case "10:00":
-                            labelTid10.Text = bokning["bil"];
-                            break;
-
-                        case "14:00":
-                            labelTid14.Text = bokning["bil"];
-                            break;
-
-                        case "16:00":
-                            labelTid16.Text = bokning["bil"];
-                            break;
-                    }
-                }
                 labelNyBokDag.Text = dag.ToShortDateString();
                 labelDag.Text = string.Format("Det valda datumet är {0}", dag.ToShortDateString());
                 panelBokDag.Show();
@@ -142,6 +124,24 @@ namespace Bokningssystem
             labelNyBokTid.Text = tid + ":00";
             panelNyBok.Enabled = true;
             this.panelNyBok.Show();
+        }
+
+        /// <summary>
+        /// Funktion som använder sig av hamtaValtFordon för att hämta information och sen skriver den fordonets information i richTextBoxInfoBil
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void fordonsInfo(object sender, EventArgs e)
+        {
+            bil_objekt fordon = new bil_objekt();
+            Label labelSender = sender as Label;
+            string reg = labelSender.Text;
+
+            SortedList<string, string> fetch = fordon.hamtaValtFordon(reg);
+            string[] lines = { "Regnummer: " + fetch["reg"], "Märke: " + fetch["marke"],
+                                 "Modell: " + fetch["modell"], "Årsmodell: " + fetch["arsmodell"], "Ägare: " + fetch["agare"] };
+            richTextBoxInfoBil.Lines = lines;
+            richTextBoxInfoBil.Show();
         }
 
         /// <summary>
@@ -188,9 +188,8 @@ namespace Bokningssystem
                     richTextBoxFormAdminMsgs.Lines = bokningar.GetTmpMsgs();
                 else
                     richTextBoxFormAdminMsgs.Text = "Det blev något fel med bokningen";
-                
-                richTextBoxFormAdminMsgs.Show();
             }
+            richTextBoxFormAdminMsgs.Show();
         }
 
         /// <summary>

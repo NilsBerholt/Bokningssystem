@@ -156,15 +156,15 @@ namespace Bokningssystem
             
             this.cmd.Transaction = transaction;
             SqlCeDataReader result;
-            result = this.cmd.ExecuteReader(System.Data.CommandBehavior.SingleRow);
+            result = this.cmd.ExecuteReader();
 
             int length = result.FieldCount;
             while (result.Read())
             {
                 for (int i = 0; i < length; i++)
                 {
-                    if (result[i] != DBNull.Value)
-                        resultat[result.GetName(i)] = result[i].ToString();
+                    if (result.GetValue(i) != DBNull.Value)
+                        resultat[result.GetName(i)] = result.GetValue(i).ToString();
                     else
                         errorMsg.Add("Det fanns inget värde i fältet " + result.GetName(i));
                 }
@@ -232,7 +232,7 @@ namespace Bokningssystem
 
             this.cmd.Transaction = transaction;
             SqlCeDataReader result;
-            result = this.cmd.ExecuteReader(System.Data.CommandBehavior.Default);
+            result = this.cmd.ExecuteReader();
 
             while (result.Read())
             {
