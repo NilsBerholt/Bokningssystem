@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Bokningssystem.forms;
 
 namespace Bokningssystem
 {
@@ -16,9 +15,9 @@ namespace Bokningssystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //kund anvandare = new kund("jassob@live.se", "jonsson");
+            kund anvandare = new kund("jassob@live.se", "jonsson");
             administrator admin = new administrator("jassob@live.se","jonsson");
-            Application.Run(new FormAdmin(admin));
+            Application.Run(new FormBoka(anvandare));
         }
     }
 }
