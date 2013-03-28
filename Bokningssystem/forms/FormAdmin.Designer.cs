@@ -29,17 +29,13 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.nyBokningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.visaBokningar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.nyHyrningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyHyrning = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.visaHyrningarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visaHyrningar = new System.Windows.Forms.ToolStripMenuItem();
             this.läggTillHyrfordon = new System.Windows.Forms.ToolStripMenuItem();
-            this.profilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.omOssToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.omOss = new System.Windows.Forms.ToolStripMenuItem();
             this.flowPanelRoot = new System.Windows.Forms.FlowLayoutPanel();
             this.panelVisaBok = new System.Windows.Forms.Panel();
             this.panelBokDag = new System.Windows.Forms.Panel();
@@ -100,6 +96,7 @@
             this.TextBoxReg = new System.Windows.Forms.MaskedTextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.richTextBoxFormAdminMsgs = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.flowPanelRoot.SuspendLayout();
             this.panelVisaBok.SuspendLayout();
@@ -115,72 +112,51 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.visaBokningar,
             this.toolStripMenuItem2,
-            this.profilToolStripMenuItem,
-            this.omOssToolStripMenuItem});
+            this.omOss});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(998, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nyBokningToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.visaBokningar});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(73, 20);
-            this.toolStripMenuItem1.Text = "Bokningar";
-            // 
-            // nyBokningToolStripMenuItem
-            // 
-            this.nyBokningToolStripMenuItem.Name = "nyBokningToolStripMenuItem";
-            this.nyBokningToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.nyBokningToolStripMenuItem.Text = "Ny bokning";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
             // visaBokningar
             // 
-            this.visaBokningar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.visaBokningar.Name = "visaBokningar";
-            this.visaBokningar.Size = new System.Drawing.Size(152, 22);
-            this.visaBokningar.Text = "Visa bokningar";
+            this.visaBokningar.Size = new System.Drawing.Size(73, 20);
+            this.visaBokningar.Text = "Bokningar";
             this.visaBokningar.Click += new System.EventHandler(this.MenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nyHyrningToolStripMenuItem,
+            this.nyHyrning,
+            this.visaHyrningar,
             this.toolStripSeparator2,
-            this.visaHyrningarToolStripMenuItem,
             this.läggTillHyrfordon});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(72, 20);
             this.toolStripMenuItem2.Text = "Hyrningar";
             // 
-            // nyHyrningToolStripMenuItem
+            // nyHyrning
             // 
-            this.nyHyrningToolStripMenuItem.Name = "nyHyrningToolStripMenuItem";
-            this.nyHyrningToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.nyHyrningToolStripMenuItem.Text = "Ny hyrning";
+            this.nyHyrning.Name = "nyHyrning";
+            this.nyHyrning.Size = new System.Drawing.Size(172, 22);
+            this.nyHyrning.Text = "Ny hyrning";
+            this.nyHyrning.Click += new System.EventHandler(this.MenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
             // 
-            // visaHyrningarToolStripMenuItem
+            // visaHyrningar
             // 
-            this.visaHyrningarToolStripMenuItem.Name = "visaHyrningarToolStripMenuItem";
-            this.visaHyrningarToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.visaHyrningarToolStripMenuItem.Text = "Visa hyrningar";
+            this.visaHyrningar.Name = "visaHyrningar";
+            this.visaHyrningar.Size = new System.Drawing.Size(172, 22);
+            this.visaHyrningar.Text = "Visa hyrningar";
+            this.visaHyrningar.Click += new System.EventHandler(this.MenuItem_Click);
             // 
             // läggTillHyrfordon
             // 
@@ -189,17 +165,12 @@
             this.läggTillHyrfordon.Text = "Lägg till hyrfordon";
             this.läggTillHyrfordon.Click += new System.EventHandler(this.MenuItem_Click);
             // 
-            // profilToolStripMenuItem
+            // omOss
             // 
-            this.profilToolStripMenuItem.Name = "profilToolStripMenuItem";
-            this.profilToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.profilToolStripMenuItem.Text = "Profil";
-            // 
-            // omOssToolStripMenuItem
-            // 
-            this.omOssToolStripMenuItem.Name = "omOssToolStripMenuItem";
-            this.omOssToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.omOssToolStripMenuItem.Text = "Om oss";
+            this.omOss.Name = "omOss";
+            this.omOss.Size = new System.Drawing.Size(59, 20);
+            this.omOss.Text = "Om oss";
+            this.omOss.Click += new System.EventHandler(this.MenuItem_Click);
             // 
             // flowPanelRoot
             // 
@@ -210,6 +181,7 @@
             this.flowPanelRoot.Controls.Add(this.panelNyHyr);
             this.flowPanelRoot.Controls.Add(this.panelNyHyrfordon);
             this.flowPanelRoot.Controls.Add(this.richTextBoxFormAdminMsgs);
+            this.flowPanelRoot.Controls.Add(this.panel1);
             this.flowPanelRoot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowPanelRoot.Location = new System.Drawing.Point(0, 24);
             this.flowPanelRoot.MaximumSize = new System.Drawing.Size(800, 12000);
@@ -822,15 +794,22 @@
             this.richTextBoxFormAdminMsgs.Text = "";
             this.richTextBoxFormAdminMsgs.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(551, 881);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 5;
+            // 
             // FormAdmin
             // 
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(884, 749);
+            this.ClientSize = new System.Drawing.Size(998, 749);
             this.Controls.Add(this.flowPanelRoot);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(900, 1200);
+            this.MaximumSize = new System.Drawing.Size(100000, 100000);
             this.MinimumSize = new System.Drawing.Size(400, 200);
             this.Name = "FormAdmin";
             this.menuStrip1.ResumeLayout(false);
@@ -858,15 +837,12 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem nyBokningToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem visaBokningar;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem nyHyrningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nyHyrning;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem visaHyrningarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem profilToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem omOssToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visaHyrningar;
+        private System.Windows.Forms.ToolStripMenuItem omOss;
         private System.Windows.Forms.FlowLayoutPanel flowPanelRoot;
         private System.Windows.Forms.Panel panelNyBok;
         private System.Windows.Forms.Label labelReg;
@@ -912,7 +888,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox richTextBoxInfoProblem;
         private System.Windows.Forms.RichTextBox richTextBoxInfoBil;
-        private System.Windows.Forms.ToolStripMenuItem visaBokningar;
         private System.Windows.Forms.ToolStripMenuItem läggTillHyrfordon;
         private System.Windows.Forms.Panel panelNyHyrfordon;
         private System.Windows.Forms.Label label17;
@@ -929,5 +904,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxFormAdminMsgs;
         private System.Windows.Forms.Label labelNyBokTid;
         private System.Windows.Forms.Label labelNyBokDag;
+        private System.Windows.Forms.Panel panel1;
     }
 }

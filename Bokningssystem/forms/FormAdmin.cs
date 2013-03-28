@@ -30,7 +30,8 @@ namespace Bokningssystem
         private void MenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
-
+            SortedList<string, Panel> panels = new SortedList<string, Panel>();
+            panels["visaBokningar"] = panelVisaBok; panels["läggTillHyrfordon"] = panelNyHyrfordon; panels["nyHyrning"] = panelNyHyr;
             // Kollar att det var en ToolStripMenuItem som startade eventet
             if (item == null)
             {
@@ -40,18 +41,36 @@ namespace Bokningssystem
                 return;
             }
 
+            foreach (string key in panels.Keys)
+                panels[key].Hide();
+
             switch (item.Name)
             {
                 case "visaBokningar":
+                    panels[item.Name].Show();
                     panelVisaBok.Enabled = true;
-                    panelVisaBok.Show();
                     break;
 
                 case "läggTillHyrfordon":
+                    panels[item.Name].Show();
                     panelNyHyrfordon.Enabled = true;
-                    panelNyHyrfordon.Show();
                     break;
                 
+                case "omOss":
+                    FormOmOss omOssForm = new FormOmOss(admin);
+                    this.Hide();
+                    omOssForm.ShowDialog();
+                    this.Show();
+                    break;
+
+                case "nyHyrning":
+                    panels[item.Name].Show();
+                    panelNyHyr.Enabled = true;
+                    break;
+
+                case "visaHyrning":
+                    MessageBox.Show("Ej implementerad ännu..");
+                    break;
                 // Skapa ett felmeddelande för alla case som inte uppfylls av något ovan
                 default:
                     if (DEBUG)
