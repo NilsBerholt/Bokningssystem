@@ -44,7 +44,6 @@
             this.labelStart = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.richTextBoxMeddelandenHyra = new System.Windows.Forms.RichTextBox();
-            this.buttonHyr = new System.Windows.Forms.Button();
             this.tabPageMinHyr = new System.Windows.Forms.TabPage();
             this.panelHyrning = new System.Windows.Forms.Panel();
             this.labelHyrningMeddelande = new System.Windows.Forms.Label();
@@ -112,7 +111,6 @@
             this.tabPageNyHyr.Controls.Add(this.labelStart);
             this.tabPageNyHyr.Controls.Add(this.checkedListBox1);
             this.tabPageNyHyr.Controls.Add(this.richTextBoxMeddelandenHyra);
-            this.tabPageNyHyr.Controls.Add(this.buttonHyr);
             this.tabPageNyHyr.Location = new System.Drawing.Point(4, 22);
             this.tabPageNyHyr.Name = "tabPageNyHyr";
             this.tabPageNyHyr.Padding = new System.Windows.Forms.Padding(3);
@@ -155,11 +153,11 @@
             // 
             this.tableLayoutPanelTyp.AutoSize = true;
             this.tableLayoutPanelTyp.ColumnCount = 5;
-            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 319F));
+            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelTyp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanelTyp.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanelTyp.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelTyp.Name = "tableLayoutPanelTyp";
@@ -255,17 +253,6 @@
             this.richTextBoxMeddelandenHyra.TabIndex = 28;
             this.richTextBoxMeddelandenHyra.TabStop = false;
             this.richTextBoxMeddelandenHyra.Text = "";
-            // 
-            // buttonHyr
-            // 
-            this.buttonHyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonHyr.Location = new System.Drawing.Point(514, 371);
-            this.buttonHyr.Name = "buttonHyr";
-            this.buttonHyr.Size = new System.Drawing.Size(86, 33);
-            this.buttonHyr.TabIndex = 32;
-            this.buttonHyr.Text = "Hyr";
-            this.buttonHyr.UseVisualStyleBackColor = true;
-            this.buttonHyr.Click += new System.EventHandler(this.buttonHyr_Click);
             // 
             // tabPageMinHyr
             // 
@@ -420,7 +407,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxMeddelandenHyra;
         private System.Windows.Forms.TabPage tabPageMinHyr;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.Button buttonHyr;
         private System.Windows.Forms.Panel panelHyrning;
         private System.Windows.Forms.Label labelHyrningMeddelande;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelHyrning;

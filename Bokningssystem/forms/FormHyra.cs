@@ -15,8 +15,8 @@ namespace Bokningssystem
         public bool DEBUG = Properties.Settings.Default.Debug;
         private kund anvandare;
         private string fordon = "";
-        private string startdag = "";
-        private string slutdag = "";
+        private DateTime startdag;
+        private DateTime slutdag;
 
         /// <summary>
         /// Funktion som tömmer checkboxen och resetar kalendern
@@ -29,6 +29,9 @@ namespace Bokningssystem
            
             labelFordonsTyp.Hide();
             panelTyp.Hide();
+            tableLayoutPanelTyp.Controls.Clear();
+            dateTimePicker1.Value = DateTime.Today;
+            dateTimePicker2.Value = DateTime.Today;
         }
 
         /// <summary>
@@ -104,55 +107,7 @@ namespace Bokningssystem
                     break;
             }
         }
-        
-        /// <summary>
-        /// Hyrfunktionen, hyr fordon på den valda dagen till.
-        /// </summary>
-        /// <param name="sender">Den knappen som startade eventet</param>
-        /// <param name="e"></param>
-        private void buttonHyr_Click(object sender, EventArgs e)
-        {
-            hyrnings_objekt hyrning = new hyrnings_objekt(new SqlCeDatabase(), this.anvandare);
-            bil_objekt fordonregister = new bil_objekt();
-            input inmatning = new input();
-            int antalTyper = checkedListBox1.Items.Count;
-            int antalValdaTyper = checkedListBox1.CheckedItems.Count;
-            string valdaFordon = string.Empty;
-            string reg;
-            for (int i = 0; i < antalTyper; i++)
-                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
-                //foreach (string fordon in checkedListBox1.CheckedItems)
-                {
-                    string fordon = checkedListBox1.Items[i] as string;
-                    valdaFordon += ", " + fordon;
-                    if (fordonregister.kollaLedigaHyrFordon(fordon, startdag, slutdag) == 0)
-                    {
-                        reg = fordonregister.GetTmpMsgs()[0];
 
-                        if (hyrning.hyra(this.anvandare, startdag, slutdag, reg))
-                        {
-                            richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
-                            richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + valdaFordon.Substring(2) + "\nRegnummer: "+ reg +"\nStartdagen: " + startdag + "\nSlutdagen: " + slutdag;
-                        }
-                        else
-                        {
-                            richTextBoxMeddelandenHyra.Text = "Det blev något fel med hyrningen";
-                            string[] felmeddelande = hyrning.GetTmpMsgs();
-                            if (DEBUG)
-                            {
-                                richTextBoxMeddelandenHyra.ScrollBars = RichTextBoxScrollBars.ForcedBoth;
-                                richTextBoxMeddelandenHyra.Text += "\n**** FELMEDDELANDE ****";
-                                foreach (string fel in felmeddelande)
-                                    richTextBoxMeddelandenHyra.Text += "\n" + fel + "\n";
-                            }
-                        }
-                    }
-                    else
-                        richTextBoxMeddelandenHyra.Text = "Tyvärr finns inga fordon lediga att hyras av den önskade typen";
-                    DoljHyr();
-                }
-        }
-        
         /// <summary>
         /// Väljer startdag och slutdag
         /// </summary>
@@ -162,21 +117,26 @@ namespace Bokningssystem
         {
             if (sender == dateTimePicker1)
             {
-                startdag = dateTimePicker1.Value.ToShortDateString();
+                startdag = dateTimePicker1.Value;
             }
 
             if (sender == dateTimePicker2)
             {
-                slutdag = dateTimePicker2.Value.ToShortDateString();
+                slutdag = dateTimePicker2.Value;
             }
 
-            richTextBoxMeddelandenHyra.Text = "";
-            string[] lines = new string[2];
-            if (this.startdag != "")
-                lines[0] = "Startdag: " + startdag;
-            if (this.slutdag != "")
-                lines[1] = "Slutdag: " + slutdag;
-            richTextBoxMeddelandenHyra.Lines = lines;
+            if (slutdag > startdag)
+            {
+                richTextBoxMeddelandenHyra.Text = "";
+                string[] lines = new string[2];
+                if (this.startdag != null)
+                    lines[0] = "Startdag: " + startdag.ToShortDateString();
+                if (this.slutdag != null)
+                    lines[1] = "Slutdag: " + slutdag.ToShortDateString();
+                richTextBoxMeddelandenHyra.Lines = lines;
+            }
+            else
+                richTextBoxMeddelandenHyra.Text = "Slutdagen måste vara senare än startdagen";
         }
 
         /// <summary>
@@ -204,13 +164,15 @@ namespace Bokningssystem
         /// <param name="e"></param>
         private void buttonValj_Click(object sender, EventArgs e)
         {
+            tableLayoutPanelTyp.Controls.Clear();
+            labelFordonsTypMeddelande.Hide();
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
                 {
                     fordon = checkedListBox1.Items[i] as string;
                     labelFordonsTyp.Text = fordon;
 
-                    HyrablaFordon(fordon, startdag, slutdag);
+                    HyrablaFordon(fordon, startdag.ToShortDateString(), slutdag.ToShortDateString());
                 }
 
             labelFordonsTyp.Show();
@@ -247,6 +209,7 @@ namespace Bokningssystem
                     Label labelLedigaFordonMarke = new Label(), labelLedigaFordonModell = new Label(), labelLedigaFordonArsmodell = new Label(), labelLedigaFordonReg = new Label(), labelLedigaFordonHyr = new Label();
                     Label[] labelFordon = { labelLedigaFordonReg, labelLedigaFordonMarke, labelLedigaFordonModell, labelLedigaFordonArsmodell, labelLedigaFordonHyr };
                     for (int o = 0; o < 5; o++)
+                    {
                         switch (o)
                         {
                             case 0:
@@ -272,6 +235,8 @@ namespace Bokningssystem
                                 labelFordon[o].Click += new System.EventHandler(this.Hyr);
                                 break;
                         }
+                        this.tableLayoutPanelTyp.Controls.Add(labelFordon[o]);
+                    }
                 }
             }
         }
@@ -301,15 +266,27 @@ namespace Bokningssystem
                     Label[] labelHyrning = { labelHyrningStartDatum, labelHyrningSlutDatum, labelHyrningFordon, labelTabortHyrningar };
                     for (int o = 0; o < 4; o++)
                     {
-                        if (o == 3)
+                        switch (o)
                         {
-                            labelHyrning[o].Text = "Ta bort";
-                            labelHyrning[o].Name = "Tabort_" + hyrningsString["Hyrning"];
-                            labelHyrning[o].Cursor = Cursors.Hand;
-                            labelHyrning[o].Click += new System.EventHandler(this.TaBort);
+                            case 0:
+                                labelHyrning[o].Text = hyrningsString["Startdag"];
+                                break;
+
+                            case 1:
+                                labelHyrning[o].Text = hyrningsString["Slutdag"];
+                                break;
+
+                            case 2:
+                                labelHyrning[o].Text = hyrningsString["Fordon"];
+                                break;
+
+                            case 3:
+                                labelHyrning[o].Text = "Ta bort";
+                                labelHyrning[o].Name = "Tabort_" + hyrningsString["Hyrning"];
+                                labelHyrning[o].Cursor = Cursors.Hand;
+                                labelHyrning[o].Click += new System.EventHandler(this.TaBort);
+                                break;
                         }
-                        else
-                            labelHyrning[o].Text = hyrningsString[hyrningsString.Keys[o]];
                         this.tableLayoutPanelHyrning.Controls.Add(labelHyrning[o]);
                     }
                 }
@@ -353,10 +330,11 @@ namespace Bokningssystem
 
             string reg = hyr.Name.Substring(4);
 
-            if (hyrning.hyra(this.anvandare, startdag, slutdag, reg))
+            if (hyrning.hyra(this.anvandare, startdag.ToShortDateString(), slutdag.ToShortDateString(), reg))
             {
+                DoljHyr();
                 richTextBoxMeddelandenHyra.Text = "Bokningen genomfördes utan problem.";
-                richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + fordon as string + "\nRegnummer: " + reg + "\nStartdagen: " + startdag + "\nSlutdagen: " + slutdag;
+                richTextBoxMeddelandenHyra.Text += "\n\nDu har nu hyrt en;\n" + fordon as string + "\nRegnummer: " + reg + "\nStartdagen: " + startdag.ToShortDateString() + "\nSlutdagen: " + slutdag.ToShortDateString();
             }
             else
             {

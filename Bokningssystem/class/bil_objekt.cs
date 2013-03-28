@@ -294,7 +294,7 @@ namespace Bokningssystem
             if (allaFordonStatus == 0)
                 allaFordon = GetTmpMsgs();
             else if (allaFordonStatus == 10)
-                throw new Exception("Det fanns inga fordon som matchade typen som angivits");
+                return 10;
             else
                 throw new Exception(db.GetTmpMsgs()[0]);
 
