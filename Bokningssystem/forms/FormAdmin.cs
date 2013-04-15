@@ -138,11 +138,32 @@ namespace Bokningssystem
         /// <param name="e"></param>
         private void label_Click(object sender, EventArgs e)
         {
-            Label label = (Label)sender;
-            string tid = label.Name.Substring(8);
-            labelNyBokTid.Text = tid + ":00";
-            panelNyBok.Enabled = true;
-            this.panelNyBok.Show();
+            try
+            {
+                RichTextBox richLabel = (RichTextBox)sender;
+                if (richLabel != null)
+                {
+                    if (richLabel.Name == "richTextBoxInfoBil")
+                    {
+                        string anvandare = richLabel.Lines[4].Substring(7);
+                        FormProfil profil = new FormProfil(anvandare);
+                        this.Hide();
+                        profil.ShowDialog();
+                        this.Show();
+                    }
+                }
+            }
+            catch (System.InvalidCastException ex)
+            {
+                Label label = (Label)sender;
+                if (label.Text == "Ledig")
+                {
+                    string tid = label.Name.Substring(8);
+                    labelNyBokTid.Text = tid + ":00";
+                    panelNyBok.Enabled = true;
+                    this.panelNyBok.Show();
+                }
+            }               
         }
 
         /// <summary>

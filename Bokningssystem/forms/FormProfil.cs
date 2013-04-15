@@ -23,6 +23,20 @@ namespace Bokningssystem
             InitializeComponent();
         }
 
+        public FormProfil(string agare)
+        {
+            InitializeComponent();
+            this.anvandare = new kund(agare);
+            initProfil();
+
+            TextBox[] textboxar = { textBoxAdress, textBoxEmail, textBoxNamn, textBoxTfn };
+            foreach (TextBox tb in textboxar)
+            {
+                tb.KeyDown -= textboxKeyEvent;
+                tb.Enabled = false;
+            }
+        }
+
         /// <summary>
         /// Konstruktör för användare
         /// </summary>
