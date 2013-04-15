@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Bokningssystem
 {
-    abstract class user
+    public abstract class user
     {
         public bool DEBUG = Properties.Settings.Default.Debug;
 
-        private string email, fnamn, enamn, losenord, tfn, adress;
-        private string[] tmpMsgs;
+        protected string email, fnamn, enamn, losenord, tfn, adress;
+        protected string[] tmpMsgs;
         protected bool readOnly;
-        private SqlCeDatabase db = null;
+        protected SqlCeDatabase db = null;
 
         /// <summary>
         /// Tom konstruktör

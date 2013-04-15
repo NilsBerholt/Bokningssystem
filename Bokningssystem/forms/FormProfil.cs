@@ -14,6 +14,7 @@ namespace Bokningssystem
         private bool DEBUG = Properties.Settings.Default.Debug;
         private string uppdatera, nyttvarde;
         kund anvandare;
+        administrator admin;
 
         /// <summary>
         /// Tom konstruktör
@@ -27,7 +28,7 @@ namespace Bokningssystem
         {
             InitializeComponent();
             this.anvandare = new kund(agare);
-            initProfil();
+            initProfil(anvandare);
 
             TextBox[] textboxar = { textBoxAdress, textBoxEmail, textBoxNamn, textBoxTfn };
             foreach (TextBox tb in textboxar)
@@ -45,7 +46,7 @@ namespace Bokningssystem
         {
             this.anvandare = anvandare;
             InitializeComponent();
-            initProfil();
+            initProfil(anvandare);
         }
 
         /// <summary>
@@ -54,9 +55,9 @@ namespace Bokningssystem
         /// <param name="admin">Administratörsobjeketet för vilken denna profil skapas</param>
         public FormProfil(administrator admin)
         {
-            this.anvandare = (kund)admin;
+            this.admin = admin;
             InitializeComponent();
-            initProfil();
+            initProfil(admin);
         }
 
         /// <summary>
@@ -143,13 +144,34 @@ namespace Bokningssystem
             label7.Visible = true;
 
             // Städa upp saker 
-            initProfil();
+            if (anvandare != null)
+                initProfil(anvandare);
+            else
+                initProfil(admin);
         }
 
         /// <summary>
         /// Funktion som fyller textboxarna med profilens information
         /// </summary>
-        public void initProfil()
+        public void initProfil(kund anvandare)
+        {
+            textBoxNamn.Text = anvandare.GetNamn();
+            textBoxEmail.Text = anvandare.GetEmail();
+            textBoxAdress.Text = anvandare.GetAdress();
+            textBoxTfn.Text = anvandare.GetTfn();
+
+            textBoxBekräfta.Clear();
+            textBoxBekräfta.Hide();
+            labelBekräfta.Hide();
+            labelAvbryt.Hide();
+            panelRed.Hide();
+            buttonBytLösen.Hide();
+        }
+
+        /// <summary>
+        /// Funktion som fyller textboxarna med profilens information
+        /// </summary>
+        public void initProfil(administrator anvandare)
         {
             textBoxNamn.Text = anvandare.GetNamn();
             textBoxEmail.Text = anvandare.GetEmail();
@@ -200,7 +222,10 @@ namespace Bokningssystem
                 if (anvandare.SetLosen(maskedTextBoxNytt.Text) == 0)
                 {
                     label7.Text = "Du har uppdaterat ditt lösenord";
-                    initProfil();
+                    if (anvandare != null)
+                        initProfil(anvandare);
+                    else
+                        initProfil(admin);
                 }
             }
             else
@@ -226,7 +251,10 @@ namespace Bokningssystem
         /// <param name="e"></param>
         private void labelAvbryt_Click(object sender, EventArgs e)
         {
-            initProfil();
+            if (anvandare != null)
+                initProfil(anvandare);
+            else
+                initProfil(admin);
         }
     }
 }

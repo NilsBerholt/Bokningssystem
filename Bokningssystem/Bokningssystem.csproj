@@ -124,6 +124,7 @@
     <Compile Include="forms\FormProfil.Designer.cs">
       <DependentUpon>FormProfil.cs</DependentUpon>
     </Compile>
+    <Compile Include="class\user.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\FormAdmin.resx">
