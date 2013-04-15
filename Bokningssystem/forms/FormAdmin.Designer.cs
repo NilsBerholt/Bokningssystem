@@ -32,8 +32,8 @@
             this.visaBokningar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.nyHyrning = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.visaHyrningar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.läggTillHyrfordon = new System.Windows.Forms.ToolStripMenuItem();
             this.omOss = new System.Windows.Forms.ToolStripMenuItem();
             this.flowPanelRoot = new System.Windows.Forms.FlowLayoutPanel();
@@ -146,17 +146,17 @@
             this.nyHyrning.Text = "Ny hyrning";
             this.nyHyrning.Click += new System.EventHandler(this.MenuItem_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
-            // 
             // visaHyrningar
             // 
             this.visaHyrningar.Name = "visaHyrningar";
             this.visaHyrningar.Size = new System.Drawing.Size(172, 22);
             this.visaHyrningar.Text = "Visa hyrningar";
             this.visaHyrningar.Click += new System.EventHandler(this.MenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
             // 
             // läggTillHyrfordon
             // 
@@ -407,9 +407,9 @@
             this.labelNyBokTid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNyBokTid.Location = new System.Drawing.Point(265, 137);
             this.labelNyBokTid.Name = "labelNyBokTid";
-            this.labelNyBokTid.Size = new System.Drawing.Size(78, 18);
+            this.labelNyBokTid.Size = new System.Drawing.Size(73, 18);
             this.labelNyBokTid.TabIndex = 20;
-            this.labelNyBokTid.Text = "Årsmodell:";
+            this.labelNyBokTid.Text = "NyBokTid";
             this.labelNyBokTid.Visible = false;
             // 
             // labelNyBokDag
@@ -419,9 +419,9 @@
             this.labelNyBokDag.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNyBokDag.Location = new System.Drawing.Point(265, 110);
             this.labelNyBokDag.Name = "labelNyBokDag";
-            this.labelNyBokDag.Size = new System.Drawing.Size(35, 18);
+            this.labelNyBokDag.Size = new System.Drawing.Size(80, 18);
             this.labelNyBokDag.TabIndex = 19;
-            this.labelNyBokDag.Text = "Dag";
+            this.labelNyBokDag.Text = "NyBokDag";
             this.labelNyBokDag.Visible = false;
             // 
             // richTextBoxBokMeddelande
