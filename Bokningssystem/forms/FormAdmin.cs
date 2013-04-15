@@ -192,9 +192,13 @@ namespace Bokningssystem
         private void buttonBoka_Click(object sender, EventArgs e)
         {
             boknings_objekt bokningar = new boknings_objekt(new SqlCeDatabase(), this.admin);
-            string namn, tfn, reg, marke, modell, arsmodell, beskr, datum;
+            input nyKund = new input();
+            string namn, tfn, persnnr, adress, email, reg, marke, modell, arsmodell, beskr, datum;
             namn = maskedTextBoxNamn.Text;
             tfn = maskedTextBoxTfn.Text;
+            persnnr = maskedTextBoxPersnnr1.Text;
+            adress = maskedTextBoxAdress1.Text;
+            email = maskedTextBoxEmail1.Text;
             reg = maskedTextBoxReg.Text;
             marke = maskedTextBoxMarke.Text;
             modell = maskedTextBoxModell.Text;
@@ -203,10 +207,41 @@ namespace Bokningssystem
             datum = labelNyBokDag.Text + " " + labelNyBokTid.Text;
 
             // Om något av de obligatoriska fälten är tomma avbryt
-            if (namn == string.Empty | tfn == string.Empty | reg == string.Empty | marke == string.Empty | modell == string.Empty | arsmodell == string.Empty)
+            if (namn == string.Empty | tfn == string.Empty | persnnr == string.Empty | adress == string.Empty | email == string.Empty | reg == string.Empty | marke == string.Empty | modell == string.Empty | arsmodell == string.Empty)
             {
                 MessageBox.Show("Du måste fylla i alla fälten");
                 return;
+            }
+
+            //Kollar om kundvärderna kan stämma
+            MaskedTextBox[] inmatningsBoxar = { maskedTextBoxNamn, maskedTextBoxPersnnr1, maskedTextBoxEmail1, maskedTextBoxAdress1, maskedTextBoxTfn };
+            string[] inmatVärden = nyKund.kollaInmatning(inmatningsBoxar);
+            if (DEBUG && nyKund.GetTmpMsgs().Length > 0)
+                {
+                    string[] errorMsgs = nyKund.GetTmpMsgs();
+
+                    foreach (string meddelande in errorMsgs)
+                        richTextBoxMeddelanden.Text += meddelande + "\n";
+                }
+
+            int regResultat = nyKund.ReggaAdminKund(inmatVärden);
+            if (regResultat == 0)
+            {
+                richTextBoxMeddelanden.Text = "Kunden registrerades utan problem!";
+            }
+            else
+            {
+                string[] felmeddelande = nyKund.GetTmpMsgs();
+                if (felmeddelande.Contains("a duplicate value"))
+                    richTextBoxMeddelanden.Text = "Det finns redan ett konto med denna emailadress eller med detta personnummer. " +
+                        "\nKontrollera att du inte redan skapat ett konto.\n";
+                else
+                {
+                   if (DEBUG)
+                       richTextBoxMeddelanden.Text += felmeddelande[1]; // Index utanför matrixen... 
+                   else
+                       richTextBoxMeddelanden.Text += "Det blev ett fel när du skulle registreras.\nFörsök gärna lite senare.";
+                }
             }
 
             string fnamn, enamn;

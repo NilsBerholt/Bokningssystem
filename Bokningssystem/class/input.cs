@@ -83,6 +83,38 @@ namespace Bokningssystem
         }
 
         /// <summary>
+        /// Denna funktion lägger till personer till registret.
+        /// Den använder sig av klassen SqlCeDatabase för att ansluta till en kompakt MSSQL-server/fil.
+        /// </summary>
+        /// <param name="args">En array med strängar som representerar värdena till kunden.
+        /// Kan med fördel användas med kollaInmatnings funktionen</param>
+        /// <returns>Returnerar ett intvärde.
+        /// 0 om allt slutade utan problem
+        /// Annars returnerar den db.operation eller db.query felkoden.</returns>
+        public int ReggaAdminKund(string[] args)
+        {
+            SqlCeDatabase db = new SqlCeDatabase();
+            string query = "Insert into Kunder" +
+                            "(fnamn, enamn, email, tfn, adress, personnr)" +
+                            " values " +
+                            "('?x?','?x?','?x?','?x?','?x?','?x?')";
+            if (db.query(query, args) == 0)
+            {
+                if (db.operation() == 0)
+                {
+                    int resultat = 0;
+                    return resultat;
+                }
+                else
+                {
+                    return db.operation();
+                }
+            }
+            else
+                return db.query(query, args);
+        }
+
+        /// <summary>
         /// Funktion som validerar inmatningarna i textboxarna.
         /// Textboxar vars namn är t ex textBoxEmail, textBoxNamn eller liknande
         /// kommer att få deras innehåll granskat på riktigt, exempelvis textBoxPersnr
@@ -97,6 +129,94 @@ namespace Bokningssystem
             foreach (TextBox textbox in inmatningar)
             {
                 string textboxName = textbox.Name.Substring(7, textbox.Name.Length - 7);
+                switch (textboxName)
+                {
+                    case "Email":
+                        if (kollaEmail(textbox.Text))
+                        {
+                            args.Add(textbox.Text);
+                        }
+                        else
+                        {
+                            errorMsg.Add("Din emailadress är inte korrekt, kontrollera att du inte skrivit fel");
+                            errorMsg.Add("Giltiga emailadresser innehåller ett användarnamn@domän(.com/se/nu) " +
+                                "och får inte börja med något annat än siffror eller bokstäver");
+                        }
+                        break;
+
+                    case "Namn":
+                        string[] namn = kollaNamn(textbox.Text);
+                        if (namn[0] != "0")
+                            args.AddRange(namn);
+                        else
+                        {
+                            errorMsg.Add("Ditt namn är inte fullständigt. " +
+                                "Tänk på att skriva både förnamn och efternamn med ett mellanslag som separerar dem från varandra.");
+                        }
+                        break;
+
+                    case "Persnr":
+                        if (kollaPersnr(textbox.Text))
+                            args.Add(textbox.Text);
+                        else
+                        {
+                            errorMsg.Add("Ditt personnummer är inte giltigt, kontrollera att du inte skrivit fel någonstans.");
+                            errorMsg.Add("Formatet är ÅÅMMDDXXXX");
+                        }
+                        break;
+
+                    case "Telefon":
+                        if (kollaTfnNummer(textbox.Text))
+                            args.Add(textbox.Text);
+                        else
+                            errorMsg.Add("Ditt telefonnummer är inte giltigt, det får bara inneålla 9-10 siffror.\n" +
+                                "Tänk på att skriva in riktnumret.");
+                        break;
+
+                    default:
+                        string text = textbox.Name;
+                        if (text.Contains("namn") | text.Contains("Namn"))
+                        {
+                            string[] kundNamn = kollaNamn(textbox.Text);
+                            args.AddRange(kundNamn);
+                            break;
+                        }
+                        if (text.Contains("mail"))
+                            if (kollaEmail(textbox.Text))
+                            {
+                                args.Add(textbox.Text);
+                                break;
+                            }
+                            else
+                            {
+                                errorMsg.Add("Din emailadress är inte en giltig adress.");
+                                break;
+                            }
+                        else
+                            args.Add(textbox.Text);
+                        break;
+                }
+            }
+            if (errorMsg.Count > 0)
+                this.tmpMsgs = errorMsg.ToArray();
+            return args.ToArray();
+        }
+
+        /// <summary>
+        /// Funktion som validerar inmatningarna i textboxarna.
+        /// Textboxar vars namn är t ex textBoxEmail, textBoxNamn eller liknande
+        /// kommer att få deras innehåll granskat på riktigt, exempelvis textBoxPersnr
+        /// </summary>
+        /// <param name="inmatningar">En array med alla textboxar, skriv dem i ordning, för annars blir det jobbigt.</param>
+        /// <returns>Kommer att returnera en sträng array med alla godkända strängar.
+        /// För att kunna debugga denna funktion, använd er av GetTmpMsgs() metoden till input.</returns>
+        public string[] kollaInmatning(MaskedTextBox[] inmatningar)
+        {
+            List<string> args = new List<string>();
+            List<string> errorMsg = new List<string>();
+            foreach (MaskedTextBox textbox in inmatningar)
+            {
+                string textboxName = textbox.Name.Substring(13, textbox.Name.Length - 13);
                 switch (textboxName)
                 {
                     case "Email":

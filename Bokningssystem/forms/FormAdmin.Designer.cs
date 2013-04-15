@@ -97,6 +97,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.richTextBoxFormAdminMsgs = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.maskedTextBoxEmail1 = new System.Windows.Forms.MaskedTextBox();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.maskedTextBoxAdress1 = new System.Windows.Forms.MaskedTextBox();
+            this.labelAdress = new System.Windows.Forms.Label();
+            this.maskedTextBoxPersnnr1 = new System.Windows.Forms.MaskedTextBox();
+            this.labelPersnnr = new System.Windows.Forms.Label();
+            this.richTextBoxMeddelanden = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.flowPanelRoot.SuspendLayout();
             this.panelVisaBok.SuspendLayout();
@@ -376,6 +383,13 @@
             // 
             // panelNyBok
             // 
+            this.panelNyBok.Controls.Add(this.richTextBoxMeddelanden);
+            this.panelNyBok.Controls.Add(this.maskedTextBoxEmail1);
+            this.panelNyBok.Controls.Add(this.labelEmail);
+            this.panelNyBok.Controls.Add(this.maskedTextBoxAdress1);
+            this.panelNyBok.Controls.Add(this.labelAdress);
+            this.panelNyBok.Controls.Add(this.maskedTextBoxPersnnr1);
+            this.panelNyBok.Controls.Add(this.labelPersnnr);
             this.panelNyBok.Controls.Add(this.labelNyBokTid);
             this.panelNyBok.Controls.Add(this.labelNyBokDag);
             this.panelNyBok.Controls.Add(this.richTextBoxBokMeddelande);
@@ -396,7 +410,7 @@
             this.panelNyBok.Enabled = false;
             this.panelNyBok.Location = new System.Drawing.Point(3, 211);
             this.panelNyBok.Name = "panelNyBok";
-            this.panelNyBok.Size = new System.Drawing.Size(430, 243);
+            this.panelNyBok.Size = new System.Drawing.Size(628, 243);
             this.panelNyBok.TabIndex = 0;
             this.panelNyBok.Visible = false;
             // 
@@ -444,7 +458,7 @@
             // 
             // maskedTextBoxArsmodell
             // 
-            this.maskedTextBoxArsmodell.Location = new System.Drawing.Point(297, 66);
+            this.maskedTextBoxArsmodell.Location = new System.Drawing.Point(506, 32);
             this.maskedTextBoxArsmodell.Name = "maskedTextBoxArsmodell";
             this.maskedTextBoxArsmodell.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBoxArsmodell.TabIndex = 16;
@@ -453,7 +467,7 @@
             // 
             this.labelArsmodell.AutoSize = true;
             this.labelArsmodell.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelArsmodell.Location = new System.Drawing.Point(213, 66);
+            this.labelArsmodell.Location = new System.Drawing.Point(418, 31);
             this.labelArsmodell.Name = "labelArsmodell";
             this.labelArsmodell.Size = new System.Drawing.Size(78, 18);
             this.labelArsmodell.TabIndex = 15;
@@ -461,7 +475,7 @@
             // 
             // maskedTextBoxModell
             // 
-            this.maskedTextBoxModell.Location = new System.Drawing.Point(297, 32);
+            this.maskedTextBoxModell.Location = new System.Drawing.Point(506, 3);
             this.maskedTextBoxModell.Name = "maskedTextBoxModell";
             this.maskedTextBoxModell.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBoxModell.TabIndex = 14;
@@ -470,7 +484,7 @@
             // 
             this.labelModell.AutoSize = true;
             this.labelModell.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelModell.Location = new System.Drawing.Point(211, 32);
+            this.labelModell.Location = new System.Drawing.Point(418, 2);
             this.labelModell.Name = "labelModell";
             this.labelModell.Size = new System.Drawing.Size(56, 18);
             this.labelModell.TabIndex = 13;
@@ -478,7 +492,7 @@
             // 
             // maskedTextBoxMarke
             // 
-            this.maskedTextBoxMarke.Location = new System.Drawing.Point(297, 3);
+            this.maskedTextBoxMarke.Location = new System.Drawing.Point(281, 63);
             this.maskedTextBoxMarke.Name = "maskedTextBoxMarke";
             this.maskedTextBoxMarke.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBoxMarke.TabIndex = 12;
@@ -487,7 +501,7 @@
             // 
             this.labelMarke.AutoSize = true;
             this.labelMarke.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMarke.Location = new System.Drawing.Point(211, 0);
+            this.labelMarke.Location = new System.Drawing.Point(213, 60);
             this.labelMarke.Name = "labelMarke";
             this.labelMarke.Size = new System.Drawing.Size(54, 18);
             this.labelMarke.TabIndex = 11;
@@ -506,7 +520,7 @@
             // 
             // maskedTextBoxReg
             // 
-            this.maskedTextBoxReg.Location = new System.Drawing.Point(107, 67);
+            this.maskedTextBoxReg.Location = new System.Drawing.Point(522, 63);
             this.maskedTextBoxReg.Mask = "AAA 000";
             this.maskedTextBoxReg.Name = "maskedTextBoxReg";
             this.maskedTextBoxReg.Size = new System.Drawing.Size(100, 20);
@@ -514,9 +528,9 @@
             // 
             // maskedTextBoxTfn
             // 
-            this.maskedTextBoxTfn.Location = new System.Drawing.Point(89, 33);
+            this.maskedTextBoxTfn.Location = new System.Drawing.Point(89, 32);
             this.maskedTextBoxTfn.Name = "maskedTextBoxTfn";
-            this.maskedTextBoxTfn.Size = new System.Drawing.Size(118, 20);
+            this.maskedTextBoxTfn.Size = new System.Drawing.Size(116, 20);
             this.maskedTextBoxTfn.TabIndex = 6;
             // 
             // maskedTextBoxNamn
@@ -530,7 +544,7 @@
             // 
             this.labelReg.AutoSize = true;
             this.labelReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelReg.Location = new System.Drawing.Point(3, 66);
+            this.labelReg.Location = new System.Drawing.Point(418, 60);
             this.labelReg.Name = "labelReg";
             this.labelReg.Size = new System.Drawing.Size(98, 18);
             this.labelReg.TabIndex = 2;
@@ -540,7 +554,7 @@
             // 
             this.labelTfn.AutoSize = true;
             this.labelTfn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTfn.Location = new System.Drawing.Point(3, 32);
+            this.labelTfn.Location = new System.Drawing.Point(5, 31);
             this.labelTfn.Name = "labelTfn";
             this.labelTfn.Size = new System.Drawing.Size(74, 18);
             this.labelTfn.TabIndex = 1;
@@ -550,7 +564,7 @@
             // 
             this.labelNamn.AutoSize = true;
             this.labelNamn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNamn.Location = new System.Drawing.Point(3, 0);
+            this.labelNamn.Location = new System.Drawing.Point(5, 4);
             this.labelNamn.Name = "labelNamn";
             this.labelNamn.Size = new System.Drawing.Size(52, 18);
             this.labelNamn.TabIndex = 0;
@@ -801,6 +815,67 @@
             this.panel1.Size = new System.Drawing.Size(200, 100);
             this.panel1.TabIndex = 5;
             // 
+            // maskedTextBoxEmail1
+            // 
+            this.maskedTextBoxEmail1.Location = new System.Drawing.Point(281, 32);
+            this.maskedTextBoxEmail1.Name = "maskedTextBoxEmail1";
+            this.maskedTextBoxEmail1.Size = new System.Drawing.Size(116, 20);
+            this.maskedTextBoxEmail1.TabIndex = 26;
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmail.Location = new System.Drawing.Point(213, 31);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(49, 18);
+            this.labelEmail.TabIndex = 25;
+            this.labelEmail.Text = "Email:";
+            // 
+            // maskedTextBoxAdress1
+            // 
+            this.maskedTextBoxAdress1.Location = new System.Drawing.Point(281, 4);
+            this.maskedTextBoxAdress1.Name = "maskedTextBoxAdress1";
+            this.maskedTextBoxAdress1.Size = new System.Drawing.Size(116, 20);
+            this.maskedTextBoxAdress1.TabIndex = 24;
+            // 
+            // labelAdress
+            // 
+            this.labelAdress.AutoSize = true;
+            this.labelAdress.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAdress.Location = new System.Drawing.Point(213, 3);
+            this.labelAdress.Name = "labelAdress";
+            this.labelAdress.Size = new System.Drawing.Size(58, 18);
+            this.labelAdress.TabIndex = 23;
+            this.labelAdress.Text = "Adress:";
+            // 
+            // maskedTextBoxPersnnr1
+            // 
+            this.maskedTextBoxPersnnr1.Location = new System.Drawing.Point(89, 63);
+            this.maskedTextBoxPersnnr1.Name = "maskedTextBoxPersnnr1";
+            this.maskedTextBoxPersnnr1.Size = new System.Drawing.Size(116, 20);
+            this.maskedTextBoxPersnnr1.TabIndex = 22;
+            // 
+            // labelPersnnr
+            // 
+            this.labelPersnnr.AutoSize = true;
+            this.labelPersnnr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPersnnr.Location = new System.Drawing.Point(5, 60);
+            this.labelPersnnr.Name = "labelPersnnr";
+            this.labelPersnnr.Size = new System.Drawing.Size(73, 18);
+            this.labelPersnnr.TabIndex = 21;
+            this.labelPersnnr.Text = "Personnr:";
+            // 
+            // richTextBoxMeddelanden
+            // 
+            this.richTextBoxMeddelanden.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBoxMeddelanden.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxMeddelanden.Location = new System.Drawing.Point(421, 127);
+            this.richTextBoxMeddelanden.Name = "richTextBoxMeddelanden";
+            this.richTextBoxMeddelanden.Size = new System.Drawing.Size(201, 110);
+            this.richTextBoxMeddelanden.TabIndex = 27;
+            this.richTextBoxMeddelanden.Text = "";
+            // 
             // FormAdmin
             // 
             this.AutoSize = true;
@@ -905,5 +980,12 @@
         private System.Windows.Forms.Label labelNyBokTid;
         private System.Windows.Forms.Label labelNyBokDag;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxEmail1;
+        private System.Windows.Forms.Label labelEmail;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxAdress1;
+        private System.Windows.Forms.Label labelAdress;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxPersnnr1;
+        private System.Windows.Forms.Label labelPersnnr;
+        private System.Windows.Forms.RichTextBox richTextBoxMeddelanden;
     }
 }
