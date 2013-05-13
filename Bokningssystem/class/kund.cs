@@ -23,14 +23,15 @@ namespace Bokningssystem
         public kund(string email, string losen) : base()
         {
             List<string> errorMsg = new List<string>();
-            string query = "Select email, fnamn, enamn, losen, tfn, adress from Kunder where email='?x?' and losen='?x?'";
+            string query = "Select email, fnamn, enamn, losen, tfn, adress, personnr from Kunder where email='?x?' and losen='?x?'";
             string[] args = { email, losen };
             if (db.query(query, args) != 0)
                 errorMsg.AddRange(db.GetTmpMsgs());
             else
             {
                 string[] resultat = db.fetch();
-                string[] properties = { this.email, this.fnamn, this.enamn, this.losenord, this.tfn, this.adress };
+                string[] properties = { this.email, this.fnamn, this.enamn, this.losenord, this.tfn, this.adress, this.personnummer };
+                int length = properties.Length;
 
                 if (resultat.Length == 0)
                     throw new Exception("Lösenordet och e-postadressen stämde inte överens med någon kund i registret");
@@ -64,6 +65,11 @@ namespace Bokningssystem
                     this.adress = resultat[5];
                 else
                     errorMsg.Add("Fältet för adressen är tomt");
+
+                if (resultat[6] != string.Empty)
+                    this.personnummer = resultat[6];
+                else
+                    errorMsg.Add("Fältet för personnumret är tomt");
 
                 this.readOnly = false;
             }

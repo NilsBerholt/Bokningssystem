@@ -88,6 +88,7 @@ namespace Bokningssystem
             {
                 richTextBoxBokningMeny.Text += "\nNamn: " + anvandare.GetNamn();
                 richTextBoxBokningMeny.Text += "\nEmail: " + anvandare.GetEmail();
+                richTextBoxBokningMeny.Text += "\nPersonnummer: " + anvandare.GetPersonnummer();
             }
         }
 

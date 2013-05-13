@@ -81,7 +81,7 @@ namespace Bokningssystem
             SqlCeDatabase db = new SqlCeDatabase();
             List<string> resultat = new List<string>();
             List<string> errorMsgs = new List<string>();
-            string agare = anvandare.GetEmail();
+            string agare = anvandare.GetPersonnummer();
             string queryNyBil = "INSERT INTO Fordon" +
                 "(reg, modell, arsmodell, marke, agare) " +
                 " values ('?x?','?x?','?x?','?x?','?x?')";
@@ -200,7 +200,7 @@ namespace Bokningssystem
         }
 
         /// <summary>
-        /// Hämtar alla bilar som är registrerade på kundens email och sparar dem i tmpMsgs.
+        /// Hämtar alla bilar som är registrerade på kunden och sparar dem i tmpMsgs.
         /// För att hämta arrayen med bilar kör getTmpMgsg.
         /// </summary>
         /// <param name="anvandare">Kunden som bilarna är registrerade på</param>
@@ -213,7 +213,7 @@ namespace Bokningssystem
             SqlCeDatabase db = new SqlCeDatabase();
 
             string regQuery = "SELECT reg, marke, modell, arsmodell FROM fordon WHERE agare='?x?'";
-            string[] args = { anvandare.GetEmail() };
+            string[] args = { anvandare.GetPersonnummer() };
 
             int queryResultat = db.query(regQuery, args);
             if (queryResultat == 0)
@@ -249,7 +249,7 @@ namespace Bokningssystem
             SqlCeDatabase db = new SqlCeDatabase();
 
             string regQuery = "SELECT ?x? FROM fordon WHERE agare='?x?'";
-            string[] args = { what, anvandare.GetEmail() };
+            string[] args = { what, anvandare.GetPersonnummer() };
 
             int queryResultat = db.query(regQuery, args);
             if (queryResultat == 0)

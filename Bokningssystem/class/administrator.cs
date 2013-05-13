@@ -116,6 +116,11 @@ namespace Bokningssystem
                 else
                     errorMsg.Add("Fältet för adressen är tomt");
 
+                if (resultat[6] != string.Empty)
+                    this.personnummer = resultat[5];
+                else
+                    errorMsg.Add("Fältet för personnummer är tomt");
+
                 this.readOnly = false;
             }
             this.tmpMsgs = errorMsg.ToArray();

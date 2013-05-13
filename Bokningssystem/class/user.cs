@@ -9,7 +9,7 @@ namespace Bokningssystem
     {
         public bool DEBUG = Properties.Settings.Default.Debug;
 
-        protected string email, fnamn, enamn, losenord, tfn, adress;
+        protected string email, fnamn, enamn, losenord, tfn, adress, personnummer;
         protected string[] tmpMsgs;
         protected bool readOnly;
         protected SqlCeDatabase db = null;
@@ -66,6 +66,15 @@ namespace Bokningssystem
         public string GetTfn()
         {
             return this.tfn;
+        }
+
+        /// <summary>
+        /// Returnerar Personnumret i en sträng
+        /// </summary>
+        /// <returns>Personnumret på användaren</returns>
+        public string GetPersonnummer()
+        {
+            return this.personnummer;
         }
 
         /// <summary>
